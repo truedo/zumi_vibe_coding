@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUMI 바이브 코딩 · STEP 1</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f0f4ff;
+      --white: #ffffff;
+      --border: #dde4f5;
+      --accent: #3b5bfc;
+      --accent-light: #eef0ff;
+      --accent2: #ff5c87;
+      --green: #00c07f;
+      --yellow: #ffb800;
+      --text: #1a2340;
+      --dim: #7a8aaa;
+      --shadow: 0 4px 24px rgba(59, 91, 252, .08);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── 상단 배너 ── */
+    .top-banner {
+      background: linear-gradient(135deg, #3b5bfc 0%, #7c3aed 100%);
+      color: white;
+      padding: 40px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .step-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .top-banner h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .top-banner p {
+      font-size: 1rem;
+      opacity: .85;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* ── 내비 탭 ── */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      overflow-x: auto;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+      padding: 14px 22px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--dim);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all .2s;
+      white-space: nowrap;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .nav-tab:hover {
+      color: var(--accent);
+    }
+
+    /* ── 섹션 ── */
+    .section {
+      display: none;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* ── 목표 섹션 ── */
+    .goal-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .goal-box h2 {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .goal-box p {
+      color: var(--dim);
+      line-height: 1.8;
+    }
+
+    /* ── 기능 그리드 ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px 18px;
+      box-shadow: var(--shadow);
+      border: 2px solid transparent;
+      transition: all .2s;
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .feature-card .fc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .feature-card ul {
+      list-style: none;
+    }
+
+    .feature-card ul li {
+      font-size: .78rem;
+      color: var(--dim);
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feature-card ul li::before {
+      content: '·';
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── 요청 예시 ── */
+    .request-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .request-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all .2s;
+      border: 2px solid transparent;
+    }
+
+    .request-item:hover {
+      border-color: var(--accent);
+    }
+
+    .request-item:hover .ri-copy {
+      opacity: 1;
+    }
+
+    .ri-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ri-text {
+      flex: 1;
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .ri-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      padding: 3px 8px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity .2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: var(--accent-light);
+    }
+
+    .ri-copy.copied {
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    /* ── 프로젝트 카드 ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: all .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(59, 91, 252, .15);
+    }
+
+    .project-card .pc-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card h3 {
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .project-card p {
+      font-size: .78rem;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+
+    /* ── 프롬프트 박스 ── */
+    .prompt-section {
+      margin-top: 8px;
+    }
+
+    .prompt-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .prompt-header-row h2 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .prompt-box {
+      background: #111827;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .prompt-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #1f2937;
+      border-bottom: 1px solid #374151;
+    }
+
+    .prompt-topbar span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      color: #6b7280;
+      letter-spacing: 2px;
+    }
+
+    .copy-all-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      padding: 4px 12px;
+      border: 1px solid #3b82f6;
+      border-radius: 4px;
+      background: transparent;
+      color: #3b82f6;
+      cursor: pointer;
+      transition: all .15s;
+      letter-spacing: 1px;
+    }
+
+    .copy-all-btn:hover {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    .copy-all-btn.copied {
+      border-color: #10b981;
+      color: #10b981;
+    }
+
+    .prompt-body {
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      line-height: 2;
+      color: #d1d5db;
+      white-space: pre-wrap;
+    }
+
+    .pk {
+      color: #60a5fa;
+    }
+
+    /* 키워드 */
+    .pv {
+      color: #34d399;
+    }
+
+    /* 값 */
+    .pc {
+      color: #6b7280;
+    }
+
+    /* 주석 */
+    .pp {
+      color: #fbbf24;
+    }
+
+    /* 플레이스홀더 */
+    .ph-box {
+      display: block;
+      background: rgba(251, 191, 36, .08);
+      border: 1px dashed rgba(251, 191, 36, .4);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-top: 4px;
+      color: #fbbf24;
+    }
+
+    /* ── 팁 박스 ── */
+    .tip {
+      display: flex;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: .85rem;
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    .tip.blue {
+      background: #eff6ff;
+      border-left: 4px solid var(--accent);
+    }
+
+    .tip.green {
+      background: #f0fdf4;
+      border-left: 4px solid var(--green);
+    }
+
+    .tip.yellow {
+      background: #fffbeb;
+      border-left: 4px solid var(--yellow);
+    }
+
+    .tip-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── 섹션 타이틀 ── */
+    .sec-title {
+      font-size: .72rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 3px;
+      color: var(--dim);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sec-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── 토스트 ── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      padding: 10px 22px;
+      border-radius: 100px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .25);
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 상단 배너 -->
+  <div class="top-banner">
+    <div class="step-badge">STEP 1 of 4</div>
+    <h1>🔗 연결하고 보기</h1>
+    <p>로봇과 연결하고 카메라 화면을 확인해봅니다.<br>카메라 영상을 활용하여 다양한 기능을 추가할 수 있습니다.</p>
+  </div>
+
+  <!-- 내비 탭 -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('goal')">🎯 목표</button>
+    <button class="nav-tab" onclick="showTab('features')">⚙️ 가능한 기능</button>
+    <button class="nav-tab" onclick="showTab('prompt')">📋 프롬프트</button>
+    <button class="nav-tab" onclick="showTab('requests')">💬 AI 요청 예시</button>
+    <button class="nav-tab" onclick="showTab('projects')">🚀 프로젝트 아이디어</button>
+
+  </div>
+
+  <!-- ① 목표 -->
+  <div class="section active" id="tab-goal">
+    <div class="goal-box">
+      <h2>🎯 이번 단계의 목표</h2>
+      <p>주미 로봇과 <strong>WebSocket</strong>으로 연결하고, 카메라 영상을 브라우저에서 실시간으로 확인합니다.<br>
+        이 단계를 마치면 로봇 화면을 보고, 사진을 찍고, 화면 효과를 적용할 수 있습니다.</p>
+    </div>
+
+    <div class="sec-title">어떻게 동작하나요</div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px">
+      <div style="background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);text-align:center">
+        <div style="font-size:2rem;margin-bottom:10px">💻</div>
+        <div style="font-weight:700;margin-bottom:6px">브라우저</div>
+        <div style="font-size:.82rem;color:var(--dim)">HTML 파일을 열면<br>바로 웹앱이 실행됩니다</div>
+      </div>
+      <div
+        style="background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <div style="font-size:1.4rem;color:var(--accent);font-family:'JetBrains Mono',monospace;font-weight:700">
+          ↔<br>WebSocket</div>
+        <div style="font-size:.75rem;color:var(--dim);margin-top:6px">같은 Wi-Fi 안에서<br>실시간 통신</div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);text-align:center">
+        <div style="font-size:2rem;margin-bottom:10px">🤖</div>
+        <div style="font-weight:700;margin-bottom:6px">주미 로봇</div>
+        <div style="font-size:.82rem;color:var(--dim)">ESP32가 카메라 영상을<br>JPEG로 전송합니다</div>
+      </div>
+    </div>
+
+    <div class="tip blue" style="margin-top:24px">
+      <span class="tip-icon">💡</span>
+      <span><strong>서버가 필요 없어요!</strong> HTML 파일 하나를 브라우저에서 열기만 하면 됩니다. Python이나 Node.js 설치 없이도 바로 동작합니다.</span>
+    </div>
+    <div class="tip green">
+      <span class="tip-icon">✅</span>
+      <span><strong>PC, Chromebook, Android</strong> 모두 Chrome 브라우저에서 동작합니다. 주미와 같은 Wi-Fi에 연결되어 있어야 해요.</span>
+    </div>
+
+    <div style="margin-top:20px;background:var(--white);border-radius:14px;padding:20px;box-shadow:var(--shadow)">
+      <div style="font-weight:700;margin-bottom:12px;font-size:.9rem">🔍 주미 IP 주소는 어떻게 찾나요?</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:.82rem;color:var(--dim);line-height:1.8">
+        <div><strong style="color:var(--text)">방법 1.</strong> 주미 LCD 화면에 IP가 표시됩니다. 부팅 후 잠시 기다리면 나타나요.</div>
+        <div><strong style="color:var(--text)">방법 2.</strong> 선생님께 문의하거나, 같은 Wi-Fi 공유기 관리 페이지에서 연결된 기기 목록을 확인하세요.</div>
+        <div
+          style="margin-top:4px;padding:10px 14px;background:#f0f4ff;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent)">
+          예: 192.168.0.63 &nbsp;·&nbsp; 192.168.1.100 &nbsp;·&nbsp; 10.0.0.5
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('features')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        가능한 기능 보기 →</button>
+    </div>
+  </div>
+
+  <!-- ② 가능한 기능 -->
+  <div class="section" id="tab-features">
+    <div class="sec-title">STEP 1 에서 만들 수 있는 기능들</div>
+
+
+  <!-- 핵심 기능 안내 -->
+  <div class="tip blue" style="margin-bottom:24px">
+    <span class="tip-icon">⭐</span>
+    <span>
+        원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.
+    </span>
+  </div>
+
+
+  <!-- 핵심 기능 안내 -->
+  <!-- <div class="tip blue" style="margin-bottom:24px">
+    <span class="tip-icon">⭐</span>
+    <span>
+      <strong>STEP 1 핵심 목표</strong><br>
+      먼저 <strong>로봇과 연결</strong>하고 <strong>실시간 영상을 확인</strong>해보세요.<br>
+      아래 기능들은 AI를 이용해 자유롭게 추가할 수 있습니다.
+    </span>
+  </div> -->
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="fc-icon">🔗</div>
+        <h3>주미 AI 연결 <span style="color:#3b5bfc">· ⭐필수</span></h3>
+        <!-- <p class="fc-desc">
+          주미와 통신을 시작하거나 상태를 확인할 수 있습니다.
+        </p> -->
+        <ul>
+          <li>로봇 연결</li>
+          <li>연결 해제</li>
+          <li>연결 상태 표시</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📷</div>
+        <h3>카메라 <span style="color:#3b5bfc">· ⭐중요</span></h3>
+        <ul>
+          <li>실시간 영상 보기</li>
+          <li>화면 크기 조절</li>
+          <li>전체 화면</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🎨</div>
+        <h3>화면 꾸미기</h3>
+        <ul>
+          <li>좌우 반전</li>
+          <li>흑백 필터</li>
+          <li>밝기 조절</li>
+          <li>대비 조절</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📸</div>
+        <h3>사진 저장</h3>
+        <ul>
+          <li>사진 촬영</li>
+          <li>사진 저장</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📊</div>
+        <h3>상태 확인</h3>
+        <ul>
+          <li>FPS 표시</li>
+          <li>해상도 표시</li>
+          <li>로그 표시</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="tip green" style="margin-top:24px">
+      <span class="tip-icon">💡</span>
+      <span>
+        처음에는 <strong>연결 + 영상 보기</strong>만 완성해도 충분합니다.<br>
+        이후 원하는 기능을 하나씩 추가하면서 나만의 카메라 앱으로 발전시켜 보세요.
+      </span>
+    </div>
+    <div class="tip yellow" style="margin-top:12px">
+      <span class="tip-icon">🚀</span>
+      <span>
+        AI에게 한 번에 여러 기능을 요청할 수도 있습니다.<br>
+        예: <strong>"전체화면 버튼과 사진 저장 기능을 추가해줘"</strong>
+      </span>
+    </div>
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('prompt')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        프롬프트 보기 →</button>
+    </div>
+  </div>
+
+  <!-- ③ AI 요청 예시 -->
+  <div class="section" id="tab-requests">
+    <div class="sec-title">이렇게 AI에게 요청해보세요</div>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">문장을 클릭하면 복사됩니다. 복사 후 Claude나 ChatGPT에 붙여넣어 보세요!</p>
+
+    <div class="request-list">
+      <h3>디자인 바꾸기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📲</div>
+        <div class="ri-text">모바일 앱처럼 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🕶</div>
+        <div class="ri-text">어두운 테마로 바꿔줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎨</div>
+        <div class="ri-text">버튼을 더 크게 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎨</div>
+        <div class="ri-text">기능에 맞는 아이콘을 추가해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+      <h3>화면 배치 바꾸기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📷</div>
+        <div class="ri-text">카메라 화면을 크게 보여줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📐</div>
+        <div class="ri-text">버튼을 아래쪽으로 이동해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🤚</div>
+        <div class="ri-text">한 손으로 사용하기 쉽게 배치해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📐</div>
+        <div class="ri-text">태블릿 화면에 맞게 바꿔줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+      <h3>기능 추가하기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📸</div>
+        <div class="ri-text">사진 저장 기능을 추가해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⛶</div>
+        <div class="ri-text">전체화면 버튼을 추가해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">↔️</div>
+        <div class="ri-text">좌우 반전 버튼을 추가해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🕤</div>
+        <div class="ri-text">화면에 촬영 시간을 표시해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎞️</div>
+        <div class="ri-text">흑백 필터를 추가해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+  <!-- ✨ -->
+      <h3>편의성 추가하기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📋</div>
+        <div class="ri-text">로그 창을 접을 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">☀️</div>
+        <div class="ri-text">밝기와 대비를 슬라이더로 조절할 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📊</div>
+        <div class="ri-text">화면에 FPS와 해상도를 표시해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">💾</div>
+        <div class="ri-text">마지막으로 입력한 IP를 기억해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+      <h3>사용자에 맞추기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">👦</div>
+        <div class="ri-text">초등학생이 사용하기 쉽게 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🗚</div>
+        <div class="ri-text">글자를 더 크게 보여줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">👵</div>
+        <div class="ri-text">고령자가 보기 쉽게 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">✨</div>
+        <div class="ri-text">터치하기 쉽게 버튼을 크게 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <div class="tip blue" style="margin-top:24px">
+      <span class="tip-icon">💡</span>
+      <span>요청을 <strong>여러 개 합칠 수도</strong> 있어요. 예: "흑백 필터 버튼이랑 사진 저장 기능을 추가해줘"</span>
+    </div>
+
+
+    <div class="tip blue" style="margin-top:24px">
+    <span class="tip-icon">🚀</span>
+    <span>
+      한 번에 완벽하게 만들 필요는 없습니다.<br>
+      결과를 보고 <strong>"더 크게"</strong>,
+      <strong>"더 깔끔하게"</strong>,
+      <strong>"모바일 앱처럼"</strong> 같이 계속 요청해보세요.
+    </span>
+    </div>
+
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('projects')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        프로젝트 아이디어 →</button>
+    </div>
+  </div>
+
+  <!-- ④ 프로젝트 아이디어 -->
+  <div class="section" id="tab-projects">
+    <div class="sec-title">이런 프로젝트를 만들 수 있어요</div>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="pc-icon">📹</div>
+        <h3>CCTV 모니터</h3>
+        <p>로봇 카메라로 실시간 영상을 모니터링하는 보안 카메라</p>
+      </div>
+      <div class="project-card">
+        <div class="pc-icon">📸</div>
+        <h3>사진 촬영기</h3>
+        <p>버튼 한 번으로 로봇 시점의 사진을 찍어 저장하는 앱</p>
+      </div>
+      <div class="project-card">
+        <div class="pc-icon">🕐</div>
+        <h3>타임스탬프 카메라</h3>
+        <p>촬영 날짜/시간이 자동으로 찍히는 감시 카메라</p>
+      </div>
+      <div class="project-card">
+        <div class="pc-icon">🔬</div>
+        <h3>관찰 카메라</h3>
+        <p>밝기·대비 조절로 어두운 곳도 선명하게 보는 관찰 도구</p>
+      </div>
+      <div class="project-card">
+        <div class="pc-icon">🖥️</div>
+        <h3>영상 모니터</h3>
+        <p>전체화면 + FPS 표시로 깔끔하게 영상을 확인하는 뷰어</p>
+      </div>
+    </div>
+
+    <div class="tip green" style="margin-top:24px">
+      <span class="tip-icon">🚀</span>
+      <span>프로젝트 이름을 그대로 AI에게 말해보세요. 예: <strong>"CCTV 모니터 앱을 만들어줘"</strong> — AI가 필요한 기능을 조합해서 만들어줍니다!</span>
+    </div>
+
+    <!-- <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('prompt')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        프롬프트 가져가기 →</button>
+    </div> -->
+  </div>
+
+  <!-- ⑤ 프롬프트 -->
+  <div class="section" id="tab-prompt">
+    <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
+
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+      아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
+      노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
+    </p>
+
+    <div class="prompt-box">
+      <div class="prompt-topbar">
+        <span>STEP 1 · 연결하고 보기 · 기본 프롬프트</span>
+        <button class="copy-all-btn" onclick="copyAll()">전체 복사</button>
+      </div>
+      <div class="prompt-body" id="main-prompt"><span class="pc"># ZUMI 로봇 카메라 웹앱 만들기</span>
+
+        <span class="pk">## 시스템 구조</span>
+        브라우저(HTML) ↔ WebSocket ↔ ESP32(주미 로봇)
+        서버 없음. HTML 파일 하나로만 동작.
+        같은 Wi-Fi 네트워크 필요.
+
+        <span class="pk">## WebSocket 연결 방법</span>
+        <span class="pv">ws = new WebSocket('ws://' + ip + '/ws')</span>
+        <span class="pv">ws.binaryType = 'arraybuffer'</span>
+        연결 후 반드시 <span class="pv">ws.send('stream')</span> 전송 → 영상 스트리밍 시작
+
+        <span class="pk">## 영상 수신 방법 (반드시 이 방식으로)</span>
+        <span class="pv">ws.onmessage = (event) => {</span>
+        <span class="pv"> const blob = new Blob([new Uint8Array(event.data)], {type:'image/jpeg'});</span>
+        <span class="pv"> const url = URL.createObjectURL(blob);</span>
+        <span class="pv"> const img = new Image();</span>
+        <span class="pv"> img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
+        <span class="pv"> img.src = url;</span>
+        <span class="pv">}</span>
+
+        <span class="pk">## 필수 UI 요소</span>
+        - IP 주소 입력창 + 연결 버튼 + 해제 버튼
+        - 연결 상태 표시 (연결됨 / 연결 안 됨)
+        - 영상을 표시할 canvas (width=640, height=480)
+        - HTML 파일 하나로만 동작 (서버 불필요)
+
+        <span class="pk">## 결과물 조건</span>
+        - HTML 파일 하나로 동작
+        - CSS/JavaScript 내부 포함
+        - Chrome에서 바로 실행 가능
+        - 별도 서버 불필요
+
+        <span class="pp">## 추가로 만들어줄 기능:
+          (여기에 원하는 기능을 직접 적어주세요)
+
+          예시:
+          - 전체화면 버튼 추가
+          - 사진 저장 기능
+          - 흑백 필터 버튼
+          - 화면에 현재 시간 표시
+          - 밝기/대비 슬라이더</span>
+      </div>
+    </div>
+
+    <div class="tip blue" style="margin-top:20px">
+      <span class="tip-icon">💡</span>
+      <span>프롬프트를 복사한 다음, 노란 부분을 원하는 내용으로 바꿔서 AI에게 보내보세요. 결과물이 마음에 안 들면 "더 크게", "모바일 스타일로", "어둡게" 같이 추가 요청도 됩니다!</span>
+    </div>
+
+    <div class="tip green" style="margin-top:12px">
+      <span class="tip-icon">🎯</span>
+      <span>AI가 만들어준 HTML 파일을 <strong> 다운로드 혹은 저장 </strong> → <strong>Chrome으로 열기</strong> →
+        주미 IP 입력 → 완성!</span>
+    </div>
+
+    <div style="margin-top:32px;background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow)">
+      <div style="font-weight:700;margin-bottom:16px;font-size:.95rem">🗂️ 실제 사용 순서</div>
+      <ol style="padding-left:20px;display:flex;flex-direction:column;gap:10px">
+        <li style="font-size:.88rem;color:var(--dim)">위 프롬프트를 복사해서 <strong style="color:var(--text)">Claude 또는
+            ChatGPT, Gemini</strong>에 붙여넣기</li>
+        <li style="font-size:.88rem;color:var(--dim)">노란 부분에 <strong style="color:var(--text)">원하는 기능</strong> 작성 후 전송
+        </li>
+        <li style="font-size:.88rem;color:var(--dim)">AI가 만들어준 HTML 파일을 <strong style="color:var(--text)">다운로드하거나 저장
+            </strong></li>
+        <li style="font-size:.88rem;color:var(--dim)"><strong style="color:var(--text)">Chrome 브라우저</strong>로 파일 열기</li>
+        <li style="font-size:.88rem;color:var(--dim)">주미 IP 입력 → CONNECT → 영상 확인! 🎉</li>
+      </ol>
+    </div>
+
+
+    <div class="tip green" style="margin-top:24px">
+    <span class="tip-icon">🚀</span>
+    <span>
+      결과가 마음에 들지 않으면 계속 요청해보세요.
+      바이브 코딩은 한 번에 완성하는 것이 아니라 AI와 대화하며 발전시키는 과정입니다.
+    </span>
+  </div>
+  <div style="margin-top:32px;text-align:center">
+    <button onclick="showTab('requests')" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음: AI 요청 예시 →</button>
+  </div>
+  </div>
+
+
+
+  <!-- 스텝 네비게이션 -->
+  <div
+    style="background:#1a2340;border-top:1px solid #2a3a5a;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:10">
+    <a href="zumi_intro.html"
+      style="display:flex;align-items:center;gap:8px;color:#7a8aaa;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s"
+      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#7a8aaa'">
+      ← 시작 페이지
+    </a>
+    <div style="display:flex;gap:6px">
+      <div style="width:28px;height:4px;border-radius:2px;background:#3b5bfc"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#2a3a5a"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#2a3a5a"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#2a3a5a"></div>
+    </div>
+    <a href="zumi_step2.html"
+      style="display:flex;align-items:center;gap:8px;color:#3b5bfc;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #3b5bfc;border-radius:100px;transition:all .2s"
+      onmouseover="this.style.background='#3b5bfc';this.style.color='#fff'"
+      onmouseout="this.style.background='transparent';this.style.color='#3b5bfc'">
+      STEP 2 →
+    </a>
+  </div>
+
+  <!-- 토스트 -->
+  <div class="toast" id="toast">📋 복사되었습니다!</div>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      const idx = ['goal', 'features', 'prompt', 'requests', 'projects'].indexOf(id);
+      document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function copyRequest(el) {
+      const text = el.querySelector('.ri-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = el.querySelector('.ri-copy');
+        btn.textContent = '복사됨 ✓';
+        btn.classList.add('copied');
+        btn.style.opacity = '1';
+        showToast('복사되었습니다!');
+        setTimeout(() => {
+          btn.textContent = '복사';
+          btn.classList.remove('copied');
+          btn.style.opacity = '';
+        }, 2000);
+      });
+    }
+
+    function copyAll() {
+      const el = document.getElementById('main-prompt');
+      const txt = el.innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const btn = document.querySelector('.copy-all-btn');
+        btn.textContent = '복사됨 ✓';
+        btn.classList.add('copied');
+        showToast('프롬프트가 복사되었습니다!');
+        setTimeout(() => { btn.textContent = '전체 복사'; btn.classList.remove('copied'); }, 2500);
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = '📋 ' + msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+  </script>
+</body>
+
+</html>

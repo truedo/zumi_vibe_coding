@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZUMI 입문 · STEP 4 AI 연결하기</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf5ff;--white:#fff;--border:#e9d5ff;--accent:#8b5cf6;--accent-light:#f3eeff;--green:#059669;--green-light:#ecfdf5;--yellow:#d97706;--yellow-light:#fffbeb;--red:#dc2626;--red-light:#fef2f2;--text:#111827;--dim:#6b7280;--shadow:0 2px 16px rgba(139,92,246,.08)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+
+.top-nav{background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.05)}
+.top-nav-logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;color:var(--accent);letter-spacing:2px}
+.step-indicator{display:flex;gap:5px}
+.si-dot{width:24px;height:4px;border-radius:2px}
+
+.hero{background:linear-gradient(135deg,#8b5cf6,#06b6d4);color:#fff;padding:40px 24px 56px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:36px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%)}
+.step-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:4px 14px;font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;margin-bottom:14px}
+.hero h1{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;line-height:1.25;margin-bottom:10px}
+.hero p{font-size:.95rem;opacity:.88;max-width:440px;margin:0 auto;line-height:1.8}
+
+.container{max-width:700px;margin:0 auto;padding:0 20px}
+.section{padding:44px 0}
+.section+.section{border-top:1px solid var(--border)}
+.sec-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
+.sec-title{font-size:1.35rem;font-weight:900;margin-bottom:8px;line-height:1.3}
+.sec-desc{color:var(--dim);font-size:.88rem;margin-bottom:24px;line-height:1.8}
+
+/* AI 기능 카드 */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.ai-card{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:18px;text-align:center;transition:all .2s}
+.ai-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.ai-card.face:hover{border-color:#8b5cf6}
+.ai-card.hands:hover{border-color:#06b6d4}
+.ai-card.object:hover{border-color:#ef4444}
+.ai-emoji{font-size:2rem;margin-bottom:8px}
+.ai-title{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.ai-desc{font-size:.74rem;color:var(--dim);line-height:1.5;margin-bottom:8px}
+.ai-badge{font-size:.62rem;padding:2px 8px;border-radius:100px;font-family:'JetBrains Mono',monospace}
+.badge-browser{background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd}
+
+/* 프롬프트 카드 */
+.prompt-cards{display:flex;flex-direction:column;gap:12px}
+.p-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all .2s}
+.p-card:hover{border-color:#c4b5fd}
+.p-tag{font-size:.65rem;padding:2px 8px;border-radius:100px;font-weight:700;font-family:'JetBrains Mono',monospace;display:inline-block;margin-bottom:10px}
+.t-face{background:rgba(139,92,246,.12);color:#7c3aed;border:1px solid #ddd6fe}
+.t-hands{background:rgba(6,182,212,.12);color:#0369a1;border:1px solid #a5f3fc}
+.t-object{background:rgba(239,68,68,.12);color:#dc2626;border:1px solid #fecaca}
+.t-combo{background:rgba(5,150,105,.12);color:#059669;border:1px solid #a7f3d0}
+.p-text{font-size:.88rem;line-height:1.7;margin-bottom:12px;color:var(--text)}
+.copy-btn{font-size:.78rem;padding:7px 16px;border-radius:8px;border:1px solid var(--accent);background:var(--accent-light);color:var(--accent);cursor:pointer;font-family:inherit;font-weight:700;transition:all .15s}
+.copy-btn:hover{background:var(--accent);color:#fff}
+.copy-btn.copied{border-color:var(--green);background:var(--green-light);color:var(--green)}
+
+/* 콜아웃 */
+.callout{display:flex;gap:12px;padding:14px 16px;border-radius:10px;font-size:.84rem;line-height:1.7;margin-top:14px}
+.callout.green{background:var(--green-light);border-left:4px solid var(--green)}
+.callout.yellow{background:var(--yellow-light);border-left:4px solid var(--yellow)}
+.callout.blue{background:var(--accent-light);border-left:4px solid var(--accent)}
+.callout.red{background:var(--red-light);border-left:4px solid var(--red)}
+.callout-icon{font-size:1rem;flex-shrink:0}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:8px}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;font-size:.86rem;font-weight:700;background:none;border:none;cursor:pointer;text-align:left;color:var(--text);gap:10px}
+.faq-q:hover{background:var(--bg)}
+.faq-icon{color:var(--accent);font-size:1rem;flex-shrink:0;transition:transform .2s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 18px 14px;font-size:.82rem;color:var(--dim);line-height:1.8;border-top:1px solid var(--border)}
+.faq-item.open .faq-a{display:block}
+
+/* 체크리스트 */
+.checklist{display:flex;flex-direction:column;gap:8px}
+.check-item{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--white);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;user-select:none}
+.check-item:hover{border-color:var(--accent)}
+.check-item.done{background:var(--green-light);border-color:#a7f3d0}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:all .15s}
+.check-item.done .check-box{background:var(--green);border-color:var(--green);color:#fff}
+.check-text{font-size:.85rem;font-weight:700}
+.check-item.done .check-text{color:var(--green);text-decoration:line-through}
+
+/* 완료 섹션 */
+.complete-box{background:linear-gradient(135deg,#4f46e5,#8b5cf6,#06b6d4);border-radius:20px;padding:36px;text-align:center;color:#fff;margin-top:8px}
+.complete-box h2{font-size:1.5rem;font-weight:900;margin-bottom:10px}
+.complete-box p{opacity:.88;font-size:.9rem;line-height:1.8;margin-bottom:24px}
+.complete-projects{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+.cp-tag{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:5px 14px;font-size:.8rem}
+.complete-btn{display:inline-block;background:#fff;color:#4f46e5;font-weight:700;font-size:.9rem;padding:12px 28px;border-radius:100px;text-decoration:none;transition:opacity .2s}
+.complete-btn:hover{opacity:.9}
+
+/* 네비 */
+.step-nav{background:linear-gradient(135deg,#2d1a4e,#0c2340);padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-prev{color:#c4b5fd;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s}
+.nav-prev:hover{color:#fff}
+.nav-next{background:var(--accent);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:10px 22px;border-radius:100px;transition:opacity .2s}
+.nav-next:hover{opacity:.85}
+.nav-dots{display:flex;gap:5px}
+.nd{width:24px;height:4px;border-radius:2px}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;font-size:.82rem;padding:10px 22px;border-radius:100px;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">ZUMI 입문</div>
+  <div class="step-indicator">
+    <div class="si-dot" style="background:#e9d5ff"></div>
+    <div class="si-dot" style="background:#e9d5ff"></div>
+    <div class="si-dot" style="background:#e9d5ff"></div>
+    <div class="si-dot" style="background:#8b5cf6"></div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="step-badge">STEP 4 / 4</div>
+  <h1>🤖 AI 연결하기</h1>
+  <p>카메라로 얼굴을 인식하고, 손동작으로 조종하고,<br>물체를 감지해봐요. 브라우저에서 바로 됩니다!</p>
+</div>
+
+<div class="container">
+
+  <!-- AI 기능 종류 -->
+  <div class="section">
+    <div class="sec-label">할 수 있는 것들</div>
+    <h2 class="sec-title">🧠 AI로 할 수 있는 것들</h2>
+    <p class="sec-desc">모두 HTML 파일 하나에서 바로 동작해요. Python 설치 필요 없어요!</p>
+
+    <div class="callout red" style="margin-bottom:20px">
+      <span class="callout-icon">🌐</span>
+      <span><strong>인터넷 연결이 필요해요!</strong> AI 모델을 인터넷에서 불러오기 때문에 Wi-Fi가 연결된 상태여야 해요. 학교에서는 선생님께 jsdelivr.net 접속이 가능한지 확인해보세요.</span>
+    </div>
+
+    <div class="ai-grid">
+      <div class="ai-card face">
+        <div class="ai-emoji">😊</div>
+        <div class="ai-title">얼굴 감지</div>
+        <div class="ai-desc">카메라에 얼굴이 보이면 반응해요</div>
+        <span class="ai-badge badge-browser">브라우저 AI</span>
+      </div>
+      <div class="ai-card hands">
+        <div class="ai-emoji">✋</div>
+        <div class="ai-title">손동작 인식</div>
+        <div class="ai-desc">손 모양으로 로봇을 조종해요</div>
+        <span class="ai-badge badge-browser">브라우저 AI</span>
+      </div>
+      <div class="ai-card object">
+        <div class="ai-emoji">🚦</div>
+        <div class="ai-title">물체/표지판</div>
+        <div class="ai-desc">사람, 자동차, 정지 표지판 감지</div>
+        <span class="ai-badge badge-browser">브라우저 AI</span>
+      </div>
+    </div>
+
+    <div class="callout blue">
+      <span class="callout-icon">💡</span>
+      <span><strong>어떻게 동작하나요?</strong> MediaPipe(얼굴·손)와 COCO-SSD(물체)라는 AI 라이브러리를 인터넷에서 불러와서 카메라 영상을 분석해요. AI 결과에 따라 LED를 켜거나 로봇을 움직일 수 있어요!</span>
+    </div>
+  </div>
+
+  <!-- AI에게 이렇게 말해요 -->
+  <div class="section">
+    <div class="sec-label">AI 요청 예시</div>
+    <h2 class="sec-title">💬 이렇게 말해봐요</h2>
+    <p class="sec-desc">클릭하면 복사돼요. 기존 코드에 "이 코드에 ~~를 추가해줘"로 요청하세요!</p>
+
+    <div class="prompt-cards">
+
+      <div class="p-card">
+        <span class="p-tag t-face">😊 얼굴 감지</span>
+        <div class="p-text">MediaPipe FaceMesh를 사용해서 카메라 화면에 얼굴 랜드마크를 표시해줘. 토글 버튼으로 켜고 끌 수 있게 해줘. CDN은 jsdelivr.net을 사용해줘</div>
+        <button class="copy-btn" onclick="copyP(this,'MediaPipe FaceMesh를 사용해서 카메라 화면에 얼굴 랜드마크를 표시해줘. 토글 버튼으로 켜고 끌 수 있게 해줘. CDN은 jsdelivr.net을 사용해줘')">📋 복사</button>
+      </div>
+
+      <div class="p-card">
+        <span class="p-tag t-face">😊 얼굴 추적</span>
+        <div class="p-text">MediaPipe FaceMesh로 얼굴을 감지해서, 얼굴이 화면 왼쪽에 있으면 로봇이 왼쪽으로 회전하고 오른쪽에 있으면 오른쪽으로 회전하게 해줘. 얼굴이 없으면 정지</div>
+        <button class="copy-btn" onclick="copyP(this,'MediaPipe FaceMesh로 얼굴을 감지해서, 얼굴이 화면 왼쪽에 있으면 로봇이 왼쪽으로 회전하고 오른쪽에 있으면 오른쪽으로 회전하게 해줘. 얼굴이 없으면 정지')">📋 복사</button>
+      </div>
+
+      <div class="p-card">
+        <span class="p-tag t-hands">✋ 손동작 제어</span>
+        <div class="p-text">MediaPipe Hands를 사용해서 손동작으로 로봇을 조종해줘. 손바닥 펴면 전진, 주먹 쥐면 정지, 브이(V)하면 좌회전, 따봉하면 우회전. 토글 버튼으로 ON/OFF 가능하게 해줘</div>
+        <button class="copy-btn" onclick="copyP(this,'MediaPipe Hands를 사용해서 손동작으로 로봇을 조종해줘. 손바닥 펴면 전진, 주먹 쥐면 정지, 브이(V)하면 좌회전, 따봉하면 우회전. 토글 버튼으로 ON/OFF 가능하게 해줘')">📋 복사</button>
+      </div>
+
+      <div class="p-card">
+        <span class="p-tag t-object">🚦 물체 감지</span>
+        <div class="p-text">TensorFlow.js COCO-SSD로 카메라에서 물체를 감지하고 박스랑 이름을 화면에 표시해줘. 정지 표지판이 감지되면 경고 메시지도 보여줘. CDN은 jsdelivr.net 사용해줘</div>
+        <button class="copy-btn" onclick="copyP(this,'TensorFlow.js COCO-SSD로 카메라에서 물체를 감지하고 박스랑 이름을 화면에 표시해줘. 정지 표지판이 감지되면 경고 메시지도 보여줘. CDN은 jsdelivr.net 사용해줘')">📋 복사</button>
+      </div>
+
+      <div class="p-card">
+        <span class="p-tag t-combo">✨ 조합</span>
+        <div class="p-text">얼굴이 감지되면 초록 LED가 켜지고, 얼굴이 없으면 빨간 LED가 켜지게 해줘</div>
+        <button class="copy-btn" onclick="copyP(this,'얼굴이 감지되면 초록 LED가 켜지고, 얼굴이 없으면 빨간 LED가 켜지게 해줘')">📋 복사</button>
+      </div>
+
+      <div class="p-card">
+        <span class="p-tag t-combo">✨ 조합</span>
+        <div class="p-text">손 제스처에 따라 LED 색상이 바뀌게 해줘. 주먹=빨강, 손바닥=초록, 브이=파랑, 따봉=노랑</div>
+        <button class="copy-btn" onclick="copyP(this,'손 제스처에 따라 LED 색상이 바뀌게 해줘. 주먹=빨강, 손바닥=초록, 브이=파랑, 따봉=노랑')">📋 복사</button>
+      </div>
+
+    </div>
+
+    <div class="callout yellow">
+      <span class="callout-icon">⭐</span>
+      <span><strong>꿀팁:</strong> AI 기능은 처음 켜면 모델을 로딩하는 데 5~10초 걸릴 수 있어요. 잠깐 기다려보세요!</span>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="sec-label">TROUBLESHOOTING</div>
+    <h2 class="sec-title">😓 막히면 여기를 봐요</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>🤖 AI 기능 버튼을 눌렀는데 아무것도 안 돼요</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          두 가지를 확인하세요:<br><br>
+          1️⃣ <strong>인터넷 연결</strong>이 되어 있나요? AI 모델은 인터넷에서 불러와요.<br>
+          2️⃣ <strong>5~10초</strong> 기다렸나요? 모델 로딩 시간이 필요해요.<br><br>
+          학교에서 특정 사이트가 막혀 있다면 선생님께 jsdelivr.net 접속이 가능한지 확인해보세요.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>😊 얼굴이 화면에 있는데 감지가 안 돼요</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          조명이 충분한지 확인하세요. 너무 어두우면 AI가 얼굴을 못 찾아요.<br><br>
+          카메라에 얼굴이 정면으로 잘 보이게 해봐요. 옆모습은 잘 안 됩니다.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>📱 스마트폰에서 AI 기능이 느려요</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          AI 처리는 기기 성능에 따라 달라요. 스마트폰에서 느리다면 PC나 노트북을 사용해보세요.<br><br>
+          AI에게 <strong>"AI 처리 간격을 200ms에서 500ms로 늘려줘"</strong> 라고 하면 좀 더 부드러워질 수 있어요.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 체크리스트 -->
+  <div class="section">
+    <div class="sec-label">CHECKLIST</div>
+    <h2 class="sec-title">✅ 이번 단계 완료 확인</h2>
+
+    <div class="checklist">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">얼굴 또는 손 감지 기능을 추가해봤어요 🤖</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">AI 인식 결과가 화면에 표시돼요 ✨</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">AI 결과와 로봇 동작을 연결해봤어요 🚗</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 심화 가이드 링크 -->
+  <div class="section">
+    <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:14px;padding:20px">
+      <div style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:#7c3aed;margin-bottom:8px">MORE DETAIL</div>
+      <div style="font-weight:700;margin-bottom:6px;font-size:.9rem">더 깊이 알고 싶다면?</div>
+      <div style="font-size:.82rem;color:var(--dim);margin-bottom:14px;line-height:1.7">패킷 구조, API 레퍼런스, 고급 프롬프트까지 담긴 심화 가이드도 있어요.</div>
+      <a href="zumi_step4.html" style="display:inline-block;padding:8px 18px;background:#8b5cf6;color:#fff;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:700;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">심화 가이드 보기 →</a>
+    </div>
+  </div>
+
+  <!-- 완료! -->
+  <div class="section">
+    <div class="complete-box">
+      <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
+      <h2>모든 단계 완료!</h2>
+      <p>Step 1~4를 모두 마쳤어요.<br>이제 이런 것들을 직접 만들 수 있어요!</p>
+      <div class="complete-projects">
+        <span class="cp-tag">🚗 리모컨 자동차</span>
+        <span class="cp-tag">😊 얼굴 추적 로봇</span>
+        <span class="cp-tag">✋ 손동작 리모컨</span>
+        <span class="cp-tag">🛑 표지판 인식 로봇</span>
+        <span class="cp-tag">🎂 생일 축하 로봇</span>
+        <span class="cp-tag">〰️ 라인트레이서</span>
+      </div>
+      <a href="zumi_easy_intro.html" class="complete-btn">처음으로 돌아가기 🏠</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="step-nav">
+  <a href="zumi_easy_step3.html" class="nav-prev">← STEP 3</a>
+  <div class="nav-dots">
+    <div class="nd" style="background:rgba(255,255,255,.2)"></div>
+    <div class="nd" style="background:rgba(255,255,255,.2)"></div>
+    <div class="nd" style="background:rgba(255,255,255,.2)"></div>
+    <div class="nd" style="background:#8b5cf6"></div>
+  </div>
+  <a href="zumi_easy_intro.html" class="nav-next">🏁 완료!</a>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+function copyP(btn,text){navigator.clipboard.writeText(text).then(()=>{btn.textContent='✅ 복사됨!';btn.classList.add('copied');showToast('복사됐어요! AI에게 붙여넣어 보세요 😊');setTimeout(()=>{btn.textContent='📋 복사';btn.classList.remove('copied');},2500);})}
+function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
+function toggleCheck(el){el.classList.toggle('done');el.querySelector('.check-box').textContent=el.classList.contains('done')?'✓':'';}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+</script>
+</body>
+</html>

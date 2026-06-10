@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>주미 컨트롤러</title>
+<style>
+body{font-family:sans-serif;background:#111;color:#fff;text-align:center;padding:20px}
+input{padding:8px;border-radius:6px;border:none;width:200px;margin:4px}
+button{padding:10px 20px;border-radius:6px;border:none;background:#4f46e5;color:#fff;font-size:1rem;cursor:pointer;margin:4px}
+button:hover{opacity:.85}
+canvas{background:#000;border-radius:8px;margin-top:16px;max-width:100%}
+#status{margin:8px 0;font-size:.9rem;color:#9ca3af}
+</style>
+</head><body>
+<h2>🤖 주미 컨트롤러</h2>
+<input id="ip" placeholder="주미 IP 주소 (예: 192.168.0.63)">
+<br>
+<button onclick="connect()">연결</button>
+<button onclick="disconnect()">연결 끊기</button>
+<div id="status">연결 전</div>
+<canvas id="cam" width="640" height="480"></canvas>
+<script>
+let ws, ctx = document.getElementById('cam').getContext('2d');
+function connect() {
+  const ip = document.getElementById('ip').value.trim();
+  if (!ip) { alert('IP를 입력하세요!'); return; }
+  ws = new WebSocket('ws://' + ip + '/ws');
+  ws.binaryType = 'arraybuffer';
+  ws.onopen = () => {
+    document.getElementById('status').textContent = '✅ 연결됨!';
+    ws.send('stream');
+  };
+  ws.onmessage = (e) => {
+    const blob = new Blob([new Uint8Array(e.data)], {type:'image/jpeg'});
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => { ctx.drawImage(img, 0, 0, 640, 480); URL.revokeObjectURL(url); };
+    img.src = url;
+  };
+  ws.onclose = () => document.getElementById('status').textContent = '❌ 연결 끊김';
+}
+function disconnect() { if (ws) ws.close(); }
+</script></body></html>
