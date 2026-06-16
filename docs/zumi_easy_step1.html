@@ -130,37 +130,37 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="ic-emoji">📡</div>
         <div class="ic-title">로봇 연결</div>
         <div class="ic-desc">IP 입력 후 연결 버튼으로 주미와 연결</div>
-        <div class="ic-copy">클릭해서 프롬프트 복사</div>
+        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
       </div>
       <div class="idea-card" onclick="copyIdea(this, '카메라 화면을 전체화면으로 볼 수 있는 버튼을 추가해줘')">
         <div class="ic-emoji">📺</div>
         <div class="ic-title">전체 화면</div>
         <div class="ic-desc">카메라 화면을 크게 보기</div>
-        <div class="ic-copy">클릭해서 프롬프트 복사</div>
+        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
       </div>
       <div class="idea-card" onclick="copyIdea(this, '카메라 화면에 흑백 필터 토글 버튼을 추가해줘')">
         <div class="ic-emoji">🎞️</div>
         <div class="ic-title">흑백 필터</div>
         <div class="ic-desc">화면을 흑백으로 바꾸는 버튼</div>
-        <div class="ic-copy">클릭해서 프롬프트 복사</div>
+        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
       </div>
       <div class="idea-card" onclick="copyIdea(this, '카메라 화면을 사진으로 저장하는 버튼을 추가해줘')">
         <div class="ic-emoji">📸</div>
         <div class="ic-title">사진 저장</div>
         <div class="ic-desc">버튼 누르면 현재 화면을 사진으로 저장</div>
-        <div class="ic-copy">클릭해서 프롬프트 복사</div>
+        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
       </div>
       <div class="idea-card" onclick="copyIdea(this, '카메라 화면 위에 현재 시간을 표시해줘')">
         <div class="ic-emoji">🕐</div>
         <div class="ic-title">시간 표시</div>
         <div class="ic-desc">화면 위에 현재 시각 보이기</div>
-        <div class="ic-copy">클릭해서 프롬프트 복사</div>
+        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
       </div>
       <div class="idea-card" onclick="copyIdea(this, '화면에 FPS(초당 프레임)를 표시해줘')">
         <div class="ic-emoji">📊</div>
         <div class="ic-title">FPS 표시</div>
         <div class="ic-desc">영상이 얼마나 부드럽게 나오는지 확인</div>
-        <div class="ic-copy">클릭해서 프롬프트 복사</div>
+        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
       </div>
     </div>
 
@@ -289,7 +289,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
     <div class="callout green" style="margin-top:16px">
       <span class="callout-icon">🎉</span>
-      <span>다 됐다면 Step 2로 가봐요! LED를 켜고 표정을 바꾸고 소리도 낼 수 있어요.</span>
+      <span>다 됐다면 Step 2로 가봐요! LED를 켜고 소리도 내고 LCD에 글씨도 보낼 수 있어요.</span>
     </div>
   </div>
 
@@ -318,16 +318,45 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 <div class="toast" id="toast"></div>
 
 <script>
+const BASE_PROMPT_S1 = `# ZUMI 로봇 카메라 웹앱 만들기
+
+## 시스템 구조
+브라우저(HTML) ↔ WebSocket ↔ ESP32(주미 로봇)
+서버 없음. HTML 파일 하나로만 동작.
+같은 Wi-Fi 네트워크 필요.
+
+## WebSocket 연결 방법
+ws = new WebSocket('ws://' + ip + '/ws')
+ws.binaryType = 'arraybuffer'
+연결 후 반드시 ws.send('stream') 전송 → 영상 스트리밍 시작
+
+## 영상 수신 방법 (반드시 이 방식으로)
+ws.onmessage = (event) => {
+  const blob = new Blob([new Uint8Array(event.data)], {type:'image/jpeg'});
+  const url  = URL.createObjectURL(blob);
+  const img  = new Image();
+  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };
+  img.src = url;
+}
+
+## 필수 UI 요소
+- IP 주소 입력창 + 연결 버튼 + 해제 버튼
+- 연결 상태 표시 (연결됨 / 연결 안 됨)
+- 영상을 표시할 canvas (width=640, height=480)
+- HTML 파일 하나로만 동작 (서버 불필요)`;
+
 function copyPrompt(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
+  const full = BASE_PROMPT_S1 + '\n\n## 추가로 만들어줄 기능:\n' + text;
+  navigator.clipboard.writeText(full).then(() => {
     btn.textContent = '✅ 복사됨!'; btn.classList.add('copied');
-    showToast('복사됐어요! AI에게 붙여넣어 보세요 😊');
+    showToast('기본 프롬프트 + 기능 요청이 복사됐어요! AI에게 붙여넣어 보세요 😊');
     setTimeout(() => { btn.textContent = '📋 복사'; btn.classList.remove('copied'); }, 2500);
   });
 }
 function copyIdea(card, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('프롬프트 복사됐어요!');
+  const full = BASE_PROMPT_S1 + '\n\n## 추가로 만들어줄 기능:\n' + text;
+  navigator.clipboard.writeText(full).then(() => {
+    showToast('완성 프롬프트가 복사됐어요! AI에게 바로 붙여넣어 보세요 😊');
   });
 }
 function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }

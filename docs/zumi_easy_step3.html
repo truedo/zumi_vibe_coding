@@ -310,7 +310,54 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 <div class="toast" id="toast"></div>
 <script>
-function copyP(btn,text){navigator.clipboard.writeText(text).then(()=>{btn.textContent='✅ 복사됨!';btn.classList.add('copied');showToast('복사됐어요! AI에게 붙여넣어 보세요 😊');setTimeout(()=>{btn.textContent='📋 복사';btn.classList.remove('copied');},2500);})}
+const BASE_PROMPT_S3 = `# ZUMI 로봇 이동 제어 웹앱 만들기
+
+## 시스템 구조
+브라우저(HTML) ↔ WebSocket(ws://IP/ws) ↔ ESP32(주미 로봇)
+서버 없음. HTML 파일 하나로만 동작.
+
+## 패킷 구조
+[0x24][0x52][command][0x00][param1]...[paramN]
+
+function buildPacket(cmd, ...params) {
+  const buf = new Uint8Array(4 + params.length);
+  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
+  params.forEach((v,i) => buf[4+i]=v);
+  return buf.buffer;
+}
+
+## 이동 명령어
+전진(무한):    CMD=29, params=[speed, 0, 0]  speed:1~3
+후진(무한):    CMD=29, params=[speed, 0, 1]
+정지:          CMD=25, params=[]
+좌회전(빠른):  CMD=52, params=[deg/5]  90도=18
+우회전(빠른):  CMD=53, params=[deg/5]
+전진(거리):    CMD=26, params=[speed, dist, 0]  dist:cm
+후진(거리):    CMD=26, params=[speed, dist, 1]
+라인트레이서(무한): CMD=30, params=[speed]
+장애물 감지 정지:   CMD=100, params=[speed, senL, senR]  기본값=150
+
+## 전진/후진 버튼 패턴 (누르는 동안만 이동)
+btn.addEventListener('mousedown', () => sendRaw(buildPacket(29, speed, 0, dir)));
+btn.addEventListener('mouseup',   () => sendRaw(buildPacket(25)));
+btn.addEventListener('mouseleave',() => sendRaw(buildPacket(25)));
+btn.addEventListener('touchstart',() => sendRaw(buildPacket(29, speed, 0, dir)));
+btn.addEventListener('touchend',  () => sendRaw(buildPacket(25)));
+
+## 기본 UI (포함)
+- IP 입력 + 연결 버튼 + 연결 상태 표시
+- 영상 스트리밍 canvas (640×480)
+  ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
+  수신: Blob → Image → canvas.drawImage`;
+
+function copyP(btn,text){
+  const full = BASE_PROMPT_S3 + '\n\n## 추가로 만들어줄 기능:\n' + text;
+  navigator.clipboard.writeText(full).then(()=>{
+    btn.textContent='✅ 복사됨!';btn.classList.add('copied');
+    showToast('기본 프롬프트 + 기능 요청이 복사됐어요! AI에게 붙여넣어 보세요 😊');
+    setTimeout(()=>{btn.textContent='📋 복사';btn.classList.remove('copied');},2500);
+  });
+}
 function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
 function toggleCheck(el){el.classList.toggle('done');el.querySelector('.check-box').textContent=el.classList.contains('done')?'✓':'';}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}

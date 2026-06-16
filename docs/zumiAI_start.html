@@ -1,43 +1,238 @@
 <!DOCTYPE html>
-<html lang="ko"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>주미 컨트롤러</title>
-<style>
-body{font-family:sans-serif;background:#111;color:#fff;text-align:center;padding:20px}
-input{padding:8px;border-radius:6px;border:none;width:200px;margin:4px}
-button{padding:10px 20px;border-radius:6px;border:none;background:#4f46e5;color:#fff;font-size:1rem;cursor:pointer;margin:4px}
-button:hover{opacity:.85}
-canvas{background:#000;border-radius:8px;margin-top:16px;max-width:100%}
-#status{margin:8px 0;font-size:.9rem;color:#9ca3af}
-</style>
-</head><body>
-<h2>🤖 주미 컨트롤러</h2>
-<input id="ip" placeholder="주미 IP 주소 (예: 192.168.0.63)">
-<br>
-<button onclick="connect()">연결</button>
-<button onclick="disconnect()">연결 끊기</button>
-<div id="status">연결 전</div>
-<canvas id="cam" width="640" height="480"></canvas>
-<script>
-let ws, ctx = document.getElementById('cam').getContext('2d');
-function connect() {
-  const ip = document.getElementById('ip').value.trim();
-  if (!ip) { alert('IP를 입력하세요!'); return; }
-  ws = new WebSocket('ws://' + ip + '/ws');
-  ws.binaryType = 'arraybuffer';
-  ws.onopen = () => {
-    document.getElementById('status').textContent = '✅ 연결됨!';
-    ws.send('stream');
-  };
-  ws.onmessage = (e) => {
-    const blob = new Blob([new Uint8Array(e.data)], {type:'image/jpeg'});
-    const url = URL.createObjectURL(blob);
-    const img = new Image();
-    img.onload = () => { ctx.drawImage(img, 0, 0, 640, 480); URL.revokeObjectURL(url); };
-    img.src = url;
-  };
-  ws.onclose = () => document.getElementById('status').textContent = '❌ 연결 끊김';
-}
-function disconnect() { if (ws) ws.close(); }
-</script></body></html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zumi AI 카메라 스트리밍</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fb;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        .control-panel {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 180px;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3498db;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: bold;
+        }
+
+        .btn-connect {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-connect:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-disconnect {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-disconnect:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-disconnect:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background-color: #7f8c8d;
+            color: white;
+        }
+
+        .status-badge.connected {
+            background-color: #2ecc71;
+        }
+
+        .status-badge.disconnected {
+            background-color: #e74c3c;
+        }
+
+        .video-container {
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            line-height: 0;
+        }
+
+        canvas {
+            background-color: #2c3e50;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Zumi 로봇 카메라 모니터</h1>
+
+    <div class="control-panel">
+        <label for="ipAddress"><strong>Zumi IP:</strong></label>
+        <input type="text" id="ipAddress" placeholder="예: 192.168.0.100">
+
+        <button id="connectBtn" class="btn-connect" onclick="connectWebSocket()">연결</button>
+        <button id="disconnectBtn" class="btn-disconnect" onclick="disconnectWebSocket()" disabled>해제</button>
+
+        <div id="statusBadge" class="status-badge disconnected">연결 안 됨</div>
+    </div>
+
+    <div class="video-container">
+        <canvas id="videoCanvas" width="640" height="480"></canvas>
+    </div>
+
+    <script>
+        let ws = null;
+        const canvas = document.getElementById('videoCanvas');
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width;
+        const h = canvas.height;
+
+        // 초기 화면에 대기 안내 텍스트 그리기
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "20px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("Zumi에 연결하면 영상이 표시됩니다.", w / 2, h / 2);
+
+        const ipInput = document.getElementById('ipAddress');
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const statusBadge = document.getElementById('statusBadge');
+
+        function updateUI(connected) {
+            if (connected) {
+                statusBadge.textContent = "연결됨";
+                statusBadge.className = "status-badge connected";
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+                ipInput.disabled = true;
+            } else {
+                statusBadge.textContent = "연결 안 됨";
+                statusBadge.className = "status-badge disconnected";
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                ipInput.disabled = false;
+            }
+        }
+
+        function connectWebSocket() {
+            const ip = ipInput.value.trim();
+            if (!ip) {
+                alert("IP 주소를 입력해주세요.");
+                return;
+            }
+
+            // 기존 연결이 있다면 정리
+            if (ws) {
+                ws.close();
+            }
+
+            try {
+                // WebSocket 연결 설정
+                ws = new WebSocket('ws://' + ip + '/ws');
+                ws.binaryType = 'arraybuffer';
+
+                ws.onopen = () => {
+                    console.log('WebSocket 연결 성공');
+                    updateUI(true);
+
+                    // 연결 후 반드시 'stream' 전송하여 스트리밍 시작 요청
+                    ws.send('stream');
+                };
+
+                // 요구사항에 명시된 영상 수신 및 렌더링 로직 적용
+                ws.onmessage = (event) => {
+                    const blob = new Blob([new Uint8Array(event.data)], {type:'image/jpeg'});
+                    const url  = URL.createObjectURL(blob);
+                    const img  = new Image();
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0, w, h);
+                        URL.revokeObjectURL(url);
+                    };
+                    img.src = url;
+                };
+
+                ws.onclose = (e) => {
+                    console.log('WebSocket 연결 종료', e);
+                    updateUI(false);
+                    clearCanvas();
+                };
+
+                ws.onerror = (err) => {
+                    console.error('WebSocket 에러:', err);
+                    alert('연결에 실패했습니다. IP 주소와 Wi-Fi 네트워크를 확인하세요.');
+                    updateUI(false);
+                };
+
+            } catch (error) {
+                console.error(error);
+                alert('WebSocket 초기화 중 오류가 발생했습니다.');
+            }
+        }
+
+        function disconnectWebSocket() {
+            if (ws) {
+                ws.close();
+            }
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = "#2c3e50";
+            ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "20px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("연결이 종료되었습니다.", w / 2, h / 2);
+        }
+    </script>
+</body>
+</html>

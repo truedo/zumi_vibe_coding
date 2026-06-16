@@ -1,390 +1,1198 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZUMI 바이브 코딩 · STEP 3</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#f0f4ff;--white:#fff;--border:#dde4f5;
-  --accent:#0ea5e9;--accent-light:#e0f2fe;
-  --accent2:#f97316;--green:#00c07f;--red:#ef4444;--purple:#7c3aed;
-  --text:#1a2340;--dim:#7a8aaa;--shadow:0 4px 24px rgba(14,165,233,.08);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUMI 바이브 코딩 · STEP 3</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f0f4ff;
+      --white: #fff;
+      --border: #dde4f5;
+      --accent: #0ea5e9;
+      --accent-light: #e0f2fe;
+      --accent2: #f97316;
+      --green: #00c07f;
+      --red: #ef4444;
+      --purple: #7c3aed;
+      --text: #1a2340;
+      --dim: #7a8aaa;
+      --shadow: 0 4px 24px rgba(14, 165, 233, .08);
+    }
 
-.top-banner{background:linear-gradient(135deg,#0ea5e9 0%,#6366f1 100%);color:white;padding:40px 24px 56px;text-align:center;position:relative;overflow:hidden}
-.top-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E")}
-.step-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:5px 16px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:3px;margin-bottom:16px;position:relative}
-.top-banner h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.2;margin-bottom:12px;position:relative}
-.top-banner p{font-size:1rem;opacity:.85;max-width:500px;margin:0 auto;line-height:1.7;position:relative}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-.nav-tabs{display:flex;justify-content: center;background:var(--white);border-bottom:2px solid var(--border);overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.nav-tab{flex-shrink:0;padding:14px 20px;font-size:.85rem;font-weight:700;color:var(--dim);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
-.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.nav-tab:hover{color:var(--accent)}
+    html {
+      scroll-behavior: smooth
+    }
 
-.section{display:none;max-width:860px;margin:0 auto;padding:36px 20px 60px}
-.section.active{display:block}
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh
+    }
 
-.goal-box{background:var(--white);border-radius:16px;padding:28px;box-shadow:var(--shadow);border-left:5px solid var(--accent);margin-bottom:24px}
-.goal-box h2{font-size:1.1rem;color:var(--accent);margin-bottom:10px}
-.goal-box p{color:var(--dim);line-height:1.8}
+    .top-banner {
+      background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+      color: white;
+      padding: 40px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
 
-.sec-title{font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+    .top-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E")
+    }
 
-/* 기능 카드 */
-.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:14px;margin-top:20px}
-.feature-card{background:var(--white);border-radius:14px;padding:20px 18px;box-shadow:var(--shadow);border:2px solid transparent;transition:all .2s}
-.feature-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.feature-card .fc-icon{font-size:1.8rem;margin-bottom:10px}
-.feature-card h3{font-size:.88rem;font-weight:700;margin-bottom:8px}
-.feature-card ul{list-style:none}
-.feature-card ul li{font-size:.78rem;color:var(--dim);padding:3px 0;display:flex;align-items:center;gap:6px}
-.feature-card ul li::before{content:'·';color:var(--accent);font-weight:700}
+    .step-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      position: relative
+    }
 
-/* API 테이블 */
-.api-section{margin-bottom:32px}
-.api-section h3{font-size:.9rem;font-weight:700;margin-bottom:12px;padding:8px 14px;border-radius:8px;display:flex;align-items:center;gap:8px}
-.api-section h3.basic{background:rgba(14,165,233,.1);color:#0369a1}
-.api-section h3.quick{background:rgba(99,102,241,.1);color:#4338ca}
-.api-section h3.infinite{background:rgba(0,192,127,.1);color:#059669}
-.api-section h3.special{background:rgba(249,115,22,.1);color:#c2410c}
+    .top-banner h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative
+    }
 
-.api-table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:.76rem;background:var(--white);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:8px}
-.api-table th{text-align:left;padding:10px 14px;font-size:.62rem;letter-spacing:2px;color:var(--dim);background:#f8f9ff;border-bottom:1px solid var(--border)}
-.api-table td{padding:9px 14px;border-bottom:1px solid rgba(221,228,245,.5);vertical-align:top}
-.api-table tr:last-child td{border-bottom:none}
-.api-table tr:hover td{background:rgba(14,165,233,.02)}
-.fn{color:var(--accent);font-weight:700}
-.param-badge{display:inline-block;background:var(--accent-light);color:#0369a1;border-radius:3px;padding:1px 6px;font-size:.68rem;margin:1px}
-.note-badge{display:inline-block;font-size:.7rem;color:var(--dim);font-family:'Noto Sans KR',sans-serif;line-height:1.6}
-.cmd-num{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent2);font-weight:700}
+    .top-banner p {
+      font-size: 1rem;
+      opacity: .85;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative
+    }
 
-.packet-box{background:#111827;border-radius:10px;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#d1d5db;line-height:2;margin-top:6px}
-.pk{color:#60a5fa}.pv{color:#34d399}.pc{color:#6b7280}.pp{color:#fbbf24}
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      overflow-x: auto;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .06)
+    }
 
-/* 요청 예시 */
-.request-list{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-.request-item{display:flex;align-items:flex-start;gap:12px;background:var(--white);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);cursor:pointer;transition:all .2s;border:2px solid transparent}
-.request-item:hover{border-color:var(--accent)}
-.request-item:hover .ri-copy{opacity:1}
-.ri-cat{font-size:.72rem;padding:3px 8px;border-radius:100px;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px}
-.ri-cat.basic{background:rgba(14,165,233,.15);color:#0369a1}
-.ri-cat.precise{background:rgba(99,102,241,.15);color:#4338ca}
-.ri-cat.special{background:rgba(249,115,22,.15);color:#c2410c}
-.ri-cat.combo{background:rgba(124,58,237,.15);color:#7c3aed}
-.ri-text{flex:1;font-size:.88rem;color:var(--text);line-height:1.5}
-.ri-copy{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:3px 8px;border:1px solid var(--accent);border-radius:4px;color:var(--accent);opacity:0;transition:opacity .2s;white-space:nowrap;flex-shrink:0;background:var(--accent-light)}
-.ri-copy.copied{color:var(--green);border-color:var(--green)}
+    .nav-tab {
+      flex-shrink: 0;
+      padding: 14px 20px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--dim);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all .2s;
+      white-space: nowrap;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none
+    }
 
-/* 프로젝트 카드 */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:16px}
-.project-card{background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);transition:all .2s;position:relative;overflow:hidden}
-.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
-.pc-basic::before{background:linear-gradient(90deg,#0ea5e9,#6366f1)}
-.pc-precise::before{background:linear-gradient(90deg,#6366f1,#8b5cf6)}
-.pc-special::before{background:linear-gradient(90deg,#f97316,#ef4444)}
-.pc-combo::before{background:linear-gradient(90deg,#7c3aed,#0ea5e9)}
-.project-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(14,165,233,.15)}
-.project-card .pc-icon{font-size:2rem;margin-bottom:10px}
-.project-card h3{font-size:.9rem;font-weight:700;margin-bottom:6px}
-.project-card p{font-size:.78rem;color:var(--dim);line-height:1.6}
-.project-card .pc-level{margin-top:10px;font-size:.7rem;font-family:'JetBrains Mono',monospace}
-.lv1{color:var(--green)}.lv2{color:var(--accent2)}.lv3{color:var(--red)}
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent)
+    }
 
-/* 시각 다이어그램 */
-.diagram-box{background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
-.diagram-box h3{font-size:.88rem;font-weight:700;margin-bottom:16px;color:var(--accent)}
-.move-visual{display:flex;flex-direction:column;gap:10px}
-.mv-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;font-size:.82rem}
-.mv-row.fwd{background:rgba(14,165,233,.06);border-left:3px solid var(--accent)}
-.mv-row.bwd{background:rgba(249,115,22,.06);border-left:3px solid var(--accent2)}
-.mv-row.trn{background:rgba(99,102,241,.06);border-left:3px solid #6366f1}
-.mv-row.spc{background:rgba(0,192,127,.06);border-left:3px solid var(--green)}
-.mv-row.stp{background:rgba(239,68,68,.06);border-left:3px solid var(--red)}
-.mv-icon{font-size:1.2rem;flex-shrink:0;width:28px;text-align:center}
-.mv-label{font-weight:700;width:90px;flex-shrink:0}
-.mv-cmd{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim);flex:1}
+    .nav-tab:hover {
+      color: var(--accent)
+    }
 
-/* 프롬프트 */
-.prompt-box{background:#111827;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.prompt-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#1f2937;border-bottom:1px solid #374151}
-.prompt-topbar span{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:#6b7280;letter-spacing:2px}
-.copy-all-btn{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:4px 12px;border:1px solid #38bdf8;border-radius:4px;background:transparent;color:#38bdf8;cursor:pointer;transition:all .15s;letter-spacing:1px}
-.copy-all-btn:hover{background:#38bdf8;color:#fff}
-.copy-all-btn.copied{border-color:#10b981;color:#10b981}
-.prompt-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:2;color:#d1d5db;white-space:pre-wrap}
+    .section {
+      display: none;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 36px 20px 60px
+    }
 
-.tip{display:flex;gap:12px;padding:14px 18px;border-radius:10px;font-size:.85rem;margin-top:16px;line-height:1.7}
-.tip.blue{background:#eff6ff;border-left:4px solid var(--accent)}
-.tip.green{background:#f0fdf4;border-left:4px solid var(--green)}
-.tip.yellow{background:#fffbeb;border-left:4px solid var(--accent2)}
-.tip.purple{background:#f3eeff;border-left:4px solid var(--purple)}
-.tip.red{background:#fef2f2;border-left:4px solid var(--red)}
-.tip-icon{font-size:1.1rem;flex-shrink:0}
+    .section.active {
+      display: block
+    }
 
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:10px 22px;border-radius:100px;box-shadow:0 4px 20px rgba(0,0,0,.25);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
-.toast.show{opacity:1}
+    .goal-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--accent);
+      margin-bottom: 24px
+    }
 
-.next-btn{display:inline-block;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:32px}
-</style>
+    .goal-box h2 {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 10px
+    }
+
+    .goal-box p {
+      color: var(--dim);
+      line-height: 1.8
+    }
+
+    .sec-title {
+      font-size: .72rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 3px;
+      color: var(--dim);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .sec-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    /* 기능 카드 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 14px;
+      margin-top: 20px
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px 18px;
+      box-shadow: var(--shadow);
+      border: 2px solid transparent;
+      transition: all .2s
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px)
+    }
+
+    .feature-card .fc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px
+    }
+
+    .feature-card h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .feature-card ul {
+      list-style: none
+    }
+
+    .feature-card ul li {
+      font-size: .78rem;
+      color: var(--dim);
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .feature-card ul li::before {
+      content: '·';
+      color: var(--accent);
+      font-weight: 700
+    }
+
+    /* API 테이블 */
+    .api-section {
+      margin-bottom: 32px
+    }
+
+    .api-section h3 {
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .api-section h3.basic {
+      background: rgba(14, 165, 233, .1);
+      color: #0369a1
+    }
+
+    .api-section h3.quick {
+      background: rgba(99, 102, 241, .1);
+      color: #4338ca
+    }
+
+    .api-section h3.infinite {
+      background: rgba(0, 192, 127, .1);
+      color: #059669
+    }
+
+    .api-section h3.special {
+      background: rgba(249, 115, 22, .1);
+      color: #c2410c
+    }
+
+    .api-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .76rem;
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 8px
+    }
+
+    .api-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: .62rem;
+      letter-spacing: 2px;
+      color: var(--dim);
+      background: #f8f9ff;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .api-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(221, 228, 245, .5);
+      vertical-align: top
+    }
+
+    .api-table tr:last-child td {
+      border-bottom: none
+    }
+
+    .api-table tr:hover td {
+      background: rgba(14, 165, 233, .02)
+    }
+
+    .fn {
+      color: var(--accent);
+      font-weight: 700
+    }
+
+    .param-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: #0369a1;
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-size: .68rem;
+      margin: 1px
+    }
+
+    .note-badge {
+      display: inline-block;
+      font-size: .7rem;
+      color: var(--dim);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6
+    }
+
+    .cmd-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      color: var(--accent2);
+      font-weight: 700
+    }
+
+    .packet-box {
+      background: #111827;
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .76rem;
+      color: #d1d5db;
+      line-height: 2;
+      margin-top: 6px
+    }
+
+    .pk {
+      color: #60a5fa
+    }
+
+    .pv {
+      color: #34d399
+    }
+
+    .pc {
+      color: #6b7280
+    }
+
+    .pp {
+      color: #fbbf24
+    }
+
+    /* 요청 예시 */
+    .request-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px
+    }
+
+    .request-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all .2s;
+      border: 2px solid transparent
+    }
+
+    .request-item:hover {
+      border-color: var(--accent)
+    }
+
+    .request-item:hover .ri-copy {
+      opacity: 1
+    }
+
+    .ri-cat {
+      font-size: .72rem;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .ri-cat.basic {
+      background: rgba(14, 165, 233, .15);
+      color: #0369a1
+    }
+
+    .ri-cat.precise {
+      background: rgba(99, 102, 241, .15);
+      color: #4338ca
+    }
+
+    .ri-cat.special {
+      background: rgba(249, 115, 22, .15);
+      color: #c2410c
+    }
+
+    .ri-cat.combo {
+      background: rgba(124, 58, 237, .15);
+      color: #7c3aed
+    }
+
+    .ri-text {
+      flex: 1;
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.5
+    }
+
+    .ri-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      padding: 3px 8px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity .2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: var(--accent-light)
+    }
+
+    .ri-copy.copied {
+      color: var(--green);
+      border-color: var(--green)
+    }
+
+    /* 프로젝트 카드 */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: all .2s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px
+    }
+
+    .pc-basic::before {
+      background: linear-gradient(90deg, #0ea5e9, #6366f1)
+    }
+
+    .pc-precise::before {
+      background: linear-gradient(90deg, #6366f1, #8b5cf6)
+    }
+
+    .pc-special::before {
+      background: linear-gradient(90deg, #f97316, #ef4444)
+    }
+
+    .pc-combo::before {
+      background: linear-gradient(90deg, #7c3aed, #0ea5e9)
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(14, 165, 233, .15)
+    }
+
+    .project-card .pc-icon {
+      font-size: 2rem;
+      margin-bottom: 10px
+    }
+
+    .project-card h3 {
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .project-card p {
+      font-size: .78rem;
+      color: var(--dim);
+      line-height: 1.6
+    }
+
+    .project-card .pc-level {
+      margin-top: 10px;
+      font-size: .7rem;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .lv1 {
+      color: var(--green)
+    }
+
+    .lv2 {
+      color: var(--accent2)
+    }
+
+    .lv3 {
+      color: var(--red)
+    }
+
+    /* 시각 다이어그램 */
+    .diagram-box {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px
+    }
+
+    .diagram-box h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--accent)
+    }
+
+    .move-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .mv-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: .82rem
+    }
+
+    .mv-row.fwd {
+      background: rgba(14, 165, 233, .06);
+      border-left: 3px solid var(--accent)
+    }
+
+    .mv-row.bwd {
+      background: rgba(249, 115, 22, .06);
+      border-left: 3px solid var(--accent2)
+    }
+
+    .mv-row.trn {
+      background: rgba(99, 102, 241, .06);
+      border-left: 3px solid #6366f1
+    }
+
+    .mv-row.spc {
+      background: rgba(0, 192, 127, .06);
+      border-left: 3px solid var(--green)
+    }
+
+    .mv-row.stp {
+      background: rgba(239, 68, 68, .06);
+      border-left: 3px solid var(--red)
+    }
+
+    .mv-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      width: 28px;
+      text-align: center
+    }
+
+    .mv-label {
+      font-weight: 700;
+      width: 90px;
+      flex-shrink: 0
+    }
+
+    .mv-cmd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      color: var(--dim);
+      flex: 1
+    }
+
+    /* 프롬프트 */
+    .prompt-box {
+      background: #111827;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow)
+    }
+
+    .prompt-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #1f2937;
+      border-bottom: 1px solid #374151
+    }
+
+    .prompt-topbar span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      color: #6b7280;
+      letter-spacing: 2px
+    }
+
+    .copy-all-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      padding: 4px 12px;
+      border: 1px solid #38bdf8;
+      border-radius: 4px;
+      background: transparent;
+      color: #38bdf8;
+      cursor: pointer;
+      transition: all .15s;
+      letter-spacing: 1px
+    }
+
+    .copy-all-btn:hover {
+      background: #38bdf8;
+      color: #fff
+    }
+
+    .copy-all-btn.copied {
+      border-color: #10b981;
+      color: #10b981
+    }
+
+    .prompt-body {
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      line-height: 2;
+      color: #d1d5db;
+      white-space: pre-wrap
+    }
+
+    .tip {
+      display: flex;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: .85rem;
+      margin-top: 16px;
+      line-height: 1.7
+    }
+
+    .tip.blue {
+      background: #eff6ff;
+      border-left: 4px solid var(--accent)
+    }
+
+    .tip.green {
+      background: #f0fdf4;
+      border-left: 4px solid var(--green)
+    }
+
+    .tip.yellow {
+      background: #fffbeb;
+      border-left: 4px solid var(--accent2)
+    }
+
+    .tip.purple {
+      background: #f3eeff;
+      border-left: 4px solid var(--purple)
+    }
+
+    .tip.red {
+      background: #fef2f2;
+      border-left: 4px solid var(--red)
+    }
+
+    .tip-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      padding: 10px 22px;
+      border-radius: 100px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .25);
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap
+    }
+
+    .toast.show {
+      opacity: 1
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 14px 32px;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      margin-top: 32px
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="top-banner">
-  <div class="step-badge">STEP 3 of 4</div>
-  <h1>🚗 움직이기</h1>
-  <p>로봇을 직접 조종하거나 원하는 방식으로 움직여봅니다.<br>버튼 제어부터 자동 이동, 라인트레이서까지!</p>
-</div>
-
-<div class="nav-tabs">
-  <button class="nav-tab active" onclick="showTab('goal')">🎯 목표</button>
-  <button class="nav-tab" onclick="showTab('features')">⚙️ 가능한 기능</button>
-  <button class="nav-tab" onclick="showTab('prompt')">📋 프롬프트</button>
-  <button class="nav-tab" onclick="showTab('requests')">💬 AI 요청 예시</button>
-  <button class="nav-tab" onclick="showTab('projects')">🚀 프로젝트 아이디어</button>
-  <button class="nav-tab" onclick="showTab('api')">📖 API 레퍼런스</button>
-</div>
-
-<!-- ① 목표 -->
-<div class="section active" id="tab-goal">
-  <div class="goal-box">
-    <h2>🎯 이번 단계의 목표</h2>
-    <p>웹앱 버튼으로 로봇을 <strong>직접 조종</strong>하거나, 거리/각도를 지정해 <strong>정밀하게 이동</strong>시킵니다.<br>
-    나아가 검은 선을 따라가거나, 장애물 앞에서 멈추는 <strong>자동 이동</strong>도 구현할 수 있습니다.</p>
+  <div class="top-banner">
+    <div class="step-badge">STEP 3 of 4</div>
+    <h1>🚗 움직이기</h1>
+    <p>로봇을 직접 조종하거나 원하는 방식으로 움직여봅니다.<br>버튼 제어부터 자동 이동, 라인트레이서까지!</p>
   </div>
 
-  <div class="sec-title">명령 한눈에 보기</div>
-  <div class="diagram-box">
-    <div class="move-visual">
-      <div class="mv-row fwd"><div class="mv-icon">▲</div><div class="mv-label">전진 (무한)</div><div class="mv-cmd">CMD=29 · 버튼 누르는 동안 계속 전진</div></div>
-      <div class="mv-row fwd"><div class="mv-icon">📏</div><div class="mv-label">전진 (거리)</div><div class="mv-cmd">CMD=26 · 지정한 cm만큼만 전진 후 정지</div></div>
-      <div class="mv-row bwd"><div class="mv-icon">▼</div><div class="mv-label">후진 (무한)</div><div class="mv-cmd">CMD=29·dir=1 · 버튼 누르는 동안 후진</div></div>
-      <div class="mv-row trn"><div class="mv-icon">↰</div><div class="mv-label">좌회전</div><div class="mv-cmd">CMD=52 · 지정 각도 빠른 회전 (deg÷5)</div></div>
-      <div class="mv-row trn"><div class="mv-icon">↱</div><div class="mv-label">우회전</div><div class="mv-cmd">CMD=53 · 지정 각도 빠른 회전 (deg÷5)</div></div>
-      <div class="mv-row spc"><div class="mv-icon">〰</div><div class="mv-label">라인 따라가기</div><div class="mv-cmd">CMD=101 · 검은 선을 따라 자동 이동</div></div>
-      <div class="mv-row spc"><div class="mv-icon">🛑</div><div class="mv-label">장애물 감지 정지</div><div class="mv-cmd">CMD=100 · 전방 센서가 감지되면 멈춤</div></div>
-      <div class="mv-row stp"><div class="mv-icon">✕</div><div class="mv-label">정지</div><div class="mv-cmd">CMD=25 · 즉시 정지</div></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('goal')">🎯 목표</button>
+    <button class="nav-tab" onclick="showTab('features')">⚙️ 가능한 기능</button>
+    <button class="nav-tab" onclick="showTab('prompt')">📋 프롬프트</button>
+    <button class="nav-tab" onclick="showTab('requests')">💬 AI 요청 예시</button>
+    <button class="nav-tab" onclick="showTab('projects')">🚀 프로젝트 아이디어</button>
+    <button class="nav-tab" onclick="showTab('api')">📖 API 레퍼런스</button>
+  </div>
+
+  <!-- ① 목표 -->
+  <div class="section active" id="tab-goal">
+    <div class="goal-box">
+      <h2>🎯 이번 단계의 목표</h2>
+      <p>웹앱 버튼으로 로봇을 <strong>직접 조종</strong>하거나, 거리/각도를 지정해 <strong>정밀하게 이동</strong>시킵니다.<br>
+        나아가 검은 선을 따라가거나, 장애물 앞에서 멈추는 <strong>자동 이동</strong>도 구현할 수 있습니다.</p>
     </div>
+
+    <div class="sec-title">명령 한눈에 보기</div>
+    <div class="diagram-box">
+      <div class="move-visual">
+        <div class="mv-row fwd">
+          <div class="mv-icon">▲</div>
+          <div class="mv-label">전진 (무한)</div>
+          <div class="mv-cmd">CMD=29 · 버튼 누르는 동안 계속 전진</div>
+        </div>
+        <div class="mv-row fwd">
+          <div class="mv-icon">📏</div>
+          <div class="mv-label">전진 (거리)</div>
+          <div class="mv-cmd">CMD=26 · 지정한 cm만큼만 전진 후 정지</div>
+        </div>
+        <div class="mv-row bwd">
+          <div class="mv-icon">▼</div>
+          <div class="mv-label">후진 (무한)</div>
+          <div class="mv-cmd">CMD=29·dir=1 · 버튼 누르는 동안 후진</div>
+        </div>
+        <div class="mv-row trn">
+          <div class="mv-icon">↰</div>
+          <div class="mv-label">좌회전</div>
+          <div class="mv-cmd">CMD=52 · 지정 각도 빠른 회전 (deg÷5)</div>
+        </div>
+        <div class="mv-row trn">
+          <div class="mv-icon">↱</div>
+          <div class="mv-label">우회전</div>
+          <div class="mv-cmd">CMD=53 · 지정 각도 빠른 회전 (deg÷5)</div>
+        </div>
+        <div class="mv-row spc">
+          <div class="mv-icon">〰</div>
+          <div class="mv-label">라인 따라가기</div>
+          <div class="mv-cmd">CMD=101 · 검은 선을 따라 자동 이동</div>
+        </div>
+        <div class="mv-row spc">
+          <div class="mv-icon">🛑</div>
+          <div class="mv-label">장애물 감지 정지</div>
+          <div class="mv-cmd">CMD=100 · 전방 센서가 감지되면 멈춤</div>
+        </div>
+        <div class="mv-row stp">
+          <div class="mv-icon">✕</div>
+          <div class="mv-label">정지</div>
+          <div class="mv-cmd">CMD=25 · 즉시 정지</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip blue">
+      <span class="tip-icon">💡</span>
+      <span>Step 1·2에서 만든 앱에 이동 기능을 <strong>추가</strong>할 수 있어요. "기존 코드에 방향 버튼을 추가해줘"라고 하면 됩니다!</span>
+    </div>
+    <div class="tip yellow">
+      <span class="tip-icon">⚠️</span>
+      <span>전진/후진 버튼은 <strong>누르는 동안만</strong> 움직이고, 떼면 자동으로 정지하는 방식이 안전합니다. (mousedown → GO_INFINITE, mouseup →
+        STOP)</span>
+    </div>
+
+    <div style="text-align:center"><button class="next-btn" onclick="showTab('features')">다음: 가능한 기능 보기 →</button></div>
   </div>
 
-  <div class="tip blue">
-    <span class="tip-icon">💡</span>
-    <span>Step 1·2에서 만든 앱에 이동 기능을 <strong>추가</strong>할 수 있어요. "기존 코드에 방향 버튼을 추가해줘"라고 하면 됩니다!</span>
-  </div>
-  <div class="tip yellow">
-    <span class="tip-icon">⚠️</span>
-    <span>전진/후진 버튼은 <strong>누르는 동안만</strong> 움직이고, 떼면 자동으로 정지하는 방식이 안전합니다. (mousedown → GO_INFINITE, mouseup → STOP)</span>
-  </div>
+  <!-- ② 가능한 기능 -->
+  <div class="section" id="tab-features">
+    <div class="sec-title">STEP 3 에서 만들 수 있는 기능들</div>
 
-  <div style="text-align:center"><button class="next-btn" onclick="showTab('features')">다음: 가능한 기능 보기 →</button></div>
-</div>
-
-<!-- ② 가능한 기능 -->
-<div class="section" id="tab-features">
-  <div class="sec-title">STEP 3 에서 만들 수 있는 기능들</div>
-
-  <!-- 핵심 기능 안내 -->
-  <div class="tip blue" style="margin-bottom:24px">
-    <span class="tip-icon">⭐</span>
-    <span>
+    <!-- 핵심 기능 안내 -->
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
         원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.
-    </span>
-  </div>
-
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="fc-icon">🎮</div>
-      <h3>직접 조종</h3>
-      <ul>
-        <li>전진 / 후진</li>
-        <li>좌 / 우회전</li>
-        <li>정지</li>
-        <li>WASD 키보드</li>
-        <li>속도 조절</li>
-      </ul>
+      </span>
     </div>
-    <div class="feature-card">
-      <div class="fc-icon">📐</div>
-      <h3>정밀 이동</h3>
-      <ul>
-        <li>거리 지정 전진</li>
-        <li>거리 지정 후진</li>
-        <li>각도 지정 회전</li>
-        <li>슬라이더 조절</li>
-      </ul>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="fc-icon">🎮</div>
+        <h3>직접 조종</h3>
+        <ul>
+          <li>전진 / 후진</li>
+          <li>좌 / 우회전</li>
+          <li>정지</li>
+          <li>WASD 키보드</li>
+          <li>속도 조절</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📐</div>
+        <h3>정밀 이동</h3>
+        <ul>
+          <li>거리 지정 전진</li>
+          <li>거리 지정 후진</li>
+          <li>각도 지정 회전</li>
+          <li>슬라이더 조절</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">〰️</div>
+        <h3>특수 이동</h3>
+        <ul>
+          <li>라인 따라가기</li>
+          <li>거리만큼 이동하기</li>
+          <li>장애물 만나면 멈추기</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="fc-icon">🚗</div>
+        <h3>응용</h3>
+        <ul>
+          <li>이동 패턴 만들기</li>
+          <li>목적지로 이동하기</li>
+          <li>출발점으로 돌아오기</li>
+          <li>지정 거리 이동하기</li>
+          <li>라인 끝까지 따라가기</li>
+          <li>장애물 만나면 대기하기</li>
+        </ul>
+      </div>
+
+
     </div>
-    <div class="feature-card">
-      <div class="fc-icon">〰️</div>
-      <h3>특수 이동</h3>
-      <ul>
-        <li>라인 따라가기</li>
-        <li>라인 + 거리</li>
-        <li>장애물 감지 정지</li>
-      </ul>
+
+    <div class="tip yellow" style="margin-top:20px">
+      <span class="tip-icon">⭐</span>
+      <span>이동 기능과 Step 2의 표현 기능을 <strong>조합</strong>하면 훨씬 재미있는 로봇이 됩니다!</span>
     </div>
-    <div class="feature-card">
-      <div class="fc-icon">✨</div>
-      <h3>표현 연동</h3>
-      <ul>
-        <li>전진 중 LED 켜기</li>
-        <li>도착 시 사운드</li>
-        <li>회전 중 표정 변경</li>
-        <li>속도별 LED 색상</li>
-      </ul>
+
+    <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('api')">다음: API 레퍼런스 →</button></div> -->
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('prompt')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        프롬프트 보기 →</button>
     </div>
   </div>
 
-  <div class="tip yellow" style="margin-top:20px">
-    <span class="tip-icon">⭐</span>
-    <span>이동 기능과 Step 2의 표현 기능을 <strong>조합</strong>하면 훨씬 재미있는 로봇이 됩니다!</span>
+  <!-- ③ API 레퍼런스 -->
+  <div class="section" id="tab-api">
+    <div class="sec-title">함수 레퍼런스</div>
+
+    <!-- 기본 이동 -->
+    <div class="api-section">
+      <h3 class="basic">🎮 기본 이동 (직접 조종용)</h3>
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th>함수</th>
+            <th>CMD</th>
+            <th>파라미터</th>
+            <th>설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fn">move_infinite</span></td>
+            <td><span class="cmd-num">29</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dir: 0/1</span></td>
+            <td><span class="note-badge">계속 이동. 버튼 떼면 stop() 필수<br>dir: 0=전진, 1=후진</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">stop</span></td>
+            <td><span class="cmd-num">25</span></td>
+            <td>-</td>
+            <td><span class="note-badge">즉시 정지</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">left_turn_quick</span></td>
+            <td><span class="cmd-num">52</span></td>
+            <td><span class="param-badge">deg: 5~360 (5단위)</span></td>
+            <td><span class="note-badge">빠른 좌회전. 내부에서 deg÷5 변환</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">right_turn_quick</span></td>
+            <td><span class="cmd-num">53</span></td>
+            <td><span class="param-badge">deg: 5~360 (5단위)</span></td>
+            <td><span class="note-badge">빠른 우회전. 내부에서 deg÷5 변환</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="packet-box"><span class="pc"># 패킷 구조</span>
+        <span class="pk">move_infinite(speed, dir)</span> → <span class="pv">[24][52][29][00][speed][00][dir]</span>
+        <span class="pk">stop()</span> → <span class="pv">[24][52][25][00]</span>
+        <span class="pk">left_turn_quick(deg)</span> → <span class="pv">[24][52][52][00][deg/5]</span> <span
+          class="pc">(90도 → 18)</span>
+        <span class="pk">right_turn_quick(deg)</span> → <span class="pv">[24][52][53][00][deg/5]</span>
+      </div>
+    </div>
+
+    <!-- 정밀 이동 -->
+    <div class="api-section">
+      <h3 class="quick">📐 정밀 이동 (거리 / 각도 지정)</h3>
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th>함수</th>
+            <th>CMD</th>
+            <th>파라미터</th>
+            <th>설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fn">forward_dist</span></td>
+            <td><span class="cmd-num">26</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dist: 0~300cm</span></td>
+            <td><span class="note-badge">지정 거리 전진 후 자동 정지</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">reverse_dist</span></td>
+            <td><span class="cmd-num">26</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dist: 0~300cm</span></td>
+            <td><span class="note-badge">지정 거리 후진 후 자동 정지</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">left_turn</span></td>
+            <td><span class="cmd-num">70</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">deg: 각도</span></td>
+            <td><span class="note-badge">정밀 좌회전 (느리지만 정확)</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">right_turn</span></td>
+            <td><span class="cmd-num">70</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">deg: 각도</span></td>
+            <td><span class="note-badge">정밀 우회전 (느리지만 정확)</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="packet-box"><span class="pk">forward_dist(speed, dist)</span> → <span
+          class="pv">[24][52][26][00][speed][dist][0]</span> <span class="pc">(dir=0 전진)</span>
+        <span class="pk">reverse_dist(speed, dist)</span> → <span class="pv">[24][52][26][00][speed][dist][1]</span>
+        <span class="pc">(dir=1 후진)</span>
+        <span class="pk">left_turn(speed, deg)</span> → <span
+          class="pv">[24][52][70][00][speed][deg_low][deg_high][0]</span>
+        <span class="pk">right_turn(speed, deg)</span> → <span
+          class="pv">[24][52][70][00][speed][deg_low][deg_high][1]</span>
+      </div>
+    </div>
+
+    <!-- 특수 이동 -->
+    <div class="api-section">
+      <h3 class="special">〰️ 특수 이동 (자동화)</h3>
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th>함수</th>
+            <th>CMD</th>
+            <th>파라미터</th>
+            <th>설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fn">linefollower_infinite</span></td>
+            <td><span class="cmd-num">30</span></td>
+            <td><span class="param-badge">speed: 1~3</span></td>
+            <td><span class="note-badge">검은 선을 계속 따라감. stop()으로 멈춤</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">linefollower</span></td>
+            <td><span class="cmd-num">101</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">time: 0~25초</span></td>
+            <td><span class="note-badge">지정 시간 동안 라인 따라가기<br>time=0이면 교차로까지</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">linefollower_distance</span></td>
+            <td><span class="cmd-num">28</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dist: 0~255cm</span></td>
+            <td><span class="note-badge">지정 거리만큼 라인 따라가기</span></td>
+          </tr>
+          <tr>
+            <td><span class="fn">go_sensor</span></td>
+            <td><span class="cmd-num">100</span></td>
+            <td><span class="param-badge">speed: 1~3</span><span class="param-badge">senL/R: 0~255</span></td>
+            <td><span class="note-badge">전방 센서 감지 시 자동 정지<br>기본값 150 권장</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="packet-box"><span class="pk">linefollower_infinite(speed)</span> → <span
+          class="pv">[24][52][30][00][speed]</span>
+        <span class="pk">linefollower(speed,...,time)</span> → <span
+          class="pv">[24][52][101][00][speed][BL][BR][BC][time×10]</span>
+        <span class="pk">linefollower_distance(sp,dist)</span> → <span class="pv">[24][52][28][00][speed][dist]</span>
+        <span class="pk">go_sensor(speed, senL, senR)</span> → <span
+          class="pv">[24][52][100][00][speed][senL][senR]</span>
+      </div>
+    </div>
+
+    <div class="tip blue">
+      <span class="tip-icon">💡</span>
+      <span><strong>라인트레이서 센서값 팁:</strong> senBL/BR/BC 기본값 100을 사용하세요. 바닥 색상에 따라 50~150 사이로 조정이 필요할 수 있어요.</span>
+    </div>
+
+    <div style="text-align:center"><button class="next-btn" onclick="showTab('requests')">다음: AI 요청 예시 →</button></div>
   </div>
 
-  <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('api')">다음: API 레퍼런스 →</button></div> -->
-  <div style="margin-top:32px;text-align:center">
-    <button onclick="showTab('prompt')" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음: 프롬프트 보기 →</button>
-  </div>
-</div>
+  <!-- ④ AI 요청 예시 -->
+  <div class="section" id="tab-requests">
+    <div class="sec-title">이렇게 AI에게 요청해보세요</div>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p>
 
-<!-- ③ API 레퍼런스 -->
-<div class="section" id="tab-api">
-  <div class="sec-title">함수 레퍼런스</div>
+    <!-- <div
+      style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
+      🎮 직접 조종</div> -->
+    <div class="request-list">
 
-  <!-- 기본 이동 -->
-  <div class="api-section">
-    <h3 class="basic">🎮 기본 이동 (직접 조종용)</h3>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>CMD</th><th>파라미터</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><span class="fn">move_infinite</span></td>
-          <td><span class="cmd-num">29</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dir: 0/1</span></td>
-          <td><span class="note-badge">계속 이동. 버튼 떼면 stop() 필수<br>dir: 0=전진, 1=후진</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">stop</span></td>
-          <td><span class="cmd-num">25</span></td>
-          <td>-</td>
-          <td><span class="note-badge">즉시 정지</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">left_turn_quick</span></td>
-          <td><span class="cmd-num">52</span></td>
-          <td><span class="param-badge">deg: 5~360 (5단위)</span></td>
-          <td><span class="note-badge">빠른 좌회전. 내부에서 deg÷5 변환</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">right_turn_quick</span></td>
-          <td><span class="cmd-num">53</span></td>
-          <td><span class="param-badge">deg: 5~360 (5단위)</span></td>
-          <td><span class="note-badge">빠른 우회전. 내부에서 deg÷5 변환</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="packet-box"><span class="pc"># 패킷 구조</span>
-<span class="pk">move_infinite(speed, dir)</span>  → <span class="pv">[24][52][29][00][speed][00][dir]</span>
-<span class="pk">stop()</span>                    → <span class="pv">[24][52][25][00]</span>
-<span class="pk">left_turn_quick(deg)</span>      → <span class="pv">[24][52][52][00][deg/5]</span>   <span class="pc">(90도 → 18)</span>
-<span class="pk">right_turn_quick(deg)</span>     → <span class="pv">[24][52][53][00][deg/5]</span></div>
-  </div>
 
-  <!-- 정밀 이동 -->
-  <div class="api-section">
-    <h3 class="quick">📐 정밀 이동 (거리 / 각도 지정)</h3>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>CMD</th><th>파라미터</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><span class="fn">forward_dist</span></td>
-          <td><span class="cmd-num">26</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dist: 0~300cm</span></td>
-          <td><span class="note-badge">지정 거리 전진 후 자동 정지</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">reverse_dist</span></td>
-          <td><span class="cmd-num">26</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dist: 0~300cm</span></td>
-          <td><span class="note-badge">지정 거리 후진 후 자동 정지</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">left_turn</span></td>
-          <td><span class="cmd-num">70</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">deg: 각도</span></td>
-          <td><span class="note-badge">정밀 좌회전 (느리지만 정확)</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">right_turn</span></td>
-          <td><span class="cmd-num">70</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">deg: 각도</span></td>
-          <td><span class="note-badge">정밀 우회전 (느리지만 정확)</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="packet-box"><span class="pk">forward_dist(speed, dist)</span>  → <span class="pv">[24][52][26][00][speed][dist][0]</span>   <span class="pc">(dir=0 전진)</span>
-<span class="pk">reverse_dist(speed, dist)</span>  → <span class="pv">[24][52][26][00][speed][dist][1]</span>   <span class="pc">(dir=1 후진)</span>
-<span class="pk">left_turn(speed, deg)</span>      → <span class="pv">[24][52][70][00][speed][deg_low][deg_high][0]</span>
-<span class="pk">right_turn(speed, deg)</span>     → <span class="pv">[24][52][70][00][speed][deg_low][deg_high][1]</span></div>
-  </div>
+      <h3>직접 조종하기</h3>
 
-  <!-- 특수 이동 -->
-  <div class="api-section">
-    <h3 class="special">〰️ 특수 이동 (자동화)</h3>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>CMD</th><th>파라미터</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><span class="fn">linefollower_infinite</span></td>
-          <td><span class="cmd-num">30</span></td>
-          <td><span class="param-badge">speed: 1~3</span></td>
-          <td><span class="note-badge">검은 선을 계속 따라감. stop()으로 멈춤</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">linefollower</span></td>
-          <td><span class="cmd-num">101</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">time: 0~25초</span></td>
-          <td><span class="note-badge">지정 시간 동안 라인 따라가기<br>time=0이면 교차로까지</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">linefollower_distance</span></td>
-          <td><span class="cmd-num">28</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">dist: 0~255cm</span></td>
-          <td><span class="note-badge">지정 거리만큼 라인 따라가기</span></td>
-        </tr>
-        <tr>
-          <td><span class="fn">go_sensor</span></td>
-          <td><span class="cmd-num">100</span></td>
-          <td><span class="param-badge">speed: 1~3</span><span class="param-badge">senL/R: 0~255</span></td>
-          <td><span class="note-badge">전방 센서 감지 시 자동 정지<br>기본값 150 권장</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="packet-box"><span class="pk">linefollower_infinite(speed)</span>  → <span class="pv">[24][52][30][00][speed]</span>
-<span class="pk">linefollower(speed,...,time)</span>   → <span class="pv">[24][52][101][00][speed][BL][BR][BC][time×10]</span>
-<span class="pk">linefollower_distance(sp,dist)</span> → <span class="pv">[24][52][28][00][speed][dist]</span>
-<span class="pk">go_sensor(speed, senL, senR)</span>   → <span class="pv">[24][52][100][00][speed][senL][senR]</span></div>
-  </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎮</div>
+        <div class="ri-text">게임 패드처럼 조종할 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
 
-  <div class="tip blue">
-    <span class="tip-icon">💡</span>
-    <span><strong>라인트레이서 센서값 팁:</strong> senBL/BR/BC 기본값 100을 사용하세요. 바닥 색상에 따라 50~150 사이로 조정이 필요할 수 있어요.</span>
-  </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⌨️</div>
+        <div class="ri-text">키보드로 조종할 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
 
-  <div style="text-align:center"><button class="next-btn" onclick="showTab('requests')">다음: AI 요청 예시 →</button></div>
-</div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📱</div>
+        <div class="ri-text">휴대폰에서도 쉽게 조종할 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
 
-<!-- ④ AI 요청 예시 -->
-<div class="section" id="tab-requests">
-  <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-  <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⚡</div>
+        <div class="ri-text">속도를 조절할 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
 
-  <div style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">🎮 직접 조종</div>
-  <div class="request-list">
+      <h3>도형 그리기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⬛</div>
+        <div class="ri-text">정사각형 모양으로 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🔺</div>
+        <div class="ri-text">삼각형 모양으로 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⭐</div>
+        <div class="ri-text">별 모양으로 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⭕</div>
+        <div class="ri-text">원을 그리듯 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <h3>스스로 이동하기</h3>
+
+     <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⏱️</div>
+        <div class="ri-text">3초 전진하고 90도 회전을 반복하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">〰️</div>
+        <div class="ri-text">검은 선을 따라 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🚧</div>
+        <div class="ri-text">장애물을 만나면 멈추게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🏁</div>
+        <div class="ri-text">앞에 있는 목표 지점까지 이동하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">↩️</div>
+        <div class="ri-text">장애물을 만나면 방향을 바꾸게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <h3>움직임 꾸미기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🚓</div>
+        <div class="ri-text">경찰차처럼 움직이고 불빛을 깜빡이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🚒</div>
+        <div class="ri-text">소방차처럼 사이렌을 울리며 이동하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🔁</div>
+        <div class="ri-text">앞뒤로 왔다갔다 반복하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">💃</div>
+        <div class="ri-text">댄스 동작처럼 움직임을 순서대로 실행하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎉</div>
+        <div class="ri-text">이동이 끝나면 축하 효과를 보여줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🌈</div>
+        <div class="ri-text">속도에 따라 LED 색상이 바뀌게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <!--
+
     <div class="request-item" onclick="copyRequest(this)">
       <span class="ri-cat basic">직접조종</span>
       <div class="ri-text">전진/후진/좌회전/우회전/정지 버튼을 추가해줘. 전진·후진은 버튼을 누르는 동안만 움직이고 떼면 멈추게 해줘</div>
@@ -462,175 +1270,195 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
       <div class="ri-text">속도에 따라 LED 색상이 바뀌게 해줘. 속도1=초록, 속도2=노랑, 속도3=빨강</div>
       <div class="ri-copy">복사</div>
     </div>
+  </div> -->
+
+    <div class="tip blue" style="margin-top:20px">
+      <span class="tip-icon">💡</span>
+      <span>정사각형, 삼각형처럼 <strong>도형 이동</strong>은 "앞으로 이동 + 회전" 명령을 여러 번 보내는 방식으로 구현할 수 있어요. AI에게 순서를 설명해주면 됩니다!</span>
+    </div>
+
+    <div style="text-align:center"><button class="next-btn" onclick="showTab('projects')">다음: 프로젝트 아이디어 →</button></div>
   </div>
 
-  <div class="tip blue" style="margin-top:20px">
-    <span class="tip-icon">💡</span>
-    <span>정사각형, 삼각형처럼 <strong>도형 이동</strong>은 "앞으로 이동 + 회전" 명령을 여러 번 보내는 방식으로 구현할 수 있어요. AI에게 순서를 설명해주면 됩니다!</span>
+  <!-- ⑤ 프로젝트 아이디어 -->
+  <div class="section" id="tab-projects">
+    <div class="sec-title">이런 프로젝트를 만들 수 있어요</div>
+    <div class="project-grid">
+      <div class="project-card pc-basic">
+        <div class="pc-icon">🚗</div>
+        <h3>리모컨 자동차</h3>
+        <p>버튼 또는 키보드로 실시간 조종하는 기본 컨트롤러</p>
+      </div>
+      <div class="project-card pc-precise">
+        <div class="pc-icon">🌟</div>
+        <h3>도형 그리기</h3>
+        <p>정사각형, 삼각형, 별 모양 등을 그리는 로봇</p>
+      </div>
+
+      <div class="project-card pc-special">
+        <div class="pc-icon">〰️</div>
+        <h3>자율 주행 로봇</h3>
+        <p>검은 선을 자동으로 따라가는 자율 주행 로봇</p>
+      </div>
+      <div class="project-card pc-special">
+        <div class="pc-icon">🚧</div>
+        <h3>안전 주행 로봇</h3>
+        <p>전진하다가 장애물 감지 시 자동으로 멈추는 로봇</p>
+      </div>
+      <div class="project-card pc-special">
+        <div class="pc-icon">🅿️</div>
+        <h3>자동 주차 로봇</h3>
+        <p>라인 감지까지 이동 후 정지하는 자동 주차 로봇</p>
+      </div>
+      <div class="project-card pc-combo">
+        <div class="pc-icon">🏎️</div>
+        <h3>레이싱 로봇</h3>
+        <p>라인 따라가며 속도별 LED 색상 변화, 완주 시 사운드</p>
+      </div>
+      <div class="project-card pc-combo">
+        <div class="pc-icon">🎯</div>
+        <h3>미로 탈출 로봇</h3>
+        <p>키보드로 조종하여 미로를 통과하는 게임</p>
+      </div>
+
+      <div class="project-card pc-combo">
+        <div class="pc-icon">🚦</div>
+        <h3>신호등 로봇</h3>
+        <p>버튼을 눌러 출발·정지·회전을 제어하는 로봇</p>
+      </div>
+
+      <div class="project-card pc-combo">
+        <div class="pc-icon">📦</div>
+        <h3>배달 로봇</h3>
+        <p>지정 경로 이동 후 도착 LED·사운드·LCD 메시지 출력</p>
+      </div>
+    </div>
+
+    <div class="tip green" style="margin-top:24px">
+      <span class="tip-icon">🚀</span>
+      <span>프로젝트 이름을 그대로 말해보세요! 예: <strong>"라인트레이서 로봇을 만들어줘"</strong></span>
+    </div>
+
+    <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
+
   </div>
 
-  <div style="text-align:center"><button class="next-btn" onclick="showTab('projects')">다음: 프로젝트 아이디어 →</button></div>
-</div>
+  <!-- ⑥ 프롬프트 -->
+  <div class="section" id="tab-prompt">
+    <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+      아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
+      <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
+    </p>
 
-<!-- ⑤ 프로젝트 아이디어 -->
-<div class="section" id="tab-projects">
-  <div class="sec-title">이런 프로젝트를 만들 수 있어요</div>
-  <div class="project-grid">
-    <div class="project-card pc-basic">
-      <div class="pc-icon">🚗</div>
-      <h3>리모컨 자동차</h3>
-      <p>버튼 또는 키보드로 실시간 조종하는 기본 컨트롤러</p>
-      <div class="pc-level lv1">★ 쉬움</div>
+    <div class="prompt-box">
+      <div class="prompt-topbar">
+        <span>STEP 3 · 움직이기 · 기본 프롬프트</span>
+        <button class="copy-all-btn" onclick="copyAll()">전체 복사</button>
+      </div>
+      <div class="prompt-body" id="main-prompt"><span class="pc"># ZUMI 로봇 이동 제어 웹앱 만들기</span>
+
+        <span class="pk">## 시스템 구조</span>
+        브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI
+        서버 없음. HTML 파일 하나로만 동작.
+
+        <span class="pk">## 영상 스트리밍 방법</span>
+        연결 후 ws.send("stream")
+        ws.binaryType = 'arraybuffer'
+        수신: ArrayBuffer → Blob → Image → canvas.drawImage()
+        권장 캔버스 크기: 640×480
+
+        <span class="pk">## 패킷 빌더</span>
+        헤더: [0x24][0x52][CMD][0x00][...params]
+
+        function buildPacket(cmd, ...params) {
+        const buf = new Uint8Array(4 + params.length);
+        buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
+        params.forEach((v,i) => buf[4+i]=v);
+        return buf.buffer;
+        }
+
+        <span class="pk">## 모터 제어(CMD_MOTOR_INFINITE) 패킷 인코더</span>
+        버튼이나 키보드 조종을 원하는 경우에 적합
+        CMD_STOP = 25 → buildPacket(25)
+        CMD_MOTOR_INFINITE = 32
+
+        function makeMotorPacket(dirL, speedL, dirR, speedR) {
+        speedL = Math.max(0, Math.min(250, speedL));
+        speedR = Math.max(0, Math.min(250, speedR));
+        dirL = Math.max(0, Math.min(2, dirL));
+        dirR = Math.max(0, Math.min(2, dirR));
+        const dir = 0x40 | dirL | (dirR << 4); return buildPacket(32, speedL, speedR, dir); } <span class="pk">## 모터
+          제어(CMD_MOTOR_INFINITE) 캘리브레이션</span>
+          버튼이나 키보드 조종을 원하는 경우에 함께 적용
+          변수 4개 (기본값 40, 범위 0~250): calGoL, calGoR, calTurnL, calTurnR
+
+          전진: makeMotorPacket(2, calGoL, 1, calGoR)
+          후진: makeMotorPacket(1, calGoL, 2, calGoR)
+          좌회전: makeMotorPacket(1, calTurnL, 1, calTurnR)
+          우회전: makeMotorPacket(2, calTurnL, 2, calTurnR)
+
+          <span class="pk">## 입력 이벤트</span>
+          버튼이나 키보드 조종을 원하는 경우에 함께 적용
+          버튼: mousedown/touchstart → 이동, mouseup/mouseleave/touchend → 정지
+          키보드: keydown(repeat 무시, input 포커스 시 무시) → 이동, keyup(w/a/s/d) → 정지
+          키 매핑: w=전진 s=후진 a=좌회전 d=우회전 e=정지
+
+          <span class="pk">## 정밀 이동</span>
+          전진 거리: CMD=26 params=[speed, dist, 0]
+          후진 거리: CMD=26 params=[speed, dist, 1]
+          좌회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 0]
+          우회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 1]
+
+          <span class="pk">## 특수 이동</span>
+          라인트레이서 무한: CMD=30 params=[speed]
+          라인트레이서 시간: CMD=101 params=[speed, senBL, senBR, senBC, time×10] 기본 센서값=100
+          라인트레이서 거리: CMD=28 params=[speed, dist]
+          장애물 감지 정지: CMD=100 params=[speed, senL, senR] 기본 센서값=150
+
+
+          <span class="pk">## 전송 딜레이</span>
+          범위: 10~200ms
+          sendRaw() 내부에서 if (Date.now() - lastCmdTime < cmdDelay) return; CMD_STOP은 딜레이 무시하고 즉시 전송. <span class="pk">##
+            기본 UI (필수 포함)</span>
+            - IP 입력 + 연결 버튼 + 연결 상태 표시
+            - 방향 제어 (버튼 또는 키보드)
+            - 캘리브레이션 입력 4개
+            - 전송 딜레이 조절
+
+            <span class="pk">## 결과물 조건</span>
+            - HTML 파일 하나로 동작
+            - CSS/JavaScript 내부 포함
+            - Chrome에서 바로 실행 가능
+            - 별도 서버 불필요
+
+
+            <span class="pp">## 추가로 만들어줄 기능:
+              (여기에 원하는 것을 직접 적어주세요)
+
+              예시:
+              - WASD 키보드 + D-PAD 버튼 조종
+              - 속도 슬라이더 (1~3)
+              - 거리/각도 슬라이더로 정밀 이동
+              - 라인트레이서 시작/정지 버튼
+              - 정사각형 자동 이동 버튼
+            </span>
+
+      </div>
     </div>
-    <div class="project-card pc-precise">
-      <div class="pc-icon">⬛</div>
-      <h3>정사각형 그리기</h3>
-      <p>버튼 누르면 20cm 이동·90도 회전 4번 반복</p>
-      <div class="pc-level lv1">★ 쉬움</div>
+
+    <div class="tip purple" style="margin-top:20px">
+      <span class="tip-icon">💡</span>
+      <span>Step 1·2 앱이 있다면 "기존 HTML 코드에 이동 기능을 추가해줘"라고 하고 코드를 같이 붙여넣으세요!</span>
     </div>
-    <div class="project-card pc-precise">
-      <div class="pc-icon">🔺</div>
-      <h3>삼각형 그리기</h3>
-      <p>20cm 이동·120도 회전 3번 반복으로 삼각형</p>
-      <div class="pc-level lv1">★ 쉬움</div>
+
+    <div class="tip red" style="margin-top:12px">
+      <span class="tip-icon">⚠️</span>
+      <span><strong>안전 팁:</strong> 전진/후진은 반드시 <strong>mouseup/touchend에 STOP 명령</strong>을 붙여달라고 요청하세요. 버튼에서 손을 뗐을 때 자동으로
+        멈춰야 안전합니다!</span>
     </div>
-    <div class="project-card pc-special">
-      <div class="pc-icon">〰️</div>
-      <h3>라인트레이서</h3>
-      <p>검은 선을 자동으로 따라가는 자율 주행 로봇</p>
-      <div class="pc-level lv2">★★ 보통</div>
-    </div>
-    <div class="project-card pc-special">
-      <div class="pc-icon">🛑</div>
-      <h3>장애물 정차 로봇</h3>
-      <p>전진하다가 장애물 감지 시 자동으로 멈추는 로봇</p>
-      <div class="pc-level lv2">★★ 보통</div>
-    </div>
-    <div class="project-card pc-special">
-      <div class="pc-icon">🏁</div>
-      <h3>출발선 로봇</h3>
-      <p>라인 감지까지 이동 후 정지하는 자동 주차 로봇</p>
-      <div class="pc-level lv2">★★ 보통</div>
-    </div>
-    <div class="project-card pc-combo">
-      <div class="pc-icon">🏎️</div>
-      <h3>레이싱 로봇</h3>
-      <p>라인 따라가며 속도별 LED 색상 변화, 완주 시 사운드</p>
-      <div class="pc-level lv3">★★★ 도전</div>
-    </div>
-    <div class="project-card pc-combo">
-      <div class="pc-icon">📦</div>
-      <h3>배달 로봇</h3>
-      <p>지정 경로 이동 후 도착 LED·사운드·LCD 메시지 출력</p>
-      <div class="pc-level lv3">★★★ 도전</div>
-    </div>
-  </div>
 
-  <div class="tip green" style="margin-top:24px">
-    <span class="tip-icon">🚀</span>
-    <span>프로젝트 이름을 그대로 말해보세요! 예: <strong>"라인트레이서 로봇을 만들어줘"</strong></span>
-  </div>
-
-  <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
-
-</div>
-
-<!-- ⑥ 프롬프트 -->
-<div class="section" id="tab-prompt">
-  <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
-  <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
-    아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
-    <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
-  </p>
-
-  <div class="prompt-box">
-    <div class="prompt-topbar">
-      <span>STEP 3 · 움직이기 · 기본 프롬프트</span>
-      <button class="copy-all-btn" onclick="copyAll()">전체 복사</button>
-    </div>
-    <div class="prompt-body" id="main-prompt"><span class="pc"># ZUMI 로봇 이동 제어 웹앱 만들기</span>
-
-<span class="pk">## 시스템 구조</span>
-브라우저(HTML) ↔ WebSocket(ws://IP/ws) ↔ ESP32(주미 로봇)
-서버 없음. HTML 파일 하나로만 동작.
-
-<span class="pk">## 패킷 빌더</span>
-function buildPacket(cmd, ...params) {
-  const buf = new Uint8Array(4 + params.length);
-  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
-  params.forEach((v,i) => buf[4+i]=v);
-  return buf.buffer;
-}
-
-<span class="pk">## 이동 명령어</span>
-<span class="pc">// 기본 이동</span>
-전진(무한):    CMD=29,  params=[speed, 0, 0]  speed: 1~3
-후진(무한):    CMD=29,  params=[speed, 0, 1]
-정지:          CMD=25,  params=[]
-좌회전(빠른):  CMD=52,  params=[deg/5]         deg: 5~360 (5단위)
-우회전(빠른):  CMD=53,  params=[deg/5]
-
-<span class="pc">// 정밀 이동 (거리 지정)</span>
-전진(거리):    CMD=26,  params=[speed, dist, 0]  dist: 0~300cm
-후진(거리):    CMD=26,  params=[speed, dist, 1]
-좌회전(정밀):  CMD=70,  params=[speed, deg_low, deg_high, 0]
-우회전(정밀):  CMD=70,  params=[speed, deg_low, deg_high, 1]
-  deg_low = deg < 256 ? deg : deg%256
-  deg_high = deg < 256 ? 0 : Math.floor(deg/256)
-
-<span class="pc">// 특수 이동</span>
-라인트레이서(무한): CMD=30,  params=[speed]
-라인트레이서(시간): CMD=101, params=[speed, senBL, senBR, senBC, time×10]
-  senBL/BR/BC 기본값=100, time: 0~25초
-라인트레이서(거리): CMD=28,  params=[speed, dist]
-장애물 감지 정지:   CMD=100, params=[speed, senL, senR]
-  senL/R 기본값=150
-
-<span class="pk">## 전진/후진 버튼 패턴 (누르는 동안만 이동)</span>
-btn.addEventListener('mousedown', () => sendRaw(buildPacket(29, speed, 0, dir)));
-btn.addEventListener('mouseup',   () => sendRaw(buildPacket(25)));
-btn.addEventListener('mouseleave',() => sendRaw(buildPacket(25)));
-btn.addEventListener('touchstart',() => sendRaw(buildPacket(29, speed, 0, dir)));
-btn.addEventListener('touchend',  () => sendRaw(buildPacket(25)));
-
-
-<span class="pk">## 기본 UI (필수 포함)</span>
-- IP 입력 + 연결 버튼 + 연결 상태 표시
-- 영상 스트리밍 canvas (640×480)
-  ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
-  수신: Blob → Image → canvas.drawImage
-
-<span class="pk">## 결과물 조건</span>
-- HTML 파일 하나로 동작
-- CSS/JavaScript 내부 포함
-- Chrome에서 바로 실행 가능
-- 별도 서버 불필요
-
-
-
-<span class="pp">## 추가로 만들어줄 기능:
-(여기에 원하는 것을 직접 적어주세요)
-
-예시:
-- WASD 키보드 + D-PAD 버튼 조종
-- 속도 슬라이더 (1~3)
-- 거리/각도 슬라이더로 정밀 이동
-- 라인트레이서 시작/정지 버튼
-- 정사각형 자동 이동 버튼</span>
-    </div>
-  </div>
-
-  <div class="tip purple" style="margin-top:20px">
-    <span class="tip-icon">💡</span>
-    <span>Step 1·2 앱이 있다면 "기존 HTML 코드에 이동 기능을 추가해줘"라고 하고 코드를 같이 붙여넣으세요!</span>
-  </div>
-
-  <div class="tip red" style="margin-top:12px">
-    <span class="tip-icon">⚠️</span>
-    <span><strong>안전 팁:</strong> 전진/후진은 반드시 <strong>mouseup/touchend에 STOP 명령</strong>을 붙여달라고 요청하세요. 버튼에서 손을 뗐을 때 자동으로 멈춰야 안전합니다!</span>
-  </div>
-
-  <!-- <div style="margin-top:32px;background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow)">
+    <!-- <div style="margin-top:32px;background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow)">
     <div style="font-weight:700;margin-bottom:16px;font-size:.95rem">🗂️ 도형 이동 구현 아이디어</div>
     <div style="display:flex;flex-direction:column;gap:10px;font-size:.85rem;color:var(--dim);line-height:1.8">
       <div>⬛ <strong style="color:var(--text)">정사각형</strong>: 전진 20cm → 우회전 90도 × 4회 반복</div>
@@ -641,56 +1469,65 @@ btn.addEventListener('touchend',  () => sendRaw(buildPacket(25)));
   </div> -->
 
     <div style="margin-top:32px;text-align:center">
-    <button onclick="showTab('requests')" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음: AI 요청 예시 →</button>
+      <button onclick="showTab('requests')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        AI 요청 예시 →</button>
+    </div>
   </div>
-</div>
 
-<!-- 스텝 네비게이션 -->
-<div style="background:#0d1520;border-top:1px solid #1a2a3a;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
-  <a href="zumi_step2.html" style="color:#4a6080;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#4a6080'">← STEP 2</a>
-  <div style="display:flex;gap:6px">
-    <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
-    <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
-    <div style="width:28px;height:4px;border-radius:2px;background:#0ea5e9"></div>
-    <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
+  <!-- 스텝 네비게이션 -->
+  <div
+    style="background:#0d1520;border-top:1px solid #1a2a3a;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
+    <a href="zumi_advanced_step2.html"
+      style="color:#4a6080;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s"
+      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#4a6080'">← STEP 2</a>
+    <div style="display:flex;gap:6px">
+      <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#0ea5e9"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
+    </div>
+    <a href="zumi_advanced_step4.html"
+      style="color:#0ea5e9;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #0ea5e9;border-radius:100px;transition:all .2s"
+      onmouseover="this.style.background='#0ea5e9';this.style.color='#fff'"
+      onmouseout="this.style.background='transparent';this.style.color='#0ea5e9'">STEP 4 →</a>
   </div>
-  <a href="zumi_step4.html" style="color:#0ea5e9;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #0ea5e9;border-radius:100px;transition:all .2s" onmouseover="this.style.background='#0ea5e9';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0ea5e9'">STEP 4 →</a>
-</div>
 
-<div class="toast" id="toast">📋 복사되었습니다!</div>
+  <div class="toast" id="toast">📋 복사되었습니다!</div>
 
-<script>
-function showTab(id) {
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const idx=['goal','features','prompt','requests','projects','api'].indexOf(id);
-  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function copyRequest(el) {
-  const text = el.querySelector('.ri-text').textContent;
-  navigator.clipboard.writeText(text).then(()=>{
-    const btn = el.querySelector('.ri-copy');
-    btn.textContent='복사됨 ✓'; btn.classList.add('copied'); btn.style.opacity='1';
-    showToast('복사되었습니다!');
-    setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');btn.style.opacity='';},2000);
-  });
-}
-function copyAll() {
-  const txt = document.getElementById('main-prompt').innerText;
-  navigator.clipboard.writeText(txt).then(()=>{
-    const btn = document.querySelector('.copy-all-btn');
-    btn.textContent='복사됨 ✓'; btn.classList.add('copied');
-    showToast('프롬프트가 복사되었습니다!');
-    setTimeout(()=>{btn.textContent='전체 복사';btn.classList.remove('copied');},2500);
-  });
-}
-function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent='📋 '+msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2000);
-}
-</script>
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      const idx = ['goal', 'features', 'prompt', 'requests', 'projects', 'api'].indexOf(id);
+      document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function copyRequest(el) {
+      const text = el.querySelector('.ri-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = el.querySelector('.ri-copy');
+        btn.textContent = '복사됨 ✓'; btn.classList.add('copied'); btn.style.opacity = '1';
+        showToast('복사되었습니다!');
+        setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); btn.style.opacity = ''; }, 2000);
+      });
+    }
+    function copyAll() {
+      const txt = document.getElementById('main-prompt').innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const btn = document.querySelector('.copy-all-btn');
+        btn.textContent = '복사됨 ✓'; btn.classList.add('copied');
+        showToast('프롬프트가 복사되었습니다!');
+        setTimeout(() => { btn.textContent = '전체 복사'; btn.classList.remove('copied'); }, 2500);
+      });
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = '📋 ' + msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+  </script>
 </body>
+
 </html>

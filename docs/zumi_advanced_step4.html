@@ -1,848 +1,1761 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZUMI 바이브 코딩 · STEP 4</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#f5f0ff;--white:#fff;--border:#e4d9ff;
-  --accent:#8b5cf6;--accent-light:#f3eeff;
-  --accent2:#06b6d4;--green:#00c07f;--red:#ef4444;--orange:#f97316;
-  --text:#1a1a2e;--dim:#7a6aaa;--shadow:0 4px 24px rgba(139,92,246,.1);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUMI 바이브 코딩 · STEP 4</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f0ff;
+      --white: #fff;
+      --border: #e4d9ff;
+      --accent: #8b5cf6;
+      --accent-light: #f3eeff;
+      --accent2: #06b6d4;
+      --green: #00c07f;
+      --red: #ef4444;
+      --orange: #f97316;
+      --text: #1a1a2e;
+      --dim: #7a6aaa;
+      --shadow: 0 4px 24px rgba(139, 92, 246, .1);
+    }
 
-.top-banner{background:linear-gradient(135deg,#8b5cf6 0%,#06b6d4 100%);color:white;padding:40px 24px 56px;text-align:center;position:relative;overflow:hidden}
-.top-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E")}
-.step-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:5px 16px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:3px;margin-bottom:16px;position:relative}
-.top-banner h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.2;margin-bottom:12px;position:relative}
-.top-banner p{font-size:1rem;opacity:.85;max-width:500px;margin:0 auto;line-height:1.7;position:relative}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-.nav-tabs{display:flex;justify-content: center;background:var(--white);border-bottom:2px solid var(--border);overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.nav-tab{flex-shrink:0;padding:14px 20px;font-size:.85rem;font-weight:700;color:var(--dim);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
-.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.nav-tab:hover{color:var(--accent)}
+    html {
+      scroll-behavior: smooth
+    }
 
-.section{display:none;max-width:860px;margin:0 auto;padding:36px 20px 60px}
-.section.active{display:block}
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh
+    }
 
-.goal-box{background:var(--white);border-radius:16px;padding:28px;box-shadow:var(--shadow);border-left:5px solid var(--accent);margin-bottom:24px}
-.goal-box h2{font-size:1.1rem;color:var(--accent);margin-bottom:10px}
-.goal-box p{color:var(--dim);line-height:1.8}
+    .top-banner {
+      background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+      color: white;
+      padding: 40px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
 
-.sec-title{font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+    .top-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E")
+    }
 
-/* 연결 방식 비교 */
-.conn-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
-.conn-card{border-radius:14px;padding:20px;box-shadow:var(--shadow)}
-.conn-card.dongle{background:#fff8f0;border:2px solid #fed7aa}
-.conn-card.ip{background:#f0f9ff;border:2px solid #bae6fd}
-.conn-card h3{font-size:.88rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.conn-card.dongle h3{color:#c2410c}
-.conn-card.ip h3{color:#0369a1}
-.conn-card ul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.conn-card ul li{font-size:.78rem;color:var(--dim);display:flex;align-items:flex-start;gap:6px}
-.check{color:var(--green);flex-shrink:0}
-.cross{color:var(--red);flex-shrink:0}
+    .step-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      position: relative
+    }
 
-/* AI 기능 카드 */
-.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:20px}
-.ai-card{background:var(--white);border-radius:14px;padding:20px;box-shadow:var(--shadow);border:2px solid transparent;transition:all .2s;cursor:default}
-.ai-card:hover{transform:translateY(-2px)}
-.ai-card.face:hover{border-color:#8b5cf6}
-.ai-card.gesture:hover{border-color:#06b6d4}
-.ai-card.marker:hover{border-color:#f97316}
-.ai-card.object:hover{border-color:#ef4444}
-.ai-card.sketch:hover{border-color:#00c07f}
-.ai-card.teachable:hover{border-color:#f59e0b}
-.ai-card .ai-icon{font-size:1.8rem;margin-bottom:10px}
-.ai-card h3{font-size:.88rem;font-weight:700;margin-bottom:6px}
-.ai-card p{font-size:.76rem;color:var(--dim);line-height:1.6;margin-bottom:8px}
-.support-badge{display:inline-block;font-size:.62rem;padding:2px 7px;border-radius:100px;font-family:'JetBrains Mono',monospace}
-.ip-only{background:rgba(6,182,212,.12);color:#0369a1;border:1px solid #bae6fd}
-.both{background:rgba(0,192,127,.12);color:#059669;border:1px solid #a7f3d0}
+    .top-banner h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative
+    }
 
-/* API 섹션 */
-.api-section{margin-bottom:28px}
-.api-section-title{font-size:.88rem;font-weight:700;padding:8px 14px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.ast-face{background:rgba(139,92,246,.1);color:#7c3aed}
-.ast-gesture{background:rgba(6,182,212,.1);color:#0369a1}
-.ast-marker{background:rgba(249,115,22,.1);color:#c2410c}
-.ast-object{background:rgba(239,68,68,.1);color:#dc2626}
-.ast-sketch{background:rgba(0,192,127,.1);color:#059669}
-.ast-teachable{background:rgba(245,158,11,.1);color:#b45309}
+    .top-banner p {
+      font-size: 1rem;
+      opacity: .85;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative
+    }
 
-.api-table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:.76rem;background:var(--white);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:8px}
-.api-table th{text-align:left;padding:9px 14px;font-size:.6rem;letter-spacing:2px;color:var(--dim);background:#faf8ff;border-bottom:1px solid var(--border)}
-.api-table td{padding:8px 14px;border-bottom:1px solid rgba(228,217,255,.5);vertical-align:top}
-.api-table tr:last-child td{border-bottom:none}
-.api-table tr:hover td{background:rgba(139,92,246,.02)}
-.fn{color:var(--accent);font-weight:700}
-.ret{color:var(--accent2);font-size:.7rem}
-.note-badge{font-size:.72rem;color:var(--dim);font-family:'Noto Sans KR',sans-serif;line-height:1.6}
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      overflow-x: auto;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .06)
+    }
 
-/* 흐름 다이어그램 */
-.flow-box{background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);margin-bottom:20px}
-.flow-box h3{font-size:.88rem;font-weight:700;margin-bottom:16px;color:var(--accent)}
-.flow-steps{display:flex;flex-direction:column;gap:0}
-.flow-step{display:flex;align-items:flex-start;gap:14px;padding:10px 0}
-.flow-step:not(:last-child){border-bottom:1px dashed var(--border)}
-.flow-num{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:2px}
-.flow-content h4{font-size:.82rem;font-weight:700;margin-bottom:3px}
-.flow-content p{font-size:.76rem;color:var(--dim);font-family:'JetBrains Mono',monospace}
+    .nav-tab {
+      flex-shrink: 0;
+      padding: 14px 20px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--dim);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all .2s;
+      white-space: nowrap;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none
+    }
 
-/* 요청 예시 */
-.request-list{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-.request-item{display:flex;align-items:flex-start;gap:12px;background:var(--white);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);cursor:pointer;transition:all .2s;border:2px solid transparent}
-.request-item:hover{border-color:var(--accent)}
-.request-item:hover .ri-copy{opacity:1}
-.ri-cat{font-size:.72rem;padding:3px 8px;border-radius:100px;font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
-.ri-cat.face{background:rgba(139,92,246,.15);color:#7c3aed}
-.ri-cat.gesture{background:rgba(6,182,212,.15);color:#0369a1}
-.ri-cat.marker{background:rgba(249,115,22,.15);color:#c2410c}
-.ri-cat.object{background:rgba(239,68,68,.15);color:#dc2626}
-.ri-cat.sketch{background:rgba(0,192,127,.15);color:#059669}
-.ri-cat.teachable{background:rgba(245,158,11,.15);color:#b45309}
-.ri-cat.combo{background:rgba(30,64,175,.15);color:#1d4ed8}
-.ri-text{flex:1;font-size:.88rem;color:var(--text);line-height:1.5}
-.ri-copy{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:3px 8px;border:1px solid var(--accent);border-radius:4px;color:var(--accent);opacity:0;transition:opacity .2s;white-space:nowrap;flex-shrink:0;background:var(--accent-light)}
-.ri-copy.copied{color:var(--green);border-color:var(--green)}
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent)
+    }
 
-/* 프로젝트 */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:16px}
-.project-card{background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);transition:all .2s;position:relative;overflow:hidden}
-.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
-.pc-face::before{background:linear-gradient(90deg,#8b5cf6,#c084fc)}
-.pc-gesture::before{background:linear-gradient(90deg,#06b6d4,#67e8f9)}
-.pc-marker::before{background:linear-gradient(90deg,#f97316,#fbbf24)}
-.pc-object::before{background:linear-gradient(90deg,#ef4444,#f97316)}
-.pc-sketch::before{background:linear-gradient(90deg,#00c07f,#34d399)}
-.pc-teachable::before{background:linear-gradient(90deg,#f59e0b,#8b5cf6)}
-.project-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(139,92,246,.18)}
-.project-card .pc-icon{font-size:2rem;margin-bottom:10px}
-.project-card h3{font-size:.9rem;font-weight:700;margin-bottom:6px}
-.project-card p{font-size:.78rem;color:var(--dim);line-height:1.6}
-.project-card .pc-level{margin-top:10px;font-size:.7rem;font-family:'JetBrains Mono',monospace}
-.lv1{color:var(--green)}.lv2{color:var(--orange)}.lv3{color:var(--red)}
+    .nav-tab:hover {
+      color: var(--accent)
+    }
 
-/* 프롬프트 */
-.prompt-box{background:#111827;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.prompt-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#1f2937;border-bottom:1px solid #374151}
-.prompt-topbar span{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:#6b7280;letter-spacing:2px}
-.copy-all-btn{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:4px 12px;border:1px solid #a78bfa;border-radius:4px;background:transparent;color:#a78bfa;cursor:pointer;transition:all .15s;letter-spacing:1px}
-.copy-all-btn:hover{background:#a78bfa;color:#fff}
-.copy-all-btn.copied{border-color:#10b981;color:#10b981}
-.prompt-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:2;color:#d1d5db;white-space:pre-wrap}
-.pk{color:#c084fc}.pv{color:#34d399}.pc{color:#6b7280}.pp{color:#fbbf24}
+    .section {
+      display: none;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 36px 20px 60px
+    }
 
-.tip{display:flex;gap:12px;padding:14px 18px;border-radius:10px;font-size:.85rem;margin-top:16px;line-height:1.7}
-.tip.blue{background:#eff6ff;border-left:4px solid #3b82f6}
-.tip.green{background:#f0fdf4;border-left:4px solid var(--green)}
-.tip.yellow{background:#fffbeb;border-left:4px solid var(--orange)}
-.tip.purple{background:#f3eeff;border-left:4px solid var(--accent)}
-.tip.red{background:#fef2f2;border-left:4px solid var(--red)}
-.tip.cyan{background:#ecfeff;border-left:4px solid var(--accent2)}
-.tip-icon{font-size:1.1rem;flex-shrink:0}
+    .section.active {
+      display: block
+    }
 
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:10px 22px;border-radius:100px;box-shadow:0 4px 20px rgba(0,0,0,.25);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
-.toast.show{opacity:1}
-.next-btn{display:inline-block;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:32px}
+    .goal-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--accent);
+      margin-bottom: 24px
+    }
 
-/* 제스처 테이블 */
-.gesture-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:10px}
-.gesture-item{background:var(--white);border-radius:10px;padding:12px;text-align:center;box-shadow:var(--shadow)}
-.gesture-item .gi{font-size:1.6rem;margin-bottom:6px}
-.gesture-item .gn{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--accent);font-weight:700}
-.gesture-item .gd{font-size:.72rem;color:var(--dim);margin-top:3px}
-</style>
+    .goal-box h2 {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 10px
+    }
+
+    .goal-box p {
+      color: var(--dim);
+      line-height: 1.8
+    }
+
+    .sec-title {
+      font-size: .72rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 3px;
+      color: var(--dim);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .sec-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    /* 연결 방식 비교 */
+    .conn-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px
+    }
+
+    .conn-card {
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow)
+    }
+
+    .conn-card.dongle {
+      background: #fff8f0;
+      border: 2px solid #fed7aa
+    }
+
+    .conn-card.ip {
+      background: #f0f9ff;
+      border: 2px solid #bae6fd
+    }
+
+    .conn-card h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .conn-card.dongle h3 {
+      color: #c2410c
+    }
+
+    .conn-card.ip h3 {
+      color: #0369a1
+    }
+
+    .conn-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px
+    }
+
+    .conn-card ul li {
+      font-size: .78rem;
+      color: var(--dim);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px
+    }
+
+    .check {
+      color: var(--green);
+      flex-shrink: 0
+    }
+
+    .cross {
+      color: var(--red);
+      flex-shrink: 0
+    }
+
+    /* AI 기능 카드 */
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+      margin-top: 20px
+    }
+
+    .ai-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 2px solid transparent;
+      transition: all .2s;
+      cursor: default
+    }
+
+    .ai-card:hover {
+      transform: translateY(-2px)
+    }
+
+    .ai-card.face:hover {
+      border-color: #8b5cf6
+    }
+
+    .ai-card.gesture:hover {
+      border-color: #06b6d4
+    }
+
+    .ai-card.marker:hover {
+      border-color: #f97316
+    }
+
+    .ai-card.object:hover {
+      border-color: #ef4444
+    }
+
+    .ai-card.sketch:hover {
+      border-color: #00c07f
+    }
+
+    .ai-card.teachable:hover {
+      border-color: #f59e0b
+    }
+
+    .ai-card .ai-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px
+    }
+
+    .ai-card h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .ai-card p {
+      font-size: .76rem;
+      color: var(--dim);
+      line-height: 1.6;
+      margin-bottom: 8px
+    }
+
+    .support-badge {
+      display: inline-block;
+      font-size: .62rem;
+      padding: 2px 7px;
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .ip-only {
+      background: rgba(6, 182, 212, .12);
+      color: #0369a1;
+      border: 1px solid #bae6fd
+    }
+
+    .both {
+      background: rgba(0, 192, 127, .12);
+      color: #059669;
+      border: 1px solid #a7f3d0
+    }
+
+    /* API 섹션 */
+    .api-section {
+      margin-bottom: 28px
+    }
+
+    .api-section-title {
+      font-size: .88rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .ast-face {
+      background: rgba(139, 92, 246, .1);
+      color: #7c3aed
+    }
+
+    .ast-gesture {
+      background: rgba(6, 182, 212, .1);
+      color: #0369a1
+    }
+
+    .ast-marker {
+      background: rgba(249, 115, 22, .1);
+      color: #c2410c
+    }
+
+    .ast-object {
+      background: rgba(239, 68, 68, .1);
+      color: #dc2626
+    }
+
+    .ast-sketch {
+      background: rgba(0, 192, 127, .1);
+      color: #059669
+    }
+
+    .ast-teachable {
+      background: rgba(245, 158, 11, .1);
+      color: #b45309
+    }
+
+    .api-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .76rem;
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 8px
+    }
+
+    .api-table th {
+      text-align: left;
+      padding: 9px 14px;
+      font-size: .6rem;
+      letter-spacing: 2px;
+      color: var(--dim);
+      background: #faf8ff;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .api-table td {
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(228, 217, 255, .5);
+      vertical-align: top
+    }
+
+    .api-table tr:last-child td {
+      border-bottom: none
+    }
+
+    .api-table tr:hover td {
+      background: rgba(139, 92, 246, .02)
+    }
+
+    .fn {
+      color: var(--accent);
+      font-weight: 700
+    }
+
+    .ret {
+      color: var(--accent2);
+      font-size: .7rem
+    }
+
+    .note-badge {
+      font-size: .72rem;
+      color: var(--dim);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6
+    }
+
+    /* 흐름 다이어그램 */
+    .flow-box {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px
+    }
+
+    .flow-box h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--accent)
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0
+    }
+
+    .flow-step:not(:last-child) {
+      border-bottom: 1px dashed var(--border)
+    }
+
+    .flow-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .flow-content h4 {
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 3px
+    }
+
+    .flow-content p {
+      font-size: .76rem;
+      color: var(--dim);
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    /* 요청 예시 */
+    .request-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px
+    }
+
+    .request-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all .2s;
+      border: 2px solid transparent
+    }
+
+    .request-item:hover {
+      border-color: var(--accent)
+    }
+
+    .request-item:hover .ri-copy {
+      opacity: 1
+    }
+
+    .ri-cat {
+      font-size: .72rem;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .ri-cat.face {
+      background: rgba(139, 92, 246, .15);
+      color: #7c3aed
+    }
+
+    .ri-cat.gesture {
+      background: rgba(6, 182, 212, .15);
+      color: #0369a1
+    }
+
+    .ri-cat.marker {
+      background: rgba(249, 115, 22, .15);
+      color: #c2410c
+    }
+
+    .ri-cat.object {
+      background: rgba(239, 68, 68, .15);
+      color: #dc2626
+    }
+
+    .ri-cat.sketch {
+      background: rgba(0, 192, 127, .15);
+      color: #059669
+    }
+
+    .ri-cat.teachable {
+      background: rgba(245, 158, 11, .15);
+      color: #b45309
+    }
+
+    .ri-cat.combo {
+      background: rgba(30, 64, 175, .15);
+      color: #1d4ed8
+    }
+
+    .ri-text {
+      flex: 1;
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.5
+    }
+
+    .ri-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      padding: 3px 8px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity .2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: var(--accent-light)
+    }
+
+    .ri-copy.copied {
+      color: var(--green);
+      border-color: var(--green)
+    }
+
+    /* 프로젝트 */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: all .2s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px
+    }
+
+    .pc-face::before {
+      background: linear-gradient(90deg, #8b5cf6, #c084fc)
+    }
+
+    .pc-gesture::before {
+      background: linear-gradient(90deg, #06b6d4, #67e8f9)
+    }
+
+    .pc-marker::before {
+      background: linear-gradient(90deg, #f97316, #fbbf24)
+    }
+
+    .pc-object::before {
+      background: linear-gradient(90deg, #ef4444, #f97316)
+    }
+
+    .pc-sketch::before {
+      background: linear-gradient(90deg, #00c07f, #34d399)
+    }
+
+    .pc-teachable::before {
+      background: linear-gradient(90deg, #f59e0b, #8b5cf6)
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(139, 92, 246, .18)
+    }
+
+    .project-card .pc-icon {
+      font-size: 2rem;
+      margin-bottom: 10px
+    }
+
+    .project-card h3 {
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .project-card p {
+      font-size: .78rem;
+      color: var(--dim);
+      line-height: 1.6
+    }
+
+    .project-card .pc-level {
+      margin-top: 10px;
+      font-size: .7rem;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .lv1 {
+      color: var(--green)
+    }
+
+    .lv2 {
+      color: var(--orange)
+    }
+
+    .lv3 {
+      color: var(--red)
+    }
+
+    /* 프롬프트 */
+    .prompt-box {
+      background: #111827;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow)
+    }
+
+    .prompt-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #1f2937;
+      border-bottom: 1px solid #374151
+    }
+
+    .prompt-topbar span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      color: #6b7280;
+      letter-spacing: 2px
+    }
+
+    .copy-all-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      padding: 4px 12px;
+      border: 1px solid #a78bfa;
+      border-radius: 4px;
+      background: transparent;
+      color: #a78bfa;
+      cursor: pointer;
+      transition: all .15s;
+      letter-spacing: 1px
+    }
+
+    .copy-all-btn:hover {
+      background: #a78bfa;
+      color: #fff
+    }
+
+    .copy-all-btn.copied {
+      border-color: #10b981;
+      color: #10b981
+    }
+
+    .prompt-body {
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      line-height: 2;
+      color: #d1d5db;
+      white-space: pre-wrap
+    }
+
+    .pk {
+      color: #c084fc
+    }
+
+    .pv {
+      color: #34d399
+    }
+
+    .pc {
+      color: #6b7280
+    }
+
+    .pp {
+      color: #fbbf24
+    }
+
+    .tip {
+      display: flex;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: .85rem;
+      margin-top: 16px;
+      line-height: 1.7
+    }
+
+    .tip.blue {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6
+    }
+
+    .tip.green {
+      background: #f0fdf4;
+      border-left: 4px solid var(--green)
+    }
+
+    .tip.yellow {
+      background: #fffbeb;
+      border-left: 4px solid var(--orange)
+    }
+
+    .tip.purple {
+      background: #f3eeff;
+      border-left: 4px solid var(--accent)
+    }
+
+    .tip.red {
+      background: #fef2f2;
+      border-left: 4px solid var(--red)
+    }
+
+    .tip.cyan {
+      background: #ecfeff;
+      border-left: 4px solid var(--accent2)
+    }
+
+    .tip-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      padding: 10px 22px;
+      border-radius: 100px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .25);
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap
+    }
+
+    .toast.show {
+      opacity: 1
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 14px 32px;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      margin-top: 32px
+    }
+
+    /* 제스처 테이블 */
+    .gesture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 10px
+    }
+
+    .gesture-item {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: var(--shadow)
+    }
+
+    .gesture-item .gi {
+      font-size: 1.6rem;
+      margin-bottom: 6px
+    }
+
+    .gesture-item .gn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      color: var(--accent);
+      font-weight: 700
+    }
+
+    .gesture-item .gd {
+      font-size: .72rem;
+      color: var(--dim);
+      margin-top: 3px
+    }
+
+
+    /* 교통 / 표지판 */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: var(--border-radius-md);
+      margin-bottom: 10px;
+      background: var(--color-background-warning);
+      color: var(--color-text-warning);
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="top-banner">
-  <div class="step-badge">STEP 4 of 4</div>
-  <h1>🤖 AI 비전</h1>
-  <p>카메라 영상을 활용하여 주변 환경을 인식합니다.<br>얼굴, 손, 마커, 물체, 스케치까지 AI가 직접 봅니다!</p>
-</div>
-
-<div class="nav-tabs">
-  <button class="nav-tab active" onclick="showTab('goal')">🎯 목표</button>
-  <button class="nav-tab" onclick="showTab('features')">🧠 AI 기능 종류</button>
-  <button class="nav-tab" onclick="showTab('prompt')">📋 프롬프트</button>
-  <button class="nav-tab" onclick="showTab('requests')">💬 AI 요청 예시</button>
-  <button class="nav-tab" onclick="showTab('projects')">🚀 프로젝트 아이디어</button>
-  <button class="nav-tab" onclick="showTab('api')">📖 API 레퍼런스</button>
-</div>
-
-<!-- ① 목표 -->
-<div class="section active" id="tab-goal">
-  <div class="goal-box">
-    <h2>🎯 이번 단계의 목표</h2>
-    <p>카메라 영상에서 <strong>얼굴, 손동작, 마커, 물체, 스케치</strong>를 인식합니다.<br>
-    인식 결과를 바탕으로 LED를 켜거나, 로봇을 움직이는 <strong>AI 반응 로봇</strong>을 만들 수 있습니다.</p>
+  <div class="top-banner">
+    <div class="step-badge">STEP 4 of 4</div>
+    <h1>🚥 AI 비전</h1>
+    <p>카메라 영상을 활용하여 주변 환경을 인식합니다.<br>얼굴, 손, 마커, 물체, 스케치까지 AI가 직접 봅니다!</p>
   </div>
 
-  <!-- <div class="sec-title">⚠️ 연결 방식에 따른 지원 범위</div>
-  <div class="conn-compare">
-    <div class="conn-card dongle">
-      <h3>🔌 동글 연결</h3>
-      <ul>
-        <li><span class="check">✓</span> 내장 얼굴 감지 (기본)</li>
-        <li><span class="check">✓</span> 내장 고양이 감지 (기본)</li>
-        <li><span class="check">✓</span> 내장 색상 감지 (기본)</li>
-        <li><span class="check">✓</span> 내장 마커 감지 (기본)</li>
-        <li><span class="cross">✗</span> 고급 얼굴 인식 (이름 학습)</li>
-        <li><span class="cross">✗</span> 손 제스처 인식</li>
-        <li><span class="cross">✗</span> 물체/표지판 인식</li>
-        <li><span class="cross">✗</span> 스케치 인식</li>
-        <li><span class="cross">✗</span> 티처블 머신</li>
-      </ul>
-    </div>
-    <div class="conn-card ip">
-      <h3>🌐 IP 연결 (고급)</h3>
-      <ul>
-        <li><span class="check">✓</span> 고급 얼굴 인식 (이름 학습)</li>
-        <li><span class="check">✓</span> 손 제스처 인식 (6가지)</li>
-        <li><span class="check">✓</span> AprilTag 마커 인식</li>
-        <li><span class="check">✓</span> 물체/표지판 인식 (YOLO)</li>
-        <li><span class="check">✓</span> 스케치 인식 (그림 학습)</li>
-        <li><span class="check">✓</span> 티처블 머신 연동</li>
-        <li><span class="check">✓</span> 신호등 색상 인식</li>
-        <li><span class="check">✓</span> 카메라 스트리밍 전체</li>
-      </ul>
-    </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('goal')">🎯 목표</button>
+    <button class="nav-tab" onclick="showTab('features')">🧠 AI 기능 종류</button>
+    <button class="nav-tab" onclick="showTab('prompt')">📋 프롬프트</button>
+    <button class="nav-tab" onclick="showTab('requests')">💬 AI 요청 예시</button>
+    <button class="nav-tab" onclick="showTab('projects')">🚀 프로젝트 아이디어</button>
+    <!-- <button class="nav-tab" onclick="showTab('api')">📖 API 레퍼런스</button> -->
   </div>
 
-  <div class="tip cyan">
-    <span class="tip-icon">💡</span>
-    <span><strong>IP 연결이란?</strong> 주미와 PC가 같은 Wi-Fi에 연결된 후, IP 주소로 직접 연결하는 방식입니다. <code>pip install zumi-ai[pro]</code> 설치가 필요하며 더 많은 AI 기능을 쓸 수 있습니다.</span>
-  </div> -->
+  <!-- ① 목표 -->
+  <div class="section active" id="tab-goal">
+    <div class="goal-box">
+      <h2>🎯 이번 단계의 목표</h2>
+      <p>카메라 영상에서 <strong>얼굴, 손동작, 마커, 물체, 스케치</strong>를 인식합니다.<br>
+        인식 결과를 바탕으로 LED를 켜거나, 로봇을 움직이는 <strong>AI 반응 로봇</strong>을 만들 수 있습니다.</p>
+    </div>
 
-  <div class="sec-title" style="margin-top:28px">AI 비전 동작 흐름</div>
-  <div class="flow-box">
-    <div class="flow-steps">
-      <div class="flow-step">
-        <div class="flow-num">1</div>
-        <div class="flow-content">
-          <h4>카메라 스트리밍 시작</h4>
-          <p>ws.send('stream') → ESP32가 JPEG 프레임 전송</p>
+    <div class="sec-title" style="margin-top:28px">AI 비전 처리 흐름</div>
+    <div class="flow-box">
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <h4>네트워크 연결</h4>
+            <p>공유기로 IP 할당, WebSocket 연결 준비</p>
+          </div>
         </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">2</div>
-        <div class="flow-content">
-          <h4>Python 라이브러리에서 AI 처리</h4>
-          <p>face_detector_start() / gesture_detector_start() 등</p>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <h4>카메라 스트리밍</h4>
+            <p>주미 AI → 웹앱으로 JPEG 프레임 전송</p>
+          </div>
         </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">3</div>
-        <div class="flow-content">
-          <h4>결과를 WebSocket으로 웹앱에 전송</h4>
-          <p>JSON 텍스트: {"face": true, "x": 120, "y": 80}</p>
+
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <h4>브라우저에서 AI 처리</h4>
+            <p>MediaPipe/TF.js로 얼굴·손·물체 인식</p>
+          </div>
         </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">4</div>
-        <div class="flow-content">
-          <h4>웹앱에서 결과 표시 + 로봇 반응</h4>
-          <p>canvas 오버레이 표시, LED/이동 명령 전송</p>
+
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <h4>결과 시각화 + 로봇 제어</h4>
+            <p>화면에 표시, LED/이동 명령 전송</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="tip red">
+      <span class="tip-icon">⚠️</span>
+      <!-- <span>Step 4는 <strong>MediaPipe/TF.js 같은 브라우저 AI</strong> 기능들이 포함됩니다.</span> -->
+      <span>Step 4의 AI 처리는 로봇이 아닌 <strong>브라우저에서 실행</strong> 됩니다. 기기 성능에 따라 처리 속도가 달라질 수 있어요.</span>
+    </div>
+
+    <div style="text-align:center"><button class="next-btn" onclick="showTab('features')">다음: AI 기능 종류 보기 →</button>
+    </div>
   </div>
 
-  <div class="tip red">
-    <span class="tip-icon">⚠️</span>
-    <span>Step 4는 <strong>Python 서버가 중간에 필요</strong>한 기능들이 포함됩니다. 단, MediaPipe/TF.js 같은 브라우저 AI를 사용하면 Python 없이도 구현 가능합니다!</span>
-  </div>
+  <!-- ② AI 기능 종류 -->
+  <div class="section" id="tab-features">
+    <div class="sec-title">주미가 인식할 수 있는 것들</div>
 
-  <div style="text-align:center"><button class="next-btn" onclick="showTab('features')">다음: AI 기능 종류 보기 →</button></div>
-</div>
-
-<!-- ② AI 기능 종류 -->
-<div class="section" id="tab-features">
-  <div class="sec-title">주미가 인식할 수 있는 것들</div>
-
-  <!-- 핵심 기능 안내 -->
-  <div class="tip blue" style="margin-bottom:24px">
-    <span class="tip-icon">⭐</span>
-    <span>
+    <!-- 핵심 기능 안내 -->
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
         원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.
-    </span>
-  </div>
+      </span>
+    </div>
 
 
-  <div class="ai-grid">
-    <div class="ai-card face">
-      <div class="ai-icon">😊</div>
-      <h3>얼굴 인식</h3>
-      <p>얼굴 감지, 위치/크기 확인, 이름 학습 후 특정 인물 인식</p>
-      <span class="support-badge ip-only">🌐 IP 연결 (고급)</span>
-    </div>
-    <div class="ai-card gesture">
-      <div class="ai-icon">✋</div>
-      <h3>손 제스처</h3>
-      <p>주먹·가위·바위·보·브이·따봉 6가지 제스처 인식</p>
-      <span class="support-badge ip-only">🌐 IP 연결</span>
-    </div>
-    <div class="ai-card marker">
-      <div class="ai-icon">🔲</div>
-      <h3>마커 인식</h3>
-      <p>AprilTag 마커 ID 인식, 위치/크기/방향 확인</p>
-      <span class="support-badge ip-only">🌐 IP 연결</span>
-    </div>
-    <div class="ai-card object">
-      <div class="ai-icon">🚦</div>
-      <h3>물체/표지판 인식</h3>
-      <p>YOLO 기반 신호등, 정지 표지판 등 다양한 물체 감지</p>
-      <span class="support-badge ip-only">🌐 IP 연결</span>
-    </div>
-    <div class="ai-card sketch">
+    <div class="ai-grid">
+      <div class="ai-card face">
+        <div class="ai-icon">😊</div>
+        <h3>얼굴 인식</h3>
+        <p>얼굴 감지, 위치/크기 확인, 이름 학습 후 특정 인물 인식</p>
+      </div>
+      <div class="ai-card gesture">
+        <div class="ai-icon">✋</div>
+        <h3>손 제스처</h3>
+        <p>6가지 손 제스처 인식</p>
+      </div>
+      <div class="ai-card marker">
+        <div class="ai-icon">🔲</div>
+        <h3>마커 인식</h3>
+        <p>AprilTag 마커 ID 인식, 위치/크기/방향 확인</p>
+      </div>
+      <div class="ai-card object">
+        <div class="ai-icon">📸</div>
+        <h3>QR 인식</h3>
+        <p>QR 코드 인식, 위치/크기/방향 확인</p>
+      </div>
+
+      <div class="ai-card object">
+        <div class="ai-icon">🚦</div>
+        <h3>물체/표지판 인식</h3>
+        <p>YOLO 기반, 신호등·정지 표지판 등 80여 종 감지</p>
+      </div>
+
+
+
+      <!-- <div class="ai-card sketch">
       <div class="ai-icon">✏️</div>
       <h3>스케치 인식</h3>
       <p>직접 그린 그림을 학습시켜 인식. 나만의 카드 만들기!</p>
-      <span class="support-badge ip-only">🌐 IP 연결</span>
     </div>
     <div class="ai-card teachable">
       <div class="ai-icon">🎓</div>
       <h3>티처블 머신</h3>
       <p>Google Teachable Machine으로 만든 모델 직접 연동</p>
-      <span class="support-badge ip-only">🌐 IP 연결</span>
+    </div> -->
     </div>
+
+    <div class="sec-title" style="margin-top:28px">손 제스처 종류</div>
+    <div class="gesture-grid">
+      <div class="gesture-item">
+        <div class="gi">✊</div>
+        <div class="gn">'fist'</div>
+        <div class="gd">주먹</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">☝️</div>
+        <div class="gn">'point'</div>
+        <div class="gd">검지 하나</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🖐️</div>
+        <div class="gn">'open'</div>
+        <div class="gd">손바닥 펴기</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">✌️</div>
+        <div class="gn">'peace'</div>
+        <div class="gd">브이(V)</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🤚</div>
+        <div class="gn">'standby'</div>
+        <div class="gd">엄지 굽힘</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">👍</div>
+        <div class="gn">'thumbs_up'</div>
+        <div class="gd">따봉</div>
+      </div>
+    </div>
+
+    <div class="sec-title" style="margin-top:28px">YOLO 인식 가능 물체 (COCO 기준)</div>
+    <span class="badge">🚦 교통 / 표지판</span>
+    <div class="gesture-grid">
+      <div class="gesture-item">
+        <div class="gi">🚦</div>
+        <div class="gn">'traffic light'</div>
+        <div class="gd">신호등</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🛑</div>
+        <div class="gn">'stop sign'</div>
+        <div class="gd">정지 표지판</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🚗</div>
+        <div class="gn">'car'</div>
+        <div class="gd">자동차</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🏍️</div>
+        <div class="gn">'motorcycle'</div>
+        <div class="gd">오토바이</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🚌</div>
+        <div class="gn">'bus'</div>
+        <div class="gd">버스</div>
+      </div>
+    </div>
+
+    <span class="badge">🧑 사람 / 동물</span>
+    <div class="gesture-grid">
+      <div class="gesture-item">
+        <div class="gi">🧑</div>
+        <div class="gn">'person'</div>
+        <div class="gd">사람</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🐱</div>
+        <div class="gn">'cat'</div>
+        <div class="gd">고양이</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🐶</div>
+        <div class="gn">'dog'</div>
+        <div class="gd">강아지</div>
+      </div>
+    </div>
+
+    <span class="badge">🍎 음식 / 음료</span>
+    <div class="gesture-grid">
+      <div class="gesture-item">
+        <div class="gi">🍎</div>
+        <div class="gn">'apple'</div>
+        <div class="gd">사과</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🍌</div>
+        <div class="gn">'banana'</div>
+        <div class="gd">바나나</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🍊</div>
+        <div class="gn">'orange'</div>
+        <div class="gd">오렌지</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🍕</div>
+        <div class="gn">'pizza'</div>
+        <div class="gd">피자</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">☕</div>
+        <div class="gn">'cup'</div>
+        <div class="gd">컵</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🍾</div>
+        <div class="gn">'bottle'</div>
+        <div class="gd">병</div>
+      </div>
+    </div>
+
+    <span class="badge">📦 사물 / 도구</span>
+    <div class="gesture-grid">
+      <div class="gesture-item">
+        <div class="gi">📱</div>
+        <div class="gn">'cell phone'</div>
+        <div class="gd">스마트폰</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">💻</div>
+        <div class="gn">'laptop'</div>
+        <div class="gd">노트북</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">📚</div>
+        <div class="gn">'book'</div>
+        <div class="gd">책</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">✂️</div>
+        <div class="gn">'scissors'</div>
+        <div class="gd">가위</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">⌨️</div>
+        <div class="gn">'keyboard'</div>
+        <div class="gd">키보드</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🖱️</div>
+        <div class="gn">'mouse'</div>
+        <div class="gd">마우스</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🪑</div>
+        <div class="gn">'chair'</div>
+        <div class="gd">의자</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">⚽</div>
+        <div class="gn">'sports ball'</div>
+        <div class="gd">공</div>
+      </div>
+    </div>
+
+
+    <div class="tip purple" style="margin-top:20px">
+      <span class="tip-icon">💡</span>
+      <span><strong>브라우저 AI 대안:</strong> <strong>MediaPipe</strong>(얼굴·손), <strong>COCO-SSD</strong>(물체)를 CDN으로 불러와 HTML
+        안에서 바로 쓸 수 있어요.<br>
+        인터넷만 있으면 됩니다!</span>
+    </div>
+
+    <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('api')">다음: API 레퍼런스 →</button></div> -->
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('prompt')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        프롬프트 보기 →</button>
+    </div>
+
   </div>
 
-  <div class="sec-title" style="margin-top:28px">손 제스처 종류</div>
-  <div class="gesture-grid">
-    <div class="gesture-item"><div class="gi">✊</div><div class="gn">'fist'</div><div class="gd">주먹</div></div>
-    <div class="gesture-item"><div class="gi">☝️</div><div class="gn">'point'</div><div class="gd">검지 하나</div></div>
-    <div class="gesture-item"><div class="gi">🖐️</div><div class="gn">'open'</div><div class="gd">손바닥 펴기</div></div>
-    <div class="gesture-item"><div class="gi">✌️</div><div class="gn">'peace'</div><div class="gd">브이(V)</div></div>
-    <div class="gesture-item"><div class="gi">🤚</div><div class="gn">'standby'</div><div class="gd">엄지 굽힘</div></div>
-    <div class="gesture-item"><div class="gi">👍</div><div class="gn">'thumbs_up'</div><div class="gd">따봉</div></div>
-  </div>
 
-  <div class="tip purple" style="margin-top:20px">
-    <span class="tip-icon">💡</span>
-    <span><strong>브라우저 AI 대안:</strong> Python 없이도 <strong>MediaPipe</strong>(얼굴·손), <strong>COCO-SSD</strong>(물체)를 CDN으로 불러와 HTML 안에서 바로 쓸 수 있어요. 인터넷만 있으면 됩니다!</span>
-  </div>
+  <!-- ④ 요청 예시 -->
+  <div class="section" id="tab-requests">
+    <div class="sec-title">이렇게 AI에게 요청해보세요</div>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p>
 
-  <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('api')">다음: API 레퍼런스 →</button></div> -->
-  <div style="margin-top:32px;text-align:center">
-    <button onclick="showTab('prompt')" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음: 프롬프트 보기 →</button>
-  </div>
 
+    <div
+      style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
+      😊 얼굴 인식</div>
+    <div class="request-list">
+
+      <h3>AI로 사람 인식하기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">👤</div>
+        <div class="ri-text">내 얼굴을 따라다니는 로봇을 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">👋</div>
+        <div class="ri-text">얼굴을 찾으면 인사하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎯</div>
+        <div class="ri-text">얼굴이 화면 중앙에 오도록 따라가게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">💡</div>
+        <div class="ri-text">얼굴이 보이면 초록 LED를 켜고 없으면 빨간 LED를 켜줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <h3>AI로 손짓 인식하기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🖐️</div>
+        <div class="ri-text">손바닥을 펴면 전진하고 주먹을 쥐면 멈추게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">✌️</div>
+        <div class="ri-text">브이(V)를 하면 왼쪽으로 돌게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">👍</div>
+        <div class="ri-text">따봉을 하면 오른쪽으로 돌게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎮</div>
+        <div class="ri-text">손동작을 리모컨처럼 사용하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <h3>AI로 물체 찾기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📦</div>
+        <div class="ri-text">카메라에 보이는 물건 이름을 알려줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🔍</div>
+        <div class="ri-text">화면 속 물체를 네모 박스로 표시해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🚶</div>
+        <div class="ri-text">사람이 나타나면 경고음을 울려줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🛑</div>
+        <div class="ri-text">정지 표지판을 보면 멈추게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <h3>QR 코드와 마커 활용하기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📷</div>
+        <div class="ri-text">QR 코드를 보여주면 내용을 화면에 표시해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📷</div>
+        <div class="ri-text">QR 코드에 적힌 명령대로 로봇이 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">➡️</div>
+        <div class="ri-text">0번 마커를 보면 전진하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">↩️</div>
+        <div class="ri-text">1번 마커를 보면 왼쪽으로 돌게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🎲</div>
+        <div class="ri-text">마커마다 다른 동작을 하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <!--
+<h3>AI 프로젝트 만들기</h3>
+
+
+<div class="request-item" onclick="copyRequest(this)">
+  <div class="ri-icon">🛡️</div>
+  <div class="ri-text">사람을 발견하면 자동으로 멈추는 안전 로봇을 만들어줘</div>
+  <div class="ri-copy">복사</div>
 </div>
 
-<!-- ③ API 레퍼런스 -->
-<div class="section" id="tab-api">
-  <div class="sec-title">함수 레퍼런스 (IP 연결 지원)</div>
-
-  <!-- 얼굴 인식 -->
-  <div class="api-section">
-    <div class="api-section-title ast-face">😊 얼굴 인식 (face_detector)</div>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>반환값</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr><td><span class="fn">face_detector_init()</span></td><td>-</td><td><span class="note-badge">얼굴 인식 초기화. 임계값 조정 가능</span></td></tr>
-        <tr><td><span class="fn">face_detector_start()</span></td><td>-</td><td><span class="note-badge">얼굴 인식 시작</span></td></tr>
-        <tr><td><span class="fn">face_detector_stop()</span></td><td>-</td><td><span class="note-badge">얼굴 인식 중지</span></td></tr>
-        <tr><td><span class="fn">is_face_detected(name)</span></td><td><span class="ret">bool</span></td><td><span class="note-badge">얼굴 감지 여부 (name 생략 시 누구든)</span></td></tr>
-        <tr><td><span class="fn">get_face_center()</span></td><td><span class="ret">[x, y]</span></td><td><span class="note-badge">감지된 첫 번째 얼굴의 중심 좌표</span></td></tr>
-        <tr><td><span class="fn">get_face_size()</span></td><td><span class="ret">int</span></td><td><span class="note-badge">얼굴 크기 (가까울수록 큰 값)</span></td></tr>
-        <tr><td><span class="fn">face_train(name)</span></td><td>-</td><td><span class="note-badge">이름을 붙여 얼굴 학습 등록</span></td></tr>
-        <tr><td><span class="fn">get_detected_face_name()</span></td><td><span class="ret">str</span></td><td><span class="note-badge">인식된 얼굴의 이름 반환</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 손 제스처 -->
-  <div class="api-section">
-    <div class="api-section-title ast-gesture">✋ 손 제스처 인식 (gesture_detector)</div>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>반환값</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr><td><span class="fn">gesture_detector_init()</span></td><td>-</td><td><span class="note-badge">손 제스처 인식 초기화</span></td></tr>
-        <tr><td><span class="fn">gesture_detector_start()</span></td><td>-</td><td><span class="note-badge">손 제스처 인식 시작</span></td></tr>
-        <tr><td><span class="fn">gesture_detector_stop()</span></td><td>-</td><td><span class="note-badge">손 제스처 인식 중지</span></td></tr>
-        <tr><td><span class="fn">is_gesture_detected()</span></td><td><span class="ret">bool</span></td><td><span class="note-badge">손이 감지되었는지 여부</span></td></tr>
-        <tr><td><span class="fn">get_gesture_recognize()</span></td><td><span class="ret">str</span></td><td><span class="note-badge">'fist' / 'open' / 'peace' / 'point' / 'standby' / 'thumbs_up' / 'None'</span></td></tr>
-        <tr><td><span class="fn">get_gesture_center()</span></td><td><span class="ret">[x, y]</span></td><td><span class="note-badge">손의 중심 좌표</span></td></tr>
-        <tr><td><span class="fn">get_gesture_size()</span></td><td><span class="ret">int</span></td><td><span class="note-badge">손 크기 (가까울수록 큰 값)</span></td></tr>
-        <tr><td><span class="fn">get_gesture_finger()</span></td><td><span class="ret">list</span></td><td><span class="note-badge">각 손가락 펴짐 여부 [엄지, 검지, 중지, 약지, 소지]</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 마커 인식 -->
-  <div class="api-section">
-    <div class="api-section-title ast-marker">🔲 마커 인식 (marker_detector)</div>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>반환값</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr><td><span class="fn">marker_detector_init()</span></td><td>-</td><td><span class="note-badge">AprilTag 마커 인식 초기화</span></td></tr>
-        <tr><td><span class="fn">marker_detector_start()</span></td><td>-</td><td><span class="note-badge">마커 인식 시작</span></td></tr>
-        <tr><td><span class="fn">is_marker_detected(id)</span></td><td><span class="ret">bool</span></td><td><span class="note-badge">특정 ID의 마커 감지 여부</span></td></tr>
-        <tr><td><span class="fn">get_marker_id()</span></td><td><span class="ret">int</span></td><td><span class="note-badge">감지된 첫 번째 마커의 ID</span></td></tr>
-        <tr><td><span class="fn">get_marker_center()</span></td><td><span class="ret">[x, y]</span></td><td><span class="note-badge">마커 중심 좌표</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 물체 인식 -->
-  <div class="api-section">
-    <div class="api-section-title ast-object">🚦 물체/표지판 인식 (object_detector)</div>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>반환값</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr><td><span class="fn">object_detector_init(mode)</span></td><td>-</td><td><span class="note-badge">YOLO 모델 초기화. mode: 'speed'(빠름) / 'accuracy'(정확)</span></td></tr>
-        <tr><td><span class="fn">object_detector_start()</span></td><td>-</td><td><span class="note-badge">물체 인식 시작</span></td></tr>
-        <tr><td><span class="fn">is_obj_detected(name)</span></td><td><span class="ret">bool</span></td><td><span class="note-badge">특정 이름의 물체 감지 여부 ('stop_sign', 'person' 등)</span></td></tr>
-        <tr><td><span class="fn">get_obj_center(name)</span></td><td><span class="ret">(x, y)</span></td><td><span class="note-badge">특정 물체의 중심 좌표</span></td></tr>
-        <tr><td><span class="fn">get_obj_confidence(name)</span></td><td><span class="ret">float</span></td><td><span class="note-badge">인식 신뢰도 (0.0~1.0)</span></td></tr>
-        <tr><td><span class="fn">get_traffic_light_color()</span></td><td><span class="ret">str</span></td><td><span class="note-badge">신호등 색상: 'red' / 'yellow' / 'green' / 'None'</span></td></tr>
-        <tr><td><span class="fn">object_check_add_obj(name)</span></td><td>-</td><td><span class="note-badge">인식 목록에 물체 추가</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 티처블 머신 -->
-  <div class="api-section">
-    <div class="api-section-title ast-teachable">🎓 티처블 머신 (teachable_detector)</div>
-    <table class="api-table">
-      <thead><tr><th>함수</th><th>반환값</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr><td><span class="fn">teachable_detector_init(model_path, label_path)</span></td><td>-</td><td><span class="note-badge">Teachable Machine 모델 로드<br>model: .tflite, label: .txt</span></td></tr>
-        <tr><td><span class="fn">teachable_detector_start()</span></td><td>-</td><td><span class="note-badge">추론 시작</span></td></tr>
-        <tr><td><span class="fn">get_teachable_result()</span></td><td><span class="ret">dict</span></td><td><span class="note-badge">{'label': '분류명', 'confidence': 0.95}</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="tip cyan">
-    <span class="tip-icon">🌐</span>
-    <span><strong>브라우저 AI (Python 불필요):</strong> MediaPipe·COCO-SSD를 HTML에 CDN으로 추가하면 Python 서버 없이도 얼굴·손·물체 인식이 가능합니다. 프롬프트 탭에서 두 가지 방식 모두 확인하세요!</span>
-  </div>
-
-  <div style="text-align:center"><button class="next-btn" onclick="showTab('requests')">다음: AI 요청 예시 →</button></div>
+<div class="request-item" onclick="copyRequest(this)">
+  <div class="ri-icon">🚗</div>
+  <div class="ri-text">손짓으로 조종하는 자동차를 만들어줘</div>
+  <div class="ri-copy">복사</div>
 </div>
 
-<!-- ④ 요청 예시 -->
-<div class="section" id="tab-requests">
-  <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-  <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p>
-
-  <div style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">😊 얼굴 인식</div>
-  <div class="request-list">
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat face">얼굴</span>
-      <div class="ri-text">MediaPipe FaceMesh를 사용해서 영상 위에 얼굴 랜드마크를 오버레이로 표시해줘. 토글 버튼으로 켜고 끌 수 있게 해줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat face">얼굴</span>
-      <div class="ri-text">얼굴이 화면 왼쪽에 있으면 로봇이 왼쪽으로 회전하고, 오른쪽에 있으면 오른쪽으로 회전하게 해줘. 얼굴 추적 로봇을 만들어줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat face">얼굴</span>
-      <div class="ri-text">얼굴이 감지되면 초록 LED가 켜지고, 감지되지 않으면 빨간 LED가 켜지게 해줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-  </div>
-
-  <div style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">✋ 손 제스처</div>
-  <div class="request-list">
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat gesture">제스처</span>
-      <div class="ri-text">MediaPipe Hands를 사용해서 손동작으로 로봇을 제어해줘. 손바닥 펴면 전진, 주먹 쥐면 정지, 브이(V)면 좌회전, 따봉이면 우회전</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat gesture">제스처</span>
-      <div class="ri-text">손 제스처 인식 결과를 화면에 실시간으로 표시해줘. 어떤 제스처인지 이름이랑 이모지로 보여줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat gesture">제스처</span>
-      <div class="ri-text">손 제스처에 따라 LED 색상이 바뀌게 해줘. 주먹=빨강, 손바닥=초록, 브이=파랑, 따봉=노랑</div>
-      <div class="ri-copy">복사</div>
-    </div>
-  </div>
-
-  <div style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">🚦 물체/표지판 인식</div>
-  <div class="request-list">
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat object">물체</span>
-      <div class="ri-text">TensorFlow.js COCO-SSD로 영상에서 물체를 감지하고 박스와 이름을 오버레이로 표시해줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat object">물체</span>
-      <div class="ri-text">정지 표지판(stop sign)이 감지되면 로봇이 자동으로 멈추게 해줘. 화면에 경고 표시도 보여줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat object">물체</span>
-      <div class="ri-text">사람이 감지되면 LED가 빨갛게 깜빡이고 경적 사운드가 재생되게 해줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-  </div>
-
-  <div style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">🔲 마커 인식</div>
-  <div class="request-list">
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat marker">마커</span>
-      <div class="ri-text">AprilTag 마커를 인식하면 해당 마커 ID를 화면에 표시해줘. 마커 ID에 따라 다른 동작을 하게 해줘. ID=0이면 전진, ID=1이면 좌회전</div>
-      <div class="ri-copy">복사</div>
-    </div>
-  </div>
-
-  <div style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">🎓 티처블 머신</div>
-  <div class="request-list">
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat teachable">티처블</span>
-      <div class="ri-text">Google Teachable Machine으로 만든 이미지 분류 모델을 연동해줘. 인식 결과와 신뢰도를 화면에 표시해줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat teachable">티처블</span>
-      <div class="ri-text">티처블 머신으로 카드 3종류를 학습시켜서, 카드를 보여주면 해당 명령을 수행하게 해줘. 빨간 카드=전진, 파란 카드=후진, 초록 카드=정지</div>
-      <div class="ri-copy">복사</div>
-    </div>
-  </div>
-
-  <div style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">✨ 조합 아이디어</div>
-  <div class="request-list">
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat combo">조합</span>
-      <div class="ri-text">얼굴 추적 로봇을 만들어줘. 얼굴이 화면 왼쪽이면 왼쪽 회전, 오른쪽이면 오른쪽 회전, 중앙이면 전진, 얼굴이 안 보이면 정지</div>
-      <div class="ri-copy">복사</div>
-    </div>
-    <div class="request-item" onclick="copyRequest(this)">
-      <span class="ri-cat combo">조합</span>
-      <div class="ri-text">손바닥 크기로 거리를 측정해서 손이 가까워질수록 LED가 빨개지고, 멀어질수록 초록이 되게 해줘</div>
-      <div class="ri-copy">복사</div>
-    </div>
-  </div>
-
-  <div class="tip blue" style="margin-top:20px">
-    <span class="tip-icon">💡</span>
-    <span>AI 기능 요청 시 <strong>"토글 버튼으로 ON/OFF 가능하게"</strong> 라고 꼭 추가하세요. 켜고 끌 수 있어야 편리하게 사용할 수 있습니다!</span>
-  </div>
-
-  <div style="text-align:center"><button class="next-btn" onclick="showTab('projects')">다음: 프로젝트 아이디어 →</button></div>
+<div class="request-item" onclick="copyRequest(this)">
+  <div class="ri-icon">📏</div>
+  <div class="ri-text">손이 가까워질수록 LED가 빨갛게 변하게 해줘</div>
+  <div class="ri-copy">복사</div>
 </div>
 
-<!-- ⑤ 프로젝트 아이디어 -->
-<div class="section" id="tab-projects">
-  <div class="sec-title">이런 프로젝트를 만들 수 있어요</div>
-  <div class="project-grid">
-    <div class="project-card pc-face">
-      <div class="pc-icon">👁️</div>
-      <h3>얼굴 추적 로봇</h3>
-      <p>얼굴 위치에 따라 로봇이 자동으로 방향을 바꿔 따라다님</p>
-      <div class="pc-level lv2">★★ 보통</div>
-    </div>
-    <div class="project-card pc-face">
-      <div class="pc-icon">🎭</div>
-      <h3>출석 체크 로봇</h3>
-      <p>얼굴을 학습시켜 이름을 인식하면 인사 사운드 + LCD 이름 표시</p>
-      <div class="pc-level lv3">★★★ 도전</div>
-    </div>
-    <div class="project-card pc-gesture">
-      <div class="pc-icon">🤚</div>
-      <h3>손동작 리모컨</h3>
-      <p>손 제스처로 로봇 방향·LED·사운드를 모두 제어</p>
-      <div class="pc-level lv2">★★ 보통</div>
-    </div>
-    <div class="project-card pc-object">
-      <div class="pc-icon">🚦</div>
-      <h3>신호등 자율주행</h3>
-      <p>초록불이면 전진, 빨간불이면 정지하는 자율주행 로봇</p>
-      <div class="pc-level lv3">★★★ 도전</div>
-    </div>
-    <div class="project-card pc-object">
-      <div class="pc-icon">🛑</div>
-      <h3>표지판 인식 로봇</h3>
-      <p>정지 표지판을 보면 자동으로 멈추는 교통 안전 로봇</p>
-      <div class="pc-level lv2">★★ 보통</div>
-    </div>
-    <div class="project-card pc-marker">
-      <div class="pc-icon">🗺️</div>
-      <h3>마커 네비게이션</h3>
-      <p>마커 ID에 따라 다른 경로로 이동하는 자율 배달 로봇</p>
-      <div class="pc-level lv3">★★★ 도전</div>
-    </div>
-    <div class="project-card pc-teachable">
-      <div class="pc-icon">🃏</div>
-      <h3>카드 명령 로봇</h3>
-      <p>직접 만든 카드를 보여주면 명령을 실행하는 로봇</p>
-      <div class="pc-level lv2">★★ 보통</div>
-    </div>
-    <div class="project-card pc-sketch">
-      <div class="pc-icon">✏️</div>
-      <h3>그림 인식 로봇</h3>
-      <p>직접 그린 그림을 학습시켜 그림에 반응하는 로봇</p>
-      <div class="pc-level lv3">★★★ 도전</div>
-    </div>
+ -->
+
+
+
   </div>
 
-  <div class="tip green" style="margin-top:24px">
-    <span class="tip-icon">🚀</span>
-    <span>브라우저 AI(MediaPipe, COCO-SSD)를 사용하면 Python 없이도 얼굴 추적 로봇, 손동작 리모컨, 표지판 인식 로봇을 HTML 파일 하나로 만들 수 있어요!</span>
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat face">얼굴</span>
+        <div class="ri-text">MediaPipe FaceMesh를 사용해서 영상 위에 얼굴 랜드마크를 오버레이로 표시해줘. 토글 버튼으로 켜고 끌 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat face">얼굴</span>
+        <div class="ri-text">얼굴이 화면 왼쪽에 있으면 로봇이 왼쪽으로 회전하고, 오른쪽에 있으면 오른쪽으로 회전하게 해줘. 얼굴 추적 로봇을 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat face">얼굴</span>
+        <div class="ri-text">얼굴이 감지되면 초록 LED가 켜지고, 감지되지 않으면 빨간 LED가 켜지게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+    <div
+      style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
+      ✋ 손 제스처</div>
+    <div class="request-list">
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat gesture">제스처</span>
+        <div class="ri-text">MediaPipe Hands를 사용해서 손동작으로 로봇을 제어해줘. 손바닥 펴면 전진, 주먹 쥐면 정지, 브이(V)면 좌회전, 따봉이면 우회전</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat gesture">제스처</span>
+        <div class="ri-text">손 제스처 인식 결과를 화면에 실시간으로 표시해줘. 어떤 제스처인지 이름이랑 이모지로 보여줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat gesture">제스처</span>
+        <div class="ri-text">손 제스처에 따라 LED 색상이 바뀌게 해줘. 주먹=빨강, 손바닥=초록, 브이=파랑, 따봉=노랑</div>
+        <div class="ri-copy">복사</div>
+      </div>
+    </div>
+
+    <div
+      style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
+      🚦 물체/표지판 인식</div>
+    <div class="request-list">
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat object">물체</span>
+        <div class="ri-text">TensorFlow.js COCO-SSD로 영상에서 물체를 감지하고 박스와 이름을 오버레이로 표시해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat object">물체</span>
+        <div class="ri-text">정지 표지판(stop sign)이 감지되면 로봇이 자동으로 멈추게 해줘. 화면에 경고 표시도 보여줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat object">물체</span>
+        <div class="ri-text">사람이 감지되면 LED가 빨갛게 깜빡이고 경적 사운드가 재생되게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+    </div>
+
+    <div
+      style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
+      🔲 마커 인식</div>
+    <div class="request-list">
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat marker">마커</span>
+        <div class="ri-text">AprilTag 마커를 인식하면 해당 마커 ID를 화면에 표시해줘. 마커 ID에 따라 다른 동작을 하게 해줘. ID=0이면 전진, ID=1이면 좌회전</div>
+        <div class="ri-copy">복사</div>
+      </div>
+    </div>
+
+    <div
+      style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
+      🎓 티처블 머신</div>
+    <div class="request-list">
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat teachable">티처블</span>
+        <div class="ri-text">Google Teachable Machine으로 만든 이미지 분류 모델을 연동해줘. 인식 결과와 신뢰도를 화면에 표시해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat teachable">티처블</span>
+        <div class="ri-text">티처블 머신으로 카드 3종류를 학습시켜서, 카드를 보여주면 해당 명령을 수행하게 해줘. 빨간 카드=전진, 파란 카드=후진, 초록 카드=정지</div>
+        <div class="ri-copy">복사</div>
+      </div>
+    </div>
+
+    <div
+      style="font-size:.78rem;color:var(--dim);margin:20px 0 12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
+      ✨ 조합 아이디어</div>
+    <div class="request-list">
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat combo">조합</span>
+        <div class="ri-text">얼굴 추적 로봇을 만들어줘. 얼굴이 화면 왼쪽이면 왼쪽 회전, 오른쪽이면 오른쪽 회전, 중앙이면 전진, 얼굴이 안 보이면 정지</div>
+        <div class="ri-copy">복사</div>
+      </div>
+      <div class="request-item" onclick="copyRequest(this)">
+        <span class="ri-cat combo">조합</span>
+        <div class="ri-text">손바닥 크기로 거리를 측정해서 손이 가까워질수록 LED가 빨개지고, 멀어질수록 초록이 되게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+    </div> -->
+
+    <div class="tip blue" style="margin-top:20px">
+      <span class="tip-icon">💡</span>
+      <span>AI 기능 요청 시 <strong>"토글 버튼으로 ON/OFF 가능하게"</strong> 라고 꼭 추가하세요. 켜고 끌 수 있어야 편리하게 사용할 수 있습니다!</span>
+    </div>
+
+    <div style="text-align:center"><button class="next-btn" onclick="showTab('projects')">다음: 프로젝트 아이디어 →</button></div>
   </div>
 
-  <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
-</div>
+  <!-- ⑤ 프로젝트 아이디어 -->
+  <div class="section" id="tab-projects">
+    <div class="sec-title">이런 프로젝트를 만들 수 있어요</div>
+    <div class="project-grid">
+      <div class="project-card pc-face">
+        <div class="pc-icon">👁️</div>
+        <h3>얼굴 추적 로봇</h3>
+        <p>얼굴 위치에 따라 로봇이 자동으로 방향을 바꿔 따라다님</p>
+      </div>
+      <!-- <div class="project-card pc-face">
+        <div class="pc-icon">🎭</div>
+        <h3>출석 체크 로봇</h3>
+        <p>얼굴을 학습시켜 이름을 인식하면 인사 사운드 + LCD 이름 표시</p>
+      </div> -->
+      <div class="project-card pc-gesture">
+        <div class="pc-icon">🤚</div>
+        <h3>손동작 리모컨</h3>
+        <p>손 제스처로 로봇 방향·LED·사운드를 모두 제어</p>
+      </div>
 
-<!-- ⑥ 프롬프트 -->
-<div class="section" id="tab-prompt">
-  <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
-  <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
-    아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
-    <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
-  </p>
-  <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+      <div class="project-card pc-object">
+        <div class="pc-icon">🛑</div>
+        <h3>표지판 인식 로봇</h3>
+        <p>정지 표지판을 보면 자동으로 멈추는 교통 안전 로봇</p>
+      </div>
+      <div class="project-card pc-marker">
+        <div class="pc-icon">🗺️</div>
+        <h3>마커 네비게이션</h3>
+        <p>마커 ID에 따라 다른 경로로 이동하는 자율 배달 로봇</p>
+      </div>
+      <div class="project-card pc-teachable">
+        <div class="pc-icon">🃏</div>
+        <h3>카드 명령 로봇</h3>
+        <p>직접 만든 카드를 보여주면 명령을 실행하는 로봇</p>
+      </div>
+      <div class="project-card pc-sketch">
+        <div class="pc-icon">✏️</div>
+        <h3>그림 인식 로봇</h3>
+        <p>직접 그린 그림을 학습시켜 그림에 반응하는 로봇</p>
+      </div>
+
+      <div class="project-card pc-sketch">
+        <div class="pc-icon">🎭</div>
+        <h3>인사하는 로봇</h3>
+        <p>사람을 발견하면 자동으로 인사말을 건네는 웰컴 로봇</p>
+      </div>
+
+      <div class="project-card pc-sketch">
+        <div class="pc-icon">📦</div>
+        <h3>물건 찾기 로봇</h3>
+        <p>특정 물건을 발견하면 알려주거나 따라가는 로봇</p>
+      </div>
+
+
+      <div class="project-card pc-sketch">
+        <div class="pc-icon">🎲</div>
+        <h3>AI 주사위</h3>
+        <p>손가락 개수를 인식해 주사위 역할을 하는 AI</p>
+      </div>
+
+      <div class="project-card pc-sketch">
+        <div class="pc-icon">🏆</div>
+        <h3>가위바위보 로봇</h3>
+        <p>손 제스처를 인식해 가위바위보 게임 진행</p>
+      </div>
+
+      <div class="project-card pc-sketch">
+        <div class="pc-icon">📷</div>
+        <h3>QR 길안내 로봇</h3>
+        <p>QR 코드에 적힌 목적지에 따라 다른 경로를 안내하는 로봇</p>
+      </div>
+
+     <div class="project-card pc-sketch">
+        <div class="pc-icon">🎨</div>
+        <h3>색깔 인식 로봇</h3>
+        <p>티처블 머신으로 색깔 카드 3종류를 학습시켜서, 카드 색깔에 따라 다른 동작을 하기</p>
+      </div>
+
+      <div class="project-card pc-object">
+        <div class="pc-icon">🚦</div>
+        <h3>신호등 자율주행</h3>
+        <p>신호등 영역의 색상을 HSV로 분석해서 빨강이면 정지, 초록이면 전진하기</p>
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <div class="tip green" style="margin-top:24px">
+      <span class="tip-icon">🚀</span>
+      <span>브라우저 AI(MediaPipe, COCO-SSD...)를 사용하면 얼굴 추적 로봇, 손동작 리모컨, 표지판 인식 로봇을 HTML 파일 하나로 만들 수 있어요!</span>
+    </div>
+
+    <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
+  </div>
+
+  <!-- ⑥ 프롬프트 -->
+  <div class="section" id="tab-prompt">
+    <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+      아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
+      <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
+    </p>
+    <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
     두 가지 방식의 프롬프트가 있어요. Python 없이 바로 쓰고 싶다면 <strong>브라우저 AI 방식</strong>을 추천합니다!
   </p> -->
 
-  <!-- 브라우저 AI 방식 -->
-  <div style="font-size:.88rem;font-weight:700;margin-bottom:12px;color:var(--accent)">
+    <!-- 브라우저 AI 방식 -->
+    <!-- <div style="font-size:.88rem;font-weight:700;margin-bottom:12px;color:var(--accent)">
     🌐 방식 A: 브라우저 AI (Python 불필요, 추천)
-  </div>
-  <div class="prompt-box">
-    <div class="prompt-topbar">
-      <span>STEP 4-A · 브라우저 AI · MediaPipe / COCO-SSD</span>
-      <button class="copy-all-btn" onclick="copyAll('prompt-a')">전체 복사</button>
-    </div>
-    <div class="prompt-body" id="prompt-a"><span class="pc"># ZUMI 로봇 AI 비전 웹앱 (브라우저 AI 방식)</span>
-
-<span class="pk">## 시스템 구조</span>
-브라우저(HTML) ↔ WebSocket(ws://IP/ws) ↔ ESP32(주미 로봇)
-서버 없음. HTML 파일 하나로 동작.
-AI 처리도 브라우저에서 직접 수행 (CDN 라이브러리 사용)
-
-<span class="pk">## 카메라 스트리밍 (기존과 동일)</span>
-ws.binaryType = 'arraybuffer'
-ws.send('stream')  // 연결 후 전송
-수신: JPEG 바이너리 → Blob → Image → canvas.drawImage
-
-<span class="pk">## AI 오버레이 구조</span>
-videoCanvas (영상) + aiCanvas (AI 결과 오버레이, position:absolute)
-aiCanvas는 클릭 이벤트 투과: pointer-events: none
-
-<span class="pk">## 사용 가능한 브라우저 AI 라이브러리 (CDN)</span>
-<span class="pc">// MediaPipe (얼굴 / 손)</span>
-&lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"&gt;&lt;/script&gt;
-
-<span class="pc">// TensorFlow.js + COCO-SSD (물체/표지판)</span>
-&lt;script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"&gt;&lt;/script&gt;
-
-<span class="pk">## AI 루프 패턴 (120~200ms 간격)</span>
-async function aiLoop() {
-  aiCtx.clearRect(0, 0, aiCanvas.width, aiCanvas.height);
-  const offscreen = document.createElement('canvas');
-  offscreen.getContext('2d').drawImage(videoCanvas, 0, 0);
-  if (faceOn)   await faceMesh.send({image: offscreen});
-  if (handsOn)  await hands.send({image: offscreen});
-  if (cocoOn)   await runCoco(offscreen);
-  setTimeout(aiLoop, 150);
-}
-
-<span class="pk">## 손 제스처 → 로봇 명령 예시</span>
-hands.onResults((results) => {
-  if (!results.multiHandLandmarks?.length) return;
-  const gesture = recognizeGesture(results.multiHandLandmarks[0]);
-  if (gesture === 'open')  sendRaw(buildPacket(29, 1, 0, 0)); // 전진
-  if (gesture === 'fist')  sendRaw(buildPacket(25));          // 정지
-  if (gesture === 'peace') sendRaw(buildPacket(52, 18));      // 좌회전 90도
-});
-
-<span class="pk">## AI 토글 버튼 구조</span>
-각 AI 기능(얼굴/손/물체)마다 토글 버튼 제공
-버튼 ON → 해당 AI 초기화·루프 시작
-버튼 OFF → 오버레이 지우기, 루프에서 제외
-
-<span class="pk">## 이동 명령 (이전 스텝과 동일)</span>
-buildPacket(29, speed, 0, dir)  // 이동
-buildPacket(25)                 // 정지
-buildPacket(52, deg/5)          // 좌회전
-buildPacket(53, deg/5)          // 우회전
-buildPacket(10, r, g, b)        // LED
-
-<span class="pk">## 기본 UI 포함 요소</span>
-- IP 입력 + 연결 버튼 + 상태 표시
-- 영상 스트리밍 canvas (640×480)
-  ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
-  수신: Blob → Image → canvas.drawImage
-
-<span class="pk">## 결과물 조건</span>
-- HTML 파일 하나로 동작
-- CSS/JavaScript 내부 포함
-- Chrome에서 바로 실행 가능
-- 별도 서버 불필요
-
-
-
-<span class="pp">## 추가로 만들어줄 AI 기능:
-(원하는 것을 적어주세요)
-
-예시:
-- 얼굴 감지 토글 버튼 + 랜드마크 오버레이
-- 손 제스처로 전진/정지/좌우회전 제어
-- 물체 인식 + 정지 표지판 감지 시 자동 정지
-- 얼굴이 왼쪽이면 좌회전, 오른쪽이면 우회전 (얼굴 추적)</span>
-    </div>
-  </div>
-
-  <!-- Python 방식 -->
-  <!-- <div style="font-size:.88rem;font-weight:700;margin:24px 0 12px;color:var(--orange)">
-    🐍 방식 B: Python 서버 방식 (zumi-ai[pro] 필요)
-  </div>
-  <div class="prompt-box">
-    <div class="prompt-topbar">
-      <span>STEP 4-B · Python 서버 방식</span>
-      <button class="copy-all-btn" onclick="copyAll('prompt-b')">전체 복사</button>
-    </div>
-    <div class="prompt-body" id="prompt-b"><span class="pc"># ZUMI AI 비전 Python 서버 방식</span>
-
-<span class="pk">## 구조</span>
-브라우저 ↔ WebSocket(ws://IP/ws) ↔ ESP32 (영상)
-브라우저 ↔ WebSocket(ws://localhost:8765) ↔ Python 서버 (AI 결과)
-
-<span class="pk">## Python 서버 역할</span>
-1. zumiAI.connect(IP) 로 주미 연결
-2. face_detector_start() / gesture_detector_start() 등 AI 시작
-3. AI 결과를 주기적으로 웹소켓으로 브라우저에 전송
-4. 브라우저 명령 수신 → 로봇 제어
-
-<span class="pk">## Python 서버 예시 (FastAPI + WebSocket)</span>
-import asyncio, json
-from fastapi import FastAPI, WebSocket
-from zumi_AI.zumi_AI import ZumiAI
-
-app  = FastAPI()
-zumi = ZumiAI()
-zumi.connect("192.168.x.x")
-zumi.face_detector_init()
-zumi.face_detector_start()
-
-@app.websocket("/ws/ai")
-async def ai_stream(ws: WebSocket):
-    await ws.accept()
-    while True:
-        result = {
-            "face": zumi.is_face_detected(),
-            "face_x": zumi.get_face_center()[0] if zumi.is_face_detected() else 0,
-            "gesture": zumi.get_gesture_recognize()
-        }
-        await ws.send_text(json.dumps(result))
-        await asyncio.sleep(0.1)
-
-<span class="pk">## 웹앱에서 AI 결과 수신</span>
-const aiWs = new WebSocket('ws://localhost:8765/ws/ai');
-aiWs.onmessage = (e) => {
-  const data = JSON.parse(e.data);
-  if (data.face) showFaceOverlay(data.face_x);
-  if (data.gesture === 'open') sendRaw(buildPacket(29, 1, 0, 0));
-};
-
-<span class="pk">## 지원 AI 기능 (IP 연결 전용)</span>
-얼굴 인식:    face_detector_init/start/stop
-              is_face_detected(name) → bool
-              get_face_center() → [x, y]
-              get_detected_face_name() → str
-
-손 제스처:   gesture_detector_init/start/stop
-              get_gesture_recognize() → 'fist'/'open'/'peace'/'point'/'standby'/'thumbs_up'/'None'
-              get_gesture_center() → [x, y]
-
-마커 인식:    marker_detector_init/start/stop
-              is_marker_detected(id) → bool
-              get_marker_id() → int
-
-물체 인식:    object_detector_init('speed'/'accuracy')
-              is_obj_detected('stop_sign') → bool
-              get_traffic_light_color() → 'red'/'green'/'yellow'/'None'
-
-티처블 머신:  teachable_detector_init('model.tflite', 'labels.txt')
-              get_teachable_result() → {'label':str, 'confidence':float}
-
-<span class="pp">## 이번에 만들 AI 기능:
-(여기에 적어주세요)</span>
-    </div>
   </div> -->
+    <div class="prompt-box">
+      <div class="prompt-topbar">
+        <span>STEP 4-A · 브라우저 AI · MediaPipe / COCO-SSD</span>
+        <button class="copy-all-btn" onclick="copyAll('prompt-a')">전체 복사</button>
+      </div>
+      <div class="prompt-body" id="prompt-a"><span class="pc"># ZUMI 로봇 AI 비전 웹앱 (브라우저 AI 방식)</span>
 
-  <div class="tip purple" style="margin-top:20px">
+        <span class="pk">## 시스템 구조</span>
+        브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI
+        서버 없음. HTML 파일 하나로만 동작.
+        AI 처리도 브라우저에서 직접 수행 (CDN 라이브러리 사용)
+
+        <span class="pk">## 영상 스트리밍 방법</span>
+        연결 후 ws.send("stream")
+        ws.binaryType = 'arraybuffer'
+        수신: ArrayBuffer → Blob → Image → canvas.drawImage()
+        권장 캔버스 크기: 640×480
+
+
+        <span class="pk">## AI 오버레이 구조</span>
+        videoCanvas (영상) + aiCanvas (AI 결과 오버레이, position:absolute)
+        aiCanvas는 클릭 이벤트 투과: pointer-events: none
+
+        <span class="pk">## 사용 가능한 브라우저 AI 라이브러리 (CDN)</span>
+        <span class="pc">// MediaPipe (얼굴 / 손)</span>
+        &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"&gt;&lt;/script&gt;
+        &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"&gt;&lt;/script&gt;
+        &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"&gt;&lt;/script&gt;
+
+        <span class="pc">// TensorFlow.js + COCO-SSD (물체/표지판)</span>
+        &lt;script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"&gt;&lt;/script&gt;
+        &lt;script
+        src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"&gt;&lt;/script&gt;
+
+        <span class="pc">// js-aruco (마커 인식)</span>
+        &lt;script src="https://cdn.jsdelivr.net/npm/js-aruco2/src/cv.js"&gt;&lt;/script&gt;
+        &lt;script src="https://cdn.jsdelivr.net/npm/js-aruco2/src/aruco.js"&gt;&lt;/script&gt;
+
+        <span class="pc">// qr 인식</span>
+        &lt;script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"&gt;&lt;/script&gt;
+
+        <span class="pc">// 글자 인식</span>
+        &lt;script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"&gt;&lt;/script&gt;
+
+        <span class="pc">// Teachable Machine(이미지 분류)</span>
+        &lt;script
+        src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"&gt;&lt;/script&gt;
+        // 모델 URL은 사용자가 직접 입력하게 UI 제공
+
+
+        <span class="pk">## AI 루프 패턴 (120~200ms 간격)</span>
+        // 루프 밖에서 한 번만 생성
+        const offscreen = document.createElement('canvas');
+        offscreen.width = 640; offscreen.height = 480;
+        async function aiLoop() {
+        aiCtx.clearRect(0, 0, aiCanvas.width, aiCanvas.height);
+        offscreen.getContext('2d').drawImage(videoCanvas, 0, 0);
+        if (faceOn) await faceMesh.send({image: offscreen});
+        if (handsOn) await hands.send({image: offscreen});
+        if (cocoOn) await runCoco(offscreen);
+        setTimeout(aiLoop, 150);
+        }
+
+        // 손 랜드마크(21점) 기반으로 제스처 판별
+        // 손가락 끝(4,8,12,16,20)과 관절(3,6,10,14,18) y좌표 비교 방식 사용
+        function recognizeGesture(landmarks) { ... }
+
+        <span class="pk">## AI 토글 버튼 구조</span>
+        각 AI 기능(얼굴/손/물체)마다 토글 버튼 제공
+        버튼 ON → 해당 AI 초기화·루프 시작
+        버튼 OFF → 오버레이 지우기, 루프에서 제외
+
+        <span class="pk">## 이동 명령 (이전 스텝과 동일)</span>
+        buildPacket(29, speed, 0, dir) // 이동
+        buildPacket(25) // 정지
+        buildPacket(52, deg/5) // 좌회전
+        buildPacket(53, deg/5) // 우회전
+        buildPacket(10, r, g, b) // LED
+
+        <span class="pk">## 기본 UI 포함 요소</span>
+        - IP 입력 + 연결 버튼 + 상태 표시
+        - 영상 스트리밍 canvas (권장 640×480)
+        ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
+
+        <span class="pk">## 결과물 조건</span>
+        - HTML 파일 하나로 동작
+        - CSS/JavaScript 내부 포함
+        - Chrome에서 바로 실행 가능
+        - 별도 서버 불필요
+
+
+        <span class="pk">## 결과물 조건</span>
+        - HTML 파일 하나로 동작
+        - CSS/JavaScript 내부 포함
+        - Chrome에서 바로 실행 가능
+        - 별도 서버 불필요
+
+
+
+        <span class="pp">## 추가로 만들어줄 AI 기능:
+          (원하는 것을 적어주세요)
+
+          예시:
+          - 얼굴 감지 토글 버튼 + 랜드마크 오버레이
+          - 손 제스처로 전진/정지/좌우회전 제어
+          - 물체 인식 + 정지 표지판 감지 시 자동 정지
+          - 얼굴이 왼쪽이면 좌회전, 오른쪽이면 우회전 (얼굴 추적)</span>
+      </div>
+    </div>
+
+
+    <!-- <div class="tip purple" style="margin-top:20px">
     <span class="tip-icon">💡</span>
     <span>처음 시작이라면 <strong>방식 A(브라우저 AI)</strong>를 추천합니다. Python 설치 없이 HTML 파일 하나로 바로 동작합니다!</span>
-  </div>
+  </div> -->
 
-  <div class="tip green" style="margin-top:12px">
-    <span class="tip-icon">🎯</span>
-    <span>Step 1~3에서 만든 앱에 AI 기능을 추가하고 싶다면 기존 HTML 코드를 붙여넣고 "이 코드에 얼굴 추적 기능을 추가해줘"라고 하면 됩니다!</span>
-  </div>
+    <div class="tip green" style="margin-top:12px">
+      <span class="tip-icon">🎯</span>
+      <span>Step 1~3에서 만든 앱에 AI 기능을 추가하고 싶다면 기존 HTML 코드를 붙여넣고 "이 코드에 얼굴 추적 기능을 추가해줘"라고 하면 됩니다!</span>
+    </div>
     <div style="margin-top:32px;text-align:center">
-    <button onclick="showTab('requests')" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음: AI 요청 예시 →</button>
+      <button onclick="showTab('requests')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        AI 요청 예시 →</button>
+    </div>
   </div>
-</div>
 
-<div class="toast" id="toast">📋 복사되었습니다!</div>
+  <div class="toast" id="toast">📋 복사되었습니다!</div>
 
-<script>
-function showTab(id) {
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  const idx=['goal','features','prompt','requests','projects','api'].indexOf(id);
-  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function copyRequest(el) {
-  navigator.clipboard.writeText(el.querySelector('.ri-text').textContent).then(()=>{
-    const btn=el.querySelector('.ri-copy');
-    btn.textContent='복사됨 ✓'; btn.classList.add('copied'); btn.style.opacity='1';
-    showToast('복사되었습니다!');
-    setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');btn.style.opacity='';},2000);
-  });
-}
-function copyAll(id) {
-  navigator.clipboard.writeText(document.getElementById(id).innerText).then(()=>{
-    const btns=document.querySelectorAll('.copy-all-btn');
-    btns.forEach(b=>{
-      if(b.closest('.prompt-box')===document.getElementById(id).closest('.prompt-box')){
-        b.textContent='복사됨 ✓'; b.classList.add('copied');
-        setTimeout(()=>{b.textContent='전체 복사';b.classList.remove('copied');},2500);
-      }
-    });
-    showToast('프롬프트가 복사되었습니다!');
-  });
-}
-function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent='📋 '+msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2000);
-}
-</script>
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      const idx = ['goal', 'features', 'prompt', 'requests', 'projects', 'api'].indexOf(id);
+      document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function copyRequest(el) {
+      navigator.clipboard.writeText(el.querySelector('.ri-text').textContent).then(() => {
+        const btn = el.querySelector('.ri-copy');
+        btn.textContent = '복사됨 ✓'; btn.classList.add('copied'); btn.style.opacity = '1';
+        showToast('복사되었습니다!');
+        setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); btn.style.opacity = ''; }, 2000);
+      });
+    }
+    function copyAll(id) {
+      navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => {
+        const btns = document.querySelectorAll('.copy-all-btn');
+        btns.forEach(b => {
+          if (b.closest('.prompt-box') === document.getElementById(id).closest('.prompt-box')) {
+            b.textContent = '복사됨 ✓'; b.classList.add('copied');
+            setTimeout(() => { b.textContent = '전체 복사'; b.classList.remove('copied'); }, 2500);
+          }
+        });
+        showToast('프롬프트가 복사되었습니다!');
+      });
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = '📋 ' + msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+  </script>
 
-<!-- 스텝 네비게이션 -->
-<div style="background:#0a0612;border-top:1px solid #1e1035;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
-  <a href="zumi_step3.html" style="color:#4a3a70;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#4a3a70'">← STEP 3</a>
-  <div style="display:flex;gap:6px">
-    <div style="width:28px;height:4px;border-radius:2px;background:#1e1035"></div>
-    <div style="width:28px;height:4px;border-radius:2px;background:#1e1035"></div>
-    <div style="width:28px;height:4px;border-radius:2px;background:#1e1035"></div>
-    <div style="width:28px;height:4px;border-radius:2px;background:#8b5cf6"></div>
+  <!-- 스텝 네비게이션 -->
+  <div
+    style="background:#0a0612;border-top:1px solid #1e1035;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
+    <a href="zumi_advanced_step3.html"
+      style="color:#4a3a70;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s"
+      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#4a3a70'">← STEP 3</a>
+    <div style="display:flex;gap:6px">
+      <div style="width:28px;height:4px;border-radius:2px;background:#1e1035"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#1e1035"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#1e1035"></div>
+      <div style="width:28px;height:4px;border-radius:2px;background:#8b5cf6"></div>
+    </div>
+    <a href="zumi_advanced_intro.html"
+      style="color:#8b5cf6;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #8b5cf6;border-radius:100px;transition:all .2s"
+      onmouseover="this.style.background='#8b5cf6';this.style.color='#fff'"
+      onmouseout="this.style.background='transparent';this.style.color='#8b5cf6'">🏁 처음으로</a>
   </div>
-  <a href="zumi_intro.html" style="color:#8b5cf6;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #8b5cf6;border-radius:100px;transition:all .2s" onmouseover="this.style.background='#8b5cf6';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#8b5cf6'">🏁 처음으로</a>
-</div>
 </body>
+
 </html>

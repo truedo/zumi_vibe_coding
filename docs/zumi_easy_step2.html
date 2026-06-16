@@ -34,7 +34,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .cat-card{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:18px;text-align:center;cursor:pointer;transition:all .2s}
 .cat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .cat-card.led:hover{border-color:#f59e0b}
-.cat-card.emotion:hover{border-color:#7c3aed}
+
 .cat-card.sound:hover{border-color:#ef4444}
 .cat-card.lcd:hover{border-color:#059669}
 .cat-emoji{font-size:2rem;margin-bottom:8px}
@@ -48,7 +48,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .p-card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .p-tag{font-size:.65rem;padding:2px 8px;border-radius:100px;font-weight:700;font-family:'JetBrains Mono',monospace}
 .t-led{background:rgba(245,158,11,.12);color:#b45309;border:1px solid #fde68a}
-.t-emotion{background:rgba(124,58,237,.12);color:#7c3aed;border:1px solid #ddd6fe}
+
 .t-sound{background:rgba(239,68,68,.12);color:#dc2626;border:1px solid #fecaca}
 .t-lcd{background:rgba(5,150,105,.12);color:#059669;border:1px solid #a7f3d0}
 .t-combo{background:rgba(30,64,175,.12);color:#1d4ed8;border:1px solid #bfdbfe}
@@ -121,7 +121,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 <div class="hero">
   <div class="step-badge">STEP 2 / 4</div>
   <h1>💡 표현하기</h1>
-  <p>LED로 빛을 내고, 표정을 짓고, 소리를 내봐요.<br>로봇에게 감정을 불어넣을 수 있어요!</p>
+  <p>LED로 빛을 내고, 소리를 내고, LCD에 글씨를 표시해봐요.<br>로봇에게 개성을 불어넣을 수 있어요!</p>
 </div>
 
 <div class="container">
@@ -138,11 +138,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="cat-title">LED 색상</div>
         <div class="cat-desc">RGB 색상으로 LED 켜기, 깜빡이기, 무지개 효과</div>
       </div>
-      <div class="cat-card emotion">
-        <div class="cat-emoji">😊</div>
-        <div class="cat-title">표정</div>
-        <div class="cat-desc">LCD에 행복, 슬픔, 화남 등 표정 바꾸기</div>
-      </div>
+
       <div class="cat-card sound">
         <div class="cat-emoji">🔊</div>
         <div class="cat-title">사운드</div>
@@ -182,14 +178,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
       <div class="p-card">
         <div class="p-card-header">
-          <span class="p-tag t-emotion">😊 표정</span>
-        </div>
-        <div class="p-text">웃는 표정, 슬픈 표정, 화난 표정 버튼을 만들어줘</div>
-        <button class="copy-btn" onclick="copyP(this, '웃는 표정, 슬픈 표정, 화난 표정 버튼을 만들어줘')">📋 복사</button>
-      </div>
-
-      <div class="p-card">
-        <div class="p-card-header">
           <span class="p-tag t-sound">🔊 사운드</span>
         </div>
         <div class="p-text">경적, 사이렌, 성공 소리 버튼을 각각 만들어줘</div>
@@ -208,8 +196,8 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="p-card-header">
           <span class="p-tag t-combo">✨ 조합</span>
         </div>
-        <div class="p-text">행복 버튼을 누르면 초록 LED가 켜지고, 웃는 표정이 나오고, 성공 소리가 재생되게 해줘</div>
-        <button class="copy-btn" onclick="copyP(this, '행복 버튼을 누르면 초록 LED가 켜지고, 웃는 표정이 나오고, 성공 소리가 재생되게 해줘')">📋 복사</button>
+        <div class="p-text">행복 버튼을 누르면 초록 LED가 켜지고 성공 소리가 재생되게 해줘</div>
+        <button class="copy-btn" onclick="copyP(this, '행복 버튼을 누르면 초록 LED가 켜지고 성공 소리가 재생되게 해줘')">📋 복사</button>
       </div>
 
       <div class="p-card">
@@ -246,11 +234,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="cs-name">LED 패턴</div>
         <div class="cs-detail">CMD=201, [패턴][시간]<br>1=깜빡, 6=무지개</div>
       </div>
-      <div class="cs-row">
-        <div class="cs-emoji">😊</div>
-        <div class="cs-name">표정</div>
-        <div class="cs-detail">CMD=241, [번호]<br>0=기본, 1=행복...</div>
-      </div>
+
       <div class="cs-row">
         <div class="cs-emoji">🔊</div>
         <div class="cs-name">사운드</div>
@@ -285,16 +269,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           그래도 안 된다면 AI에게: <strong>"LED 버튼을 눌러도 반응이 없어. 패킷 전송 부분을 확인해줘"</strong> 라고 말해보세요.
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>😊 표정이 바뀌지 않아요</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          표정 기능은 LCD 화면이 "표정 모드"일 때만 작동해요.<br><br>
-          AI에게 <strong>"표정 변경 전에 LCD를 표정 모드로 전환하는 명령(CMD=240, 값=2)을 먼저 보내줘"</strong> 라고 요청해보세요.
-        </div>
-      </div>
+
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span>📺 LCD에 글씨가 깨져 나와요</span>
@@ -308,8 +283,59 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     </div>
   </div>
 
-  <!-- 체크리스트 -->
+  <!-- 센서 데이터 읽기 -->
   <div class="section">
+    <div class="sec-label">센서 데이터 읽기</div>
+    <h2 class="sec-title">📡 로봇 상태를 읽어봐요</h2>
+    <p class="sec-desc">IR 센서, 배터리, 버튼 값을 실시간으로 화면에 표시할 수 있어요.<br>연결 후 <strong>"sensor"</strong> 문자열을 보내면 주미가 주기적으로 데이터를 전송합니다.</p>
+
+    <div style="background:var(--white);border-radius:14px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px">
+      <div style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:var(--dim);margin-bottom:12px">읽을 수 있는 데이터</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px">
+        <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.4rem;margin-bottom:6px">🔴</div>
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:3px">IR 센서</div>
+          <div style="font-size:.72rem;color:var(--dim)">전방 좌/우<br>하단 좌/중/우</div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.4rem;margin-bottom:6px">🔋</div>
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:3px">배터리</div>
+          <div style="font-size:.72rem;color:var(--dim)">0~100<br>잔량 %</div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.4rem;margin-bottom:6px">🔘</div>
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:3px">버튼</div>
+          <div style="font-size:.72rem;color:var(--dim)">눌림 여부<br>0 또는 1</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-cards">
+      <div class="p-card">
+        <span class="p-tag t-lcd">📡 센서</span>
+        <div class="p-text">IR 센서 값, 배터리 잔량, 버튼 상태를 실시간으로 화면에 표시해줘. ws.send('sensor')로 데이터를 요청하고 JSON으로 수신하는 방식으로 해줘</div>
+        <button class="copy-btn" onclick="copyP(this, 'IR 센서 값, 배터리 잔량, 버튼 상태를 실시간으로 화면에 표시해줘. ws.send(\'sensor\')로 데이터를 요청하고 JSON으로 수신하는 방식으로 해줘')">📋 복사</button>
+      </div>
+      <div class="p-card">
+        <span class="p-tag t-lcd">🔋 배터리</span>
+        <div class="p-text">배터리 잔량을 화면에 게이지 바로 표시해줘. 20% 이하면 빨간색으로 경고 표시도 해줘</div>
+        <button class="copy-btn" onclick="copyP(this, '배터리 잔량을 화면에 게이지 바로 표시해줘. 20% 이하면 빨간색으로 경고 표시도 해줘')">📋 복사</button>
+      </div>
+      <div class="p-card">
+        <span class="p-tag t-combo">✨ 조합</span>
+        <div class="p-text">전방 IR 센서 값이 특정 수치 이하로 떨어지면 (장애물 감지) 빨간 LED가 켜지고 경적 소리가 나게 해줘</div>
+        <button class="copy-btn" onclick="copyP(this, '전방 IR 센서 값이 특정 수치 이하로 떨어지면 (장애물 감지) 빨간 LED가 켜지고 경적 소리가 나게 해줘')">📋 복사</button>
+      </div>
+    </div>
+
+    <div class="callout blue">
+      <span class="callout-icon">💡</span>
+      <span>센서 데이터는 <strong>ws.send('sensor')</strong> 를 보낸 후 JSON 텍스트로 수신해요.<br>
+      예: <code style="background:rgba(124,58,237,.1);padding:2px 6px;border-radius:4px;font-size:.78rem">{"irFL":120,"irFR":110,"irBL":50,"irBR":48,"irBC":30,"battery":85,"btn":0}</code></span>
+    </div>
+  </div>
+
+
     <div class="sec-label">CHECKLIST</div>
     <h2 class="sec-title">✅ 이번 단계 완료 확인</h2>
     <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 새로고침하면 체크가 풀려요. 다 됐으면 바로 다음 단계로 이동하세요!</p>
@@ -321,15 +347,19 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
       </div>
       <div class="check-item" onclick="toggleCheck(this)">
         <div class="check-box"></div>
-        <div class="check-text">표정을 바꾸거나 소리를 내봤어요 😊</div>
+        <div class="check-text">소리를 내봤어요 🔊</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">LCD에 텍스트를 보내봤어요 📺</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-text">센서/배터리/버튼 값을 화면에 표시해봤어요 📡</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)">
         <div class="check-box"></div>
         <div class="check-text">두 가지 이상 기능을 조합해봤어요 ✨</div>
-      </div>
-      <div class="check-item" onclick="toggleCheck(this)">
-        <div class="check-box"></div>
-        <div class="check-text">나만의 프로젝트 이름을 생각해봤어요 🎨</div>
       </div>
     </div>
 
@@ -363,10 +393,68 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 <div class="toast" id="toast"></div>
 
 <script>
+const BASE_PROMPT_S2 = `# ZUMI 로봇 표현 기능 웹앱 만들기
+
+## 시스템 구조
+브라우저(HTML) ↔ WebSocket(ws://IP/ws) ↔ ESP32(주미 로봇)
+서버 없음. HTML 파일 하나로만 동작.
+
+## 패킷 구조
+[0x24][0x52][command][0x00][param1]...[paramN]
+
+function buildPacket(cmd, ...params) {
+  const buf = new Uint8Array(4 + params.length);
+  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
+  params.forEach((v,i) => buf[4+i]=v);
+  return buf.buffer;
+}
+
+## 표현 명령어
+// LED (r,g,b 각 0~10)
+LED 색상:   CMD=10,  params=[r, g, b]
+LED 패턴:   CMD=201, params=[pattern, t_high, t_low]
+  패턴: 1=깜빡 2=두번깜빡 3=밝아졌다어두워짐 4=점점어두 5=점점밝 6=무지개
+  time_ms → t_high=Math.floor(ms/256), t_low=ms%256
+
+// 사운드
+사운드: CMD=242, params=[sound]
+  0=고양이 1=셔터 2=실패1 3=실패2 4=경적1 5=경적2 6=사이렌 7=성공
+
+// LCD 텍스트 (UTF-8, 최대 27바이트)
+function sendText(text) {
+  const enc = new TextEncoder().encode(text);
+  const buf = new Uint8Array(4 + enc.length + 1);
+  buf[0]=0x24; buf[1]=0x52; buf[2]=230; buf[3]=0x00;
+  buf.set(enc, 4); buf[4+enc.length]=0x00;
+  ws.send(buf.buffer);
+}
+
+## 센서 데이터 수신
+ws.send('sensor') 전송 → 주미가 JSON 텍스트로 주기적 전송
+수신 형태: {"irFL":값,"irFR":값,"irBL":값,"irBR":값,"irBC":값,"battery":값,"btn":값}
+  irFL/FR: 전방 좌/우 IR (0~255, 낮을수록 가까움)
+  irBL/BR/BC: 하단 좌/우/중앙 IR (라인트레이서용)
+  battery: 배터리 잔량 (0~100)
+  btn: 버튼 눌림 (0=안눌림, 1=눌림)
+
+ws.onmessage = (event) => {
+  if (typeof event.data === 'string') {
+    try { const s = JSON.parse(event.data); /* s.battery, s.irFL 등 사용 */ }
+    catch(e) {}
+  } else { /* JPEG 프레임 처리 */ }
+};
+
+## 기본 UI (포함)
+- IP 입력 + 연결 버튼 + 연결 상태 표시
+- 영상 스트리밍 canvas (640×480)
+  ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
+  수신: Blob → Image → canvas.drawImage`;
+
 function copyP(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
+  const full = BASE_PROMPT_S2 + '\n\n## 추가로 만들어줄 기능:\n' + text;
+  navigator.clipboard.writeText(full).then(() => {
     btn.textContent='✅ 복사됨!'; btn.classList.add('copied');
-    showToast('복사됐어요! AI에게 붙여넣어 보세요 😊');
+    showToast('기본 프롬프트 + 기능 요청이 복사됐어요! AI에게 붙여넣어 보세요 😊');
     setTimeout(()=>{btn.textContent='📋 복사';btn.classList.remove('copied');},2500);
   });
 }
