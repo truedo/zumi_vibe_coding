@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZUMI 바이브 코딩 · 무엇을 만들 수 있을까?</title>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
@@ -23,6 +24,18 @@
       --white: #ffffff;
       --text: #e2e8f0;
       --dim: #64748b;
+
+
+      --muted: #8892B0;
+      --surface: #1A2240;
+      --surface2: #202B4A;
+      --purple: #7C6AF7;
+      --purple-lt: #A99FF9;
+      --purple-dim: rgba(124, 106, 247, .13);
+      --chat-bg: #1a1a1e;
+      --chat-msg: #2c2c30;
+      --chat-user: #5a4fcf;
+      --code-bg: #111116;
     }
 
     *,
@@ -61,12 +74,17 @@
     .hero {
       position: relative;
       z-index: 1;
-      min-height: 100vh;
+      min-height: 50vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px 24px;
+      /* padding: 60px 24px;
+            padding: 60px 24px; */
+      padding-top: 60px;
+      padding-bottom: 0px;
+      padding-left: 24px;
+      padding-right: 24px;
       text-align: center;
     }
 
@@ -157,6 +175,21 @@
       font-size: .75rem;
       animation: bounce 2s infinite;
     }
+
+    /* .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--dim);
+      font-size: .72rem;
+      letter-spacing: 2px;
+      animation: bounce 2s infinite;
+    } */
 
     @keyframes bounce {
 
@@ -757,7 +790,8 @@
     /* ── CTA ── */
     .cta-section {
       text-align: center;
-      padding: 80px 24px;
+      /* padding: 80px 24px; */
+      /* padding: 10px 24px; */
       position: relative;
       z-index: 1;
     }
@@ -1194,6 +1228,8 @@
 
 
 
+
+
     /* 최상단 래퍼 및 레이아웃 */
     .zumi-accordion-container {
       max-width: 720px;
@@ -1204,8 +1240,14 @@
     }
 
     .zumi-accordion-wrapper {
-      margin: 0 0 0 60px;
+      /* margin: 0 0 0 60px;
       text-align: left;
+      width: 300px; 원하는 너비값 */
+      text-align: left;
+      width: 30%;
+      /*너비를 고정하거나 max-width 사용*/
+      margin: 0 auto;
+      /* 좌우 여백을 자동으로 설정하여 가운데 정렬 */
     }
 
     /* 아코디언 토글 버튼 (다크 톤) */
@@ -1383,10 +1425,447 @@
       border: 1px solid #2d3139;
       /* 이미지 경계선 추가 */
     }
+
+
+
+
+
+
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, .15);
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, .4);
+      color: #fff;
+    }
+
+
+
+
+
+
+
+    /* ── PAGE GRID ── */
+    .page {
+      display: grid;
+      /* grid-template-columns: 380px 1fr; */
+      grid-template-columns: 1fr;
+      /* 기존 380px 1fr 에서 1fr로 변경 */
+      height: 100vh;
+    }
+
+    /* ── CHAT COL ── */
+    .chat-col {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--chat-bg);
+    }
+
+    /* topbar */
+    .chat-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--chat-bg);
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      flex-shrink: 0;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .ai-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: #19c37d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+    }
+
+    .model-name {
+      font-size: .86rem;
+      font-weight: 700;
+      color: #ddd;
+    }
+
+    .model-name em {
+      font-style: normal;
+      font-size: .68rem;
+      color: #666;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .share-btn {
+      font-size: .73rem;
+      color: #888;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .user-av {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      background: var(--purple);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* messages */
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      scrollbar-width: thin;
+      scrollbar-color: #333 transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    .msg-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .msg-row.user {
+      flex-direction: row-reverse;
+    }
+
+    .m-av {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+    }
+
+    .m-av.ai {
+      background: #19c37d;
+    }
+
+    .m-av.usr {
+      background: var(--purple);
+      color: #fff;
+      font-weight: 900;
+      font-size: .7rem;
+    }
+
+    .message-box {
+      max-width: 80%;
+      background: var(--chat-msg);
+      border-radius: 4px 14px 14px 14px;
+      padding: 11px 15px;
+      font-size: .84rem;
+      color: #ddd;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      /* ← 줄바꿈 핵심 */
+      word-break: break-word;
+    }
+
+    .msg-row.user .message-box {
+      background: var(--chat-user);
+      color: #fff;
+      border-radius: 14px 4px 14px 14px;
+    }
+
+    /* code block */
+    .code-block {
+      background: var(--code-bg);
+      border-radius: 9px;
+      margin-top: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .code-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 13px;
+      background: rgba(255, 255, 255, .04);
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .code-fname {
+      font-size: .73rem;
+      color: #888;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .code-copy-btn {
+      font-size: .7rem;
+      color: #666;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .code-copy-btn:hover {
+      color: #aaa;
+    }
+
+    .code-body {
+      padding: 12px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .73rem;
+      line-height: 1.85;
+      color: #abb2bf;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .code-body::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .code-body::-webkit-scrollbar-thumb {
+      background: #333;
+    }
+
+    /* syntax colors */
+    .t-tag {
+      color: #e06c75;
+    }
+
+    .t-attr {
+      color: #d19a66;
+    }
+
+    .t-str {
+      color: #98c379;
+    }
+
+    .t-pl {
+      color: #abb2bf;
+    }
+
+    /* typing indicator */
+    .typing-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+      padding: 4px 2px;
+    }
+
+    .typing-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #555;
+      animation: tdot 1.2s infinite ease-in-out;
+    }
+
+    .typing-dots span:nth-child(2) {
+      animation-delay: .2s;
+    }
+
+    .typing-dots span:nth-child(3) {
+      animation-delay: .4s;
+    }
+
+    @keyframes tdot {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+        background: #555;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        background: var(--purple-lt);
+      }
+    }
+
+    /* blinking cursor */
+    .caret {
+      display: inline-block;
+      width: 2px;
+      height: .9em;
+      background: var(--purple-lt);
+      vertical-align: text-bottom;
+      animation: cblink .65s step-end infinite;
+    }
+
+    @keyframes cblink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    /* chat input bar */
+    .chat-input-wrap {
+      flex-shrink: 0;
+      background: var(--chat-bg);
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      padding: 10px 16px 14px;
+    }
+
+    .chat-input-inner {
+      background: var(--chat-msg);
+      border-radius: 11px;
+      padding: 11px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .input-placeholder {
+      font-size: .83rem;
+      color: #555;
+    }
+
+    .input-btns {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .input-tools {
+      display: flex;
+      gap: 12px;
+    }
+
+    .itool {
+      font-size: .73rem;
+      color: #555;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .send-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #333;
+      color: #777;
+      border: none;
+      font-size: .95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* replay */
+    .replay-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 7px 0 0;
+    }
+
+    .replay-btn {
+      font-size: .73rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid rgba(124, 106, 247, 0.18);
+      border-radius: 99px;
+      padding: 4px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color .15s, color .15s;
+    }
+
+    .replay-btn:hover {
+      border-color: var(--purple);
+      color: var(--purple-lt);
+    }
+
+    @media(max-width:760px) {
+      body {
+        overflow: auto;
+      }
+
+      .page {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      /* .hero-col { height: auto; } */
+      .chat-col {
+        height: 600px;
+      }
+    }
   </style>
 </head>
 
 <body>
+
+
+
+
+
+
   <div class="bg-glow"></div>
 
   <!-- ── 히어로 ── -->
@@ -1408,475 +1887,184 @@
       <span class="hero-tag ht-4">✋ 손동작 제어</span>
       <span class="hero-tag ht-5">🧩 프로젝트 만들기</span>
     </div>
-    <div class="scroll-hint">
-      <span>아래로 스크롤</span>
-      <span>↓</span>
-    </div>
+
   </div>
 
-  <hr class="divider">
 
-  <!-- ── 가능성 섹션 ── -->
-  <div class="section">
-    <div class="sec-label">PROJECT IDEAS</div>
-    <!-- <h2 class="sec-title">이런 것들이 <span class="hl">전부 가능</span>해요</h2> -->
-    <h2 class="sec-title"> 이런 <span class="hl">프로젝트</span>를 만들 수 있어요</h2>
-    <p class="sec-desc">정해진 답은 없습니다. 네가 원하는 걸 말하면, AI가 만들어줍니다.</p>
+  <!-- ── 시작 방법 ── -->
+  <div class="section" id="getstarted">
+    <div class="sec-label">HOW TO START</div>
+    <!-- <h2 class="sec-title">🛠 시작 방법</h2> -->
+    <h2 class="sec-title"> <span class="hl">시작 방법</span></h2>
 
-    <div class="possibility-area">
-      <!-- <div class="center-robot">🤖</div> -->
-      <!-- <img src="zumi_ai.png" class="center-robot" alt="주미 OLED 메뉴 진입 화면" style="max-width:30%;"> -->
-      <div class="center-robot">
-        <img src="zumi_ai.png" alt="주미 이미지" style="width: 80%; height: auto;">
-      </div>
+    <p class="sec-desc">
+      처음이라도 걱정하지 마세요.<br>
+      딱 이 순서대로만 따라하면 됩니다.<br><br>
 
-      <div class="bubble-mobile-wrap">
-        <div class="bubble b-purple b-pos-1">🚗 자율주행</div>
-        <div class="bubble b-cyan   b-pos-2">😊 얼굴 인식</div>
-        <div class="bubble b-green  b-pos-3">✋ 손동작 제어</div>
-        <div class="bubble b-yellow b-pos-4">🎯 물체 추적</div>
-        <div class="bubble b-pink   b-pos-5">📸 자동 촬영</div>
-        <div class="bubble b-orange b-pos-6">🔲 마커 네비게이션</div>
-        <div class="bubble b-purple b-pos-7">📦 배달 로봇</div>
-        <div class="bubble b-cyan   b-pos-8">🎤 음성 제어</div>
-        <div class="bubble b-green  b-pos-9">🚨 경고 알림</div>
-        <div class="bubble b-yellow b-pos-10">🔍 물건 찾기</div>
-        <div class="bubble b-pink   b-pos-11">🎮 나만의 조종기</div>
-        <div class="bubble b-red    b-pos-12">🧩 프로젝트 만들기</div>
-        <div class="bubble b-purple b-pos-13">🤖 AI 비전</div>
-        <div class="bubble b-cyan   b-pos-14">🏎️ 레이싱 챌린지</div>
-        <div class="bubble b-orange b-pos-15">🚦 표지판 인식</div>
-        <div class="bubble b-green  b-pos-16">〰️ 라인트레이서</div>
-        <div class="bubble b-yellow b-pos-17">📺 스마트 디스플레이</div>
-        <div class="bubble b-pink   b-pos-18">🚓 경비 로봇</div>
-      </div>
-    </div>
-
-    <p style="text-align:center;color:var(--dim);font-size:.85rem;margin-top:24px">
-      …그리고 <strong style="color:var(--text)">네가 생각하는 것</strong>도요. 👆
+      아래 순서대로 따라 하면 AI가 코드를 작성해주고,<br>
+      여러분은 결과를 실행해보면서 기능을 추가해 나갈 수 있습니다.<br>
     </p>
-  </div>
 
-  <hr class="divider">
+    <div style="display:flex;flex-direction:column;gap:12px">
 
-
-
-
-  <!-- 어떤 프로젝트를 만들 수 있나요 -->
-  <div class="section" id="projects">
-    <div class="sec-eyebrow">WHAT CAN YOU MAKE</div>
-    <h2 class="sec-title">어떤 프로젝트를<br><span class="hl">만들 수 있나요?</span></h2>
-    <p class="sec-desc">아이디어를 골라보세요. 어떤 단계를 배우면 만들 수 있는지 바로 알 수 있어요.</p>
-
-    <div class="project-grid">
-
-      <div class="project-card">
-        <div class="pc-top">
-          <div class="pc-emoji">🚗</div>
-          <div class="pc-steps">
-            <div class="pc-step-dot on" title="Step 1"></div>
-            <div class="pc-step-dot" title="Step 2"></div>
-            <div class="pc-step-dot on" title="Step 3"></div>
-            <div class="pc-step-dot" title="Step 4"></div>
+      <!-- step 1 -->
+      <div
+        style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+        <div
+          style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+          1</div>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;color:#060818">AI를 하나 엽니다</div>
+          <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+            ChatGPT, Claude, Gemini 중 편한 걸 쓰면 돼요.<br>
+            뭘 써야 할지 모르겠다면 <strong>챗GPT나 제미나이</strong>를 추천해요.
           </div>
         </div>
-        <div class="pc-title">리모컨 자동차</div>
-        <div class="pc-desc">버튼이나 키보드로 실시간 조종. 속도 슬라이더도 추가할 수 있어요.</div>
-        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 3</span></div>
-        <div class="pc-level lv1">★ 쉬움</div>
       </div>
 
-      <div class="project-card">
-        <div class="pc-top">
-          <div class="pc-emoji">😊</div>
-          <div class="pc-steps">
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
+      <!-- step 2 -->
+      <div
+        style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+        <div
+          style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+          2</div>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;color:#060818">가이드에서 "복사" 버튼을 누릅니다</div>
+          <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+            각 단계마다 AI에게 보낼 말이 미리 준비되어 있어요.<br>
+            버튼 하나만 누르면 복사돼요.<br>
+
+            💡 복사되는 이 말이 바로 프롬프트(Prompt) 예요.<br>
+            AI에게 보내는 요청이나 질문을 <strong>프롬프트</strong>라고 합니다.
           </div>
         </div>
-        <div class="pc-title">얼굴 추적 로봇</div>
-        <div class="pc-desc">카메라로 얼굴을 감지해서 얼굴이 왼쪽이면 좌회전, 오른쪽이면 우회전.</div>
-        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 3</span><span
-            class="pc-tag">Step 4</span></div>
-        <div class="pc-level lv2">★★ 보통</div>
       </div>
 
-      <div class="project-card">
-        <div class="pc-top">
-          <div class="pc-emoji">✋</div>
-          <div class="pc-steps">
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
+      <!-- step 3 -->
+      <div
+        style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+        <div
+          style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+          3</div>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;color:#060818">AI 채팅창에 붙여넣고 전송합니다</div>
+          <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+            <kbd
+              style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.8rem">Ctrl+V</kbd>
+            (맥은 <kbd
+              style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.8rem">Cmd+V</kbd>)
+            로 붙여넣고 엔터를 누르세요.<br>
+            따로 설명을 추가하지 않아도 됩니다. 💡 주미 AI에 필요한 정보가 이미 다 들어있어요.
           </div>
         </div>
-        <div class="pc-title">손동작 리모컨</div>
-        <div class="pc-desc">손바닥 펴면 전진, 주먹 쥐면 정지, 브이(V)하면 회전. 키보드 없이 조종.</div>
-        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 3</span><span
-            class="pc-tag">Step 4</span></div>
-        <div class="pc-level lv2">★★ 보통</div>
       </div>
 
-      <div class="project-card">
-        <div class="pc-top">
-          <div class="pc-emoji">🛑</div>
-          <div class="pc-steps">
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
+      <!-- step 4 -->
+      <div
+        style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+        <div
+          style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+          4</div>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;color:#060818">AI가 만들어준 파일을 다운로드합니다</div>
+          <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+            AI가 길게 코드를 써줄 거예요. 당황하지 마세요.<br>
+            코드 창 오른쪽 위에 <strong>저장,다운로드</strong>버튼이 있어요. 그걸 누르면 됩니다.
           </div>
         </div>
-        <div class="pc-title">표지판 인식 자율주행</div>
-        <div class="pc-desc">정지 표지판을 카메라가 보면 자동으로 멈추고 빨간 LED가 켜지는 로봇.</div>
-        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 2</span><span
-            class="pc-tag">Step 3</span><span class="pc-tag">Step 4</span></div>
-        <div class="pc-level lv2">★★ 보통</div>
       </div>
 
-      <div class="project-card">
-        <div class="pc-top">
-          <div class="pc-emoji">🎂</div>
-          <div class="pc-steps">
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot"></div>
-            <div class="pc-step-dot"></div>
+      <!-- step 5 -->
+      <!-- <div style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+      <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">5</div>
+      <div>
+        <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">메모장을 열고 붙여넣은 뒤 저장합니다</div>
+        <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+          파일 이름은 아무거나, 확장자는 반드시 <strong><code style="background:var(--bg);padding:1px 5px;border-radius:4px">.html</code></strong> 로 저장해요.<br>
+          예: <code style="background:var(--bg);padding:1px 5px;border-radius:4px">zumi_test.html</code>
+        </div>
+      </div>
+    </div> -->
+
+      <!-- step 5 -->
+      <div
+        style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+        <div
+          style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+          5</div>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;color:#060818">다운로드한 파일을 더블클릭해서 실행합니다</div>
+          <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+            브라우저가 자동으로 열리면서 앱이 실행돼요.
           </div>
         </div>
-        <div class="pc-title">생일 축하 로봇</div>
-        <div class="pc-desc">버튼 하나에 무지개 LED + 성공 사운드 + LCD 메시지가 동시에 반응.</div>
-        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 2</span></div>
-        <div class="pc-level lv1">★ 쉬움</div>
       </div>
 
-      <div class="project-card">
-        <div class="pc-top">
-          <div class="pc-emoji">🃏</div>
-          <div class="pc-steps">
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
+      <!-- step 7 -->
+      <div
+        style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+        <div
+          style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+          6</div>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;color:#060818">마음에 안 들면 AI에게 다시 요청합니다</div>
+          <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+            "버튼을 더 크게 해줘", "배경색을 바꿔줘" — 뭐든 말하면 돼요.<br>
+            이걸 반복하면서 기능을 하나씩 늘려가면 됩니다.
           </div>
         </div>
-        <div class="pc-title">마법 카드 로봇</div>
-        <div class="pc-desc">내가 직접 그린 카드를 Teachable Machine으로 학습시켜 카드마다 다른 명령 실행.</div>
-        <div class="pc-tags"><span class="pc-tag">Step 1~4</span><span class="pc-tag">Teachable Machine</span></div>
-        <div class="pc-level lv3">★★★ 도전</div>
-      </div>
-
-      <div class="project-card">
-        <div class="pc-top">
-          <div class="pc-emoji">〰️</div>
-          <div class="pc-steps">
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot on"></div>
-            <div class="pc-step-dot"></div>
-          </div>
-        </div>
-        <div class="pc-title">레이싱 라인트레이서</div>
-        <div class="pc-desc">검은 선을 따라가며 속도별 LED 색상이 바뀌고, 완주하면 성공음 재생.</div>
-        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 2</span><span
-            class="pc-tag">Step 3</span></div>
-        <div class="pc-level lv2">★★ 보통</div>
-      </div>
-
-      <div class="project-card"
-        style="border-style:dashed;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:8px;min-height:160px">
-        <div style="font-size:1.8rem">💭</div>
-        <div style="font-size:.88rem;font-weight:700;color:var(--white)">내 아이디어</div>
-        <div style="font-size:.75rem;color:var(--dim);line-height:1.6">위 단계들을 조합하면<br>어떤 아이디어든 만들 수 있어요</div>
       </div>
 
     </div>
 
-    <div class="tip blue">
-      <span class="tip-icon">💡</span>
-      <span>프로젝트 이름을 그대로 AI에게 말해보세요. <strong style="color:var(--white)">"얼굴 추적 로봇 만들어줘"</strong> — AI가 필요한 기능을 조합해서
-        HTML을 만들어줍니다!</span>
-    </div>
-  </div>
+    <br>
 
 
 
-  <!-- ── 프롬프트 예시 ── -->
-  <div class="section">
-    <div class="sec-label">REAL PROMPT EXAMPLES</div>
-    <h2 class="sec-title">이렇게 <span class="hl">말했더니</span> 만들어졌어요</h2>
-    <p class="sec-desc">AI에게 이런 식으로 요청하면 됩니다. 클릭하면 복사됩니다!</p>
-
-    <div class="prompt-examples">
-
-      <div class="pe-card p1" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>친구 얼굴을 카메라로 인식하면<br>이름을 LCD에 표시하고 인사 소리를 내줘<span
-            class="quote">"</span></div>
-        <div class="pe-result">→ 얼굴 인식 출석 로봇</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
-            class="pe-tag">Step4</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p2" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>손바닥을 펴면 전진,<br>주먹을 쥐면 정지,<br>브이하면 좌회전되게 해줘<span
-            class="quote">"</span></div>
-        <div class="pe-result">→ 손동작 리모컨 로봇</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step3</span><span
-            class="pe-tag">Step4</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p3" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>정지 표지판이 보이면 자동으로 멈추고<br>빨간 LED가 깜빡이게 해줘<span
-            class="quote">"</span></div>
-        <div class="pe-result">→ 표지판 인식 자율주행</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
-            class="pe-tag">Step3</span><span class="pe-tag">Step4</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p4" onclick="copyPrompt(this)">
-        <!-- <div class="pe-prompt"><span class="quote">"</span>생일 버튼을 누르면<br>무지개 LED가 켜지고<br>화면에 축하 메시지가 나오게 해줘<span class="quote">"</span></div> -->
-        <div class="pe-prompt"><span class="quote">"</span>빨간 물체를 찾으면<br>자동으로 따라가고<br>화면에 위치를 표시해줘<span
-            class="quote">"</span></div>
-        <div class="pe-result">→ 객체 추적 프로젝트</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p5" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>얼굴이 화면 왼쪽에 있으면 왼쪽으로 돌고,<br>오른쪽에 있으면 오른쪽으로 도는<br>얼굴 추적 로봇
-          만들어줘<span class="quote">"</span></div>
-        <div class="pe-result">→ 얼굴 추적 로봇</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step3</span><span
-            class="pe-tag">Step4</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p6" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>내가 만든 카드를 카메라에 보여주면<br>카드에 따라 다른 명령을 실행하는<br>마법 카드 로봇
-          만들어줘<span class="quote">"</span></div>
-        <div class="pe-result">→ 티처블 머신 카드 로봇</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
-            class="pe-tag">Step3</span><span class="pe-tag">Step4</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p7" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>속도에 따라 LED 색이 달라지는<br>레이싱 리모컨을 만들어줘.<br>모바일에서도 터치로 조종되게
-          해줘<span class="quote">"</span></div>
-        <div class="pe-result">→ 모바일 레이싱 컨트롤러</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
-            class="pe-tag">Step3</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p8" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>경고 버튼을 누르면<br>빨간 LED 깜빡임 + 사이렌 + 화면에 DANGER 표시.<br>해제 버튼으로
-          멈추게 해줘<span class="quote">"</span></div>
-        <div class="pe-result">→ 경고 알림 로봇</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-      <div class="pe-card p9" onclick="copyPrompt(this)">
-        <div class="pe-prompt"><span class="quote">"</span>손 크기로 로봇과의 거리를 측정해서<br>손이 가까워질수록 LED가 빨개지고<br>멀어지면 초록이 되게
-          해줘<span class="quote">"</span></div>
-        <div class="pe-result">→ 손 거리 감지 로봇</div>
-        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
-            class="pe-tag">Step4</span></div>
-        <button class="pe-copy">프롬프트 복사</button>
-      </div>
-
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- ── 프로젝트 제작 과정 ── -->
-  <div class="section">
-    <div class="vibe-section">
-      <div class="sec-label" style="justify-content:center;margin-bottom:12px">HOW PROJECTS ARE MADE</div>
-      <h2 style="font-size:clamp(1.4rem,3vw,1.8rem);font-weight:900;margin-bottom:12px">프로젝트는 이렇게 만들어집니다</h2>
-
-      <!-- <p style="color:var(--dim);font-size:.9rem;line-height:1.8;max-width:550px;margin:0 auto 8px">
-      얼굴 인식, 손동작 인식, 자율주행 같은 기능을<br>
-      하나씩 배우고 조합하여 <strong style="color:var(--text)">나만의 AI 로봇 프로젝트</strong>를 만들 수 있습니다.
-    </p> -->
 
 
-      <p style="color:var(--dim);font-size:.9rem;line-height:1.8;max-width:550px;margin:0 auto 8px">
-        원하는 프로젝트를 만들기 위해서는 주미의 다양한 기능을 먼저 알아야 합니다.
-        <br>
-        Step 1~4를 통해 기능을 익히고, <br>
-        이를 조합하여 <strong style="color:var(--text)">나만의 AI 로봇 프로젝트</strong>를 만들어보세요.
-      </p>
 
 
-      <div class="vibe-steps">
-        <div class="vibe-step">
-          <div class="vs-icon vs-1">💭</div>
-          <h3>1. 프로젝트 아이디어 정하기</h3>
-          <p>
-            어떤 로봇을 만들고 싶은지 생각해보세요.<br>
-            목표가 정해지면 필요한 기능도 보이기 시작합니다.
-          </p>
+    <!-- ── CHAT ── -->
+    <div class="chat-col">
+      <div class="chat-topbar">
+        <div class="topbar-left">
+          <div class="ai-icon">✦</div>
+          <div class="model-name">Chat AI <em>▾</em></div>
         </div>
-        <div class="vibe-step">
-          <div class="vs-icon vs-2">💬</div>
-          <h3>2. 필요한 기능 생각하기</h3>
-          <p>
-            얼굴 인식, 손동작 인식, 모터 제어 등<br>
-            어떤 기능이 필요한지 정리해봅니다.
-          </p>
+        <div class="topbar-right">
+          <button class="share-btn">↑ 공유하기</button>
+          <div class="user-av">나</div>
         </div>
-        <div class="vibe-step">
-          <div class="vs-icon vs-3">💾</div>
-          <h3>3. 기능 배우기</h3>
-          <p>
-            연결하기, 표현하기, 움직이기,<br>
-            AI 비전 기능을 차근차근 익혀봅니다.
-          </p>
+      </div>
+
+      <div class="chat-messages" id="msgs"></div>
+
+      <div class="chat-input-wrap">
+        <div class="chat-input-inner">
+          <div class="input-placeholder">메시지 ChatGPT</div>
+          <div class="input-btns">
+            <div class="input-tools">
+              <button class="itool">＋</button>
+              <button class="itool">🌐 웹 검색</button>
+              <button class="itool">🔬 Deep Research</button>
+              <button class="itool">···</button>
+            </div>
+            <button class="send-btn">↑</button>
+          </div>
         </div>
-        <div class="vibe-step">
-          <div class="vs-icon vs-4">🚀</div>
-          <h3>4. AI와 함께 만들기</h3>
-          <p>
-            배운 기능들을 조합하여<br>
-            원하는 앱과 로봇 동작을 구현합니다.
-          </p>
-        </div>
-        <div class="vibe-step">
-          <div class="vs-icon vs-5">🚀</div>
-          <h3>5. 프로젝트 완성</h3>
-          <p>
-            직접 만든 AI 로봇 프로젝트를 실행하고<br>
-            새로운 기능을 추가하며 발전시켜보세요.
-          </p>
+        <div class="replay-wrap">
+          <button class="replay-btn" onclick="startChat()">↺ 다시 재생</button>
         </div>
       </div>
     </div>
+
   </div>
 
 
 
 
-  <!-- 단계별 흐름 -->
-  <div class="section" id="steps">
-    <div class="sec-eyebrow">LEARNING PATH</div>
-    <h2 class="sec-title">이 단계들을 배우면<br><span class="hl">만들 수 있어요</span></h2>
-    <h2 class="sec-title">프로젝트를 만드는 <span class="hl">도구들</span></h2>
-    <p class="sec-desc">단계별로 기능을 익히고 조합할수록 더 완성도 있는 프로젝트가 됩니다.</p>
 
-    <!-- 흐름 시각화 -->
-    <div class="step-flow">
-      <div class="sf-item sf-1">
-        <div class="sf-num">1</div>
-        <div class="sf-icon">🔗</div>
-        <div class="sf-title">연결하고 보기</div>
-        <div class="sf-desc">로봇과 연결해서 카메라 영상을 브라우저에 띄워요</div>
-      </div>
-      <div class="sf-item sf-2">
-        <div class="sf-num">2</div>
-        <div class="sf-icon">💡</div>
-        <div class="sf-title">표현하기</div>
-        <div class="sf-desc">LED, 사운드, LCD로 로봇이 반응하게 해요</div>
-      </div>
-      <div class="sf-item sf-3">
-        <div class="sf-num">3</div>
-        <div class="sf-icon">🚗</div>
-        <div class="sf-title">움직이기</div>
-        <div class="sf-desc">버튼, 키보드, 자동 이동으로 조종해요</div>
-      </div>
-      <div class="sf-item sf-4">
-        <div class="sf-num">4</div>
-        <div class="sf-icon">🤖</div>
-        <div class="sf-title">AI 비전</div>
-        <div class="sf-desc">얼굴·손·물체를 인식해서 AI가 로봇을 움직여요</div>
-      </div>
-    </div>
-
-    <!-- Step 카드 -->
-    <div class="step-cards">
-      <a href="zumi_advanced_step1.html" class="step-card sc-1">
-        <div class="sc-step-label">STEP 01</div>
-        <div class="sc-emoji">🔗</div>
-        <div class="sc-title">연결하고 보기</div>
-        <div class="sc-keywords">WebSocket · 스트리밍 · canvas<br>카메라 필터 · 사진 저장</div>
-        <div class="sc-arrow">→</div>
-      </a>
-      <a href="zumi_advanced_step2.html" class="step-card sc-2">
-        <div class="sc-step-label">STEP 02</div>
-        <div class="sc-emoji">💡</div>
-        <div class="sc-title">표현하기</div>
-        <div class="sc-keywords">LED RGB · LED 패턴<br>사운드 · LCD 텍스트</div>
-        <div class="sc-arrow">→</div>
-      </a>
-      <a href="zumi_advanced_step3.html" class="step-card sc-3">
-        <div class="sc-step-label">STEP 03</div>
-        <div class="sc-emoji">🚗</div>
-        <div class="sc-title">움직이기</div>
-        <div class="sc-keywords">전진/후진 · 회전 · 거리 지정<br>라인트레이서 · 장애물 감지</div>
-        <div class="sc-arrow">→</div>
-      </a>
-      <a href="zumi_advanced_step4.html" class="step-card sc-4">
-        <div class="sc-step-label">STEP 04</div>
-        <div class="sc-emoji">🤖</div>
-        <div class="sc-title">AI 비전</div>
-        <div class="sc-keywords">MediaPipe · COCO-SSD<br>얼굴·손·표지판 · Teachable Machine</div>
-        <div class="sc-arrow">→</div>
-      </a>
-    </div>
-
-    <div class="tip green">
-      <span class="tip-icon">🎯</span>
-      <span>각 단계에는 <strong style="color:var(--white)">AI에게 바로 복사해서 쓸 수 있는 요청 문장</strong>이 준비되어 있어요. 코드를 직접 짤 필요
-        없습니다!</span>
-    </div>
-  </div>
-
-
-
-
-  <hr class="divider">
-
-  <!-- ── 단계 소개 ── -->
-  <!-- <div class="section">
-  <div class="sec-label">PROJECT TOOLKIT</div>
-  <h2 class="sec-title">프로젝트를 만드는 <span class="hl">도구들</span></h2>
-  <p class="sec-desc">필요한 기능을 조합해 원하는 프로젝트를 만들어보세요.</p>
-
-  <div class="steps-overview">
-    <a href="zumi_advanced_step1.html" class="so-card so-1" style="text-decoration:none;color:inherit;display:block">
-      <div class="so-num">STEP 01</div>
-      <div class="so-icon">🔗</div>
-      <h3>연결하고 보기</h3>
-      <p>로봇과 연결하고 카메라 영상을 확인합니다.</p>
-    </a>
-    <a href="zumi_advanced_step2.html" class="so-card so-2" style="text-decoration:none;color:inherit;display:block">
-      <div class="so-num">STEP 02</div>
-      <div class="so-icon">💡</div>
-      <h3>표현하기</h3>
-      <p>LED, 표정, 사운드, LCD로 감정을 표현합니다.</p>
-    </a>
-    <a href="zumi_advanced_step3.html" class="so-card so-3" style="text-decoration:none;color:inherit;display:block">
-      <div class="so-num">STEP 03</div>
-      <div class="so-icon">🚗</div>
-      <h3>움직이기</h3>
-      <p>버튼, 키보드, 자동 이동으로 로봇을 조종합니다.</p>
-    </a>
-    <a href="zumi_advanced_step4.html" class="so-card so-4" style="text-decoration:none;color:inherit;display:block">
-      <div class="so-num">STEP 04</div>
-      <div class="so-icon">🤖</div>
-      <h3>AI 비전</h3>
-      <p>얼굴, 손, 물체를 인식해 스스로 반응합니다.</p>
-    </a>
-  </div>
-</div> -->
 
 
 
@@ -1885,7 +2073,6 @@
     <h2 class="cta-title">준비됐나요?<br>지금 바로 시작해봐요 🚀</h2>
     <p class="cta-desc">Step 1부터 차근차근, 또는 바로 원하는 단계로 뛰어들어도 됩니다!</p>
     <a href="zumi_advanced_step1.html" class="cta-btn">Step 1 시작하기 →</a>
-
 
     <!--
     <br>
@@ -1900,7 +2087,8 @@
           /* 외부 회색 변수를 무시하고 무조건 검은색 처리 */
         }
       </style> -->
-    <br>
+
+    <!-- <br>
     <br>
     <div class="zumi-accordion-wrapper">
 
@@ -2055,8 +2243,498 @@
 
         </div>
       </div>
+    </div> -->
+
+
+  </div>
+
+
+
+
+  <br>
+  <br>
+  <div class="hero-cta-row">
+    <!-- <a href="zumi_easy_intro.html" class="btn-primary">지금 시작하기 →</a> -->
+    <a href="#makethings" class="btn-secondary">더 알아보기</a>
+
+
+
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <span>↓</span>
+  </div>
+
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <hr class="divider">
+
+  <!-- ── 가능성 섹션 ── -->
+  <div class="section" id="makethings">
+    <div class="sec-label">PROJECT IDEAS</div>
+    <h2 class="sec-title"> 이런 <span class="hl">프로젝트</span>를 만들 수 있어요</h2>
+    <p class="sec-desc">정해진 답은 없습니다. 네가 원하는 걸 말하면, AI가 만들어줍니다.</p>
+
+    <div class="possibility-area">
+      <div class="center-robot">
+        <img src="zumi_ai.png" alt="주미 이미지" style="width: 80%; height: auto;">
+      </div>
+
+      <div class="bubble-mobile-wrap">
+        <div class="bubble b-purple b-pos-1">🚗 자율주행</div>
+        <div class="bubble b-cyan   b-pos-2">😊 얼굴 인식</div>
+        <div class="bubble b-green  b-pos-3">✋ 손동작 제어</div>
+        <div class="bubble b-yellow b-pos-4">🎯 물체 추적</div>
+        <div class="bubble b-pink   b-pos-5">📸 자동 촬영</div>
+        <div class="bubble b-orange b-pos-6">🔲 마커 네비게이션</div>
+        <div class="bubble b-purple b-pos-7">📦 배달 로봇</div>
+        <div class="bubble b-cyan   b-pos-8">🎤 음성 제어</div>
+        <div class="bubble b-green  b-pos-9">🚨 경고 알림</div>
+        <div class="bubble b-yellow b-pos-10">🔍 물건 찾기</div>
+        <div class="bubble b-pink   b-pos-11">🎮 나만의 조종기</div>
+        <div class="bubble b-red    b-pos-12">🧩 프로젝트 만들기</div>
+        <div class="bubble b-purple b-pos-13">🤖 AI 비전</div>
+        <div class="bubble b-cyan   b-pos-14">🏎️ 레이싱 챌린지</div>
+        <div class="bubble b-orange b-pos-15">🚦 표지판 인식</div>
+        <div class="bubble b-green  b-pos-16">〰️ 라인트레이서</div>
+        <div class="bubble b-yellow b-pos-17">📺 스마트 디스플레이</div>
+        <div class="bubble b-pink   b-pos-18">🚓 경비 로봇</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--dim);font-size:.85rem;margin-top:24px">
+      …그리고 <strong style="color:var(--text)">네가 생각하는 것</strong>도요. 👆
+    </p>
+  </div>
+
+  <hr class="divider">
+
+
+
+
+  <!-- 어떤 프로젝트를 만들 수 있나요 -->
+  <!-- <div class="section" id="projects">
+    <div class="sec-eyebrow">WHAT CAN YOU MAKE</div>
+    <h2 class="sec-title">어떤 프로젝트를<br><span class="hl">만들 수 있나요?</span></h2>
+    <p class="sec-desc">아이디어를 골라보세요. 어떤 단계를 배우면 만들 수 있는지 바로 알 수 있어요.</p>
+
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="pc-top">
+          <div class="pc-emoji">🚗</div>
+          <div class="pc-steps">
+            <div class="pc-step-dot on" title="Step 1"></div>
+            <div class="pc-step-dot" title="Step 2"></div>
+            <div class="pc-step-dot on" title="Step 3"></div>
+            <div class="pc-step-dot" title="Step 4"></div>
+          </div>
+        </div>
+        <div class="pc-title">리모컨 자동차</div>
+        <div class="pc-desc">버튼이나 키보드로 실시간 조종. 속도 슬라이더도 추가할 수 있어요.</div>
+        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 3</span></div>
+        <div class="pc-level lv1">★ 쉬움</div>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-top">
+          <div class="pc-emoji">😊</div>
+          <div class="pc-steps">
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+          </div>
+        </div>
+        <div class="pc-title">얼굴 추적 로봇</div>
+        <div class="pc-desc">카메라로 얼굴을 감지해서 얼굴이 왼쪽이면 좌회전, 오른쪽이면 우회전.</div>
+        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 3</span><span
+            class="pc-tag">Step 4</span></div>
+        <div class="pc-level lv2">★★ 보통</div>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-top">
+          <div class="pc-emoji">✋</div>
+          <div class="pc-steps">
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+          </div>
+        </div>
+        <div class="pc-title">손동작 리모컨</div>
+        <div class="pc-desc">손바닥 펴면 전진, 주먹 쥐면 정지, 브이(V)하면 회전. 키보드 없이 조종.</div>
+        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 3</span><span
+            class="pc-tag">Step 4</span></div>
+        <div class="pc-level lv2">★★ 보통</div>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-top">
+          <div class="pc-emoji">🛑</div>
+          <div class="pc-steps">
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+          </div>
+        </div>
+        <div class="pc-title">표지판 인식 자율주행</div>
+        <div class="pc-desc">정지 표지판을 카메라가 보면 자동으로 멈추고 빨간 LED가 켜지는 로봇.</div>
+        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 2</span><span
+            class="pc-tag">Step 3</span><span class="pc-tag">Step 4</span></div>
+        <div class="pc-level lv2">★★ 보통</div>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-top">
+          <div class="pc-emoji">🎂</div>
+          <div class="pc-steps">
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot"></div>
+            <div class="pc-step-dot"></div>
+          </div>
+        </div>
+        <div class="pc-title">생일 축하 로봇</div>
+        <div class="pc-desc">버튼 하나에 무지개 LED + 성공 사운드 + LCD 메시지가 동시에 반응.</div>
+        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 2</span></div>
+        <div class="pc-level lv1">★ 쉬움</div>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-top">
+          <div class="pc-emoji">🃏</div>
+          <div class="pc-steps">
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+          </div>
+        </div>
+        <div class="pc-title">마법 카드 로봇</div>
+        <div class="pc-desc">내가 직접 그린 카드를 Teachable Machine으로 학습시켜 카드마다 다른 명령 실행.</div>
+        <div class="pc-tags"><span class="pc-tag">Step 1~4</span><span class="pc-tag">Teachable Machine</span></div>
+        <div class="pc-level lv3">★★★ 도전</div>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-top">
+          <div class="pc-emoji">〰️</div>
+          <div class="pc-steps">
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot on"></div>
+            <div class="pc-step-dot"></div>
+          </div>
+        </div>
+        <div class="pc-title">레이싱 라인트레이서</div>
+        <div class="pc-desc">검은 선을 따라가며 속도별 LED 색상이 바뀌고, 완주하면 성공음 재생.</div>
+        <div class="pc-tags"><span class="pc-tag">Step 1</span><span class="pc-tag">Step 2</span><span
+            class="pc-tag">Step 3</span></div>
+        <div class="pc-level lv2">★★ 보통</div>
+      </div>
+
+      <div class="project-card"
+        style="border-style:dashed;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:8px;min-height:160px">
+        <div style="font-size:1.8rem">💭</div>
+        <div style="font-size:.88rem;font-weight:700;color:var(--white)">내 아이디어</div>
+        <div style="font-size:.75rem;color:var(--dim);line-height:1.6">위 단계들을 조합하면<br>어떤 아이디어든 만들 수 있어요</div>
+      </div>
+
+    </div>
+
+    <div class="tip blue">
+      <span class="tip-icon">💡</span>
+      <span>프로젝트 이름을 그대로 AI에게 말해보세요. <strong style="color:var(--white)">"얼굴 추적 로봇 만들어줘"</strong> — AI가 필요한 기능을 조합해서
+        HTML을 만들어줍니다!</span>
+    </div>
+  </div> -->
+
+
+
+  <!-- ── 프롬프트 예시 ── -->
+  <div class="section">
+    <div class="sec-label">REAL PROMPT EXAMPLES</div>
+    <h2 class="sec-title">이렇게 <span class="hl">말했더니</span> 만들어졌어요</h2>
+    <p class="sec-desc">AI에게 이런 식으로 요청하면 됩니다.</p>
+
+    <div class="prompt-examples">
+
+      <div class="pe-card p1">
+        <div class="pe-prompt"><span class="quote">"</span>친구 얼굴을 카메라로 인식하면<br>이름을 LCD에 표시하고 인사 소리를 내줘<span
+            class="quote">"</span></div>
+        <div class="pe-result">→ 얼굴 인식 출석 로봇</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
+            class="pe-tag">Step4</span></div>
+      </div>
+
+      <div class="pe-card p2">
+        <div class="pe-prompt"><span class="quote">"</span>손바닥을 펴면 전진,<br>주먹을 쥐면 정지,<br>브이하면 좌회전되게 해줘<span
+            class="quote">"</span></div>
+        <div class="pe-result">→ 손동작 리모컨 로봇</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step3</span><span
+            class="pe-tag">Step4</span></div>
+      </div>
+
+      <div class="pe-card p3">
+        <div class="pe-prompt"><span class="quote">"</span>정지 표지판이 보이면 자동으로 멈추고<br>빨간 LED가 깜빡이게 해줘<span
+            class="quote">"</span></div>
+        <div class="pe-result">→ 표지판 인식 자율주행</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
+            class="pe-tag">Step3</span><span class="pe-tag">Step4</span></div>
+      </div>
+
+      <div class="pe-card p4">
+        <div class="pe-prompt"><span class="quote">"</span>빨간 물체를 찾으면<br>자동으로 따라가고<br>화면에 위치를 표시해줘<span
+            class="quote">"</span></div>
+        <div class="pe-result">→ 객체 추적 프로젝트</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span></div>
+      </div>
+
+      <div class="pe-card p5">
+        <div class="pe-prompt"><span class="quote">"</span>얼굴이 화면 왼쪽에 있으면 왼쪽으로 돌고,<br>오른쪽에 있으면 오른쪽으로 도는<br>얼굴 추적 로봇
+          만들어줘<span class="quote">"</span></div>
+        <div class="pe-result">→ 얼굴 추적 로봇</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step3</span><span
+            class="pe-tag">Step4</span></div>
+      </div>
+
+      <div class="pe-card p6">
+        <div class="pe-prompt"><span class="quote">"</span>내가 만든 카드를 카메라에 보여주면<br>카드에 따라 다른 명령을 실행하는<br>마법 카드 로봇
+          만들어줘<span class="quote">"</span></div>
+        <div class="pe-result">→ 티처블 머신 카드 로봇</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
+            class="pe-tag">Step3</span><span class="pe-tag">Step4</span></div>
+      </div>
+
+      <div class="pe-card p7">
+        <div class="pe-prompt"><span class="quote">"</span>속도에 따라 LED 색이 달라지는<br>레이싱 리모컨을 만들어줘.<br>모바일에서도 터치로 조종되게
+          해줘<span class="quote">"</span></div>
+        <div class="pe-result">→ 모바일 레이싱 컨트롤러</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
+            class="pe-tag">Step3</span></div>
+      </div>
+
+      <div class="pe-card p8">
+        <div class="pe-prompt"><span class="quote">"</span>경고 버튼을 누르면<br>빨간 LED 깜빡임 + 사이렌 + 화면에 DANGER 표시.<br>해제 버튼으로
+          멈추게 해줘<span class="quote">"</span></div>
+        <div class="pe-result">→ 경고 알림 로봇</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span></div>
+      </div>
+
+      <div class="pe-card p9">
+        <div class="pe-prompt"><span class="quote">"</span>손 크기로 로봇과의 거리를 측정해서<br>손이 가까워질수록 LED가 빨개지고<br>멀어지면 초록이 되게
+          해줘<span class="quote">"</span></div>
+        <div class="pe-result">→ 손 거리 감지 로봇</div>
+        <div class="pe-tags"><span class="pe-tag">Step1</span><span class="pe-tag">Step2</span><span
+            class="pe-tag">Step4</span></div>
+      </div>
+
     </div>
   </div>
+
+  <hr class="divider">
+
+  <!-- ── 프로젝트 제작 과정 ── -->
+  <!-- <div class="section">
+    <div class="vibe-section">
+      <div class="sec-label" style="justify-content:center;margin-bottom:12px">HOW PROJECTS ARE MADE</div>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.8rem);font-weight:900;margin-bottom:12px">프로젝트는 이렇게 만들어져요</h2>
+
+      <p style="color:var(--dim);font-size:.9rem;line-height:1.8;max-width:550px;margin:0 auto 8px">
+        원하는 프로젝트를 만들기 위해서는 주미의 다양한 기능을 먼저 알아야 해요.
+        <br>
+        Step 1~4를 통해 기능을 익히고, <br>
+        이를 조합하여 <strong style="color:var(--text)">나만의 AI 로봇 프로젝트</strong>를 만들어보세요.
+      </p>
+
+
+      <div class="vibe-steps">
+        <div class="vibe-step">
+          <div class="vs-icon vs-1">💭</div>
+          <h3>1. 프로젝트 아이디어 정하기</h3>
+          <p>
+            어떤 로봇을 만들고 싶은지 생각해보세요.<br>
+            목표가 정해지면 필요한 기능도 보이기 시작합니다.
+          </p>
+        </div>
+        <div class="vibe-step">
+          <div class="vs-icon vs-2">💬</div>
+          <h3>2. 필요한 기능 생각하기</h3>
+          <p>
+            얼굴 인식, 손동작 인식, 모터 제어 등<br>
+            어떤 기능이 필요한지 정리해봅니다.
+          </p>
+        </div>
+        <div class="vibe-step">
+          <div class="vs-icon vs-3">💾</div>
+          <h3>3. 기능 배우기</h3>
+          <p>
+            연결하기, 표현하기, 움직이기,<br>
+            AI 비전 기능을 차근차근 익혀봅니다.
+          </p>
+        </div>
+        <div class="vibe-step">
+          <div class="vs-icon vs-4">🚀</div>
+          <h3>4. AI와 함께 만들기</h3>
+          <p>
+            배운 기능들을 조합하여<br>
+            원하는 앱과 로봇 동작을 구현합니다.
+          </p>
+        </div>
+        <div class="vibe-step">
+          <div class="vs-icon vs-5">🚀</div>
+          <h3>5. 프로젝트 완성</h3>
+          <p>
+            직접 만든 AI 로봇 프로젝트를 실행하고<br>
+            새로운 기능을 추가하며 발전시켜보세요.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+  <!-- 단계별 흐름 -->
+  <div class="section" id="steps">
+    <div class="sec-eyebrow">LEARNING PATH</div>
+    <h2 class="sec-title">이 단계들을 배우면<br><span class="hl">만들 수 있어요</span></h2>
+    <h2 class="sec-title">프로젝트를 만드는 <span class="hl">도구들</span></h2>
+    <p class="sec-desc">단계별로 기능을 익히고 조합할수록 더 완성도 있는 프로젝트가 됩니다.</p>
+
+    <!-- 흐름 시각화 -->
+    <!-- <div class="step-flow">
+      <div class="sf-item sf-1">
+        <div class="sf-num">1</div>
+        <div class="sf-icon">🔗</div>
+        <div class="sf-title">연결하고 보기</div>
+        <div class="sf-desc">로봇과 연결해서 카메라 영상을 브라우저에 띄워요</div>
+      </div>
+      <div class="sf-item sf-2">
+        <div class="sf-num">2</div>
+        <div class="sf-icon">💡</div>
+        <div class="sf-title">표현하기</div>
+        <div class="sf-desc">LED, 사운드, LCD로 로봇이 반응하게 해요</div>
+      </div>
+      <div class="sf-item sf-3">
+        <div class="sf-num">3</div>
+        <div class="sf-icon">🚗</div>
+        <div class="sf-title">움직이기</div>
+        <div class="sf-desc">버튼, 키보드, 자동 이동으로 조종해요</div>
+      </div>
+      <div class="sf-item sf-4">
+        <div class="sf-num">4</div>
+        <div class="sf-icon">🤖</div>
+        <div class="sf-title">AI 비전</div>
+        <div class="sf-desc">얼굴·손·물체를 인식해서 AI가 로봇을 움직여요</div>
+      </div>
+    </div> -->
+
+    <!-- Step 카드 -->
+    <div class="step-cards">
+      <a href="zumi_advanced_step1.html" class="step-card sc-1">
+        <div class="sc-step-label">STEP 01</div>
+        <div class="sc-emoji">🔗</div>
+        <div class="sc-title">연결하고 보기</div>
+        <div class="sc-keywords">WebSocket · 스트리밍 · canvas<br>카메라 필터 · 사진 저장</div>
+        <div class="sc-arrow">→</div>
+      </a>
+      <a href="zumi_advanced_step2.html" class="step-card sc-2">
+        <div class="sc-step-label">STEP 02</div>
+        <div class="sc-emoji">💡</div>
+        <div class="sc-title">표현하기</div>
+        <div class="sc-keywords">LED RGB · LED 패턴<br>사운드 · LCD 텍스트</div>
+        <div class="sc-arrow">→</div>
+      </a>
+      <a href="zumi_advanced_step3.html" class="step-card sc-3">
+        <div class="sc-step-label">STEP 03</div>
+        <div class="sc-emoji">🚗</div>
+        <div class="sc-title">움직이기</div>
+        <div class="sc-keywords">전진/후진 · 회전 · 거리 지정<br>라인트레이서 · 장애물 감지</div>
+        <div class="sc-arrow">→</div>
+      </a>
+      <a href="zumi_advanced_step4.html" class="step-card sc-4">
+        <div class="sc-step-label">STEP 04</div>
+        <div class="sc-emoji">🤖</div>
+        <div class="sc-title">AI 비전</div>
+        <div class="sc-keywords">MediaPipe · COCO-SSD<br>얼굴·손·표지판 · Teachable Machine</div>
+        <div class="sc-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="tip green">
+      <span class="tip-icon">🎯</span>
+      <span>각 단계에는 <strong style="color:var(--white)">AI에게 바로 복사해서 쓸 수 있는 요청 문장</strong>이 준비되어 있어요. 코드를 직접 짤 필요
+        없습니다!</span>
+    </div>
+  </div>
+
+
+
+
+  <hr class="divider">
+
+  <!-- ── 단계 소개 ── -->
+  <!-- <div class="section">
+  <div class="sec-label">PROJECT TOOLKIT</div>
+  <h2 class="sec-title">프로젝트를 만드는 <span class="hl">도구들</span></h2>
+  <p class="sec-desc">필요한 기능을 조합해 원하는 프로젝트를 만들어보세요.</p>
+
+  <div class="steps-overview">
+    <a href="zumi_advanced_step1.html" class="so-card so-1" style="text-decoration:none;color:inherit;display:block">
+      <div class="so-num">STEP 01</div>
+      <div class="so-icon">🔗</div>
+      <h3>연결하고 보기</h3>
+      <p>로봇과 연결하고 카메라 영상을 확인합니다.</p>
+    </a>
+    <a href="zumi_advanced_step2.html" class="so-card so-2" style="text-decoration:none;color:inherit;display:block">
+      <div class="so-num">STEP 02</div>
+      <div class="so-icon">💡</div>
+      <h3>표현하기</h3>
+      <p>LED, 표정, 사운드, LCD로 감정을 표현합니다.</p>
+    </a>
+    <a href="zumi_advanced_step3.html" class="so-card so-3" style="text-decoration:none;color:inherit;display:block">
+      <div class="so-num">STEP 03</div>
+      <div class="so-icon">🚗</div>
+      <h3>움직이기</h3>
+      <p>버튼, 키보드, 자동 이동으로 로봇을 조종합니다.</p>
+    </a>
+    <a href="zumi_advanced_step4.html" class="so-card so-4" style="text-decoration:none;color:inherit;display:block">
+      <div class="so-num">STEP 04</div>
+      <div class="so-icon">🤖</div>
+      <h3>AI 비전</h3>
+      <p>얼굴, 손, 물체를 인식해 스스로 반응합니다.</p>
+    </a>
+  </div>
+</div> -->
+
+
 
 
 
@@ -2109,6 +2787,220 @@
       // 💡 [수정 포인트] 접히고 열릴 때 하단 테두리 선을 다크 테마 선(#3f444e)과 완벽히 맞춥니다.
       btn.style.borderBottomColor = isOpen ? '#3f444e' : 'transparent';
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const msgsEl = document.getElementById('msgs');
+
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+    function scrollDown() {
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+
+    // ── 말풍선 생성 ──────────────────────────────────────
+    function createBubble(role) {
+      const row = document.createElement('div');
+      row.className = 'msg-row ' + role;
+
+      const av = document.createElement('div');
+      av.className = 'm-av ' + (role === 'ai' ? 'ai' : 'usr');
+      av.textContent = role === 'ai' ? '✦' : '나';
+
+      const bub = document.createElement('div');
+      bub.className = 'message-box';
+
+      row.appendChild(av);
+      row.appendChild(bub);
+      msgsEl.appendChild(row);
+      scrollDown();
+      return bub;
+    }
+
+    // ── 타이핑 애니메이션 ─────────────────────────────────
+    async function typeInto(el, text, speed) {
+      speed = speed || 25;
+      // 커서 span 추가
+      const caret = document.createElement('span');
+      caret.className = 'caret';
+      el.appendChild(caret);
+
+      for (let i = 0; i < text.length; i++) {
+        // \n → <br> 처리: textNode로 넣으면 pre-wrap이 처리해줌
+        el.insertBefore(document.createTextNode(text[i]), caret);
+        scrollDown();
+        await sleep(speed + Math.random() * 20);
+      }
+      caret.remove();
+    }
+
+    // ── 타이핑 인디케이터 ─────────────────────────────────
+    function showTyping() {
+      const row = document.createElement('div');
+      row.className = 'typing-row';
+      row.id = 'typingIndicator';
+
+      const av = document.createElement('div');
+      av.className = 'm-av ai';
+      av.textContent = '✦';
+
+      const dots = document.createElement('div');
+      dots.className = 'typing-dots';
+      dots.innerHTML = '<span></span><span></span><span></span>';
+
+      row.appendChild(av);
+      row.appendChild(dots);
+      msgsEl.appendChild(row);
+      scrollDown();
+    }
+    function hideTyping() {
+      const el = document.getElementById('typingIndicator');
+      if (el) el.remove();
+    }
+
+    const CODE_LINES = [
+      '<span class="t-tag">&lt;!DOCTYPE html&gt;</span>',
+      '<span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-str">"ko"</span><span class="t-tag">&gt;</span>',
+      '<span class="t-tag">&lt;head&gt;</span>',
+      '  <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-str">"UTF-8"</span> <span class="t-tag">/&gt;</span>',
+      '  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-str">"viewport"</span>',
+      '        <span class="t-attr">content</span>=<span class="t-str">"width=device-width, initial-scale=1.0"</span> <span class="t-tag">/&gt;</span>',
+      '  <span class="t-tag">&lt;title&gt;</span><span class="t-pl">CCTV 앱</span><span class="t-tag">&lt;/title&gt;</span>',
+      '  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-str">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-str">"style.css"</span> <span class="t-tag">/&gt;</span>',
+      '<span class="t-tag">&lt;/head&gt;</span>',
+      '<span class="t-tag">&lt;body&gt;</span>',
+      '  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-str">"container"</span><span class="t-tag">&gt;</span>',
+      '    <span class="t-tag">&lt;h1&gt;</span><span class="t-pl">필수 기능 목록</span><span class="t-tag">&lt;/h1&gt;</span>',
+      '    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-str">"input-area"</span><span class="t-tag">&gt;</span>',
+      '      <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-str">"text"</span> <span class="t-attr">id</span>=<span class="t-str">"savePhoto"</span>',
+      '             <span class="t-attr">placeholder</span>=<span class="t-str">"사진 저장"</span> <span class="t-tag">/&gt;</span>',
+      '      <span class="t-tag">&lt;button</span> <span class="t-attr">id</span>=<span class="t-str">"addBtn"</span><span class="t-tag">&gt;</span><span class="t-pl">저장</span><span class="t-tag">&lt;/button&gt;</span>',
+      '    <span class="t-tag">&lt;/div&gt;</span>',
+      '    <span class="t-tag">&lt;ul</span> <span class="t-attr">id</span>=<span class="t-str">"cctv"</span><span class="t-tag">&gt;&lt;/ul&gt;</span>',
+      '  <span class="t-tag">&lt;/div&gt;</span>',
+      '  <span class="t-tag">&lt;script</span> <span class="t-attr">src</span>=<span class="t-str">"script.js"</span><span class="t-tag">&gt;&lt;/script&gt;</span>',
+      '<span class="t-tag">&lt;/body&gt;</span>',
+      '<span class="t-tag">&lt;/html&gt;</span>',
+    ];
+
+    async function streamCodeBlock(parentBubble) {
+      // 코드블록 컨테이너
+      const block = document.createElement('div');
+      block.className = 'code-block';
+
+      const head = document.createElement('div');
+      head.className = 'code-head';
+      head.innerHTML = '<span class="code-fname">index.html</span><button class="code-copy-btn" onclick="doCopy(this)">📋 복사</button>';
+
+      const body = document.createElement('div');
+      body.className = 'code-body';
+
+      block.appendChild(head);
+      block.appendChild(body);
+      parentBubble.appendChild(block);
+      scrollDown();
+
+      // 커서
+      const caret = document.createElement('span');
+      caret.className = 'caret';
+      body.appendChild(caret);
+
+      for (let i = 0; i < CODE_LINES.length; i++) {
+        const lineEl = document.createElement('span');
+        lineEl.innerHTML = CODE_LINES[i] + '\n';
+        body.insertBefore(lineEl, caret);
+        scrollDown();
+        await sleep(55 + Math.random() * 30);
+      }
+      caret.remove();
+    }
+
+    function doCopy(btn) {
+      const text = btn.closest('.code-block').querySelector('.code-body').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ 복사됨';
+        setTimeout(() => { btn.textContent = '📋 복사'; }, 2000);
+      });
+    }
+
+    // ── 메인 시퀀스 ──────────────────────────────────────
+    async function startChat() {
+      msgsEl.innerHTML = '';
+
+      await sleep(500);
+
+      // 1) 유저 메시지
+      const u1 = createBubble('user');
+      await typeInto(u1,
+        '카메라로 실시간 영상을 모니터링 하는 \n보안 카메라를 만들어줘.\n화면에 촬영 시간을 표시하고, 사진도 저장 할 수 있어야 해.'
+        , 28);
+
+      await sleep(600);
+
+      // 2) AI 생각 중
+      showTyping();
+      // fc2.classList.add('lit');
+      await sleep(1500);
+      hideTyping();
+
+      // 3) AI 텍스트
+      const a1 = createBubble('ai');
+      await typeInto(a1, '알겠습니다! CCTV 웹 앱을 만들어드릴게요.\n먼저 기본적인 구조의 코드를 작성하겠습니다.', 16);
+
+      await sleep(250);
+
+      // 4) 코드 스트리밍 (같은 message-box 안에)
+      await streamCodeBlock(a1);
+
+      await sleep(350);
+
+      // 5) AI 후속
+      const a2 = createBubble('ai');
+      await typeInto(a2, '이제 스타일과 기능을 추가해볼게요. ↓', 20);
+
+      // fc3.classList.add('lit');
+      await sleep(700);
+
+      // 6) 유저 후속
+      const u2 = createBubble('user');
+      await typeInto(u2, '완성된 코드를 다운로드해서 브라우져에서 바로 사용할 수 있게 해줘!', 26);
+
+
+      await sleep(700);
+
+      // 7) AI 후속
+      const a3 = createBubble('ai');
+      await typeInto(a3, '바로 실행 가능한 형태의 코드를 드리겠습니다.\n다운로드하기', 26);
+
+
+    }
+
+    // 자동 시작
+    startChat();
+
+
+
+
+
+
+
+
+
+
+
 
   </script>
 </body>

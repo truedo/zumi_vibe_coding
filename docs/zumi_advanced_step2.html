@@ -654,11 +654,7 @@
     <h1>💡 표현하기</h1>
     <p>
 
-      LED, LCD, 스피커를 활용하여
-      정보를 표시하고 다양한 상황을 표현해봅니다.
-
-      버튼과 센서 입력을 활용하여
-      주미 AI가 주변 상황에 반응하도록 만들 수 있습니다.
+      LED, LCD, 스피커로 주미를 표현하게 만들고,<br>버튼과 센서로 반응하게 만들어봅니다.
 
       <!-- LED, LCD, 스피커를 활용하여<br>정보를 표시하고 상황을 표현해봅니다. -->
     </p>
@@ -857,6 +853,15 @@
   <div class="section" id="tab-api">
     <div class="sec-title">함수 레퍼런스 (AI에게 설명할 때 참고)</div>
 
+
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        주미 AI가 지원하는 기능 목록이에요.<br>
+        AI에게 프롬프트를 보낼 때 자동으로 포함되니까, 어떤 기능이 있는지 참고만 하면 됩니다.
+      </span>
+    </div>
+
     <!-- LED -->
     <div class="api-section">
       <h3 class="led">💡 LED 제어</h3>
@@ -965,21 +970,39 @@
 
     <div class="tip blue">
       <span class="tip-icon">💡</span>
-      <span>AI에게 요청할 때 함수 이름을 직접 말할 필요는 없어요. "LED를 빨갛게 깜빡이게 해줘" 처럼 자연스럽게 말하면 됩니다. 위 표는 AI가 정확한 코드를 만들 수 있도록 프롬프트에 포함할
+      <span>AI에게 요청할 때 함수 이름을 직접 말할 필요는 없어요.<br>"LED를 빨갛게 깜빡이게 해줘" 처럼 자연스럽게 말하면 됩니다.<br>위 표는 AI가 정확한 코드를 만들 수 있도록 프롬프트에
+        포함할
         정보예요.</span>
     </div>
 
-    <div style="margin-top:32px;text-align:center">
+    <!-- <div style="margin-top:32px;text-align:center">
       <button onclick="showTab('requests')"
         style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
         AI 요청 예시 →</button>
+    </div> -->
+
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="window.location.href='zumi_advanced_step3.html'"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">
+        다음: STEP 3 이동 →
+      </button>
     </div>
+
   </div>
 
   <!-- ④ AI 요청 예시 -->
   <div class="section" id="tab-requests">
     <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">
+      <!-- 클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요! -->
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        문장을 클릭하면 복사됩니다.<br>복사 후 <strong>Claude나 ChatGPT, Gemini</strong>에 붙여넣어 보세요!
+      </span>
+    </div>
+    </p>
 
     <!-- <div style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">💡 LED</div> -->
     <div class="request-list">
@@ -1250,7 +1273,7 @@
         <div class="pc-icon">📢</div>
         <h3>전광판 로봇</h3>
         <p>입력, 센서, 버튼 값을 받아
-        LCD에 다양한 메시지를 표시하는 정보 보드</p>
+          LCD에 다양한 메시지를 표시하는 정보 보드</p>
       </div>
       <div class="project-card pc-led">
         <div class="pc-icon">🎶</div>
@@ -1314,6 +1337,22 @@
       <span>프로젝트 이름을 그대로 AI에게 말해보세요. 예: <strong>"생일 축하 로봇을 만들어줘"</strong> — AI가 알아서 조합해줍니다!</span>
     </div>
 
+
+    <!-- <div style="margin-top:32px;text-align:center">
+      <button onclick="window.location.href='zumi_advanced_step3.html'"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">
+        다음: STEP 3 이동 →
+      </button>
+    </div> -->
+
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('api')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        API 레퍼런스 참고 예시 →</button>
+    </div>
+
+
     <!-- <div style="margin-top:32px;text-align:center">
     <button onclick="showTab('prompt')" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음: 프롬프트 가져가기 →</button>
   </div> -->
@@ -1322,10 +1361,19 @@
   <!-- ⑥ 프롬프트 -->
   <div class="section" id="tab-prompt">
     <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+
+    <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
       아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
       <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
-    </p>
+    </p> -->
+
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
+        노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
+      </span>
+    </div>
 
     <div class="prompt-box">
       <div class="prompt-topbar">
@@ -1479,13 +1527,13 @@ function sendText(text) {
 
     <div class="tip purple" style="margin-top:20px">
       <span class="tip-icon">💡</span>
-      <span>Step 1에서 이미 웹앱이 있다면 "기존 코드에 아래 기능을 추가해줘"라고 하고 기존 HTML 코드를 같이 붙여넣으면 됩니다!</span>
+      <span>Step 1에서 이미 웹앱이 있다면 <strong>"기존 코드에 아래 기능을 추가해줘"</strong>라고 하고 기존 HTML 코드를 같이 붙여넣으면 됩니다!</span>
     </div>
 
     <div class="tip green" style="margin-top:12px">
       <span class="tip-icon">🎯</span>
       <span>AI가 만들어준 HTML 파일을 <strong> 다운로드 혹은 저장 </strong> → <strong>Chrome으로 열기</strong> →
-        주미 IP 입력 → 완성!</span>
+        <strong>주미 IP 입력</strong> → 완성!</span>
     </div>
     <!--
   <div style="margin-top:32px;background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow)">
@@ -1505,6 +1553,9 @@ function sendText(text) {
         style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
         AI 요청 예시 →</button>
     </div>
+
+
+
   </div>
 
   <!-- 스텝 네비게이션 -->

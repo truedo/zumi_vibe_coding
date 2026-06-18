@@ -741,7 +741,9 @@
   <div class="top-banner">
     <div class="step-badge">STEP 3 of 4</div>
     <h1>🚗 움직이기</h1>
-    <p>로봇을 직접 조종하거나 원하는 방식으로 움직여봅니다.<br>버튼 제어부터 자동 이동, 라인트레이서까지!</p>
+    <p>
+      버튼으로 직접 조종하거나, 선을 따라가거나, <br>장애물 앞에서 멈추는 것까지 만들어봅니다.
+    </p>
   </div>
 
   <div class="nav-tabs">
@@ -757,8 +759,10 @@
   <div class="section active" id="tab-goal">
     <div class="goal-box">
       <h2>🎯 이번 단계의 목표</h2>
-      <p>웹앱 버튼으로 로봇을 <strong>직접 조종</strong>하거나, 거리/각도를 지정해 <strong>정밀하게 이동</strong>시킵니다.<br>
-        나아가 검은 선을 따라가거나, 장애물 앞에서 멈추는 <strong>자동 이동</strong>도 구현할 수 있습니다.</p>
+      <p>
+        주미를 움직여보세요.<br>
+        버튼으로 앞뒤 조종부터, 검은 선을 따라가거나 장애물 앞에서 스스로 멈추는 것도 만들 수 있어요.
+      </p>
     </div>
 
     <div class="sec-title">명령 한눈에 보기</div>
@@ -766,55 +770,46 @@
       <div class="move-visual">
         <div class="mv-row fwd">
           <div class="mv-icon">▲</div>
-          <div class="mv-label">전진 (무한)</div>
-          <div class="mv-cmd">CMD=29 · 버튼 누르는 동안 계속 전진</div>
+          <div class="mv-label">전진 후진 (무한)</div>
+          <div class="mv-cmd">원하는 동안 계속 전진, 후진</div>
         </div>
         <div class="mv-row fwd">
           <div class="mv-icon">📏</div>
-          <div class="mv-label">전진 (거리)</div>
-          <div class="mv-cmd">CMD=26 · 지정한 cm만큼만 전진 후 정지</div>
+          <div class="mv-label">전진 후진 (거리)</div>
+          <div class="mv-cmd">정한 거리만큼만 이동 후 정지 (빠르게, 느리게)</div>
         </div>
-        <div class="mv-row bwd">
-          <div class="mv-icon">▼</div>
-          <div class="mv-label">후진 (무한)</div>
-          <div class="mv-cmd">CMD=29·dir=1 · 버튼 누르는 동안 후진</div>
-        </div>
+
         <div class="mv-row trn">
-          <div class="mv-icon">↰</div>
-          <div class="mv-label">좌회전</div>
-          <div class="mv-cmd">CMD=52 · 지정 각도 빠른 회전 (deg÷5)</div>
+          <div class="mv-icon">↰↱</div>
+          <div class="mv-label">좌회전 우회전</div>
+          <div class="mv-cmd">지정한 각도만큼 회전 (빠르게, 느리게)</div>
         </div>
-        <div class="mv-row trn">
-          <div class="mv-icon">↱</div>
-          <div class="mv-label">우회전</div>
-          <div class="mv-cmd">CMD=53 · 지정 각도 빠른 회전 (deg÷5)</div>
-        </div>
+
         <div class="mv-row spc">
           <div class="mv-icon">〰</div>
           <div class="mv-label">라인 따라가기</div>
-          <div class="mv-cmd">CMD=101 · 검은 선을 따라 자동 이동</div>
+          <div class="mv-cmd">검은 선을 따라 자동 이동</div>
         </div>
         <div class="mv-row spc">
           <div class="mv-icon">🛑</div>
           <div class="mv-label">장애물 감지 정지</div>
-          <div class="mv-cmd">CMD=100 · 전방 센서가 감지되면 멈춤</div>
+          <div class="mv-cmd">전방에 뭔가 감지되면 멈춤</div>
         </div>
         <div class="mv-row stp">
           <div class="mv-icon">✕</div>
           <div class="mv-label">정지</div>
-          <div class="mv-cmd">CMD=25 · 즉시 정지</div>
+          <div class="mv-cmd">즉시 멈춤</div>
         </div>
       </div>
     </div>
 
     <div class="tip blue">
       <span class="tip-icon">💡</span>
-      <span>Step 1·2에서 만든 앱에 이동 기능을 <strong>추가</strong>할 수 있어요. "기존 코드에 방향 버튼을 추가해줘"라고 하면 됩니다!</span>
+      <span>Step 1·2에서 만든 앱에 이동 기능을 <strong>추가</strong>할 수 있어요. "기존 코드에 방향키 조종 기능을 추가해줘"라고 하면 됩니다!</span>
     </div>
     <div class="tip yellow">
       <span class="tip-icon">⚠️</span>
-      <span>전진/후진 버튼은 <strong>누르는 동안만</strong> 움직이고, 떼면 자동으로 정지하는 방식이 안전합니다. (mousedown → GO_INFINITE, mouseup →
-        STOP)</span>
+      <span>전진/후진 버튼은 <strong>누르는 동안만</strong> 움직이고, 떼면 자동으로 정지하는 방식이 안전해요.</span>
     </div>
 
     <div style="text-align:center"><button class="next-btn" onclick="showTab('features')">다음: 가능한 기능 보기 →</button></div>
@@ -1049,13 +1044,31 @@
       <span><strong>라인트레이서 센서값 팁:</strong> senBL/BR/BC 기본값 100을 사용하세요. 바닥 색상에 따라 50~150 사이로 조정이 필요할 수 있어요.</span>
     </div>
 
-    <div style="text-align:center"><button class="next-btn" onclick="showTab('requests')">다음: AI 요청 예시 →</button></div>
+    <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('requests')">다음: AI 요청 예시 →</button></div> -->
+
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="window.location.href='zumi_advanced_step4.html'"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">
+        다음: STEP 4 이동 →
+      </button>
+    </div>
+
+
   </div>
 
   <!-- ④ AI 요청 예시 -->
   <div class="section" id="tab-requests">
     <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">
+      <!-- 클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요! -->
+        <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        문장을 클릭하면 복사됩니다.<br>복사 후 <strong>Claude나 ChatGPT, Gemini</strong>에 붙여넣어 보세요!
+      </span>
+    </div>
+    </p>
 
     <!-- <div
       style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
@@ -1117,7 +1130,7 @@
 
       <h3>스스로 이동하기</h3>
 
-     <div class="request-item" onclick="copyRequest(this)">
+      <div class="request-item" onclick="copyRequest(this)">
         <div class="ri-icon">⏱️</div>
         <div class="ri-text">3초 전진하고 90도 회전을 반복하게 해줘</div>
         <div class="ri-copy">복사</div>
@@ -1274,7 +1287,8 @@
 
     <div class="tip blue" style="margin-top:20px">
       <span class="tip-icon">💡</span>
-      <span>정사각형, 삼각형처럼 <strong>도형 이동</strong>은 "앞으로 이동 + 회전" 명령을 여러 번 보내는 방식으로 구현할 수 있어요. AI에게 순서를 설명해주면 됩니다!</span>
+      <span>정사각형, 삼각형처럼 <strong>도형 이동</strong>은 "앞으로 이동 + 회전" 명령을 여러 번 보내는 방식으로 구현할 수 있어요.<br>
+        AI에게 순서를 설명해주면 됩니다!</span>
     </div>
 
     <div style="text-align:center"><button class="next-btn" onclick="showTab('projects')">다음: 프로젝트 아이디어 →</button></div>
@@ -1339,6 +1353,16 @@
       <span>프로젝트 이름을 그대로 말해보세요! 예: <strong>"라인트레이서 로봇을 만들어줘"</strong></span>
     </div>
 
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('api')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        API 레퍼런스 참고 예시 →</button>
+    </div>
+
+
+
+
     <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
 
   </div>
@@ -1346,10 +1370,19 @@
   <!-- ⑥ 프롬프트 -->
   <div class="section" id="tab-prompt">
     <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+
+    <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
       아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
       <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
-    </p>
+    </p> -->
+
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
+        노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
+      </span>
+    </div>
 
     <div class="prompt-box">
       <div class="prompt-topbar">
@@ -1388,74 +1421,74 @@
         speedR = Math.max(0, Math.min(250, speedR));
         dirL = Math.max(0, Math.min(2, dirL));
         dirR = Math.max(0, Math.min(2, dirR));
-        const dir = 0x40 | dirL | (dirR << 4); return buildPacket(32, speedL, speedR, dir); } <span class="pk">## 모터
-          제어(CMD_MOTOR_INFINITE) 캘리브레이션</span>
-          버튼이나 키보드 조종을 원하는 경우에 함께 적용
-          변수 4개 (기본값 40, 범위 0~250): calGoL, calGoR, calTurnL, calTurnR
+        const dir = 0x40 | dirL | (dirR << 4); return buildPacket(32, speedL, speedR, dir); }
 
-          전진: makeMotorPacket(2, calGoL, 1, calGoR)
-          후진: makeMotorPacket(1, calGoL, 2, calGoR)
-          좌회전: makeMotorPacket(1, calTurnL, 1, calTurnR)
-          우회전: makeMotorPacket(2, calTurnL, 2, calTurnR)
+        <span class="pk">## 모터 제어(CMD_MOTOR_INFINITE) 캘리브레이션</span>
+        버튼이나 키보드 조종을 원하는 경우에 함께 적용
+        변수 4개 (기본값 40, 범위 0~250): calGoL, calGoR, calTurnL, calTurnR
 
-          <span class="pk">## 입력 이벤트</span>
-          버튼이나 키보드 조종을 원하는 경우에 함께 적용
-          버튼: mousedown/touchstart → 이동, mouseup/mouseleave/touchend → 정지
-          키보드: keydown(repeat 무시, input 포커스 시 무시) → 이동, keyup(w/a/s/d) → 정지
-          키 매핑: w=전진 s=후진 a=좌회전 d=우회전 e=정지
+        전진: makeMotorPacket(2, calGoL, 1, calGoR)
+        후진: makeMotorPacket(1, calGoL, 2, calGoR)
+        좌회전: makeMotorPacket(1, calTurnL, 1, calTurnR)
+        우회전: makeMotorPacket(2, calTurnL, 2, calTurnR)
 
-          <span class="pk">## 정밀 이동</span>
-          전진 거리: CMD=26 params=[speed, dist, 0]
-          후진 거리: CMD=26 params=[speed, dist, 1]
-          좌회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 0]
-          우회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 1]
+        <span class="pk">## 입력 이벤트</span>
+        버튼이나 키보드 조종을 원하는 경우에 함께 적용
+        버튼: mousedown/touchstart → 이동, mouseup/mouseleave/touchend → 정지
+        키보드: keydown(repeat 무시, input 포커스 시 무시) → 이동, keyup(w/a/s/d) → 정지
+        키 매핑: w=전진 s=후진 a=좌회전 d=우회전 e=정지
 
-          <span class="pk">## 특수 이동</span>
-          라인트레이서 무한: CMD=30 params=[speed]
-          라인트레이서 시간: CMD=101 params=[speed, senBL, senBR, senBC, time×10] 기본 센서값=100
-          라인트레이서 거리: CMD=28 params=[speed, dist]
-          장애물 감지 정지: CMD=100 params=[speed, senL, senR] 기본 센서값=150
+        <span class="pk">## 정밀 이동</span>
+        전진 거리: CMD=26 params=[speed, dist, 0]
+        후진 거리: CMD=26 params=[speed, dist, 1]
+        좌회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 0]
+        우회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 1]
 
-
-          <span class="pk">## 전송 딜레이</span>
-          범위: 10~200ms
-          sendRaw() 내부에서 if (Date.now() - lastCmdTime < cmdDelay) return; CMD_STOP은 딜레이 무시하고 즉시 전송. <span class="pk">##
-            기본 UI (필수 포함)</span>
-            - IP 입력 + 연결 버튼 + 연결 상태 표시
-            - 방향 제어 (버튼 또는 키보드)
-            - 캘리브레이션 입력 4개
-            - 전송 딜레이 조절
-
-            <span class="pk">## 결과물 조건</span>
-            - HTML 파일 하나로 동작
-            - CSS/JavaScript 내부 포함
-            - Chrome에서 바로 실행 가능
-            - 별도 서버 불필요
+        <span class="pk">## 특수 이동</span>
+        라인트레이서 무한: CMD=30 params=[speed]
+        라인트레이서 시간: CMD=101 params=[speed, senBL, senBR, senBC, time×10] 기본 센서값=100
+        라인트레이서 거리: CMD=28 params=[speed, dist]
+        장애물 감지 정지: CMD=100 params=[speed, senL, senR] 기본 센서값=150
 
 
-            <span class="pp">## 추가로 만들어줄 기능:
-              (여기에 원하는 것을 직접 적어주세요)
+        <span class="pk">## 전송 딜레이</span>
+        범위: 10~200ms
+        sendRaw() 내부에서 if (Date.now() - lastCmdTime < cmdDelay) return; CMD_STOP은 딜레이 무시하고 즉시 전송. <span class="pk">##
+          기본 UI (필수 포함)</span>
+          - IP 입력 + 연결 버튼 + 연결 상태 표시
+          - 방향 제어 (버튼 또는 키보드)
+          - 캘리브레이션 입력 4개
+          - 전송 딜레이 조절
 
-              예시:
-              - WASD 키보드 + D-PAD 버튼 조종
-              - 속도 슬라이더 (1~3)
-              - 거리/각도 슬라이더로 정밀 이동
-              - 라인트레이서 시작/정지 버튼
-              - 정사각형 자동 이동 버튼
-            </span>
+          <span class="pk">## 결과물 조건</span>
+          - HTML 파일 하나로 동작
+          - CSS/JavaScript 내부 포함
+          - Chrome에서 바로 실행 가능
+          - 별도 서버 불필요
+
+
+          <span class="pp">## 추가로 만들어줄 기능:
+            (여기에 원하는 것을 직접 적어주세요)
+
+            예시:
+            - WASD 키보드 + D-PAD 버튼 조종
+            - 속도 슬라이더 (1~3)
+            - 거리/각도 슬라이더로 정밀 이동
+            - 라인트레이서 시작/정지 버튼
+            - 정사각형 자동 이동 버튼
+          </span>
 
       </div>
     </div>
 
     <div class="tip purple" style="margin-top:20px">
       <span class="tip-icon">💡</span>
-      <span>Step 1·2 앱이 있다면 "기존 HTML 코드에 이동 기능을 추가해줘"라고 하고 코드를 같이 붙여넣으세요!</span>
+      <span>Step 1·2 앱이 있다면 "기존 코드에 이동 기능을 추가해줘"라고 하고 코드를 같이 붙여넣으세요!</span>
     </div>
 
     <div class="tip red" style="margin-top:12px">
       <span class="tip-icon">⚠️</span>
-      <span><strong>안전 팁:</strong> 전진/후진은 반드시 <strong>mouseup/touchend에 STOP 명령</strong>을 붙여달라고 요청하세요. 버튼에서 손을 뗐을 때 자동으로
-        멈춰야 안전합니다!</span>
+      <span><strong>안전 팁:</strong> 언제라도 정지할 수 있도록 <strong>긴급 정지 버튼</strong>을 꼭 만들어주세요!</span>
     </div>
 
     <!-- <div style="margin-top:32px;background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow)">

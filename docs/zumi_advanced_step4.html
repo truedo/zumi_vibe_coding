@@ -885,7 +885,9 @@
   <div class="top-banner">
     <div class="step-badge">STEP 4 of 4</div>
     <h1>🚥 AI 비전</h1>
-    <p>카메라 영상을 활용하여 주변 환경을 인식합니다.<br>얼굴, 손, 마커, 물체, 스케치까지 AI가 직접 봅니다!</p>
+    <!-- <p>카메라 영상을 활용하여 주변 환경을 인식합니다.<br>얼굴, 손, 마커, 물체, 스케치까지 AI가 직접 봅니다!</p> -->
+ <p>카메라로 얼굴, 손, 물체를 인식해서 주미가 스스로 반응하게 만들어봅니다.</p>
+
   </div>
 
   <div class="nav-tabs">
@@ -901,10 +903,22 @@
   <div class="section active" id="tab-goal">
     <div class="goal-box">
       <h2>🎯 이번 단계의 목표</h2>
-      <p>카메라 영상에서 <strong>얼굴, 손동작, 마커, 물체, 스케치</strong>를 인식합니다.<br>
-        인식 결과를 바탕으로 LED를 켜거나, 로봇을 움직이는 <strong>AI 반응 로봇</strong>을 만들 수 있습니다.</p>
+      <!-- <p>카메라 영상에서 <strong>얼굴, 손동작, 마커, 물체, 스케치</strong>를 인식합니다.<br>
+        인식 결과를 바탕으로 LED를 켜거나, 로봇을 움직이는 <strong>AI 반응 로봇</strong>을 만들 수 있습니다.</p> -->
+       <p> 주미에 AI 눈을 달아보세요.<br>
+        얼굴, 손동작, 물체를 인식해서 로봇이 반응하고 움직이게 만들 수 있어요.</p>
     </div>
 
+
+<div class="sec-title" style="margin-top:28px">🧠 어떻게 동작하나요?</div>
+<div class="goal-box">
+ <p>
+예를 들어 주미의 카메라가 영상을 찍으면, 브라우저가 그 영상을 보면서 "얼굴이다", "손이다"를 판단해요. <br>
+판단이 되는 순간 주미에게 "LED 켜", "멈춰" 같은 명령이 바로 전달됩니다.<br>
+보고 → 판단하고 → 행동하는 것, 이게 AI 로봇이에요.</p>
+</div>
+
+<!--
     <div class="sec-title" style="margin-top:28px">AI 비전 처리 흐름</div>
     <div class="flow-box">
       <div class="flow-steps">
@@ -939,12 +953,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="tip red">
       <span class="tip-icon">⚠️</span>
       <!-- <span>Step 4는 <strong>MediaPipe/TF.js 같은 브라우저 AI</strong> 기능들이 포함됩니다.</span> -->
-      <span>Step 4의 AI 처리는 로봇이 아닌 <strong>브라우저에서 실행</strong> 됩니다. 기기 성능에 따라 처리 속도가 달라질 수 있어요.</span>
+      <span>AI 처리는 <strong>브라우저에서 실행</strong> 되요. 기기 성능에 따라 속도가 다를 수 있어요.</span>
     </div>
 
     <div style="text-align:center"><button class="next-btn" onclick="showTab('features')">다음: AI 기능 종류 보기 →</button>
@@ -968,28 +982,32 @@
       <div class="ai-card face">
         <div class="ai-icon">😊</div>
         <h3>얼굴 인식</h3>
-        <p>얼굴 감지, 위치/크기 확인, 이름 학습 후 특정 인물 인식</p>
+        <p>얼굴 감지<br> 위치/크기 확인<br> 이름 학습 후 특정 인물 인식</p>
       </div>
       <div class="ai-card gesture">
         <div class="ai-icon">✋</div>
-        <h3>손 제스처</h3>
-        <p>6가지 손 제스처 인식</p>
+        <h3>손 감지</h3>
+        <p>
+          제스처 인식<br>
+          손가락 위치<br>
+          손가락 펴짐 접힘
+        </p>
       </div>
       <div class="ai-card marker">
         <div class="ai-icon">🔲</div>
         <h3>마커 인식</h3>
-        <p>AprilTag 마커 ID 인식, 위치/크기/방향 확인</p>
+        <p>마커 카드 ID 인식<br> 위치/크기/방향 확인</p>
       </div>
       <div class="ai-card object">
         <div class="ai-icon">📸</div>
         <h3>QR 인식</h3>
-        <p>QR 코드 인식, 위치/크기/방향 확인</p>
+        <p>QR 코드 인식<br> 위치/크기/방향 확인</p>
       </div>
 
       <div class="ai-card object">
         <div class="ai-icon">🚦</div>
         <h3>물체/표지판 인식</h3>
-        <p>YOLO 기반, 신호등·정지 표지판 등 80여 종 감지</p>
+        <p>YOLO 기반<br> 신호등·정지 표지판 등 80여 종 감지</p>
       </div>
 
 
@@ -1040,7 +1058,7 @@
       </div>
     </div>
 
-    <div class="sec-title" style="margin-top:28px">YOLO 인식 가능 물체 (COCO 기준)</div>
+    <div class="sec-title" style="margin-top:28px">인식 가능 물체</div>
     <span class="badge">🚦 교통 / 표지판</span>
     <div class="gesture-grid">
       <div class="gesture-item">
@@ -1170,8 +1188,7 @@
 
     <div class="tip purple" style="margin-top:20px">
       <span class="tip-icon">💡</span>
-      <span><strong>브라우저 AI 대안:</strong> <strong>MediaPipe</strong>(얼굴·손), <strong>COCO-SSD</strong>(물체)를 CDN으로 불러와 HTML
-        안에서 바로 쓸 수 있어요.<br>
+      <span><strong> 바로 사용할 수 있어요.</strong><br>
         인터넷만 있으면 됩니다!</span>
     </div>
 
@@ -1188,9 +1205,14 @@
   <!-- ④ 요청 예시 -->
   <div class="section" id="tab-requests">
     <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p>
+    <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p> -->
 
-
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        문장을 클릭하면 복사됩니다.<br>복사 후 <strong>Claude나 ChatGPT, Gemini</strong>에 붙여넣어 보세요!
+      </span>
+    </div>
     <div
       style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
       😊 얼굴 인식</div>
@@ -1450,7 +1472,7 @@
 
     <div class="tip blue" style="margin-top:20px">
       <span class="tip-icon">💡</span>
-      <span>AI 기능 요청 시 <strong>"토글 버튼으로 ON/OFF 가능하게"</strong> 라고 꼭 추가하세요. 켜고 끌 수 있어야 편리하게 사용할 수 있습니다!</span>
+      <span>AI 기능 요청 시 <strong>"토글 버튼으로 기능을 ON/OFF 가능하게"</strong> 라고 꼭 추가하세요.<br>켜고 끌 수 있어야 편리하게 사용할 수 있습니다!</span>
     </div>
 
     <div style="text-align:center"><button class="next-btn" onclick="showTab('projects')">다음: 프로젝트 아이디어 →</button></div>
@@ -1552,9 +1574,35 @@
 
 
     <div class="tip green" style="margin-top:24px">
-      <span class="tip-icon">🚀</span>
-      <span>브라우저 AI(MediaPipe, COCO-SSD...)를 사용하면 얼굴 추적 로봇, 손동작 리모컨, 표지판 인식 로봇을 HTML 파일 하나로 만들 수 있어요!</span>
+      <span class="tip-icon">🎉</span>
+      <!-- <span>브라우저 AI(MediaPipe, COCO-SSD...)를 사용하면 얼굴 추적 로봇, 손동작 리모컨, 표지판 인식 로봇을 HTML 파일 하나로 만들 수 있어요!</span> -->
+
+    <span>
+    여기까지 왔군요!<br><br>
+    연결하고, 표현하고, 움직이고, AI까지 주미를 다루는 기본적인 건 다 해봤어요.<br>
+    이제 가이드는 여기까지에요.<br>
+    <strong>다음은 여러분 차례입니다.<br>
+
+    <!-- "주미가 사람을 보면 인사하게 하고 싶어"<br>
+
+    "버튼을 누르면 춤을 추게 하고 싶어"<br>
+
+    "선을 따라가다가 얼굴을 보면 멈추게 하고 싶어"<br><br> -->
+
+    떠오르는 게 있다면 지금 바로 AI에게 말해보세요.</strong>
+
+    <!-- 막히면 다시 돌아와도 됩니다.<br> -->
+<!--
+    어떤가요? <br>
+    예시 문장 3개는 지금까지 배운 기능을 자연스럽게 조합한 것들이에요. "아 이런 것도 되겠다"를 끌어내는 역할이에요.<br> -->
+    </span>
+
+
+
     </div>
+
+
+
 
     <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
   </div>
@@ -1562,10 +1610,19 @@
   <!-- ⑥ 프롬프트 -->
   <div class="section" id="tab-prompt">
     <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
+        노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
+      </span>
+    </div>
+
+    <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
       아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
       <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
-    </p>
+    </p> -->
     <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
     두 가지 방식의 프롬프트가 있어요. Python 없이 바로 쓰고 싶다면 <strong>브라우저 AI 방식</strong>을 추천합니다!
   </p> -->
@@ -1692,7 +1749,7 @@
 
     <div class="tip green" style="margin-top:12px">
       <span class="tip-icon">🎯</span>
-      <span>Step 1~3에서 만든 앱에 AI 기능을 추가하고 싶다면 기존 HTML 코드를 붙여넣고 "이 코드에 얼굴 추적 기능을 추가해줘"라고 하면 됩니다!</span>
+      <span>Step 1~3에서 만든 앱에 AI 기능을 추가하고 싶다면 "기존 코드에 얼굴 추적 기능을 추가해줘"라고 하면 됩니다!</span>
     </div>
     <div style="margin-top:32px;text-align:center">
       <button onclick="showTab('requests')"
@@ -1751,7 +1808,8 @@
       <div style="width:28px;height:4px;border-radius:2px;background:#1e1035"></div>
       <div style="width:28px;height:4px;border-radius:2px;background:#8b5cf6"></div>
     </div>
-    <a href="zumi_advanced_intro.html"
+    <!-- <a href="zumi_advanced_intro.html" -->
+      <a href="zumi_advanced_step1.html"
       style="color:#8b5cf6;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #8b5cf6;border-radius:100px;transition:all .2s"
       onmouseover="this.style.background='#8b5cf6';this.style.color='#fff'"
       onmouseout="this.style.background='transparent';this.style.color='#8b5cf6'">🏁 처음으로</a>

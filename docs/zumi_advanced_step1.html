@@ -501,6 +501,206 @@
     .toast.show {
       opacity: 1;
     }
+
+
+
+
+
+    /* 최상단 래퍼 및 레이아웃 */
+    .zumi-accordion-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 16px;
+      font-family: 'Noto Sans KR', sans-serif;
+      text-align: left;
+    }
+
+    .zumi-accordion-wrapper {
+      /* margin: 0 0 0 60px;
+      text-align: left;
+      width: 300px; 원하는 너비값 */
+      text-align: left;
+      width: 100%;
+      /*너비를 고정하거나 max-width 사용*/
+      margin: 0 auto;
+      /* 좌우 여백을 자동으로 설정하여 가운데 정렬 */
+    }
+
+    /* 아코디언 토글 버튼 (다크 톤) */
+    .zumi-btn-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff8f0;
+      /* 짙은 차콜 배경 */
+      border: 2px solid #fed7aa;
+      /* 은은한 외곽선 */
+      border-radius: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .zumi-btn-title-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .zumi-btn-main-text {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #92400e;
+      /* 밝은 회백색 */
+    }
+
+    .zumi-btn-sub-text {
+      font-size: 0.75rem;
+      color: #b45309;
+      /* 차분한 톤 다운 회색 */
+      margin-top: 2px;
+    }
+
+    .zumi-arrow {
+      color: #b45309;
+      font-size: 1rem;
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+
+    /* 아코디언 바디 본문 (다크 톤) */
+    .zumi-body {
+      display: none;
+      background: #fff;
+      /* 버튼보다 살짝 더 어두운 배경 */
+      border: 2px solid #fed7aa;
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+    }
+
+    /* 내부 섹션 및 일반 행 (다크 톤) */
+    .zumi-section-intro {
+      padding: 20px 22px;
+      background: #ffffff;
+      /* 개요 섹션 포인트 배경 */
+      border-bottom: 1px solid #fde68a;
+    }
+
+    .zumi-step-row {
+      padding: 20px 22px;
+      border-bottom: 1px solid #fde68a;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    /* 경고 상자 및 하이라이트 박스들 (다크 톤 매칭) */
+    .zumi-alert-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #fef3c7;
+      /* 톤 다운된 다크 옐로우/브라운 경고창 */
+      /* border: 1px solid #4d3d25; */
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: #92400e;
+      /* 경고 텍스트 황색 */
+    }
+
+    .zumi-code-display {
+      background: #111316;
+      /* 터미널 느낌의 완전 어두운 배경 */
+      border: 1px solid #FED7AA;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      color: #34d399;
+      /* 터미널 안내 코드색 (녹색 톤) */
+    }
+
+    .zumi-method-box {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    /* 방법 1 & 방법 2 다크 컬러셋 */
+    .zumi-method-1 {
+      background: #f8faff;
+      border: 1px solid #e2e8f8;
+    }
+
+    .zumi-method-2 {
+      background: #f0fdf4;
+      border: 1px solid #a7f3d0;
+    }
+
+    .zumi-info-box {
+      background: #fff5f3;
+      border-bottom: 1px solid #FED7AA;
+    }
+
+    .zumi-success-box {
+      background: #f0fdf4;
+    }
+
+    /* 숫자 배지 (다크 모드에서 가시성 확보) */
+    .zumi-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ea580c;
+      /* 주황색 포인트를 살짝 묵직하게 조절 */
+      color: #fff !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* 내부 기본 텍스트 및 제목 색상 강제 */
+    .zumi-body-content {
+      color: #e2e8f0 !important;
+      /* 기본 글자색을 밝은 회백색으로 기강 잡기 */
+    }
+
+    .zumi-step-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      color: #000000 !important;
+      /* 가독성을 위해 제목은 완전 화이트에 가깝게 */
+    }
+
+    .zumi-step-desc {
+      padding-left: 18px;
+      font-size: 0.8rem;
+      color: #6b7280;
+      /* 리스트 서브 텍스트는 부드러운 회색 */
+      line-height: 2;
+    }
+
+    .zumi-step-desc strong {
+      color: #000000 !important;
+    }
+
+    .zumi-image-placeholder img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      margin: 8px 0;
+      border: 1px solid #FED7AA;
+      /* 이미지 경계선 추가 */
+    }
   </style>
 </head>
 
@@ -510,7 +710,7 @@
   <div class="top-banner">
     <div class="step-badge">STEP 1 of 4</div>
     <h1>🔗 연결하고 보기</h1>
-    <p>주미 AI와 연결하고 카메라 화면을 확인해봅니다.<br>카메라 영상을 활용하여 다양한 기능을 추가할 수 있습니다.</p>
+    <p>주미 AI와 연결하고 카메라 화면을 띄워봅시다.<br>모든 기능의 시작이에요.</p>
   </div>
 
   <!-- 내비 탭 -->
@@ -527,7 +727,7 @@
   <div class="section active" id="tab-goal">
     <div class="goal-box">
       <h2>🎯 이번 단계의 목표</h2>
-      <p>주미 AI와 <strong>WebSocket</strong>으로 연결하고, 카메라 영상을 브라우저에서 실시간으로 확인합니다.<br>
+      <p>주미 AI와 <strong>Wi-Fi</strong>로 연결하고, 카메라 영상을 브라우저에서 실시간으로 확인합니다.<br>
         이 단계를 마치면 주미 AI의 화면을 보고, 사진을 찍고, 화면 효과를 적용할 수 있습니다.</p>
     </div>
 
@@ -535,44 +735,212 @@
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px">
       <div style="background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);text-align:center">
-        <div style="font-size:2rem;margin-bottom:10px">💻</div>
-        <div style="font-weight:700;margin-bottom:6px">브라우저</div>
-        <div style="font-size:.82rem;color:var(--dim)">HTML 파일을 열면<br>바로 웹앱이 실행됩니다</div>
+
+        <img src="zumi_ai.png" alt="주미 이미지" style="width: 25%; height: auto;">
+        <div style="font-weight:700;margin-bottom:6px">주미 AI</div>
+        <div style="font-size:.82rem;color:var(--dim)">주미 AI가 카메라 영상을<br> 전송합니다</div>
       </div>
       <div
         style="background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
         <div style="font-size:1.4rem;color:var(--accent);font-family:'JetBrains Mono',monospace;font-weight:700">
-          ↔<br>WebSocket</div>
+          ↔<br>Wi-Fi</div>
         <div style="font-size:.75rem;color:var(--dim);margin-top:6px">같은 Wi-Fi 안에서<br>실시간 통신</div>
       </div>
       <div style="background:var(--white);border-radius:14px;padding:22px;box-shadow:var(--shadow);text-align:center">
-        <!-- <div style="font-size:2rem;margin-bottom:10px">🤖</div> -->
-        <img src="zumi_ai.png" alt="주미 이미지" style="width: 25%; height: auto;">
-        <div style="font-weight:700;margin-bottom:6px">주미 AI</div>
-        <div style="font-size:.82rem;color:var(--dim)">주미 AI가 카메라 영상을<br> 전송합니다</div>
+        <div style="font-size:2rem;margin-bottom:10px">💻</div>
+        <div style="font-weight:700;margin-bottom:6px">브라우저</div>
+        <div style="font-size:.82rem;color:var(--dim)">HTML 파일을 열면<br>바로 웹앱이 실행됩니다</div>
       </div>
     </div>
 
     <div class="tip blue" style="margin-top:24px">
       <span class="tip-icon">💡</span>
-      <span><strong>서버가 필요 없어요!</strong> HTML 파일 하나를 브라우저에서 열기만 하면 됩니다. Python이나 Node.js 설치 없이도 바로 동작합니다.</span>
+      <span><strong>서버가 필요 없어요!</strong> HTML 파일 하나를 브라우저에서 열기만 하면 됩니다. 설치 없이도 바로 동작합니다.</span>
     </div>
     <div class="tip green">
       <span class="tip-icon">✅</span>
-      <span><strong>PC, Chromebook, Android</strong> 모두 Chrome 브라우저에서 동작합니다. 주미와 같은 Wi-Fi에 연결되어 있어야 해요.</span>
+      <span><strong>PC, Chromebook, Android</strong> 모두 Chrome 브라우저에서 동작합니다. <br>주미와 같은 Wi-Fi에 연결되어 있어야 해요.</span>
     </div>
 
     <div style="margin-top:20px;background:var(--white);border-radius:14px;padding:20px;box-shadow:var(--shadow)">
       <div style="font-weight:700;margin-bottom:12px;font-size:.9rem">🔍 주미 IP 주소는 어떻게 찾나요?</div>
       <div style="display:flex;flex-direction:column;gap:8px;font-size:.82rem;color:var(--dim);line-height:1.8">
-        <div><strong style="color:var(--text)">방법 1.</strong> 주미 LCD 화면에 IP가 표시됩니다. 부팅 후 잠시 기다리면 나타나요.</div>
-        <div><strong style="color:var(--text)">방법 2.</strong> 선생님께 문의하거나, 같은 Wi-Fi 공유기 관리 페이지에서 연결된 기기 목록을 확인하세요.</div>
+        <div><strong style="color:var(--text)">주미 화면 확인<br> </strong> 주미를 켜면 LCD 화면에 IP가 표시돼요. 예) 192.168.0.63
+        </div>
         <div
           style="margin-top:4px;padding:10px 14px;background:#f0f4ff;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent)">
           예: 192.168.0.63 &nbsp;·&nbsp; 192.168.1.100 &nbsp;·&nbsp; 10.0.0.5
         </div>
       </div>
     </div>
+
+
+
+
+
+    <br>
+    <div class="zumi-accordion-wrapper">
+
+      <button onclick="toggleWifi(this)" class="zumi-btn-toggle">
+        <div class="zumi-btn-title-area">
+          <span style="font-size:1.1rem">🔧</span>
+          <div>
+            <div class="zumi-btn-main-text">⚠️ 잠시만요, IP 주소를 모르신다면? Wi-Fi 설정이 먼저 필요해요</div>
+            <div class="zumi-btn-sub-text">주미 AI를 처음 쓰거나 Wi-Fi 설정을 안 하셨다면 먼저 확인하세요</div>
+          </div>
+        </div>
+        <span class="wifi-arrow zumi-arrow">▼</span>
+      </button>
+
+      <div class="wifi-body zumi-body">
+
+        <div class="zumi-section-intro">
+          <div style="font-size:.82rem; color:#92400e; line-height:1.8">
+            주미가 웹앱과 통신하려면 <strong style="color:#92400e !important">같은 Wi-Fi 네트워크에 연결</strong>되어 있어야 합니다.<br>
+            아래 순서대로 설정하면 주미가 IP 주소를 받아 연결 준비가 완료됩니다.
+          </div>
+          <div class="zumi-alert-box">
+            ⚠️ <strong>반드시 2.4GHz Wi-Fi를 사용하세요.</strong> 5GHz는 지원하지 않습니다.
+          </div>
+        </div>
+
+        <div class="zumi-body-content">
+
+          <div class="zumi-step-row">
+            <div class="zumi-badge">0</div>
+            <div>
+              <div class="zumi-step-title">주미 무선 설정 메뉴 진입</div>
+              <div class="zumi-image-placeholder">
+                <img src="wireless_1.png" alt="Zumi 이미지">
+              </div>
+              <ol class="zumi-step-desc">
+                <li>주미 전원을 켜고 부팅이 완료될 때까지 기다립니다.</li>
+                <li>버튼으로 <strong>[4. 무선]</strong> 메뉴로 들어갑니다.</li>
+                <li><strong>[4-5. 무선설정(설정)]</strong> → <strong>[2. Wi-Fi 설정]</strong>을 실행합니다.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="zumi-step-row">
+            <div class="zumi-badge">1</div>
+            <div>
+              <div class="zumi-step-title">Wi-Fi QR 코드 생성</div>
+              <div class="zumi-image-placeholder">
+                <img src="wireless_2.png" alt="QR 코드 생성기 화면">
+              </div>
+              <ol class="zumi-step-desc">
+                <li>주미 화면에 나타난 QR을 스마트폰 카메라로 스캔합니다.</li>
+                <li><strong>WiFi QR Code Generator</strong> 페이지가 열립니다.</li>
+                <li>카메라가 없다면 <a href="https://truedo.github.io/QR_generator/" target="_blank"
+                    style="color:#f97316; font-weight:700;">직접 링크</a>를 눌러 열 수 있어요.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="zumi-step-row">
+            <div class="zumi-badge">2</div>
+            <div>
+              <div class="zumi-step-title">Wi-Fi QR 코드 생성</div>
+              <div class="zumi-image-placeholder">
+                <img src="wireless_3.png" alt="연결할 와이파이 정보 입력">
+              </div>
+              <ol class="zumi-step-desc">
+                <li>연결할 공유기의 <strong>SSID(이름)</strong>와 <strong>비밀번호</strong>를 입력 후 QR 생성합니다.</li>
+                <li>하단의 [QR 코드 생성] 버튼을 클릭하여 와이파이 정보 QR을 화면에 띄웁니다.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="zumi-step-row">
+            <div class="zumi-badge">3</div>
+            <div>
+              <div class="zumi-step-title">Zumi 카메라로 QR 코드 스캔</div>
+              <div class="zumi-image-placeholder">
+                <img src="wireless_4.png" alt="연결할 와이파이 정보 입력">
+              </div>
+              <ol class="zumi-step-desc">
+                <li>주미의 노란 버튼으로 단계를 넘기다가 <strong>"3단계: QR 준비 완료"</strong> 화면에서 녹색 버튼을 누릅니다.</li>
+                <li>화면에 <strong>scanning...</strong>이 표시되면 기기의 QR 화면을 카메라 앞 약 10~20cm에 위치시킵니다.</li>
+                <li>인식 성공 시 재부팅 후 Wi-Fi 연결이 완료됩니다.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="zumi-step-row">
+            <div class="zumi-badge">4</div>
+            <div>
+              <div class="zumi-step-title">와이파이 설정 완료</div>
+              <div class="zumi-image-placeholder">
+                <img src="wireless_5.png" alt="Zumi 카메라로 QR 코드 스캔">
+              </div>
+              <div style="font-size:.8rem; line-height:2">
+                <p style="color:#6b7280; margin:0">QR 코드가 성공적으로 인식되면 주미의 디스플레이에 아래와 같은 안내가 출력됩니다.</p><br>
+                <div class="zumi-code-display">
+                  와이파이 연결 성공<br>
+                  192.168.x.xxx<br>
+                  설정이 완료 되었습니다
+                </div><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="zumi-section-intro">
+            <div class="zumi-step-title" style="margin-bottom:12px">🚀 연결 후 실행 방법</div>
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div class="zumi-method-box zumi-method-1">
+                <div style="font-weight:700; margin-bottom:4px; color:#4f46e5;">방법 1. 메뉴 선택</div>
+                <div class="zumi-image-placeholder">
+                  <img src="wireless_6.png" alt="메뉴 내 파이썬 공유기 선택">
+                </div>
+                <div style="color:#111827">전원 켜기 → [4. 무선] → [4-2. 파이썬 공유기] 실행</div>
+              </div>
+              <div class="zumi-method-box zumi-method-2">
+                <div style="font-weight:700; margin-bottom:4px; color:#059669;">방법 2. 퀵 부팅 ⭐추천</div>
+                <div class="zumi-image-placeholder">
+                  <img src="wireless_7.png" alt="Zumi 초록색 버튼 위치">
+                </div>
+                <div style="color:#111827"><strong>초록 버튼을 누른 채로</strong> 전원을 켜면 자동으로 파이썬 공유기가 실행됩니다.</div>
+              </div>
+            </div>
+
+            <!-- 파이썬 공유기 -->
+            <div class="zumi-section-intro zumi-info-box">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px">
+                <span style="font-size:1.2rem">✅</span>
+                <div style="font-weight:700; font-size:.88rem; color:#dc2626;">파이썬 공유기?</div>
+              </div>
+              <div style="font-size:.8rem; color:#6b7280; line-height:1.8">
+                <p style="margin:4px 0">주미가 공유기로 IP를 할당받는 모드는 <strong>파이썬 공유기</strong>입니다.</p>
+                <p style="margin:4px 0">카메라 스트리밍 및 주미와의 무선 데이터 통신(파이썬 등)에 사용됩니다.</p>
+                <p style="margin:4px 0">외부 프로그램에서 공유기 IP로 주미를 연동할 때도 이 모드를 실행해 주세요.</p>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <div class="zumi-section-intro zumi-success-box">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px">
+              <span style="font-size:1.2rem">✅</span>
+              <div style="font-weight:700; font-size:.88rem; color:#34d399;">연결 완료 확인</div>
+            </div>
+            <div class="zumi-image-placeholder">
+              <img src="wireless_8.png" alt="최종 연결 확인">
+            </div>
+            <div style="font-size:.8rem; color:#6b7280; line-height:1.8">
+              주미 화면 좌측 상단에 <strong style="color:#111827 !important">IP 주소(예: 192.168.0.59)</strong>가 표시되면 준비 완료입니다.<br>
+              이 IP 주소를 웹앱 입력창에 입력하면 연결이 됩니다!
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
 
     <div style="margin-top:32px;text-align:center">
       <button onclick="showTab('features')"
@@ -586,17 +954,17 @@
     <div class="sec-title">STEP 1 에서 만들 수 있는 기능들</div>
 
 
-  <!-- 핵심 기능 안내 -->
-  <div class="tip blue" style="margin-bottom:24px">
-    <span class="tip-icon">⭐</span>
-    <span>
+    <!-- 핵심 기능 안내 -->
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
         원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.
-    </span>
-  </div>
+      </span>
+    </div>
 
 
-  <!-- 핵심 기능 안내 -->
-  <!-- <div class="tip blue" style="margin-bottom:24px">
+    <!-- 핵심 기능 안내 -->
+    <!-- <div class="tip blue" style="margin-bottom:24px">
     <span class="tip-icon">⭐</span>
     <span>
       <strong>STEP 1 핵심 목표</strong><br>
@@ -692,7 +1060,16 @@
   <!-- ③ AI 요청 예시 -->
   <div class="section" id="tab-requests">
     <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">문장을 클릭하면 복사됩니다. 복사 후 Claude나 ChatGPT에 붙여넣어 보세요!</p>
+    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">
+      <!-- 문장을 클릭하면 복사됩니다. 복사 후 Claude나 ChatGPT에 붙여넣어 보세요! -->
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        문장을 클릭하면 복사됩니다.<br>복사 후 <strong>Claude나 ChatGPT, Gemini</strong>에 붙여넣어 보세요!
+      </span>
+    </div>
+
+    </p>
 
     <div class="request-list">
       <h3>디자인 바꾸기</h3>
@@ -777,7 +1154,7 @@
         <div class="ri-copy">복사</div>
       </div>
 
-  <!-- ✨ -->
+      <!-- ✨ -->
       <h3>편의성 추가하기</h3>
 
       <div class="request-item" onclick="copyRequest(this)">
@@ -843,14 +1220,14 @@
     </div>
 
 
-    <div class="tip blue" style="margin-top:24px">
-    <span class="tip-icon">🚀</span>
-    <span>
-      한 번에 완벽하게 만들 필요는 없습니다.<br>
-      결과를 보고 <strong>"더 크게"</strong>,
-      <strong>"더 깔끔하게"</strong>,
-      <strong>"모바일 앱처럼"</strong> 같이 계속 요청해보세요.
-    </span>
+    <div class="tip green" style="margin-top:24px">
+      <span class="tip-icon">🚀</span>
+      <span>
+        한 번에 완벽하게 만들 필요는 없습니다.<br>
+        결과를 보고 <strong>"더 크게"</strong>,
+        <strong>"더 깔끔하게"</strong>,
+        <strong>"모바일 앱처럼"</strong> 같이 계속 요청해보세요.
+      </span>
     </div>
 
 
@@ -898,21 +1275,34 @@
       <span>프로젝트 이름을 그대로 AI에게 말해보세요. 예: <strong>"CCTV 모니터 앱을 만들어줘"</strong> — AI가 필요한 기능을 조합해서 만들어줍니다!</span>
     </div>
 
-    <!-- <div style="margin-top:32px;text-align:center">
-      <button onclick="showTab('prompt')"
-        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
-        프롬프트 가져가기 →</button>
-    </div> -->
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="window.location.href='zumi_advanced_step2.html'"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">
+        다음: STEP 2 이동 →
+      </button>
+    </div>
   </div>
+
 
   <!-- ⑤ 프롬프트 -->
   <div class="section" id="tab-prompt">
     <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
 
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
+    <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px;line-height:1.8">
       아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
       노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
-    </p>
+    </p> -->
+
+
+    <div class="tip blue" style="margin-bottom:24px">
+      <span class="tip-icon">⭐</span>
+      <span>
+        아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
+        노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
+      </span>
+    </div>
+
 
     <div class="prompt-box">
       <div class="prompt-topbar">
@@ -966,15 +1356,17 @@
 
     <div class="tip blue" style="margin-top:20px">
       <span class="tip-icon">💡</span>
-      <span>프롬프트를 복사한 다음, 노란 부분을 원하는 내용으로 바꿔서 AI에게 보내보세요. 결과물이 마음에 안 들면 "더 크게", "모바일 스타일로", "어둡게" 같이 추가 요청도 됩니다!</span>
+      <span>프롬프트를 복사한 다음, 노란 부분을 원하는 내용으로 바꿔서 AI에게 보내보세요.<br> 결과물이 마음에 안 들면 "더 크게", "모바일 스타일로", "어둡게" 같이 추가 요청도
+        됩니다!</span>
     </div>
 
     <div class="tip green" style="margin-top:12px">
       <span class="tip-icon">🎯</span>
       <span>AI가 만들어준 HTML 파일을 <strong> 다운로드 혹은 저장 </strong> → <strong>Chrome으로 열기</strong> →
-        주미 IP 입력 → 완성!</span>
+        <strong>주미 IP 입력</strong> → 완성!</span>
     </div>
 
+    <!--
     <div style="margin-top:32px;background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow)">
       <div style="font-weight:700;margin-bottom:16px;font-size:.95rem">🗂️ 실제 사용 순서</div>
       <ol style="padding-left:20px;display:flex;flex-direction:column;gap:10px">
@@ -983,24 +1375,94 @@
         <li style="font-size:.88rem;color:var(--dim)">노란 부분에 <strong style="color:var(--text)">원하는 기능</strong> 작성 후 전송
         </li>
         <li style="font-size:.88rem;color:var(--dim)">AI가 만들어준 HTML 파일을 <strong style="color:var(--text)">다운로드하거나 저장
-            </strong></li>
+          </strong></li>
         <li style="font-size:.88rem;color:var(--dim)"><strong style="color:var(--text)">Chrome 브라우저</strong>로 파일 열기</li>
         <li style="font-size:.88rem;color:var(--dim)">주미 IP 입력 → CONNECT → 영상 확인! 🎉</li>
       </ol>
     </div>
-
+ -->
 
     <div class="tip green" style="margin-top:24px">
-    <span class="tip-icon">🚀</span>
-    <span>
-      결과가 마음에 들지 않으면 계속 요청해보세요.<br>
-      바이브 코딩은 한 번에 완성하는 것이 아니라 AI와 대화하며 발전시키는 과정입니다.
-    </span>
+      <span class="tip-icon">🚀</span>
+      <span>
+        결과가 마음에 안 들면 계속 요청해보세요.<br>
+        AI와 주고받으면서 점점 완성되는 게 바이브 코딩이에요.
+      </span>
+    </div>
+
+
+
+
+    <!-- <div class="tip yellow" style="margin-top:24px; padding:20px; border-radius:12px; background-color:#eef6ff; border:1px solid #d0e7ff; line-height:1.6;">
+  <span class="tip-icon" style="margin-right:8px;">❗</span>
+  <strong>바이브 코딩 방법을 잘 모르겠어요</strong>
+  <a href="zumi_advanced_intro.html#getstarted"
+     style="color:var(--accent); font-weight:700; text-decoration:underline; text-underline-offset:4px;">
+     시작 방법으로 이동하기 →
+  </a>
+</div> -->
+
+
+    <!--
+<div class="tip blue" style="margin-top:24px; padding:20px; border-radius:12px; background-color:#eef6ff; border:1px solid #d0e7ff; display:flex; flex-direction:column; align-items:center; text-align:center;">
+
+  <div style="margin-bottom:16px; line-height:1.5;">
+    <span class="tip-icon" style="font-size:1.2rem; margin-right:8px;">💡</span>
+    <strong>방법을 잘 모르겠다면?</strong> 시작 방법을 참고해주세요.
   </div>
-  <div style="margin-top:32px;text-align:center">
-    <button onclick="showTab('requests')" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음: AI 요청 예시 →</button>
+
+  <a href="zumi_advanced_intro.html#getstarted"
+     style="background:var(--accent); color:#fff; padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:700; display:inline-block; transition:0.2s;">
+     시작 방법으로 이동 →
+  </a>
+</div> -->
+
+
+
+    <div class="tip yellow" style="margin-top:24px">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="tip-icon">❓</span>
+        <span><strong>바이브 코딩 방법을 잘 모르겠다면?</strong> <br>시작 방법을 참고해주세요.</span>
+      </div>
+
+      <a href="zumi_advanced_intro.html#getstarted" class="btn-move">
+        시작 방법 확인하기 →
+      </a>
+
+    </div>
+
+
+
+    <!-- <div class="tip blue" style="margin-top:24px">
+      <span class="tip-icon">💡</span>
+      <span><strong>방법을 잘 모르겠다면?</strong> 시작 방법을 참고해주세요.</span>
+
+      <div style="margin-top:32px;text-align:center">
+        <button onclick="window.location.href='zumi_advanced_intro.html#getstarted'"
+          style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">
+          다음: STEP 2로 이동 →
+        </button>
+      </div>
+
+    </div> -->
+
+
+
+
+
+
+
+    <div style="margin-top:32px;text-align:center">
+      <button onclick="showTab('requests')"
+        style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
+        AI 요청 예시 →</button>
+    </div>
+
   </div>
-  </div>
+
+
+
+
 
 
 
@@ -1073,6 +1535,29 @@
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2000);
     }
+
+
+
+
+    function toggleWifi(btn) {
+      const body = btn.nextElementSibling;
+      const arrow = btn.querySelector('.wifi-arrow');
+
+      // 현재 열려(block)있는 게 아니라면 무조건 닫혀있는 것으로 간주
+      const isOpen = body.style.display === 'block';
+
+      body.style.display = isOpen ? 'none' : 'block';
+      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+      btn.style.borderRadius = isOpen ? '12px' : '12px 12px 0 0';
+
+      // 💡 [수정 포인트] 접히고 열릴 때 하단 테두리 선을 다크 테마 선(#3f444e)과 완벽히 맞춥니다.
+      btn.style.borderBottomColor = isOpen ? '#FED7AA' : 'transparent';
+    }
+
+
+
+
+
   </script>
 </body>
 

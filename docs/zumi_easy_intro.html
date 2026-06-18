@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko">
 
+
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZUMI · 로봇 앱 만들기 시작!</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+
+
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
@@ -25,6 +34,17 @@
       --dim: #6b7280;
       --shadow: 0 2px 16px rgba(79, 70, 229, .08);
       --shadow-lg: 0 8px 32px rgba(79, 70, 229, .12);
+
+      --muted: #8892B0;
+      --surface: #1A2240;
+      --surface2: #202B4A;
+      --purple: #7C6AF7;
+      --purple-lt: #A99FF9;
+      --purple-dim: rgba(124, 106, 247, .13);
+      --chat-bg: #1a1a1e;
+      --chat-msg: #2c2c30;
+      --chat-user: #5a4fcf;
+      --code-bg: #111116;
     }
 
     *,
@@ -656,10 +676,446 @@
     .btn-download:hover {
       background-color: #357ABD;
     }
+
+
+
+    .example-list {
+      margin: 20px 0;
+    }
+
+    .example {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border: 1px solid #afc4ec;
+    }
+
+
+
+
+
+
+    /* ── PAGE GRID ── */
+    .page {
+      display: grid;
+      /* grid-template-columns: 380px 1fr; */
+      grid-template-columns: 1fr;
+      /* 기존 380px 1fr 에서 1fr로 변경 */
+      height: 100vh;
+    }
+
+    /* ── CHAT COL ── */
+    .chat-col {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--chat-bg);
+    }
+
+    /* topbar */
+    .chat-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--chat-bg);
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      flex-shrink: 0;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .ai-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: #19c37d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+    }
+
+    .model-name {
+      font-size: .86rem;
+      font-weight: 700;
+      color: #ddd;
+    }
+
+    .model-name em {
+      font-style: normal;
+      font-size: .68rem;
+      color: #666;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .share-btn {
+      font-size: .73rem;
+      color: #888;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .user-av {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      background: var(--purple);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* messages */
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      scrollbar-width: thin;
+      scrollbar-color: #333 transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    .msg-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .msg-row.user {
+      flex-direction: row-reverse;
+    }
+
+    .m-av {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+    }
+
+    .m-av.ai {
+      background: #19c37d;
+    }
+
+    .m-av.usr {
+      background: var(--purple);
+      color: #fff;
+      font-weight: 900;
+      font-size: .7rem;
+    }
+
+    .message-box {
+      max-width: 80%;
+      background: var(--chat-msg);
+      border-radius: 4px 14px 14px 14px;
+      padding: 11px 15px;
+      font-size: .84rem;
+      color: #ddd;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      /* ← 줄바꿈 핵심 */
+      word-break: break-word;
+    }
+
+    .msg-row.user .message-box {
+      background: var(--chat-user);
+      color: #fff;
+      border-radius: 14px 4px 14px 14px;
+    }
+
+    /* code block */
+    .code-block {
+      background: var(--code-bg);
+      border-radius: 9px;
+      margin-top: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .code-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 13px;
+      background: rgba(255, 255, 255, .04);
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .code-fname {
+      font-size: .73rem;
+      color: #888;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .code-copy-btn {
+      font-size: .7rem;
+      color: #666;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .code-copy-btn:hover {
+      color: #aaa;
+    }
+
+    .code-body {
+      padding: 12px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .73rem;
+      line-height: 1.85;
+      color: #abb2bf;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .code-body::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .code-body::-webkit-scrollbar-thumb {
+      background: #333;
+    }
+
+    /* syntax colors */
+    .t-tag {
+      color: #e06c75;
+    }
+
+    .t-attr {
+      color: #d19a66;
+    }
+
+    .t-str {
+      color: #98c379;
+    }
+
+    .t-pl {
+      color: #abb2bf;
+    }
+
+    /* typing indicator */
+    .typing-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+      padding: 4px 2px;
+    }
+
+    .typing-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #555;
+      animation: tdot 1.2s infinite ease-in-out;
+    }
+
+    .typing-dots span:nth-child(2) {
+      animation-delay: .2s;
+    }
+
+    .typing-dots span:nth-child(3) {
+      animation-delay: .4s;
+    }
+
+    @keyframes tdot {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+        background: #555;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        background: var(--purple-lt);
+      }
+    }
+
+    /* blinking cursor */
+    .caret {
+      display: inline-block;
+      width: 2px;
+      height: .9em;
+      background: var(--purple-lt);
+      vertical-align: text-bottom;
+      animation: cblink .65s step-end infinite;
+    }
+
+    @keyframes cblink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    /* chat input bar */
+    .chat-input-wrap {
+      flex-shrink: 0;
+      background: var(--chat-bg);
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      padding: 10px 16px 14px;
+    }
+
+    .chat-input-inner {
+      background: var(--chat-msg);
+      border-radius: 11px;
+      padding: 11px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .input-placeholder {
+      font-size: .83rem;
+      color: #555;
+    }
+
+    .input-btns {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .input-tools {
+      display: flex;
+      gap: 12px;
+    }
+
+    .itool {
+      font-size: .73rem;
+      color: #555;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .send-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #333;
+      color: #777;
+      border: none;
+      font-size: .95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* replay */
+    .replay-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 7px 0 0;
+    }
+
+    .replay-btn {
+      font-size: .73rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid rgba(124, 106, 247, 0.18);
+      border-radius: 99px;
+      padding: 4px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color .15s, color .15s;
+    }
+
+    .replay-btn:hover {
+      border-color: var(--purple);
+      color: var(--purple-lt);
+    }
+
+    @media(max-width:760px) {
+      body {
+        overflow: auto;
+      }
+
+      .page {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      /* .hero-col { height: auto; } */
+      .chat-col {
+        height: 600px;
+      }
+    }
+
+
+
+    .zumi-code-display {
+      background: #111316;
+      /* 터미널 느낌의 완전 어두운 배경 */
+      border: 1px solid #2d3139;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      color: #34d399;
+      /* 터미널 안내 코드색 (녹색 톤) */
+    }
+
+
   </style>
 </head>
 
 <body>
+
+
+
+
+
+
+
+
+
+
 
   <!-- 상단 네비 -->
   <nav class="top-nav">
@@ -694,8 +1150,7 @@
             <p>버튼을 누르면 파일이 다운로드됩니다.</p>
             <!-- <p>버튼을 누르면 코드가 복사됩니다. 메모장(또는 텍스트 편집기)을 열어두세요.</p> -->
 
-            <a href="zumiAI_start.html" download="zumiAI_start.html"
-              class="btn-download">
+            <a href="zumiAI_start.html" download="zumiAI_start.html" class="btn-download">
               HTML 파일 다운로드
             </a>
 
@@ -799,7 +1254,8 @@
             <p>다운로드한 <strong>zumiAI_start.html</strong> 파일을 Chrome 브라우저로 드래그하거나 더블클릭해요.</p>
             <div class="callout blue" style="margin-top:10px">
               <span class="callout-icon">💡</span>
-              <span>Chrome이 없다면 먼저 <strong>chrome.com</strong> 에서 설치하세요. Safari나 Internet Explorer는 잘 안 될 수 있어요.</span>
+              <span>Chrome이 없다면 먼저 <strong>chrome.com</strong> 에서 설치하세요.<br>
+                Safari나 Internet Explorer는 잘 안 될 수 있어요.</span>
             </div>
           </div>
         </div>
@@ -811,7 +1267,17 @@
             <p>내 기기(노트북, 태블릿)가 주미 로봇과 <strong>같은 Wi-Fi</strong>에 연결되어 있어야 해요.</p>
             <div class="ip-box">
               <h4>🔍 주미 IP 주소 찾는 방법</h4>
+
               <div class="ip-method">
+                <div class="ip-m-icon">📺</div>
+                <div class="ip-m-text">
+                  <strong>주미 화면 확인</strong>
+                  <span>주미를 켜면 LCD 화면에 IP가 표시돼요. 예) 192.168.0.63</span>
+                </div>
+              </div>
+
+
+              <!-- <div class="ip-method">
                 <div class="ip-m-icon">📺</div>
                 <div class="ip-m-text">
                   <strong>방법 1. 주미 화면 확인</strong>
@@ -824,7 +1290,7 @@
                   <strong>방법 2. 선생님께 물어보기</strong>
                   <span>수업 시간에는 선생님이 IP를 알려주실 거예요!</span>
                 </div>
-              </div>
+              </div> -->
               <div class="ip-example">IP 예시: 192.168.0.63 &nbsp;·&nbsp; 192.168.1.100 &nbsp;·&nbsp; 10.0.0.5</div>
             </div>
           </div>
@@ -975,11 +1441,11 @@
                 <ol style="padding-left:18px;font-size:.8rem;color:var(--dim);line-height:2">
 
                   <p>QR 코드가 성공적으로 인식되면 주미 디스플레이에 아래와 같은 안내가 출력됩니다.</p><br>
-                  <div>
+                  <div class="zumi-code-display">
                     와이파이 연결 성공<br>
                     192.168.x.xxx<br>
                     설정이 완료 되었습니다
-                  </div><br>
+                </div><br>
                 </ol>
               </div>
             </div>
@@ -1065,22 +1531,239 @@
             <p>웹앱의 입력창에 주미 IP를 입력하고 <strong>연결</strong> 버튼을 누르면 카메라 화면이 나타나요!</p>
             <br>
 
-
             <img src="zumiAI_start_page.png" alt="QR 코드 생성기 화면 이미지 자리" style="max-width:100%;">
-
 
             <div class="callout green" style="margin-top:10px">
               <span class="callout-icon">🎉</span>
-              <span>화면에 로봇 카메라 영상이 보이면 성공이에요! 이제 AI에게 기능을 추가해달라고 해봐요.</span>
+              <span>화면이 잘 보이나요? <br>
+                사실 방금 실행한 앱도 AI가 만든 앱이었어요 <br>
+                이제 우리도 AI와 함께 직접 만들어볼까요?</span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- ── 바이브 코딩이란 ── -->
+    <div class="section">
+      <div class="section-label">VIBE CODING</div>
+      <h2 class="section-title">🚀 이제 직접 만들어볼 차례예요!</h2>
+      <p class="section-desc">
+        지금까지는 준비된 파일을 실행해봤어요.<br>
+        이번엔 여러분이 직접 원하는 기능을 만들어볼 거예요.<br>
+        걱정하지 마세요. <strong>코드는 한 글자도 안 써도 됩니다.</strong>
+      </p>
+
+      <!-- 핵심 설명 카드 -->
+      <div
+        style="background:var(--white);border:2px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px">
+        <div
+          style="font-size:.7rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:12px">
+          HOW IT WORKS</div>
+        <p style="font-size:.95rem;line-height:1.9;margin:0">
+          AI에게 원하는 기능을 <strong>말로 설명</strong>하면, AI가 코드를 대신 만들어줘요.<br>
+          그 파일을 열면 바로 동작합니다. 이게 전부예요.
+        </p>
+        <div
+          style="margin-top:16px;padding:14px 18px;background:var(--bg);border-radius:10px;font-size:.92rem;color:var(--dim);line-height:1.7">
+          💬 <em>"얼굴을 인식하면 네모 박스를 그려줘"</em><br>
+          💬 <em>"버튼을 누르면 LED가 켜지게 해줘"</em><br>
+          💬 <em>"주미가 사람을 보면 인사하게 해줘"</em>
+        </div>
+      </div>
+
+      <!-- 바이브 코딩 정의 callout -->
+      <div class="callout blue">
+        <span class="callout-icon">✨</span>
+        <span>이렇게 AI와 대화하면서 프로그램을 만드는 걸 <strong>바이브 코딩(Vibe Coding)</strong>이라고 해요. <br>
+          요즘 전 세계 개발자들 사이에서 유행하고 있는 방식이에요.
+        </span>
+      </div>
+    </div>
+
+    <!-- ── 시작 방법 ── -->
+    <div class="section">
+      <div class="section-label">HOW TO START</div>
+      <h2 class="section-title">🛠 시작 방법</h2>
+      <p class="section-desc">
+        처음이라도 걱정하지 마세요.<br>
+        딱 이 순서대로만 따라하면 됩니다.<br><br>
+
+        아래 순서대로 따라 하면 AI가 코드를 작성해주고,<br>
+        여러분은 결과를 실행해보면서 기능을 추가해 나갈 수 있습니다.<br>
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <!-- step 1 -->
+        <div
+          style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+          <div
+            style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+            1</div>
+          <div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">AI를 하나 엽니다</div>
+            <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+              ChatGPT, Claude, Gemini 중 편한 걸 쓰면 돼요.<br>
+              뭘 써야 할지 모르겠다면 <strong>챗GPT나 제미나이</strong>를 추천해요.
+            </div>
+          </div>
+        </div>
+
+        <!-- step 2 -->
+        <div
+          style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+          <div
+            style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+            2</div>
+          <div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">가이드에서 "복사" 버튼을 누릅니다</div>
+            <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+              각 단계마다 AI에게 보낼 말이 미리 준비되어 있어요.<br>
+              버튼 하나만 누르면 복사돼요.<br>
+
+              💡 복사되는 이 말이 바로 프롬프트(Prompt) 예요.<br>
+              AI에게 보내는 요청이나 질문을 <strong>프롬프트</strong>라고 합니다.
+            </div>
+          </div>
+        </div>
+
+        <!-- step 3 -->
+        <div
+          style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+          <div
+            style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+            3</div>
+          <div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">AI 채팅창에 붙여넣고 전송합니다</div>
+            <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+              <kbd
+                style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.8rem">Ctrl+V</kbd>
+              (맥은 <kbd
+                style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.8rem">Cmd+V</kbd>)
+              로 붙여넣고 엔터를 누르세요.<br>
+              따로 설명을 추가하지 않아도 됩니다. 💡 주미 AI에 필요한 정보가 이미 다 들어있어요.
+            </div>
+          </div>
+        </div>
+
+        <!-- step 4 -->
+        <div
+          style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+          <div
+            style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+            4</div>
+          <div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">AI가 만들어준 파일을 다운로드합니다</div>
+            <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+              AI가 길게 코드를 써줄 거예요. 당황하지 마세요.<br>
+              코드 창 오른쪽 위에 <strong>저장,다운로드</strong>버튼이 있어요. 그걸 누르면 됩니다.
+            </div>
+          </div>
+        </div>
+
+        <!-- step 5 -->
+        <!-- <div style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+      <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">5</div>
+      <div>
+        <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">메모장을 열고 붙여넣은 뒤 저장합니다</div>
+        <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+          파일 이름은 아무거나, 확장자는 반드시 <strong><code style="background:var(--bg);padding:1px 5px;border-radius:4px">.html</code></strong> 로 저장해요.<br>
+          예: <code style="background:var(--bg);padding:1px 5px;border-radius:4px">zumi_test.html</code>
+        </div>
+      </div>
+    </div> -->
+
+        <!-- step 5 -->
+        <div
+          style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+          <div
+            style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+            5</div>
+          <div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">다운로드한 파일을 더블클릭해서 실행합니다</div>
+            <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+              브라우저가 자동으로 열리면서 앱이 실행돼요.
+            </div>
+          </div>
+        </div>
+
+        <!-- step 7 -->
+        <div
+          style="display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px">
+          <div
+            style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center">
+            6</div>
+          <div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">마음에 안 들면 AI에게 다시 요청합니다</div>
+            <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
+              "버튼을 더 크게 해줘", "배경색을 바꿔줘" — 뭐든 말하면 돼요.<br>
+              이걸 반복하면서 기능을 하나씩 늘려가면 됩니다.
             </div>
           </div>
         </div>
 
       </div>
+
+      <br>
+
+
+
+
+      <!-- ── CHAT ── -->
+      <div class="chat-col">
+        <div class="chat-topbar">
+          <div class="topbar-left">
+            <div class="ai-icon">✦</div>
+            <div class="model-name">Chat AI <em>▾</em></div>
+          </div>
+          <div class="topbar-right">
+            <button class="share-btn">↑ 공유하기</button>
+            <div class="user-av">나</div>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="msgs"></div>
+
+        <div class="chat-input-wrap">
+          <div class="chat-input-inner">
+            <div class="input-placeholder">메시지 ChatGPT</div>
+            <div class="input-btns">
+              <div class="input-tools">
+                <button class="itool">＋</button>
+                <button class="itool">🌐 웹 검색</button>
+                <button class="itool">🔬 Deep Research</button>
+                <button class="itool">···</button>
+              </div>
+              <button class="send-btn">↑</button>
+            </div>
+          </div>
+          <div class="replay-wrap">
+            <button class="replay-btn" onclick="startChat()">↺ 다시 재생</button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="callout blue" style="margin-top:20px">
+        <span class="callout-icon">⚡</span>
+        <span>기술적인 건 AI가 다 알아서 해요. <br>여러분은 <strong>"이런 기능이 있으면 좋겠다"</strong>는 아이디어만 생각하면 됩니다!</span>
+      </div>
     </div>
 
+
+
     <!-- ② 다음에 뭘 만들 수 있나요 -->
-    <div class="section">
+    <!-- <div class="section">
       <div class="section-label">WHAT'S NEXT</div>
       <h2 class="section-title">✨ 기본이 됐다면, 이런 걸 추가해봐요!</h2>
       <p class="section-desc">단계별 가이드를 따라가면서 기능을 하나씩 늘려봐요.<br>각 단계 안에 AI에게 할 말도 다 준비되어 있어요!</p>
@@ -1125,7 +1808,86 @@
           "주미가 사람을 보면 인사하게 해줘"처럼 자연스럽게 말하면 됩니다.
         </div>
       </div>
+    </div> -->
+
+    <!-- ④ 이번 단계 완성 체크 -->
+    <!-- <div class="section">
+      <div class="section-label">CHECKLIST</div>
+      <h2 class="section-title">✅ 다 됐나요? 확인해봐요</h2>
+      <p class="section-desc">아래 항목을 하나씩 클릭해서 완료 표시를 해보세요!<br><span style="font-size:.78rem;color:#9ca3af">⚠️ 페이지를
+          새로고침하면 체크가 풀려요. 다 완료하면 바로 다음 단계로 이동하세요!</span></p>
+
+      <div class="checklist">
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">HTML 파일을 다운로드했어요</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Chrome으로 파일을 열었어요</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">주미 IP를 찾았어요</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">연결 버튼을 누르니 "✅ 연결됨!"이 떴어요</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">카메라 화면이 보여요 🎉</div>
+        </div>
+      </div>
+
+      <div class="callout green" style="margin-top:20px">
+        <span class="callout-icon">🚀</span>
+        <span>다 체크했다면 다음 단계로 가볼까요? 이제 버튼도 만들고 LED도 켜고 로봇을 움직여봐요!</span>
+      </div>
+    </div> -->
+
+    <!-- ⑤ 다음 단계 -->
+    <div class="section">
+      <div class="section-label">NEXT STEPS</div>
+      <h2 class="section-title">▶️ 그럼 이제 시작해볼까요?</h2>
+      <p class="section-desc">준비됐나요? 아래 단계 중 첫 번째부터 시작해보세요.<br>하나씩 완성할수록 주미가 점점 똑똑해집니다!</p>
+
+      <div class="step-cards">
+        <a href="zumi_easy_step1.html" class="step-card">
+          <div class="sc-emoji">🔗</div>
+          <div class="sc-num">STEP 1</div>
+          <h3>연결하고 보기</h3>
+        </a>
+        <a href="zumi_easy_step2.html" class="step-card">
+          <div class="sc-emoji">💡</div>
+          <div class="sc-num">STEP 2</div>
+          <h3>표현하기</h3>
+        </a>
+        <a href="zumi_easy_step3.html" class="step-card">
+          <div class="sc-emoji">🚗</div>
+          <div class="sc-num">STEP 3</div>
+          <h3>움직이기</h3>
+        </a>
+        <a href="zumi_easy_step4.html" class="step-card">
+          <div class="sc-emoji">🤖</div>
+          <div class="sc-num">STEP 4</div>
+          <h3>AI 연결하기</h3>
+        </a>
+      </div>
+
+      <div
+        style="margin-top:28px;text-align:center;padding:24px;background:var(--white);border-radius:16px;border:1px solid var(--border)">
+        <div style="font-size:1.2rem;margin-bottom:8px">💬</div>
+        <div style="font-size:.9rem;color:var(--dim);line-height:1.8">
+          <strong style="color:var(--text)">중요한 것은 코드가 아니라 아이디어예요!</strong><br>
+          만들고 싶은 게 있으면 AI에게 자연스럽게 말해보세요.<br>
+          "주미가 사람을 보면 인사하게 해줘" — 이것도 가능해요!
+        </div>
+      </div>
     </div>
+
+
+
 
     <!-- ③ 막히면 여기! -->
     <div class="section">
@@ -1204,81 +1966,10 @@
       </div>
     </div>
 
-    <!-- ④ 이번 단계 완성 체크 -->
-    <div class="section">
-      <div class="section-label">CHECKLIST</div>
-      <h2 class="section-title">✅ 다 됐나요? 확인해봐요</h2>
-      <p class="section-desc">아래 항목을 하나씩 클릭해서 완료 표시를 해보세요!<br><span style="font-size:.78rem;color:#9ca3af">⚠️ 페이지를
-          새로고침하면 체크가 풀려요. 다 완료하면 바로 다음 단계로 이동하세요!</span></p>
 
-      <div class="checklist">
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="check-text">HTML 파일을 다운로드했어요</div>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="check-text">Chrome으로 파일을 열었어요</div>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="check-text">주미 IP를 찾았어요</div>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="check-text">연결 버튼을 누르니 "✅ 연결됨!"이 떴어요</div>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="check-text">카메라 화면이 보여요 🎉</div>
-        </div>
-      </div>
 
-      <div class="callout green" style="margin-top:20px">
-        <span class="callout-icon">🚀</span>
-        <span>다 체크했다면 다음 단계로 가볼까요? 이제 버튼도 만들고 LED도 켜고 로봇을 움직여봐요!</span>
-      </div>
-    </div>
 
-    <!-- ⑤ 다음 단계 -->
-    <div class="section">
-      <div class="section-label">NEXT STEPS</div>
-      <h2 class="section-title">📚 다음엔 뭘 배울까요?</h2>
-      <p class="section-desc">단계별로 기능을 추가해나가요. 하나씩 완성할수록 더 멋진 로봇이 됩니다!</p>
 
-      <div class="step-cards">
-        <a href="zumi_easy_step1.html" class="step-card">
-          <div class="sc-emoji">🔗</div>
-          <div class="sc-num">STEP 1</div>
-          <h3>연결하고 보기</h3>
-        </a>
-        <a href="zumi_easy_step2.html" class="step-card">
-          <div class="sc-emoji">💡</div>
-          <div class="sc-num">STEP 2</div>
-          <h3>표현하기</h3>
-        </a>
-        <a href="zumi_easy_step3.html" class="step-card">
-          <div class="sc-emoji">🚗</div>
-          <div class="sc-num">STEP 3</div>
-          <h3>움직이기</h3>
-        </a>
-        <a href="zumi_easy_step4.html" class="step-card">
-          <div class="sc-emoji">🤖</div>
-          <div class="sc-num">STEP 4</div>
-          <h3>AI 연결하기</h3>
-        </a>
-      </div>
-
-      <div
-        style="margin-top:28px;text-align:center;padding:24px;background:var(--white);border-radius:16px;border:1px solid var(--border)">
-        <div style="font-size:1.2rem;margin-bottom:8px">💬</div>
-        <div style="font-size:.9rem;color:var(--dim);line-height:1.8">
-          <strong style="color:var(--text)">중요한 것은 코드가 아니라 아이디어예요!</strong><br>
-          만들고 싶은 게 있으면 AI에게 자연스럽게 말해보세요.<br>
-          "주미가 사람을 보면 인사하게 해줘" — 이것도 가능해요!
-        </div>
-      </div>
-    </div>
 
   </div><!-- /container -->
 
@@ -1376,6 +2067,210 @@ function disconnect() { if (ws) ws.close(); }
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2500);
     }
+
+
+
+
+
+
+
+
+
+    const msgsEl = document.getElementById('msgs');
+
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+    function scrollDown() {
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+
+    // ── 말풍선 생성 ──────────────────────────────────────
+    function createBubble(role) {
+      const row = document.createElement('div');
+      row.className = 'msg-row ' + role;
+
+      const av = document.createElement('div');
+      av.className = 'm-av ' + (role === 'ai' ? 'ai' : 'usr');
+      av.textContent = role === 'ai' ? '✦' : '나';
+
+      const bub = document.createElement('div');
+      bub.className = 'message-box';
+
+      row.appendChild(av);
+      row.appendChild(bub);
+      msgsEl.appendChild(row);
+      scrollDown();
+      return bub;
+    }
+
+    // ── 타이핑 애니메이션 ─────────────────────────────────
+    async function typeInto(el, text, speed) {
+      speed = speed || 25;
+      // 커서 span 추가
+      const caret = document.createElement('span');
+      caret.className = 'caret';
+      el.appendChild(caret);
+
+      for (let i = 0; i < text.length; i++) {
+        // \n → <br> 처리: textNode로 넣으면 pre-wrap이 처리해줌
+        el.insertBefore(document.createTextNode(text[i]), caret);
+        scrollDown();
+        await sleep(speed + Math.random() * 20);
+      }
+      caret.remove();
+    }
+
+    // ── 타이핑 인디케이터 ─────────────────────────────────
+    function showTyping() {
+      const row = document.createElement('div');
+      row.className = 'typing-row';
+      row.id = 'typingIndicator';
+
+      const av = document.createElement('div');
+      av.className = 'm-av ai';
+      av.textContent = '✦';
+
+      const dots = document.createElement('div');
+      dots.className = 'typing-dots';
+      dots.innerHTML = '<span></span><span></span><span></span>';
+
+      row.appendChild(av);
+      row.appendChild(dots);
+      msgsEl.appendChild(row);
+      scrollDown();
+    }
+    function hideTyping() {
+      const el = document.getElementById('typingIndicator');
+      if (el) el.remove();
+    }
+
+    const CODE_LINES = [
+      '<span class="t-tag">&lt;!DOCTYPE html&gt;</span>',
+      '<span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-str">"ko"</span><span class="t-tag">&gt;</span>',
+      '<span class="t-tag">&lt;head&gt;</span>',
+      '  <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-str">"UTF-8"</span> <span class="t-tag">/&gt;</span>',
+      '  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-str">"viewport"</span>',
+      '        <span class="t-attr">content</span>=<span class="t-str">"width=device-width, initial-scale=1.0"</span> <span class="t-tag">/&gt;</span>',
+      '  <span class="t-tag">&lt;title&gt;</span><span class="t-pl">CCTV 앱</span><span class="t-tag">&lt;/title&gt;</span>',
+      '  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-str">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-str">"style.css"</span> <span class="t-tag">/&gt;</span>',
+      '<span class="t-tag">&lt;/head&gt;</span>',
+      '<span class="t-tag">&lt;body&gt;</span>',
+      '  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-str">"container"</span><span class="t-tag">&gt;</span>',
+      '    <span class="t-tag">&lt;h1&gt;</span><span class="t-pl">필수 기능 목록</span><span class="t-tag">&lt;/h1&gt;</span>',
+      '    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-str">"input-area"</span><span class="t-tag">&gt;</span>',
+      '      <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-str">"text"</span> <span class="t-attr">id</span>=<span class="t-str">"savePhoto"</span>',
+      '             <span class="t-attr">placeholder</span>=<span class="t-str">"사진 저장"</span> <span class="t-tag">/&gt;</span>',
+      '      <span class="t-tag">&lt;button</span> <span class="t-attr">id</span>=<span class="t-str">"addBtn"</span><span class="t-tag">&gt;</span><span class="t-pl">저장</span><span class="t-tag">&lt;/button&gt;</span>',
+      '    <span class="t-tag">&lt;/div&gt;</span>',
+      '    <span class="t-tag">&lt;ul</span> <span class="t-attr">id</span>=<span class="t-str">"cctv"</span><span class="t-tag">&gt;&lt;/ul&gt;</span>',
+      '  <span class="t-tag">&lt;/div&gt;</span>',
+      '  <span class="t-tag">&lt;script</span> <span class="t-attr">src</span>=<span class="t-str">"script.js"</span><span class="t-tag">&gt;&lt;/script&gt;</span>',
+      '<span class="t-tag">&lt;/body&gt;</span>',
+      '<span class="t-tag">&lt;/html&gt;</span>',
+    ];
+
+    async function streamCodeBlock(parentBubble) {
+      // 코드블록 컨테이너
+      const block = document.createElement('div');
+      block.className = 'code-block';
+
+      const head = document.createElement('div');
+      head.className = 'code-head';
+      head.innerHTML = '<span class="code-fname">index.html</span><button class="code-copy-btn" onclick="doCopy(this)">📋 복사</button>';
+
+      const body = document.createElement('div');
+      body.className = 'code-body';
+
+      block.appendChild(head);
+      block.appendChild(body);
+      parentBubble.appendChild(block);
+      scrollDown();
+
+      // 커서
+      const caret = document.createElement('span');
+      caret.className = 'caret';
+      body.appendChild(caret);
+
+      for (let i = 0; i < CODE_LINES.length; i++) {
+        const lineEl = document.createElement('span');
+        lineEl.innerHTML = CODE_LINES[i] + '\n';
+        body.insertBefore(lineEl, caret);
+        scrollDown();
+        await sleep(55 + Math.random() * 30);
+      }
+      caret.remove();
+    }
+
+    function doCopy(btn) {
+      const text = btn.closest('.code-block').querySelector('.code-body').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ 복사됨';
+        setTimeout(() => { btn.textContent = '📋 복사'; }, 2000);
+      });
+    }
+
+    // ── 메인 시퀀스 ──────────────────────────────────────
+    async function startChat() {
+      msgsEl.innerHTML = '';
+
+      await sleep(500);
+
+      // 1) 유저 메시지
+      const u1 = createBubble('user');
+      await typeInto(u1,
+        '카메라로 실시간 영상을 모니터링 하는 \n보안 카메라를 만들어줘.\n화면에 촬영 시간을 표시하고, 사진도 저장 할 수 있어야 해.'
+        , 28);
+
+      await sleep(600);
+
+      // 2) AI 생각 중
+      showTyping();
+      // fc2.classList.add('lit');
+      await sleep(1500);
+      hideTyping();
+
+      // 3) AI 텍스트
+      const a1 = createBubble('ai');
+      await typeInto(a1, '알겠습니다! CCTV 웹 앱을 만들어드릴게요.\n먼저 기본적인 구조의 코드를 작성하겠습니다.', 16);
+
+      await sleep(250);
+
+      // 4) 코드 스트리밍 (같은 message-box 안에)
+      await streamCodeBlock(a1);
+
+      await sleep(350);
+
+      // 5) AI 후속
+      const a2 = createBubble('ai');
+      await typeInto(a2, '이제 스타일과 기능을 추가해볼게요. ↓', 20);
+
+      // fc3.classList.add('lit');
+      await sleep(700);
+
+      // 6) 유저 후속
+      const u2 = createBubble('user');
+      await typeInto(u2, '완성된 코드를 다운로드해서 브라우져에서 바로 사용할 수 있게 해줘!', 26);
+
+
+      await sleep(700);
+
+      // 7) AI 후속
+      const a3 = createBubble('ai');
+      await typeInto(a3, '바로 실행 가능한 형태의 코드를 드리겠습니다.\n다운로드하기', 26);
+
+
+    }
+
+    // 자동 시작
+    startChat();
+
+
+
+
+
+
+
+
   </script>
 </body>
 
