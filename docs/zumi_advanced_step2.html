@@ -1383,131 +1383,109 @@
       <div class="prompt-body" id="main-prompt"><span class="pc"># ZUMI AI의 표현 기능 웹앱 만들기</span>
 
         <span class="pk">## 시스템 구조</span>
-        브라우저(HTML) ↔ WebSocket(ws://IP/ws) ↔ 주미 AI(하드웨어)
+        브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
         서버 없음. HTML 파일 하나로만 동작.
 
         <span class="pk">## WebSocket 연결 방법</span>
         ws = new WebSocket('ws://' + ip + '/ws')
         ws.binaryType = 'arraybuffer'
-        연결 성공(onopen) 시 반드시 아래 두 명령을 순서대로 전송해야 함:
-        1. ws.send('stream') -> 영상 스트리밍 시작
-        2. ws.send('sensor') -> 센서 데이터 송신 시작
+        연결 성공(onopen) 시 반드시 아래 두 명령을 순서대로 전송:
+        1. ws.send('stream') → 영상 스트리밍 시작
+        2. ws.send('sensor') → 센서 데이터 수신 시작
 
-        <span class="pk">## 데이터 수신 및 처리 방법</span>
-        데이터 수신 및 처리 방법 (반드시 이 방식으로 분기)
-        ws.onmessage = (event) => {
-        if (typeof event.data === "string") return;
-        const arr = new Uint8Array(event.data);
+        <span class="pk">## 영상 및 센서 수신 방법</span>
+        <span class="pv">ws.onmessage = (event) => {</span>
+        <span class="pv">  if (typeof event.data === 'string') return;</span>
+        <span class="pv">  const arr = new Uint8Array(event.data);</span>
+        <span class="pv"></span>
+        <span class="pv">  // 센서 데이터 (10바이트, 헤더 $R)</span>
+        <span class="pv">  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
+        <span class="pv">    parseAndUpdateSensors(arr);</span>
+        <span class="pv">    return;</span>
+        <span class="pv">  }</span>
+        <span class="pv"></span>
+        <span class="pv">  // 영상 데이터 (그 외 = JPEG)</span>
+        <span class="pv">  const blob = new Blob([arr], {type: 'image/jpeg'});</span>
+        <span class="pv">  const url = URL.createObjectURL(blob);</span>
+        <span class="pv">  const img = new Image();</span>
+        <span class="pv">  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
+        <span class="pv">  img.src = url;</span>
+        <span class="pv">}</span>
 
-        // 1. 센서 데이터 처리 (길이가 10바이트이고, 헤더가 $와 R인 경우)
-        if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {
-        parseAndUpdateSensors(arr);
-        return;
-        }
+        <span class="pk">## 센서 데이터 파싱 규칙 (10바이트)</span>
+        arr[0]: 0x24 ($)
+        arr[1]: 0x52 (R)
+        arr[2]: FR (전방 우측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+        arr[3]: FL (전방 좌측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+        arr[4]: BR (바닥 우측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+        arr[5]: BL (바닥 좌측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+        arr[6]: BC (바닥 중앙, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+        arr[7]: BTN (버튼 비트마스크: 8=🔴빨강 4=🔵파랑 2=🟢초록 1=🟡노랑 / 안눌리면 '없음')
+                버튼 배열 순서: 빨강-파랑-초록-노랑 (수평)
+        arr[8]: BAT (배터리 잔량, 최대 100 제한 필요)
+        arr[9]: STAT (명령 수행 상태: 1=수행중, 0=대기중)
+                순차 이동 시 STAT이 0인 것을 확인한 후 다음 명령을 전송해야 함
+        센서값은 주미마다 개체차 있음
 
-        // 2. 영상 스트리밍 처리 (그 외의 데이터는 JPEG 이미지로 처리)
-        const blob = new Blob([arr], {type: 'image/jpeg'});
-        const url = URL.createObjectURL(blob);
-        const img = new Image();
-        img.onload = () => {
-        ctx.drawImage(img, 0, 0, w, h);
-        URL.revokeObjectURL(url);
-        };
-        img.src = url;
-        }
-
-        <span class="pk">## 센서 데이터</span>
-        - 센서 데이터 파싱 규칙 (10바이트 배열 구조)
-        - arr[0]: 0x24 ($)
-        - arr[1]: 0x52 (R)
-        - arr[2]: FR (전방 우측 센서, 0~255)
-        - arr[3]: FL (전방 좌측 센서, 0~255)
-        - arr[4]: BR (바닥 우측 센서, 0~255)
-        - arr[5]: BL (바닥 좌측 센서, 0~255)
-        - arr[6]: BC (바닥 중앙 센서, 0~255)
-        - arr[7]: BTN (버튼 상태 비트마스크: 8=🔴빨강, 4=🔵파랑, 2=🟢초록, 1=🟡노랑 / 눌리지 않으면 '없음')
-        - arr[8]: BAT (배터리 잔량, 최대 100 제한 필요)
-
-        센서값은 주미마다 조금씩 다름
-        FR,FL는 물체가 가까이 있을 수록 값이 작아짐 (기본 감지 기준 값 :100)
-        BR,BL,BC 는 흰색 바닥일 수록 값이 작아짐 (검정 흰색 감지 기준 값 : 30)
-        버튼은 빨강,파랑,초록,노랑의 순서로 수평으로 배열 되어있음
-
-
-        <span class="pk">## 패킷 구조</span>
-        [0x24][0x52][command][0x00][param1]...[paramN]
-
-        function buildPacket(cmd, ...params) {
-        const buf = new Uint8Array(4 + params.length);
-        buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
-        params.forEach((v,i) => buf[4+i]=v);
-        return buf.buffer;
-        }
+        <span class="pk">## 패킷 빌더</span>
+        <span class="pv">function buildPacket(cmd, ...params) {</span>
+        <span class="pv">  const buf = new Uint8Array(4 + params.length);</span>
+        <span class="pv">  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
+        <span class="pv">  params.forEach((v,i) => buf[4+i]=v);</span>
+        <span class="pv">  return buf.buffer;</span>
+        <span class="pv">}</span>
 
         <span class="pk">## 표현 기능 명령어</span>
-        <span class="pc">// LED (r,g,b 각 0~10)</span>
+        // LED (r, g, b 각 0~10)
         LED 색상: CMD=10, params=[r, g, b]
         LED 패턴: CMD=201, params=[pattern, time_high, time_low]
-        패턴: 0=유지 1=깜빡 2=두번깜빡 3=밝아졌다어두워짐 4=점점어두워짐 5=점점밝아짐 6=무지개
-        time: ms 단위, 예) 1000ms = time_high=3, time_low=232
+          패턴: 0=유지 1=깜빡 2=두번깜빡 3=밝아졌다어두워짐 4=점점어두워짐 5=점점밝아짐 6=무지개
+          time: ms 단위, 예) 1000ms → time_high=3, time_low=232
 
-
-
-        <span class="pc">// 사운드</span>
+        // 사운드
         사운드: CMD=242, params=[sound]
-        0=고양이 1=셔터 2=실패1 3=실패2 4=경적1 5=경적2 6=사이렌 7=성공
+          0=고양이 1=셔터 2=실패1 3=실패2 4=경적1 5=경적2 6=사이렌 7=성공
 
-        <span class="pc">// LCD 텍스트 (UTF-8, 최대 27바이트)</span>
+        // LCD 텍스트
         텍스트 출력: CMD=230, 이후 UTF-8 문자열 바이트 + 0x00
         텍스트 추가: CMD=232, 이후 UTF-8 문자열 바이트 + 0x00
         텍스트 설정: CMD=231, params=[color, size, 0, 0, 0]
-        color:(기본값:1) 0=변경안함, 1=흰색, 2=검정, 3=남색, 4=파랑, 5=하늘색, 6=청록색, 7=틸, 8=초록, 9=연두, 10=라임, 11=노랑, 12=호박색, 13=주황,
-        14=진주황, 15=갈색, 16=청회색, 17=회색
-        size: (기본값:5) 0=변경안함 1~5
+          color(기본값 1): 0=변경안함 1=흰색 2=검정 3=남색 4=파랑 5=하늘색 6=청록색 7=틸 8=초록
+                          9=연두 10=라임 11=노랑 12=호박색 13=주황 14=진주황 15=갈색 16=청회색 17=회색
+          size(기본값 5): 0=변경안함 1~5
 
-        <!-- <span class="pc">// 텍스트 전송 예시</span>
-function sendText(text) {
-  const encoded = new TextEncoder().encode(text);
-  const buf = new Uint8Array(4 + encoded.length + 1);
-  buf[0]=0x24; buf[1]=0x52; buf[2]=230; buf[3]=0x00;
-  buf.set(encoded, 4);
-  buf[4 + encoded.length] = 0x00;
-  ws.send(buf.buffer);
-}
- -->
+        <span class="pk">## 텍스트 스마트 분할 전송</span>
+        하드웨어 버퍼 제한: 한 번에 최대 11바이트(payload)
+        11바이트 초과 시 자동 슬라이싱, 각 조각 사이 100ms 딜레이 필수
 
-        <span class="pc">// 텍스트 전송 제약 조건 및 확장 요구사항</span>
-        기본적인 텍스트 전송 방식은 아래 sendText 예시를 따르되, 하드웨어 버퍼 한계(최대 11바이트)를 극복할 수 있는 '스마트 분할 전송 엔진'으로 고도화해줘.
+        규칙:
+        - 첫 번째 조각: CMD=230 (새로 출력)
+        - 이후 조각들: CMD=232 (추가 출력)
+        - 조각 간 딜레이: 100ms (setTimeout 재귀 루프)
 
-        [핵심 제약 조건]
-        1. 하드웨어 버퍼 제한으로 인해 한 번에 보낼 수 있는 순수 데이터(Payload)는 최대 11바이트(let endIndex = currentIndex + 11)야.
-        2. 메시지가 11바이트보다 길면, TextEncoder로 변환된 바이트 배열을 11바이트 단위로 자동 슬라이싱(Chunking)해야 해.
-        3. 첫 번째 조각은 CMD 230(새로 출력)으로 보내고, 남은 바이트의 메시지 조각들은 CMD 232(추가 출력)로 연속해서 보내야 해.
-        4. 패킷이 연달아 가면 주미AI(하드웨어)의 수신 버퍼가 씹힐 수 있으므로, 각 조각 패킷 전송 사이에 100ms의 시간 지연(setTimeout 등을 활용한 재귀 루프)을 반드시 부여해줘.
-
-        <span class="pc">// 기본 텍스트 전송 참고 스크립트</span>
-        function sendText(text) {
-        const encoded = new TextEncoder().encode(text);
-        const buf = new Uint8Array(4 + encoded.length + 1);
-        buf[0]=0x24; buf[1]=0x52; buf[2]=230; buf[3]=0x00;
-        buf.set(encoded, 4);
-        buf[4 + encoded.length] = 0x00;
-        ws.send(buf.buffer);
-        }
+        <span class="pk">## 기본 sendText 참고</span>
+        <span class="pv">function sendText(text) {</span>
+        <span class="pv">  const encoded = new TextEncoder().encode(text);</span>
+        <span class="pv">  const buf = new Uint8Array(4 + encoded.length + 1);</span>
+        <span class="pv">  buf[0]=0x24; buf[1]=0x52; buf[2]=230; buf[3]=0x00;</span>
+        <span class="pv">  buf.set(encoded, 4);</span>
+        <span class="pv">  buf[4 + encoded.length] = 0x00;</span>
+        <span class="pv">  ws.send(buf.buffer);</span>
+        <span class="pv">}</span>
+        // 위 함수를 베이스로 11바이트 분할 + 100ms 딜레이 방식으로 고도화할 것
 
 
-        <span class="pk">## 기본 UI 포함 요소</span>
-        - IP 입력 + 연결 버튼 + 상태 표시
-        - 영상 스트리밍 canvas (640×480)
-        ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
-        수신: ArrayBuffer → Blob → Image → canvas.drawImage()
-
+        <span class="pk">## 기본 UI 요소</span>
+        - IP 입력창 + 연결 버튼 + 해제 버튼
+        - 연결 상태 표시 (연결됨 / 연결 안 됨)
+        - 영상 표시 canvas (width=640, height=480)
 
         <span class="pk">## 결과물 조건</span>
         - HTML 파일 하나로 동작
         - CSS/JavaScript 내부 포함
         - Chrome에서 바로 실행 가능
         - 별도 서버 불필요
+
 
 
 

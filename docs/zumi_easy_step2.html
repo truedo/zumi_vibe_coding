@@ -25,7 +25,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .container{max-width:700px;margin:0 auto;padding:0 20px}
 .section{padding:44px 0}
 .section+.section{border-top:1px solid var(--border)}
-.sec-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
+.sec-label{font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
 .sec-title{font-size:1.35rem;font-weight:900;margin-bottom:8px;line-height:1.3}
 .sec-desc{color:var(--dim);font-size:.88rem;margin-bottom:24px;line-height:1.8}
 
@@ -104,6 +104,54 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;font-size:.82rem;padding:10px 22px;border-radius:100px;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.show{opacity:1}
+
+
+
+
+
+
+
+
+.next-step{
+  display:none;
+  margin-top:20px;
+  text-align:center;
+  animation:fadeIn .3s ease;
+}
+
+.next-step.show{
+  display:block;
+}
+
+.next-btn{
+  display:inline-block;
+  padding:14px 24px;
+  background:var(--accent);
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.next-btn:hover{
+  transform:translateY(-2px);
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+
+
 </style>
 </head>
 <body>
@@ -217,7 +265,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   </div>
 
   <!-- 명령어 치트시트 -->
-  <div class="section">
+  <!-- <div class="section">
     <div class="sec-label">CHEAT SHEET</div>
     <h2 class="sec-title">📋 명령어 치트시트</h2>
     <p class="sec-desc">AI에게 프롬프트를 줄 때 참고용으로 사용하세요. 외울 필요 없어요!</p>
@@ -251,7 +299,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
       <span class="callout-icon">💡</span>
       <span>치트시트 내용을 그대로 AI에게 주면서 "이 명령어로 LED 버튼 만들어줘"라고 하면 더 정확한 코드가 나와요!</span>
     </div>
-  </div>
+  </div> -->
 
   <!-- FAQ -->
   <div class="section">
@@ -276,7 +324,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          한글은 UTF-8로 인코딩해야 해요. AI에게 <strong>"한글 텍스트를 UTF-8로 인코딩해서 전송하게 고쳐줘"</strong> 라고 요청해보세요.<br><br>
+          한글은 UTF-8로 인코딩해야 해요. <br>AI에게 <strong>"한글 텍스트를 UTF-8로 인코딩해서 전송하게 고쳐줘"</strong> 라고 요청해보세요.<br><br>
           영어로 먼저 테스트해보는 것도 좋아요!
         </div>
       </div>
@@ -287,13 +335,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   <div class="section">
     <div class="sec-label">센서 데이터 읽기</div>
     <h2 class="sec-title">📡 로봇 상태를 읽어봐요</h2>
-    <p class="sec-desc">IR 센서, 배터리, 버튼 값을 실시간으로 화면에 표시할 수 있어요.<br>연결 후 <strong>"sensor"</strong> 문자열을 보내면 주미가 주기적으로 데이터를 전송합니다.</p>
+    <p class="sec-desc">센서, 배터리, 버튼 값을 실시간으로 화면에 표시할 수 있어요.</p>
 
     <div style="background:var(--white);border-radius:14px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px">
       <div style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:var(--dim);margin-bottom:12px">읽을 수 있는 데이터</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px">
         <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center">
-          <div style="font-size:1.4rem;margin-bottom:6px">🔴</div>
+          <div style="font-size:1.4rem;margin-bottom:6px">📡</div>
           <div style="font-weight:700;font-size:.82rem;margin-bottom:3px">IR 센서</div>
           <div style="font-size:.72rem;color:var(--dim)">전방 좌/우<br>하단 좌/중/우</div>
         </div>
@@ -303,9 +351,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           <div style="font-size:.72rem;color:var(--dim)">0~100<br>잔량 %</div>
         </div>
         <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center">
-          <div style="font-size:1.4rem;margin-bottom:6px">🔘</div>
+          <div style="font-size:1.4rem;margin-bottom:6px">🔴🔵🟢🟡</div>
           <div style="font-weight:700;font-size:.82rem;margin-bottom:3px">버튼</div>
-          <div style="font-size:.72rem;color:var(--dim)">눌림 여부<br>0 또는 1</div>
+          <div style="font-size:.72rem;color:var(--dim)">눌림 여부</div>
         </div>
       </div>
     </div>
@@ -313,8 +361,8 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     <div class="prompt-cards">
       <div class="p-card">
         <span class="p-tag t-lcd">📡 센서</span>
-        <div class="p-text">IR 센서 값, 배터리 잔량, 버튼 상태를 실시간으로 화면에 표시해줘. ws.send('sensor')로 데이터를 요청하고 JSON으로 수신하는 방식으로 해줘</div>
-        <button class="copy-btn" onclick="copyP(this, 'IR 센서 값, 배터리 잔량, 버튼 상태를 실시간으로 화면에 표시해줘. ws.send(\'sensor\')로 데이터를 요청하고 JSON으로 수신하는 방식으로 해줘')">📋 복사</button>
+        <div class="p-text">전방 센서, 바닥 센서, 배터리, 버튼 상태를 화면에 실시간으로 표시해줘</div>
+        <button class="copy-btn" onclick="copyP(this, '전방 센서, 바닥 센서, 배터리, 버튼 상태를 화면에 실시간으로 표시해줘')">📋 복사</button>
       </div>
       <div class="p-card">
         <span class="p-tag t-lcd">🔋 배터리</span>
@@ -323,50 +371,62 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
       </div>
       <div class="p-card">
         <span class="p-tag t-combo">✨ 조합</span>
-        <div class="p-text">전방 IR 센서 값이 특정 수치 이하로 떨어지면 (장애물 감지) 빨간 LED가 켜지고 경적 소리가 나게 해줘</div>
-        <button class="copy-btn" onclick="copyP(this, '전방 IR 센서 값이 특정 수치 이하로 떨어지면 (장애물 감지) 빨간 LED가 켜지고 경적 소리가 나게 해줘')">📋 복사</button>
+        <div class="p-text">앞에 장애물이 감지되면 빨간 LED가 켜지고 경적 소리가 나게 해줘</div>
+        <button class="copy-btn" onclick="copyP(this, '앞에 장애물이 감지되면 빨간 LED가 켜지고 경적 소리가 나게 해줘')">📋 복사</button>
       </div>
     </div>
 
-    <div class="callout blue">
+    <!-- <div class="callout blue">
       <span class="callout-icon">💡</span>
       <span>센서 데이터는 <strong>ws.send('sensor')</strong> 를 보낸 후 JSON 텍스트로 수신해요.<br>
       예: <code style="background:rgba(124,58,237,.1);padding:2px 6px;border-radius:4px;font-size:.78rem">{"irFL":120,"irFR":110,"irBL":50,"irBR":48,"irBC":30,"battery":85,"btn":0}</code></span>
-    </div>
+    </div> -->
   </div>
 
-
+  <div class="section">
     <div class="sec-label">CHECKLIST</div>
     <h2 class="sec-title">✅ 이번 단계 완료 확인</h2>
-    <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 새로고침하면 체크가 풀려요. 다 됐으면 바로 다음 단계로 이동하세요!</p>
+    <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 모든 체크가 완료되면 다음 단계로 이동할 수 있어요.<br>다 됐으면 바로 다음 단계로 이동하세요!</p>
 
     <div class="checklist">
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">LED 색상을 바꿔봤어요 💡</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">소리를 내봤어요 🔊</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">LCD에 텍스트를 보내봤어요 📺</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">센서/배터리/버튼 값을 화면에 표시해봤어요 📡</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">두 가지 이상 기능을 조합해봤어요 ✨</div>
       </div>
     </div>
 
-    <div class="callout green" style="margin-top:16px">
-      <span class="callout-icon">🚀</span>
-      <span>이제 Step 3으로! 로봇을 직접 조종하고 자동으로 움직이게 해봐요!</span>
+    <!-- 완료 시 표시 -->
+    <div id="next-step" class="next-step">
+
+      <div class="callout red" style="margin-top:16px">
+        <span class="callout-icon">🎉</span>
+        <span>다 됐다면 Step 3로 가봐요! 로봇을 직접 조종하고 자동으로 움직이게 해봐요!</span>
+      </div>
+
+      <br>
+      <a href="zumi_easy_step3.html" class="next-btn">
+        다음 단계로 이동하기 🚀
+      </a>
     </div>
+
+
+
   </div>
 
 </div>
@@ -376,7 +436,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   <div style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:#7c3aed;margin-bottom:6px">MORE DETAIL</div>
   <div style="font-weight:700;margin-bottom:4px;font-size:.88rem">더 깊이 알고 싶다면?</div>
   <div style="font-size:.8rem;color:#6b7280;margin-bottom:12px;line-height:1.7">패킷 구조, API 레퍼런스, 고급 프롬프트까지 담긴 심화 가이드도 있어요.</div>
-  <a href="zumi_step2.html" style="display:inline-block;padding:7px 16px;background:#7c3aed;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화 가이드 보기 →</a>
+  <a href="zumi_advanced_step2.html" style="display:inline-block;padding:7px 16px;background:#7c3aed;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화 가이드 보기 →</a>
 </div>
 
 <div class="step-nav">
@@ -396,12 +456,51 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 const BASE_PROMPT_S2 = `# ZUMI 로봇 표현 기능 웹앱 만들기
 
 ## 시스템 구조
-브라우저(HTML) ↔ WebSocket(ws://IP/ws) ↔ ESP32(주미 로봇)
+브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
 서버 없음. HTML 파일 하나로만 동작.
 
-## 패킷 구조
-[0x24][0x52][command][0x00][param1]...[paramN]
+## WebSocket 연결 방법
+ws = new WebSocket('ws://' + ip + '/ws')
+ws.binaryType = 'arraybuffer'
+연결 성공(onopen) 시 반드시 아래 두 명령을 순서대로 전송:
+1. ws.send('stream') → 영상 스트리밍 시작
+2. ws.send('sensor') → 센서 데이터 수신 시작
 
+## 영상 및 센서 수신 방법
+ws.onmessage = (event) => {
+  if (typeof event.data === 'string') return;
+  const arr = new Uint8Array(event.data);
+
+  // 센서 데이터 (10바이트, 헤더 $R)
+  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {
+    parseAndUpdateSensors(arr);
+    return;
+  }
+
+  // 영상 데이터 (그 외 = JPEG)
+  const blob = new Blob([arr], {type: 'image/jpeg'});
+  const url = URL.createObjectURL(blob);
+  const img = new Image();
+  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };
+  img.src = url;
+}
+
+## 센서 데이터 파싱 규칙 (10바이트)
+arr[0]: 0x24 ($)
+arr[1]: 0x52 (R)
+arr[2]: FR (전방 우측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+arr[3]: FL (전방 좌측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+arr[4]: BR (바닥 우측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+arr[5]: BL (바닥 좌측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+arr[6]: BC (바닥 중앙, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+arr[7]: BTN (버튼 비트마스크: 8=🔴빨강 4=🔵파랑 2=🟢초록 1=🟡노랑 / 안눌리면 '없음')
+        버튼 배열 순서: 빨강-파랑-초록-노랑 (수평)
+arr[8]: BAT (배터리 잔량, 최대 100 제한 필요)
+arr[9]: STAT (명령 수행 상태: 1=수행중, 0=대기중)
+        순차 이동 시 STAT이 0인 것을 확인한 후 다음 명령을 전송해야 함
+센서값은 주미마다 개체차 있음
+
+## 패킷 빌더
 function buildPacket(cmd, ...params) {
   const buf = new Uint8Array(4 + params.length);
   buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
@@ -409,46 +508,56 @@ function buildPacket(cmd, ...params) {
   return buf.buffer;
 }
 
-## 표현 명령어
-// LED (r,g,b 각 0~10)
-LED 색상:   CMD=10,  params=[r, g, b]
-LED 패턴:   CMD=201, params=[pattern, t_high, t_low]
-  패턴: 1=깜빡 2=두번깜빡 3=밝아졌다어두워짐 4=점점어두 5=점점밝 6=무지개
-  time_ms → t_high=Math.floor(ms/256), t_low=ms%256
+## 표현 기능 명령어
+// LED (r, g, b 각 0~10)
+LED 색상: CMD=10, params=[r, g, b]
+LED 패턴: CMD=201, params=[pattern, time_high, time_low]
+  패턴: 0=유지 1=깜빡 2=두번깜빡 3=밝아졌다어두워짐 4=점점어두워짐 5=점점밝아짐 6=무지개
+  time: ms 단위, 예) 1000ms → time_high=3, time_low=232
 
 // 사운드
 사운드: CMD=242, params=[sound]
   0=고양이 1=셔터 2=실패1 3=실패2 4=경적1 5=경적2 6=사이렌 7=성공
 
-// LCD 텍스트 (UTF-8, 최대 27바이트)
+// LCD 텍스트
+텍스트 출력: CMD=230, 이후 UTF-8 문자열 바이트 + 0x00
+텍스트 추가: CMD=232, 이후 UTF-8 문자열 바이트 + 0x00
+텍스트 설정: CMD=231, params=[color, size, 0, 0, 0]
+  color(기본값 1): 0=변경안함 1=흰색 2=검정 3=남색 4=파랑 5=하늘색 6=청록색 7=틸 8=초록
+                  9=연두 10=라임 11=노랑 12=호박색 13=주황 14=진주황 15=갈색 16=청회색 17=회색
+  size(기본값 5): 0=변경안함 1~5
+
+## 텍스트 스마트 분할 전송
+하드웨어 버퍼 제한: 한 번에 최대 11바이트(payload)
+11바이트 초과 시 자동 슬라이싱, 각 조각 사이 100ms 딜레이 필수
+
+규칙:
+- 첫 번째 조각: CMD=230 (새로 출력)
+- 이후 조각들: CMD=232 (추가 출력)
+- 조각 간 딜레이: 100ms (setTimeout 재귀 루프)
+
+## 기본 sendText 참고
 function sendText(text) {
-  const enc = new TextEncoder().encode(text);
-  const buf = new Uint8Array(4 + enc.length + 1);
+  const encoded = new TextEncoder().encode(text);
+  const buf = new Uint8Array(4 + encoded.length + 1);
   buf[0]=0x24; buf[1]=0x52; buf[2]=230; buf[3]=0x00;
-  buf.set(enc, 4); buf[4+enc.length]=0x00;
+  buf.set(encoded, 4);
+  buf[4 + encoded.length] = 0x00;
   ws.send(buf.buffer);
 }
+// 위 함수를 베이스로 11바이트 분할 + 100ms 딜레이 방식으로 고도화할 것
 
-## 센서 데이터 수신
-ws.send('sensor') 전송 → 주미가 JSON 텍스트로 주기적 전송
-수신 형태: {"irFL":값,"irFR":값,"irBL":값,"irBR":값,"irBC":값,"battery":값,"btn":값}
-  irFL/FR: 전방 좌/우 IR (0~255, 낮을수록 가까움)
-  irBL/BR/BC: 하단 좌/우/중앙 IR (라인트레이서용)
-  battery: 배터리 잔량 (0~100)
-  btn: 버튼 눌림 (0=안눌림, 1=눌림)
 
-ws.onmessage = (event) => {
-  if (typeof event.data === 'string') {
-    try { const s = JSON.parse(event.data); /* s.battery, s.irFL 등 사용 */ }
-    catch(e) {}
-  } else { /* JPEG 프레임 처리 */ }
-};
+## 기본 UI 요소
+- IP 입력창 + 연결 버튼 + 해제 버튼
+- 연결 상태 표시 (연결됨 / 연결 안 됨)
+- 영상 표시 canvas (width=640, height=480)
 
-## 기본 UI (포함)
-- IP 입력 + 연결 버튼 + 연결 상태 표시
-- 영상 스트리밍 canvas (640×480)
-  ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
-  수신: Blob → Image → canvas.drawImage`;
+## 결과물 조건
+- HTML 파일 하나로 동작
+- CSS/JavaScript 내부 포함
+- Chrome에서 바로 실행 가능
+- 별도 서버 불필요`;
 
 function copyP(btn, text) {
   const full = BASE_PROMPT_S2 + '\n\n## 추가로 만들어줄 기능:\n' + text;
@@ -468,6 +577,35 @@ function showToast(msg){
   t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
+
+
+
+
+function toggleCheck2(item){
+  item.classList.toggle('done');
+
+  const box = item.querySelector('.check-box');
+  box.textContent = item.classList.contains('done') ? '✓' : '';
+
+  checkAllCompleted();
+}
+
+function checkAllCompleted(){
+  const items = document.querySelectorAll('.check-item');
+  const doneItems = document.querySelectorAll('.check-item.done');
+  const nextStep = document.getElementById('next-step');
+
+  if(items.length === doneItems.length){
+    nextStep.classList.add('show');
+  }else{
+    nextStep.classList.remove('show');
+  }
+}
+
+
+
+
 </script>
+
 </body>
 </html>

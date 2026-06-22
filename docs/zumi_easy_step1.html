@@ -25,7 +25,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .container{max-width:700px;margin:0 auto;padding:0 20px}
 .section{padding:44px 0}
 .section+.section{border-top:1px solid var(--border)}
-.sec-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
+.sec-label{font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
 .sec-title{font-size:1.35rem;font-weight:900;margin-bottom:8px;line-height:1.3}
 .sec-desc{color:var(--dim);font-size:.88rem;margin-bottom:24px;line-height:1.8}
 
@@ -40,7 +40,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 /* 프롬프트 예시 */
 .prompt-example{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:20px;margin-top:8px;transition:border-color .2s}
 .prompt-example:hover{border-color:#c7d2fe}
-.pe-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:var(--dim);margin-bottom:10px}
+/* .pe-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:var(--dim);margin-bottom:10px} */
+.pe-label {font-size: .8rem;font-family: 'JetBrains Mono', monospace;font-weight: 600;letter-spacing: 0.5px;color: var(--text-main);
+  margin-bottom: 10px;
+}
 .pe-bubble{background:#f0f4ff;border-radius:12px 12px 12px 4px;padding:14px 16px;font-size:.88rem;line-height:1.7;margin-bottom:12px;border-left:3px solid var(--accent)}
 .pe-arrow{color:var(--dim);font-size:.78rem;margin-bottom:8px}
 .pe-result{font-size:.82rem;color:var(--green);font-weight:700;margin-bottom:12px}
@@ -97,6 +100,54 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;font-size:.82rem;padding:10px 22px;border-radius:100px;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.show{opacity:1}
+
+
+
+
+
+
+
+
+.next-step{
+  display:none;
+  margin-top:20px;
+  text-align:center;
+  animation:fadeIn .3s ease;
+}
+
+.next-step.show{
+  display:block;
+}
+
+.next-btn{
+  display:inline-block;
+  padding:14px 24px;
+  background:var(--accent);
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.next-btn:hover{
+  transform:translateY(-2px);
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+
+
 </style>
 </head>
 <body>
@@ -166,8 +217,22 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
     <div class="callout blue" style="margin-top:20px">
       <span class="callout-icon">💡</span>
-      <span>카드를 클릭하면 AI에게 전달할 요청 문장이 복사돼요. 이미 만들어진 기본 코드가 있다면 "이 코드에 ~~를 추가해줘" 식으로 요청하면 됩니다!</span>
+      <span>카드를 클릭하면 AI에게 전달할 요청 문장이 복사돼요.<br>
+        이미 만들어진 기본 코드가 있다면 "이 코드에 ~~를 추가해줘" 식으로 요청하면 됩니다!</span>
     </div>
+
+    <div class="callout yellow" style="margin-top:24px">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="tip-icon">❓</span>
+        <span><strong>바이브 코딩 방법을 잘 모르겠다면?</strong> <br>시작 방법을 참고해주세요.</span>
+      </div>
+
+      <a href="zumi_easy_intro.html#howtostart" class="btn-move">
+        시작 방법 확인하기 →
+      </a>
+    </div>
+
+
   </div>
 
   <!-- AI에게 이렇게 말해요 -->
@@ -176,10 +241,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     <h2 class="sec-title">💬 AI에게 이렇게 말해요</h2>
     <p class="sec-desc">복잡하게 생각하지 말고, 원하는 걸 자연스럽게 말하면 돼요.</p>
 
+
     <div style="display:flex;flex-direction:column;gap:14px">
 
       <div class="prompt-example">
-        <div class="pe-label">처음 시작할 때</div>
+        <div class="pe-label">1️⃣ 처음 시작할 때</div>
         <div class="pe-bubble">
           주미 로봇 카메라 앱을 만들어줘.<br>
           IP 입력창이랑 연결 버튼이 있고, 카메라 화면이 나오면 돼.<br>
@@ -191,10 +257,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
       </div>
 
       <div class="prompt-example">
-        <div class="pe-label">기능 추가할 때</div>
+        <div class="pe-label">2️⃣ 기능 추가할 때</div>
         <div class="pe-bubble">
-          [기존 코드 붙여넣기]<br><br>
+          [기존 코드에 요구사항 넣기]<br><br>
           이 코드에 사진 저장 버튼이랑 흑백 필터 버튼을 추가해줘.
+
         </div>
         <div class="pe-arrow">👇 이렇게 하면</div>
         <div class="pe-result">✅ 기존 앱에 새 기능이 추가됨!</div>
@@ -202,7 +269,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
       </div>
 
       <div class="prompt-example">
-        <div class="pe-label">안 될 때</div>
+        <div class="pe-label">3️⃣ 안 될 때</div>
         <div class="pe-bubble">
           방금 만들어준 코드를 실행했는데<br>
           연결 버튼을 눌러도 아무 반응이 없어. 고쳐줘.
@@ -216,7 +283,8 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
     <div class="callout yellow">
       <span class="callout-icon">⭐</span>
-      <span><strong>꿀팁:</strong> "더 예쁘게", "모바일에서도 잘 보이게", "버튼을 더 크게" 같은 요청도 됩니다. 디자인도 AI에게 맡겨봐요!</span>
+      <span><strong>팁:</strong> "더 예쁘게", "모바일에서도 잘 보이게", "버튼을 더 크게" 같은 요청도 됩니다.<br>
+        디자인도 AI에게 맡겨봐요!</span>
     </div>
   </div>
 
@@ -226,6 +294,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     <h2 class="sec-title">😓 막히면 여기를 봐요</h2>
 
     <div class="faq-list">
+
+
+
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span>🔴 연결이 안 돼요</span>
@@ -236,6 +307,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           1️⃣ <strong>IP 주소</strong>가 맞나요? 주미 LCD에 표시된 IP를 정확히 입력했는지 확인하세요.<br>
           2️⃣ <strong>같은 Wi-Fi</strong>에 연결되어 있나요? 모바일 데이터로는 안 돼요.<br>
           3️⃣ <strong>주미 전원</strong>이 켜져 있나요?
+          <br><br>주미의 배터리가 부족할 수 있어요. 충전 케이블을 연결한 상태로 사용해주세요.
         </div>
       </div>
       <div class="faq-item">
@@ -262,36 +334,45 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     </div>
   </div>
 
+
+
   <!-- 체크리스트 -->
   <div class="section">
     <div class="sec-label">CHECKLIST</div>
     <h2 class="sec-title">✅ 이번 단계 완료 확인</h2>
-    <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 새로고침하면 체크가 풀려요. 다 됐으면 바로 다음 단계로 이동하세요!</p>
+    <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 모든 체크가 완료되면 다음 단계로 이동할 수 있어요.<br>다 됐으면 바로 다음 단계로 이동하세요!</p>
 
     <div class="checklist">
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">AI에게 기본 앱을 만들어달라고 요청했어요</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
-        <div class="check-text">HTML 파일을 저장하고 Chrome으로 열었어요</div>
+        <div class="check-text">HTML 파일을 저장하고 브라우져로 열었어요</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">주미에 연결해서 카메라 화면을 봤어요 📺</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">원하는 기능을 하나 더 추가해봤어요</div>
       </div>
     </div>
-
-    <div class="callout green" style="margin-top:16px">
-      <span class="callout-icon">🎉</span>
-      <span>다 됐다면 Step 2로 가봐요! LED를 켜고 소리도 내고 LCD에 글씨도 보낼 수 있어요.</span>
+    <!-- 완료 시 표시 -->
+    <div id="next-step" class="next-step">
+      <div class="callout red" style="margin-top:16px">
+        <span class="callout-icon">🎉</span>
+        <span>다 됐다면 Step 2로 가봐요! LED를 켜고 소리도 내고 LCD에 글씨도 보낼 수 있어요.</span>
+      </div>
+      <br>
+      <a href="zumi_easy_step2.html" class="next-btn">
+        다음 단계로 이동하기 🚀
+      </a>
     </div>
   </div>
+
 
 </div>
 
@@ -301,7 +382,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   <div style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:#4f46e5;margin-bottom:6px">MORE DETAIL</div>
   <div style="font-weight:700;margin-bottom:4px;font-size:.88rem">더 깊이 알고 싶다면?</div>
   <div style="font-size:.8rem;color:#6b7280;margin-bottom:12px;line-height:1.7">패킷 구조, API 레퍼런스, 고급 프롬프트까지 담긴 심화 가이드도 있어요.</div>
-  <a href="zumi_step1.html" style="display:inline-block;padding:7px 16px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화 가이드 보기 →</a>
+  <a href="zumi_advanced_step1.html" style="display:inline-block;padding:7px 16px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화 가이드 보기 →</a>
 </div>
 
 <div class="step-nav">
@@ -321,29 +402,63 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 const BASE_PROMPT_S1 = `# ZUMI 로봇 카메라 웹앱 만들기
 
 ## 시스템 구조
-브라우저(HTML) ↔ WebSocket ↔ ESP32(주미 로봇)
+브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
 서버 없음. HTML 파일 하나로만 동작.
-같은 Wi-Fi 네트워크 필요.
 
 ## WebSocket 연결 방법
 ws = new WebSocket('ws://' + ip + '/ws')
 ws.binaryType = 'arraybuffer'
-연결 후 반드시 ws.send('stream') 전송 → 영상 스트리밍 시작
+연결 성공(onopen) 시 반드시 아래 두 명령을 순서대로 전송:
+1. ws.send('stream') → 영상 스트리밍 시작
+2. ws.send('sensor') → 센서 데이터 수신 시작
 
-## 영상 수신 방법 (반드시 이 방식으로)
+## 영상 및 센서 수신 방법
 ws.onmessage = (event) => {
-  const blob = new Blob([new Uint8Array(event.data)], {type:'image/jpeg'});
-  const url  = URL.createObjectURL(blob);
-  const img  = new Image();
+  if (typeof event.data === 'string') return;
+  const arr = new Uint8Array(event.data);
+
+  // 센서 데이터 (10바이트, 헤더 $R)
+  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {
+    parseAndUpdateSensors(arr);
+    return;
+  }
+
+  // 영상 데이터 (그 외 = JPEG)
+  const blob = new Blob([arr], {type: 'image/jpeg'});
+  const url = URL.createObjectURL(blob);
+  const img = new Image();
   img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };
   img.src = url;
 }
 
-## 필수 UI 요소
-- IP 주소 입력창 + 연결 버튼 + 해제 버튼
+## 패킷 빌더
+function buildPacket(cmd, ...params) {
+  const buf = new Uint8Array(4 + params.length);
+  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
+  params.forEach((v,i) => buf[4+i]=v);
+  return buf.buffer;
+}
+
+
+## 기본 UI 요소
+- IP 입력창 + 연결 버튼 + 해제 버튼
 - 연결 상태 표시 (연결됨 / 연결 안 됨)
-- 영상을 표시할 canvas (width=640, height=480)
-- HTML 파일 하나로만 동작 (서버 불필요)`;
+- 영상 표시 canvas (width=640, height=480)
+
+## 결과물 조건
+- HTML 파일 하나로 동작
+- CSS/JavaScript 내부 포함
+- Chrome에서 바로 실행 가능
+- 별도 서버 불필요`;
+
+
+
+
+
+
+
+
+
 
 function copyPrompt(btn, text) {
   const full = BASE_PROMPT_S1 + '\n\n## 추가로 만들어줄 기능:\n' + text;
@@ -369,6 +484,39 @@ function showToast(msg) {
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
 }
+
+
+
+
+
+
+function toggleCheck2(item){
+  item.classList.toggle('done');
+
+  const box = item.querySelector('.check-box');
+  box.textContent = item.classList.contains('done') ? '✓' : '';
+
+  checkAllCompleted();
+}
+
+function checkAllCompleted(){
+  const items = document.querySelectorAll('.check-item');
+  const doneItems = document.querySelectorAll('.check-item.done');
+  const nextStep = document.getElementById('next-step');
+
+  if(items.length === doneItems.length){
+    nextStep.classList.add('show');
+  }else{
+    nextStep.classList.remove('show');
+  }
+}
+
+
+
+
+
+</script>
+
 </script>
 </body>
 </html>

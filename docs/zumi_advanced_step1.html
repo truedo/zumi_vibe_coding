@@ -1312,35 +1312,57 @@
       <div class="prompt-body" id="main-prompt"><span class="pc"># ZUMI AI 카메라 웹앱 만들기</span>
 
         <span class="pk">## 시스템 구조</span>
-        브라우저(HTML) ↔ WebSocket ↔ 주미 AI(하드웨어)
+        브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
         서버 없음. HTML 파일 하나로만 동작.
-        같은 Wi-Fi 네트워크 필요.
 
         <span class="pk">## WebSocket 연결 방법</span>
-        <span class="pv">ws = new WebSocket('ws://' + ip + '/ws')</span>
-        <span class="pv">ws.binaryType = 'arraybuffer'</span>
-        연결 후 반드시 <span class="pv">ws.send('stream')</span> 전송 → 영상 스트리밍 시작
+        ws = new WebSocket('ws://' + ip + '/ws')
+        ws.binaryType = 'arraybuffer'
+        연결 성공(onopen) 시 반드시 아래 두 명령을 순서대로 전송:
+        1. ws.send('stream') → 영상 스트리밍 시작
+        2. ws.send('sensor') → 센서 데이터 수신 시작
 
-        <span class="pk">## 영상 수신 방법 (반드시 이 방식으로)</span>
+        <span class="pk">## 영상 및 센서 수신 방법</span>
         <span class="pv">ws.onmessage = (event) => {</span>
-        <span class="pv"> const blob = new Blob([new Uint8Array(event.data)], {type:'image/jpeg'});</span>
-        <span class="pv"> const url = URL.createObjectURL(blob);</span>
-        <span class="pv"> const img = new Image();</span>
-        <span class="pv"> img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
-        <span class="pv"> img.src = url;</span>
+        <span class="pv">  if (typeof event.data === 'string') return;</span>
+        <span class="pv">  const arr = new Uint8Array(event.data);</span>
+        <span class="pv"></span>
+        <span class="pv">  // 센서 데이터 (10바이트, 헤더 $R)</span>
+        <span class="pv">  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
+        <span class="pv">    parseAndUpdateSensors(arr);</span>
+        <span class="pv">    return;</span>
+        <span class="pv">  }</span>
+        <span class="pv"></span>
+        <span class="pv">  // 영상 데이터 (그 외 = JPEG)</span>
+        <span class="pv">  const blob = new Blob([arr], {type: 'image/jpeg'});</span>
+        <span class="pv">  const url = URL.createObjectURL(blob);</span>
+        <span class="pv">  const img = new Image();</span>
+        <span class="pv">  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
+        <span class="pv">  img.src = url;</span>
         <span class="pv">}</span>
 
-        <span class="pk">## 필수 UI 요소</span>
-        - IP 주소 입력창 + 연결 버튼 + 해제 버튼
+        <span class="pk">## 패킷 빌더</span>
+        <span class="pv">function buildPacket(cmd, ...params) {</span>
+        <span class="pv">  const buf = new Uint8Array(4 + params.length);</span>
+        <span class="pv">  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
+        <span class="pv">  params.forEach((v,i) => buf[4+i]=v);</span>
+        <span class="pv">  return buf.buffer;</span>
+        <span class="pv">}</span>
+
+
+        <span class="pk">## 기본 UI 요소</span>
+        - IP 입력창 + 연결 버튼 + 해제 버튼
         - 연결 상태 표시 (연결됨 / 연결 안 됨)
-        - 영상을 표시할 canvas (width=640, height=480)
-        - HTML 파일 하나로만 동작 (서버 불필요)
+        - 영상 표시 canvas (width=640, height=480)
 
         <span class="pk">## 결과물 조건</span>
         - HTML 파일 하나로 동작
         - CSS/JavaScript 내부 포함
         - Chrome에서 바로 실행 가능
         - 별도 서버 불필요
+
+
+
 
         <span class="pp">## 추가로 만들어줄 기능:
           (여기에 원하는 기능을 직접 적어주세요)

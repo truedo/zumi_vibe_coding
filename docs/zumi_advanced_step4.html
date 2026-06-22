@@ -877,6 +877,62 @@
       background: var(--color-background-warning);
       color: var(--color-text-warning);
     }
+
+
+    /* 완료 섹션 */
+    .complete-box {
+      background: linear-gradient(135deg, #4f46e5, #8b5cf6, #06b6d4);
+      border-radius: 20px;
+      padding: 36px;
+      text-align: center;
+      color: #fff;
+      margin-top: 8px
+    }
+
+    .complete-box h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 10px
+    }
+
+    .complete-box p {
+      opacity: .88;
+      font-size: .9rem;
+      line-height: 1.8;
+      margin-bottom: 24px
+    }
+
+    .complete-projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px
+    }
+
+    .cp-tag {
+      background: rgba(255, 255, 255, .15);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: .8rem
+    }
+
+    .complete-btn {
+      display: inline-block;
+      background: #fff;
+      color: #4f46e5;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 12px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity .2s
+    }
+
+    .complete-btn:hover {
+      opacity: .9
+    }
   </style>
 </head>
 
@@ -886,7 +942,7 @@
     <div class="step-badge">STEP 4 of 4</div>
     <h1>🚥 AI 비전</h1>
     <!-- <p>카메라 영상을 활용하여 주변 환경을 인식합니다.<br>얼굴, 손, 마커, 물체, 스케치까지 AI가 직접 봅니다!</p> -->
- <p>카메라로 얼굴, 손, 물체를 인식해서 주미가 스스로 반응하게 만들어봅니다.</p>
+    <p>카메라로 얼굴, 손, 물체를 인식해서 주미가 스스로 반응하게 만들어봅니다.</p>
 
   </div>
 
@@ -905,20 +961,20 @@
       <h2>🎯 이번 단계의 목표</h2>
       <!-- <p>카메라 영상에서 <strong>얼굴, 손동작, 마커, 물체, 스케치</strong>를 인식합니다.<br>
         인식 결과를 바탕으로 LED를 켜거나, 로봇을 움직이는 <strong>AI 반응 로봇</strong>을 만들 수 있습니다.</p> -->
-       <p> 주미에 AI 눈을 달아보세요.<br>
+      <p> 주미에 AI 눈을 달아보세요.<br>
         얼굴, 손동작, 물체를 인식해서 로봇이 반응하고 움직이게 만들 수 있어요.</p>
     </div>
 
 
-<div class="sec-title" style="margin-top:28px">🧠 어떻게 동작하나요?</div>
-<div class="goal-box">
- <p>
-예를 들어 주미의 카메라가 영상을 찍으면, 브라우저가 그 영상을 보면서 "얼굴이다", "손이다"를 판단해요. <br>
-판단이 되는 순간 주미에게 "LED 켜", "멈춰" 같은 명령이 바로 전달됩니다.<br>
-보고 → 판단하고 → 행동하는 것, 이게 AI 로봇이에요.</p>
-</div>
+    <div class="sec-title" style="margin-top:28px">🧠 어떻게 동작하나요?</div>
+    <div class="goal-box">
+      <p>
+        예를 들어 주미의 카메라가 영상을 찍으면, 브라우저가 그 영상을 보면서 "얼굴이다", "손이다"를 판단해요. <br>
+        판단이 되는 순간 주미에게 "LED 켜", "멈춰" 같은 명령이 바로 전달됩니다.<br>
+        보고 → 판단하고 → 행동하는 것, 이게 AI 로봇이에요.</p>
+    </div>
 
-<!--
+    <!--
     <div class="sec-title" style="margin-top:28px">AI 비전 처리 흐름</div>
     <div class="flow-box">
       <div class="flow-steps">
@@ -1353,7 +1409,7 @@
 
 
 
-  </div>
+    </div>
 
 
 
@@ -1365,7 +1421,7 @@
 
 
 
-<!--
+    <!--
 
 
       <div class="request-item" onclick="copyRequest(this)">
@@ -1550,7 +1606,7 @@
         <p>QR 코드에 적힌 목적지에 따라 다른 경로를 안내하는 로봇</p>
       </div>
 
-     <div class="project-card pc-sketch">
+      <div class="project-card pc-sketch">
         <div class="pc-icon">🎨</div>
         <h3>색깔 인식 로봇</h3>
         <p>티처블 머신으로 색깔 카드 3종류를 학습시켜서, 카드 색깔에 따라 다른 동작을 하기</p>
@@ -1562,10 +1618,6 @@
         <p>신호등 영역의 색상을 HSV로 분석해서 빨강이면 정지, 초록이면 전진하기</p>
       </div>
 
-
-
-
-
     </div>
 
 
@@ -1573,39 +1625,56 @@
 
 
 
-    <div class="tip green" style="margin-top:24px">
+
+    <!-- <div class="tip green" style="margin-top:24px">
       <span class="tip-icon">🎉</span>
-      <!-- <span>브라우저 AI(MediaPipe, COCO-SSD...)를 사용하면 얼굴 추적 로봇, 손동작 리모컨, 표지판 인식 로봇을 HTML 파일 하나로 만들 수 있어요!</span> -->
-
-    <span>
-    여기까지 왔군요!<br><br>
-    연결하고, 표현하고, 움직이고, AI까지 주미를 다루는 기본적인 건 다 해봤어요.<br>
-    이제 가이드는 여기까지에요.<br>
-    <strong>다음은 여러분 차례입니다.<br>
-
-    <!-- "주미가 사람을 보면 인사하게 하고 싶어"<br>
-
-    "버튼을 누르면 춤을 추게 하고 싶어"<br>
-
-    "선을 따라가다가 얼굴을 보면 멈추게 하고 싶어"<br><br> -->
-
-    떠오르는 게 있다면 지금 바로 AI에게 말해보세요.</strong>
-
-    <!-- 막히면 다시 돌아와도 됩니다.<br> -->
-<!--
-    어떤가요? <br>
-    예시 문장 3개는 지금까지 배운 기능을 자연스럽게 조합한 것들이에요. "아 이런 것도 되겠다"를 끌어내는 역할이에요.<br> -->
-    </span>
+      <span>
+        여기까지 왔군요!<br><br>
+        연결하고, 표현하고, 움직이고, AI까지 주미를 다루는 기본적인 건 다 해봤어요.<br>
+        이제 가이드는 여기까지에요.<br>
+        <strong>다음은 여러분 차례입니다.<br>
 
 
+          떠오르는 게 있다면 지금 바로 AI에게 말해보세요.</strong>
 
+      </span>
+    </div> -->
+
+    <br><br>
+
+    <!-- <div class="section" id="complete"> -->
+    <div class="complete-box">
+      <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
+      <h2>모든 단계 완료!</h2>
+      <!-- <p>
+          Step 1~4를 모두 마쳤어요.<br>이제 이런 것들을 직접 만들 수 있어요!</p>
+          <p> -->
+      여기까지 왔군요!<br><br>
+      연결하고, 표현하고, 움직이고, AI까지 주미를 다루는 기본적인 건 다 해봤어요.<br>
+      이제 가이드는 여기까지에요.<br>
+      <strong>다음은 여러분 차례입니다.<br>
+        </p>
+
+        <div class="complete-projects">
+          <!-- <span class="cp-tag">🚗 리모컨 자동차</span>
+          <span class="cp-tag">😊 얼굴 추적 로봇</span>
+          <span class="cp-tag">✋ 손동작 리모컨</span>
+          <span class="cp-tag">🛑 표지판 인식 로봇</span>
+          <span class="cp-tag">🎂 생일 축하 로봇</span>
+          <span class="cp-tag">〰️ 라인트레이서</span> -->
+        </div>
+        <a href="index.html" class="complete-btn">처음으로 돌아가기 🏠</a>
     </div>
-
-
+    <!-- </div> -->
 
 
     <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
   </div>
+
+
+
+
+
 
   <!-- ⑥ 프롬프트 -->
   <div class="section" id="tab-prompt">
@@ -1639,16 +1708,43 @@
       <div class="prompt-body" id="prompt-a"><span class="pc"># ZUMI 로봇 AI 비전 웹앱 (브라우저 AI 방식)</span>
 
         <span class="pk">## 시스템 구조</span>
-        브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI
+        브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
         서버 없음. HTML 파일 하나로만 동작.
         AI 처리도 브라우저에서 직접 수행 (CDN 라이브러리 사용)
 
-        <span class="pk">## 영상 스트리밍 방법</span>
-        연결 후 ws.send("stream")
+        <span class="pk">## WebSocket 연결 방법</span>
+        ws = new WebSocket('ws://' + ip + '/ws')
         ws.binaryType = 'arraybuffer'
-        수신: ArrayBuffer → Blob → Image → canvas.drawImage()
-        권장 캔버스 크기: 640×480
+        연결 성공(onopen) 시 반드시 아래 두 명령을 순서대로 전송:
+        1. ws.send('stream') → 영상 스트리밍 시작
+        2. ws.send('sensor') → 센서 데이터 수신 시작
 
+        <span class="pk">## 영상 및 센서 수신 방법</span>
+        <span class="pv">ws.onmessage = (event) => {</span>
+        <span class="pv">  if (typeof event.data === 'string') return;</span>
+        <span class="pv">  const arr = new Uint8Array(event.data);</span>
+        <span class="pv"></span>
+        <span class="pv">  // 센서 데이터 (10바이트, 헤더 $R)</span>
+        <span class="pv">  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
+        <span class="pv">    parseAndUpdateSensors(arr);</span>
+        <span class="pv">    return;</span>
+        <span class="pv">  }</span>
+        <span class="pv"></span>
+        <span class="pv">  // 영상 데이터 (그 외 = JPEG)</span>
+        <span class="pv">  const blob = new Blob([arr], {type: 'image/jpeg'});</span>
+        <span class="pv">  const url = URL.createObjectURL(blob);</span>
+        <span class="pv">  const img = new Image();</span>
+        <span class="pv">  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
+        <span class="pv">  img.src = url;</span>
+        <span class="pv">}</span>
+
+        <span class="pk">## 패킷 빌더</span>
+        <span class="pv">function buildPacket(cmd, ...params) {</span>
+        <span class="pv">  const buf = new Uint8Array(4 + params.length);</span>
+        <span class="pv">  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
+        <span class="pv">  params.forEach((v,i) => buf[4+i]=v);</span>
+        <span class="pv">  return buf.buffer;</span>
+        <span class="pv">}</span>
 
         <span class="pk">## AI 오버레이 구조</span>
         videoCanvas (영상) + aiCanvas (AI 결과 오버레이, position:absolute)
@@ -1662,8 +1758,7 @@
 
         <span class="pc">// TensorFlow.js + COCO-SSD (물체/표지판)</span>
         &lt;script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"&gt;&lt;/script&gt;
-        &lt;script
-        src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"&gt;&lt;/script&gt;
+        &lt;script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"&gt;&lt;/script&gt;
 
         <span class="pc">// js-aruco (마커 인식)</span>
         &lt;script src="https://cdn.jsdelivr.net/npm/js-aruco2/src/cv.js"&gt;&lt;/script&gt;
@@ -1680,40 +1775,36 @@
         src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"&gt;&lt;/script&gt;
         // 모델 URL은 사용자가 직접 입력하게 UI 제공
 
-
         <span class="pk">## AI 루프 패턴 (120~200ms 간격)</span>
         // 루프 밖에서 한 번만 생성
-        const offscreen = document.createElement('canvas');
-        offscreen.width = 640; offscreen.height = 480;
-        async function aiLoop() {
-        aiCtx.clearRect(0, 0, aiCanvas.width, aiCanvas.height);
-        offscreen.getContext('2d').drawImage(videoCanvas, 0, 0);
-        if (faceOn) await faceMesh.send({image: offscreen});
-        if (handsOn) await hands.send({image: offscreen});
-        if (cocoOn) await runCoco(offscreen);
-        setTimeout(aiLoop, 150);
-        }
+        <span class="pv">const offscreen = document.createElement('canvas');</span>
+        <span class="pv">offscreen.width = 640; offscreen.height = 480;</span>
+        <span class="pv"></span>
+        <span class="pv">async function aiLoop() {</span>
+        <span class="pv">  aiCtx.clearRect(0, 0, aiCanvas.width, aiCanvas.height);</span>
+        <span class="pv">  offscreen.getContext('2d').drawImage(videoCanvas, 0, 0);</span>
+        <span class="pv">  if (faceOn) await faceMesh.send({image: offscreen});</span>
+        <span class="pv">  if (handsOn) await hands.send({image: offscreen});</span>
+        <span class="pv">  if (cocoOn) await runCoco(offscreen);</span>
+        <span class="pv">  setTimeout(aiLoop, 150);</span>
+        <span class="pv">}</span>
 
-        // 손 랜드마크(21점) 기반으로 제스처 판별
+        <span class="pk">## 손 랜드마크(21점) 기반 제스처 판별</span>
         // 손가락 끝(4,8,12,16,20)과 관절(3,6,10,14,18) y좌표 비교 방식 사용
         function recognizeGesture(landmarks) { ... }
 
         <span class="pk">## AI 토글 버튼 구조</span>
-        각 AI 기능(얼굴/손/물체)마다 토글 버튼 제공
-        버튼 ON → 해당 AI 초기화·루프 시작
+        각 AI 기능(얼굴/손/물체 등)마다 토글 버튼 제공
+        버튼 ON → 해당 AI 초기화 및 루프 시작
         버튼 OFF → 오버레이 지우기, 루프에서 제외
 
-        <span class="pk">## 이동 명령 (이전 스텝과 동일)</span>
-        buildPacket(29, speed, 0, dir) // 이동
-        buildPacket(25) // 정지
-        buildPacket(52, deg/5) // 좌회전
-        buildPacket(53, deg/5) // 우회전
-        buildPacket(10, r, g, b) // LED
 
         <span class="pk">## 기본 UI 포함 요소</span>
-        - IP 입력 + 연결 버튼 + 상태 표시
-        - 영상 스트리밍 canvas (권장 640×480)
-        ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
+        - IP 입력창 + 연결 버튼 + 해제 버튼
+        - 연결 상태 표시 (연결됨 / 연결 안 됨)
+        - 영상 표시 canvas (width=640, height=480)
+        - AI 라이브러리 로딩 상태 표시
+          (용량이 큰 라이브러리 초기화 중에는 "로딩 중..." 등의 메시지 또는 스피너를 표시)
 
         <span class="pk">## 결과물 조건</span>
         - HTML 파일 하나로 동작
@@ -1721,12 +1812,6 @@
         - Chrome에서 바로 실행 가능
         - 별도 서버 불필요
 
-
-        <span class="pk">## 결과물 조건</span>
-        - HTML 파일 하나로 동작
-        - CSS/JavaScript 내부 포함
-        - Chrome에서 바로 실행 가능
-        - 별도 서버 불필요
 
 
 
@@ -1746,11 +1831,16 @@
     <span class="tip-icon">💡</span>
     <span>처음 시작이라면 <strong>방식 A(브라우저 AI)</strong>를 추천합니다. Python 설치 없이 HTML 파일 하나로 바로 동작합니다!</span>
   </div> -->
-
+    <div class="tip red" style="margin-top:12px">
+      <span class="tip-icon">💡</span>
+      <span>AI 인식 결과로 로봇을 움직이고 싶다면, 3단계 프롬프트와 함께 사용해보세요.</span>
+    </div>
     <div class="tip green" style="margin-top:12px">
       <span class="tip-icon">🎯</span>
       <span>Step 1~3에서 만든 앱에 AI 기능을 추가하고 싶다면 "기존 코드에 얼굴 추적 기능을 추가해줘"라고 하면 됩니다!</span>
     </div>
+
+
     <div style="margin-top:32px;text-align:center">
       <button onclick="showTab('requests')"
         style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px 32px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">다음:
@@ -1809,7 +1899,7 @@
       <div style="width:28px;height:4px;border-radius:2px;background:#8b5cf6"></div>
     </div>
     <!-- <a href="zumi_advanced_intro.html" -->
-      <a href="zumi_advanced_step1.html"
+    <a href="zumi_advanced_step1.html"
       style="color:#8b5cf6;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #8b5cf6;border-radius:100px;transition:all .2s"
       onmouseover="this.style.background='#8b5cf6';this.style.color='#fff'"
       onmouseout="this.style.background='transparent';this.style.color='#8b5cf6'">🏁 처음으로</a>

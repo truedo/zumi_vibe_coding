@@ -25,7 +25,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .container{max-width:700px;margin:0 auto;padding:0 20px}
 .section{padding:44px 0}
 .section+.section{border-top:1px solid #bae6fd}
-.sec-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
+.sec-label{font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
 .sec-title{font-size:1.35rem;font-weight:900;margin-bottom:8px;line-height:1.3}
 .sec-desc{color:var(--dim);font-size:.88rem;margin-bottom:24px;line-height:1.8}
 
@@ -100,6 +100,56 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;font-size:.82rem;padding:10px 22px;border-radius:100px;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.show{opacity:1}
+
+
+
+
+
+
+
+.next-step{
+  display:none;
+  margin-top:20px;
+  text-align:center;
+  animation:fadeIn .3s ease;
+}
+
+.next-step.show{
+  display:block;
+}
+
+.next-btn{
+  display:inline-block;
+  padding:14px 24px;
+  background:var(--accent);
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.next-btn:hover{
+  transform:translateY(-2px);
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -260,31 +310,42 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   <div class="section">
     <div class="sec-label">CHECKLIST</div>
     <h2 class="sec-title">✅ 이번 단계 완료 확인</h2>
-    <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 새로고침하면 체크가 풀려요. 다 됐으면 바로 다음 단계로 이동하세요!</p>
+    <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 모든 체크가 완료되면 다음 단계로 이동할 수 있어요.<br>다 됐으면 바로 다음 단계로 이동하세요!</p>
 
     <div class="checklist">
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">버튼으로 로봇을 앞뒤로 움직여봤어요 🚗</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">회전도 해봤어요 🔄</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">이동 + 표현 기능을 조합해봤어요 ✨</div>
       </div>
-      <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-item" onclick="toggleCheck2(this)">
         <div class="check-box"></div>
         <div class="check-text">도형 이동이나 라인트레이서에 도전해봤어요 🏁</div>
       </div>
     </div>
 
-    <div class="callout green" style="margin-top:16px">
-      <span class="callout-icon">🤖</span>
-      <span>마지막 Step 4! 이제 AI 눈을 달아볼 차례예요. 얼굴을 인식하고, 물체를 보고, 손동작으로 조종해봐요!</span>
+    <!-- 완료 시 표시 -->
+    <div id="next-step" class="next-step">
+
+      <div class="callout red" style="margin-top:16px">
+        <span class="callout-icon">🎉</span>
+        <span>마지막 Step 4! 이제 AI 눈을 달아볼 차례예요. 얼굴을 인식하고, 물체를 보고, 손동작으로 조종해봐요!</span>
+      </div>
+
+      <br>
+      <a href="zumi_easy_step4.html" class="next-btn">
+        다음 단계로 이동하기 🚀
+      </a>
     </div>
+
+
   </div>
 
 </div>
@@ -294,7 +355,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   <div style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:#0ea5e9;margin-bottom:6px">MORE DETAIL</div>
   <div style="font-weight:700;margin-bottom:4px;font-size:.88rem">더 깊이 알고 싶다면?</div>
   <div style="font-size:.8rem;color:#6b7280;margin-bottom:12px;line-height:1.7">패킷 구조, API 레퍼런스, 고급 프롬프트까지 담긴 심화 가이드도 있어요.</div>
-  <a href="zumi_step3.html" style="display:inline-block;padding:7px 16px;background:#0ea5e9;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화 가이드 보기 →</a>
+  <a href="zumi_advanced_step3.html" style="display:inline-block;padding:7px 16px;background:#0ea5e9;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화 가이드 보기 →</a>
 </div>
 
 <div class="step-nav">
@@ -312,13 +373,38 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 <script>
 const BASE_PROMPT_S3 = `# ZUMI 로봇 이동 제어 웹앱 만들기
 
+# ZUMI 로봇 이동 제어 웹앱 만들기
+
 ## 시스템 구조
-브라우저(HTML) ↔ WebSocket(ws://IP/ws) ↔ ESP32(주미 로봇)
+브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
 서버 없음. HTML 파일 하나로만 동작.
 
-## 패킷 구조
-[0x24][0x52][command][0x00][param1]...[paramN]
+## WebSocket 연결 방법
+ws = new WebSocket('ws://' + ip + '/ws')
+ws.binaryType = 'arraybuffer'
+연결 성공(onopen) 시 반드시 아래 두 명령을 순서대로 전송:
+1. ws.send('stream') → 영상 스트리밍 시작
+2. ws.send('sensor') → 센서 데이터 수신 시작
 
+## 영상 및 센서 수신 방법
+ws.onmessage = (event) => {
+  if (typeof event.data === 'string') return;
+  const arr = new Uint8Array(event.data);
+
+  // 센서 데이터 (10바이트, 헤더 $R)
+  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {
+    parseAndUpdateSensors(arr);
+    return;
+  }
+
+  // 영상 데이터 (그 외 = JPEG)
+  const blob = new Blob([arr], {type: 'image/jpeg'});
+  const url = URL.createObjectURL(blob);
+  const img = new Image();
+  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };
+  img.src = url;
+}
+## 패킷 빌더
 function buildPacket(cmd, ...params) {
   const buf = new Uint8Array(4 + params.length);
   buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
@@ -326,29 +412,92 @@ function buildPacket(cmd, ...params) {
   return buf.buffer;
 }
 
-## 이동 명령어
-전진(무한):    CMD=29, params=[speed, 0, 0]  speed:1~3
-후진(무한):    CMD=29, params=[speed, 0, 1]
-정지:          CMD=25, params=[]
-좌회전(빠른):  CMD=52, params=[deg/5]  90도=18
-우회전(빠른):  CMD=53, params=[deg/5]
-전진(거리):    CMD=26, params=[speed, dist, 0]  dist:cm
-후진(거리):    CMD=26, params=[speed, dist, 1]
-라인트레이서(무한): CMD=30, params=[speed]
-장애물 감지 정지:   CMD=100, params=[speed, senL, senR]  기본값=150
+## 센서 데이터 파싱 규칙 (10바이트)
+arr[0]: 0x24 ($)
+arr[1]: 0x52 (R)
+arr[2]: FR (전방 우측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+arr[3]: FL (전방 좌측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+arr[4]: BR (바닥 우측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+arr[5]: BL (바닥 좌측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+arr[6]: BC (바닥 중앙, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+arr[7]: BTN (버튼 비트마스크: 8=🔴빨강 4=🔵파랑 2=🟢초록 1=🟡노랑 / 안눌리면 '없음')
+        버튼 배열 순서: 빨강-파랑-초록-노랑 (수평)
+arr[8]: BAT (배터리 잔량, 최대 100 제한 필요)
+arr[9]: STAT (명령 수행 상태: 1=수행중, 0=대기중)
+        순차 이동 시 STAT이 0인 것을 확인한 후 다음 명령을 전송해야 함
+센서값은 주미마다 개체차 있음
 
-## 전진/후진 버튼 패턴 (누르는 동안만 이동)
-btn.addEventListener('mousedown', () => sendRaw(buildPacket(29, speed, 0, dir)));
-btn.addEventListener('mouseup',   () => sendRaw(buildPacket(25)));
-btn.addEventListener('mouseleave',() => sendRaw(buildPacket(25)));
-btn.addEventListener('touchstart',() => sendRaw(buildPacket(29, speed, 0, dir)));
-btn.addEventListener('touchend',  () => sendRaw(buildPacket(25)));
+## STAT 적용 규칙
+STAT 체크 필요 (완료 후 다음 명령 전송):
+- 정밀 이동: CMD=26, 70, 50, 51, 52, 53
+- 특수 이동: CMD=101, 28, 100
 
-## 기본 UI (포함)
-- IP 입력 + 연결 버튼 + 연결 상태 표시
-- 영상 스트리밍 canvas (640×480)
-  ws.binaryType='arraybuffer', 연결 후 ws.send('stream')
-  수신: Blob → Image → canvas.drawImage`;
+STAT 체크 불필요 (즉시 전송):
+- 버튼/키보드 조종: CMD=32 (CMD_MOTOR_INFINITE)
+- 라인트레이서 무한: CMD=30
+- 정지: CMD=25
+
+## 전송 딜레이
+범위: 10~200ms
+sendRaw() 내부에서 if (Date.now() - lastCmdTime < cmdDelay) return;
+CMD_STOP(25)은 딜레이 무시하고 즉시 전송
+
+## 모터 제어 (CMD_MOTOR_INFINITE)
+버튼/키보드 조종에 적합
+CMD_STOP = 25 → buildPacket(25)
+CMD_MOTOR_INFINITE = 32
+## 모터 패킷 생성 함수
+function makeMotorPacket(dirL, speedL, dirR, speedR) {
+  speedL = Math.max(0, Math.min(250, speedL));
+  speedR = Math.max(0, Math.min(250, speedR));
+  dirL = Math.max(0, Math.min(2, dirL));
+  dirR = Math.max(0, Math.min(2, dirR));
+  const dir = 0x40 | dirL | (dirR << 4);
+  return buildPacket(32, speedL, speedR, dir);
+}
+
+## 모터 제어(CMD_MOTOR_INFINITE) 캘리브레이션
+버튼이나 키보드 조종을 원하는 경우에 함께 적용
+변수 4개 (기본값 40, 범위 0~250): calGoL, calGoR, calTurnL, calTurnR
+전진: makeMotorPacket(2, calGoL, 1, calGoR)
+후진: makeMotorPacket(1, calGoL, 2, calGoR)
+좌회전: makeMotorPacket(1, calTurnL, 1, calTurnR)
+우회전: makeMotorPacket(2, calTurnL, 2, calTurnR)
+
+## 입력 이벤트
+버튼: mousedown/touchstart → 이동, mouseup/mouseleave/touchend → 정지
+키보드: keydown(repeat 무시, input 포커스 시 무시) → 이동, keyup → 정지
+키 매핑: w=전진 s=후진 a=좌회전 d=우회전 e=정지
+
+## 정밀 이동
+전진 거리: CMD=26 params=[speed, dist, 0]
+후진 거리: CMD=26 params=[speed, dist, 1]
+좌회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 0]
+우회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 1]
+빠른 전진: CMD=50 params=[dist] (단위: cm, 0~300)
+빠른 후진: CMD=51 params=[dist] (단위: cm, 0~300)
+빠른 좌회전: CMD=52 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
+빠른 우회전: CMD=53 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
+
+## 특수 이동
+라인트레이서 무한: CMD=30 params=[speed]
+라인트레이서 시간: CMD=101 params=[speed, senBL, senBR, senBC, time×10] 기본 센서값=100
+라인트레이서 거리: CMD=28 params=[speed, dist]
+장애물 감지 정지: CMD=100 params=[speed, senL, senR] 기본 센서값=150
+
+## 기본 UI 요소
+- IP 입력창 + 연결 버튼 + 해제 버튼
+- 연결 상태 표시 (연결됨 / 연결 안 됨)
+- 영상 표시 canvas (width=640, height=480)
+- 방향 제어 버튼 또는 키보드
+- 캘리브레이션 입력 4개
+- 전송 딜레이 조절
+
+## 결과물 조건
+- HTML 파일 하나로 동작
+- CSS/JavaScript 내부 포함
+- Chrome에서 바로 실행 가능
+- 별도 서버 불필요`;
 
 function copyP(btn,text){
   const full = BASE_PROMPT_S3 + '\n\n## 추가로 만들어줄 기능:\n' + text;
@@ -361,6 +510,39 @@ function copyP(btn,text){
 function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
 function toggleCheck(el){el.classList.toggle('done');el.querySelector('.check-box').textContent=el.classList.contains('done')?'✓':'';}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+
+
+
+
+
+
+function toggleCheck2(item){
+  item.classList.toggle('done');
+
+  const box = item.querySelector('.check-box');
+  box.textContent = item.classList.contains('done') ? '✓' : '';
+
+  checkAllCompleted();
+}
+
+function checkAllCompleted(){
+  const items = document.querySelectorAll('.check-item');
+  const doneItems = document.querySelectorAll('.check-item.done');
+  const nextStep = document.getElementById('next-step');
+
+  if(items.length === doneItems.length){
+    nextStep.classList.add('show');
+  }else{
+    nextStep.classList.remove('show');
+  }
+}
+
+
+
+
+
 </script>
+
 </body>
 </html>
