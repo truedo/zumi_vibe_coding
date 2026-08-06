@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XHRH6KZ8T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6XHRH6KZ8T');
+  </script>
+
+  <!-- Microsoft clarity -->
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "xccb4odoqc");
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUMI AI · 5분만에 스트리밍 · 바이브 코딩</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06080f;
+      --surface: #0d1120;
+      --border: #1a2440;
+      --accent: #6366f1;
+      --cyan: #06b6d4;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --pink: #ec4899;
+      --white: #ffffff;
+      --text: #e2e8f0;
+      --dim: #64748b;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── 배경 글로우 ── */
+    .glow-1 {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, .12) 0%, transparent 70%);
+      top: -200px;
+      left: -200px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-2 {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 182, 212, .08) 0%, transparent 70%);
+      bottom: -100px;
+      right: -100px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 24px 80px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: 5px;
+      color: var(--accent);
+      margin-bottom: 32px;
+      opacity: .8;
+    }
+
+    .hero-eyebrow2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      letter-spacing: 5px;
+      color: var(--accent);
+      margin-bottom: 32px;
+      opacity: .8;
+    }
+
+    /* 핵심 슬로건 */
+    .hero-slogan {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -2px;
+    }
+
+    .hs-set {
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .hs-time {
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hs-word {
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .hero-sub-slogan {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: clamp(.9rem, 2vw, 1.1rem);
+      color: var(--dim);
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    .hero-sub-slogan strong {
+      color: var(--text);
+    }
+
+    /* 임팩트 카드 3개 */
+    .impact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+
+    .impact-card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 14px;
+      padding: 20px 28px;
+      text-align: left;
+      backdrop-filter: blur(8px);
+      transition: all .3s;
+      min-width: 180px;
+    }
+
+    /* .impact-card:hover {
+      border-color: rgba(99, 102, 241, .4);
+      background: rgba(99, 102, 241, .06);
+      transform: translateY(-3px);
+    } */
+
+    .ic-emoji {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .ic-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: 1px;
+      color: var(--dim);
+      margin-bottom: 4px;
+    }
+
+    .ic-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+
+    /* ── 섹션 공통 ── */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .sec-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: 4px;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+
+    /* ── CTA 섹션 ── */
+    .cta-section {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 120px 24px;
+      background: linear-gradient(180deg, transparent, rgba(99, 102, 241, .06), transparent);
+    }
+
+    .cta-title {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .cta-desc {
+      color: var(--dim);
+      font-size: .95rem;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    /* ── 반응형 ── */
+    @media (max-width: 640px) {
+      nav .nav-links {
+        display: none;
+      }
+
+      .change-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .change-arrow {
+        transform: rotate(90deg);
+      }
+
+      .why-vibe {
+        padding: 32px 24px;
+      }
+
+      .spec-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ai-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-flow-arrow {
+        transform: rotate(90deg);
+        text-align: center;
+      }
+    }
+
+
+    /* 추가 */
+
+    /* 버튼 컨테이너 스타일 */
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 16px;
+    }
+
+    /* 두 버튼 공통 스타일 */
+    .btn-o,
+    .btn-x,
+    .btn-z
+     {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: clamp(140px, 40vw, 260px);
+      height: clamp(140px, 40vw, 260px);
+      border: none;
+      border-radius: 20px;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* O/X 심볼 스타일 */
+    .symbol {
+      font-size: clamp(48px, 12vw, 90px);
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    /* 텍스트 라벨 스타일 */
+    .label {
+      font-size: clamp(14px, 3.5vw, 26px);
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* --- 개별 버튼 스타일 --- */
+
+    /* O 버튼 (초록색 톤) */
+    .btn-o {
+      background-color: #f0fff4;
+      /* 아주 연한 초록 배경 */
+      color: #22863a;
+      /* 진한 초록 텍스트/심볼 */
+      border: 2px solid #22863a;
+      /* 진한 초록 테두리 */
+      text-decoration: none;
+      /* 밑줄 제거 */
+    }
+
+    .btn-o:hover {
+      background-color: #22863a;
+      /* 호버 시 배경색 변경 */
+      color: #ffffff;
+      /* 호버 시 텍스트/심볼 흰색 */
+      box-shadow: 0 6px 8px rgba(34, 134, 58, 0.3);
+      /* 초록색 그림자 */
+    }
+
+    /* X 버튼 (빨간색 톤) */
+    .btn-x {
+      background-color: #fff5f5;
+      /* 아주 연한 빨강 배경 */
+      color: #cb2431;
+      /* 진한 빨강 텍스트/심볼 */
+      border: 2px solid #cb2431;
+      /* 진한 빨강 테두리 */
+      text-decoration: none;
+      /* 밑줄 제거 */
+    }
+
+    .btn-x:hover {
+      background-color: #cb2431;
+      /* 호버 시 배경색 변경 */
+      color: #ffffff;
+      /* 호버 시 텍스트/심볼 흰색 */
+      box-shadow: 0 6px 8px rgba(203, 36, 49, 0.3);
+      /* 빨간색 그림자 */
+    }
+
+    /* Z 버튼 (빨간색 톤) */
+    .btn-z {
+      background-color: #d5e2f5;
+      /* 아주 연한 빨강 배경 */
+      color: #248ecb;
+      /* 진한 빨강 텍스트/심볼 */
+      border: 2px solid #248ecb;
+      /* 진한 빨강 테두리 */
+      text-decoration: none;
+      /* 밑줄 제거 */
+    }
+
+    .btn-z:hover {
+      background-color: #248ecb;
+      /* 호버 시 배경색 변경 */
+      color: #ffffff;
+      /* 호버 시 텍스트/심볼 흰색 */
+      box-shadow: 0 6px 8px rgba(203, 36, 49, 0.3);
+      /* 빨간색 그림자 */
+    }
+
+    .quote-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, .08), rgba(6, 182, 212, .05));
+      border: 1px solid rgba(99, 102, 241, .2);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .quote-box::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 8rem;
+      color: rgba(99, 102, 241, .08);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .quote-text {
+      font-size: clamp(.9rem, 2vw, 1.05rem);
+      font-weight: 700;
+      line-height: 1.8;
+      color: var(--white);
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .quote-source {
+      font-size: .75rem;
+      color: var(--dim);
+    }
+
+    .quote-source strong {
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <!-- ══════ HERO ══════ -->
+  <section class="hero">
+
+    <div class="hero-eyebrow2">
+      <span class="hs-set">주미 AI 와 함께 바이브코딩으로</span>
+    </div>
+
+    <h1 class="hero-slogan">
+      <span class="hs-time">5분만에</span>
+      <span class="hs-word">스트리밍</span>
+    </h1>
+
+    <p class="hero-sub-slogan">
+      코드를 외우지 않아도 됩니다.<br>
+      <strong>AI에게 말하면</strong>, 로봇이 움직입니다.
+    </p>
+
+    <div class="impact-cards">
+      <div class="impact-card">
+        <div class="ic-emoji">💬</div>
+        <div class="ic-title">VIBE CODING</div>
+        <div class="ic-value">말하면 만들어진다</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-emoji">📡</div>
+        <div class="ic-title">NO SERVER</div>
+        <div class="ic-value">HTML 파일 하나면 충분</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-emoji">🤖</div>
+        <div class="ic-title">AI VISION</div>
+        <div class="ic-value">얼굴·손·물체 인식</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-emoji">💻</div>
+        <div class="ic-title">CROSS DEVICE</div>
+        <div class="ic-value">PC · Android · MAC</div>
+      </div>
+    </div>
+
+    <div class="sec-eyebrow" style="margin-bottom:16px">GET STARTED</div>
+    <h2 class="cta-title">지금 바로<br>시작해보세요</h2>
+    <p class="cta-desc">입문 가이드부터 심화 레퍼런스까지 모두 준비되어 있어요.</p>
+
+    <div class="button-container">
+      <a href="zumi_easy_intro.html" class="btn-o">
+        <span class="symbol">🌱</span>
+        <span class="label">처음 다루는<br>바이브 코딩</span>
+      </a>
+
+      <a href="zumi_advanced_intro.html" class="btn-x">
+        <span class="symbol">✨</span>
+        <span class="label">도전<br>바이브 코딩</span>
+      </a>
+
+      <a href="zumi_advanced_intro.html" class="btn-z">
+        <span class="symbol">🚀</span>
+        <span class="label">실전<br>바이브 코딩</span>
+      </a>
+
+    </div>
+
+
+
+
+
+
+
+  </section>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

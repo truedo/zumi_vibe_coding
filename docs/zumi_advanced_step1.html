@@ -7,7 +7,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XHRH6KZ8T"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-6XHRH6KZ8T');
@@ -15,11 +15,11 @@
 
   <!-- Microsoft clarity -->
   <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "xccb4odoqc");
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "xccb4odoqc");
   </script>
 
   <meta charset="UTF-8">
@@ -66,7 +66,7 @@
     .top-banner {
       background: linear-gradient(135deg, #3b5bfc 0%, #7c3aed 100%);
       color: white;
-      padding: 40px 24px 56px;
+      padding: 40px 24px 26px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -137,6 +137,22 @@
       border-top: none;
       border-left: none;
       border-right: none;
+      position: relative;
+    }
+
+    /* 마지막 탭을 제외한 모든 탭 뒤에 빨간색 전체 화살표 추가 */
+    .nav-tab:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(calc(-50% + 1px));
+      width: 20px;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4d4d' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
     }
 
     .nav-tab.active {
@@ -324,10 +340,10 @@
       background: linear-gradient(90deg, var(--accent), var(--accent2));
     }
 
-    .project-card:hover {
+    /* .project-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 32px rgba(59, 91, 252, .15);
-    }
+    } */
 
     .project-card .pc-icon {
       font-size: 2rem;
@@ -728,9 +744,73 @@
 
   <!-- 상단 배너 -->
   <div class="top-banner">
+
+
+
+
+
     <div class="step-badge">STEP 1 of 4</div>
     <h1>🔗 연결하고 보기</h1>
     <p>주미 AI와 연결하고 카메라 화면을 띄워봅시다.<br>모든 기능의 시작이에요.</p>
+
+
+
+    <!-- 스텝 네비게이션 -->
+    <div
+      style="padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:10">
+
+      <!-- 전체 단계 목록 (1~4) -->
+      <div style="display:flex;gap:8px;align-items:center;">
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+        <a href="index.html" title="HOME"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          🏠
+        </a>
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+        <a href="zumi_advanced_step1.html" title="STEP 1"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#bedf49;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;">
+          1
+        </a>
+
+        <!-- STEP 2 -->
+        <a href="zumi_advanced_step2.html" title="STEP 2"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          2
+        </a>
+
+        <!-- STEP 3 -->
+        <a href="zumi_advanced_step3.html" title="STEP 3"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          3
+        </a>
+
+        <!-- STEP 4 -->
+        <a href="zumi_advanced_step4.html" title="STEP 4"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          4
+        </a>
+
+        <a href="zumi_advanced_all.html" title="all"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          🏁
+        </a>
+
+      </div>
+    </div>
+
+
   </div>
 
   <!-- 내비 탭 -->
@@ -740,7 +820,6 @@
     <button class="nav-tab" onclick="showTab('prompt')">📋 프롬프트</button>
     <button class="nav-tab" onclick="showTab('requests')">💬 AI 요청 예시</button>
     <button class="nav-tab" onclick="showTab('projects')">🚀 프로젝트 아이디어</button>
-
   </div>
 
   <!-- ① 목표 -->
@@ -963,7 +1042,17 @@
       </div>
     </div>
 
+    <br>
+    <div style="margin:0 0 0 0px">
 
+      <div class="ip-box">
+        <h4>🎬 영상으로 따라 하기</h4>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/hiZbEPbYNSA?si=slGjc2rRd-yn5MG9"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
 
 
 
@@ -980,11 +1069,12 @@
 
 
     <!-- 핵심 기능 안내 -->
-    <div class="tip blue" style="margin-bottom:24px">
+    <div class="tip green" style="margin-bottom:24px">
       <span class="tip-icon">⭐</span>
       <span>
-        원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.
-      </span>
+        <strong> 다양한 기능을 조합하여 나만의 프로젝트를 만들어 보세요.<br></strong>
+        <!-- 원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.<br> -->
+        자세히 보기에서 기능별 내용을 확인할 수 있습니다. </span>
     </div>
 
 
@@ -1083,18 +1173,27 @@
   </div>
 
   <!-- ③ AI 요청 예시 -->
+
   <div class="section" id="tab-requests">
+
     <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">
-      <!-- 문장을 클릭하면 복사됩니다. 복사 후 Claude나 ChatGPT에 붙여넣어 보세요! -->
-    <div class="tip blue" style="margin-bottom:24px">
-      <span class="tip-icon">⭐</span>
+
+    <div class="tip yellow" style="margin-bottom:24px">
+      <span class="tip-icon">1️⃣</span>
       <span>
-        문장을 클릭하면 복사됩니다.<br>복사 후 <strong>Claude나 ChatGPT, Gemini</strong>에 붙여넣어 보세요!
+        먼저 기본 프롬프트를 <br> AI에게 전달하세요.
       </span>
     </div>
 
-    </p>
+    <div class="tip green" style="margin-bottom:24px">
+      <span class="tip-icon">2️⃣</span>
+      <span>
+        문장을 클릭하면 복사됩니다.<br>복사한 내용을 같은 AI에게 <br>붙여넣어 요청해 보세요.
+      </span>
+    </div>
+
+
+
 
     <div class="request-list">
       <h3>디자인 바꾸기</h3>
@@ -1297,7 +1396,8 @@
 
     <div class="tip green" style="margin-top:24px">
       <span class="tip-icon">🚀</span>
-      <span>프로젝트 이름을 그대로 AI에게 말해보세요. 예: <strong>"CCTV 모니터 앱을 만들어줘"</strong> — AI가 필요한 기능을 조합해서 만들어줍니다!</span>
+      <span>프로젝트 이름을 그대로 AI에게 말해보세요.
+        <br>예: <strong>"CCTV 모니터 앱을 만들어줘"</strong> — AI가 필요한 기능을 조합해 프로젝트를 만들어 줍니다.</span>
     </div>
 
 
@@ -1319,12 +1419,21 @@
       노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
     </p> -->
 
-
-    <div class="tip blue" style="margin-bottom:24px">
+    <div class="tip green" style="margin-bottom:24px">
       <span class="tip-icon">⭐</span>
       <span>
         아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
         노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
+      </span>
+    </div>
+
+
+
+    <div class="tip yellow" style="margin-bottom:24px">
+      <span class="tip-icon">❗</span>
+      <span>
+        프롬프트는 처음 한 번만 전달하면 됩니다.<br>
+        이후에는 원하는 기능만 계속 요청하세요.
       </span>
     </div>
 
@@ -1349,29 +1458,29 @@
 
         <span class="pk">## 영상 및 센서 수신 방법</span>
         <span class="pv">ws.onmessage = (event) => {</span>
-        <span class="pv">  if (typeof event.data === 'string') return;</span>
-        <span class="pv">  const arr = new Uint8Array(event.data);</span>
+        <span class="pv"> if (typeof event.data === 'string') return;</span>
+        <span class="pv"> const arr = new Uint8Array(event.data);</span>
         <span class="pv"></span>
-        <span class="pv">  // 센서 데이터 (10바이트, 헤더 $R)</span>
-        <span class="pv">  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
-        <span class="pv">    parseAndUpdateSensors(arr);</span>
-        <span class="pv">    return;</span>
-        <span class="pv">  }</span>
+        <span class="pv"> // 센서 데이터 (10바이트, 헤더 $R)</span>
+        <span class="pv"> if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
+        <span class="pv"> parseAndUpdateSensors(arr);</span>
+        <span class="pv"> return;</span>
+        <span class="pv"> }</span>
         <span class="pv"></span>
-        <span class="pv">  // 영상 데이터 (그 외 = JPEG)</span>
-        <span class="pv">  const blob = new Blob([arr], {type: 'image/jpeg'});</span>
-        <span class="pv">  const url = URL.createObjectURL(blob);</span>
-        <span class="pv">  const img = new Image();</span>
-        <span class="pv">  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
-        <span class="pv">  img.src = url;</span>
+        <span class="pv"> // 영상 데이터 (그 외 = JPEG)</span>
+        <span class="pv"> const blob = new Blob([arr], {type: 'image/jpeg'});</span>
+        <span class="pv"> const url = URL.createObjectURL(blob);</span>
+        <span class="pv"> const img = new Image();</span>
+        <span class="pv"> img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
+        <span class="pv"> img.src = url;</span>
         <span class="pv">}</span>
 
         <span class="pk">## 패킷 빌더</span>
         <span class="pv">function buildPacket(cmd, ...params) {</span>
-        <span class="pv">  const buf = new Uint8Array(4 + params.length);</span>
-        <span class="pv">  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
-        <span class="pv">  params.forEach((v,i) => buf[4+i]=v);</span>
-        <span class="pv">  return buf.buffer;</span>
+        <span class="pv"> const buf = new Uint8Array(4 + params.length);</span>
+        <span class="pv"> buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
+        <span class="pv"> params.forEach((v,i) => buf[4+i]=v);</span>
+        <span class="pv"> return buf.buffer;</span>
         <span class="pv">}</span>
 
 
@@ -1472,12 +1581,11 @@
         <span><strong>바이브 코딩 방법을 잘 모르겠다면?</strong> <br>시작 방법을 참고해주세요.</span>
       </div>
 
-      <a href="zumi_advanced_intro.html#getstarted" class="btn-move">
+      <a href="zumi_easy_intro.html#howtostart" target="_blank" class="btn-move">
         시작 방법 확인하기 →
       </a>
 
     </div>
-
 
 
     <!-- <div class="tip blue" style="margin-top:24px">
@@ -1515,25 +1623,10 @@
 
   <!-- 스텝 네비게이션 -->
   <div
-    style="background:#1a2340;border-top:1px solid #2a3a5a;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:10">
-    <a href="zumi_advanced_intro.html"
-      style="display:flex;align-items:center;gap:8px;color:#7a8aaa;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s"
-      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#7a8aaa'">
-      ← 시작 페이지
-    </a>
-    <div style="display:flex;gap:6px">
-      <div style="width:28px;height:4px;border-radius:2px;background:#3b5bfc"></div>
-      <div style="width:28px;height:4px;border-radius:2px;background:#2a3a5a"></div>
-      <div style="width:28px;height:4px;border-radius:2px;background:#2a3a5a"></div>
-      <div style="width:28px;height:4px;border-radius:2px;background:#2a3a5a"></div>
-    </div>
-    <a href="zumi_advanced_step2.html"
-      style="display:flex;align-items:center;gap:8px;color:#3b5bfc;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #3b5bfc;border-radius:100px;transition:all .2s"
-      onmouseover="this.style.background='#3b5bfc';this.style.color='#fff'"
-      onmouseout="this.style.background='transparent';this.style.color='#3b5bfc'">
-      STEP 2 →
-    </a>
+    style="background:#1a2340;border-top:1px solid #2a3a5a;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:10">
+
   </div>
+
 
   <!-- 토스트 -->
   <div class="toast" id="toast">📋 복사되었습니다!</div>
@@ -1547,6 +1640,15 @@
       document.querySelectorAll('.nav-tab')[idx].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab'); // ?tab=features 에서 'features' 추출
+      const validTabs = ['goal', 'features', 'prompt', 'requests', 'projects', 'api'];
+
+      if (validTabs.includes(tabParam)) {
+        showTab(tabParam);
+      }
+    });
 
     function copyRequest(el) {
       const text = el.querySelector('.ri-text').textContent;

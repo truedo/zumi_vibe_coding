@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --accent-orange: #f97316;
+
+            --theme-class: #7c3aed;
+            --theme-scratch: #fbbf24;
+            --theme-entry: #10b981;
+            --theme-python: #3b82f6;
+            --theme-ai: #1e3a8a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background 0.4s ease, background-image 0.4s ease;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding-top: 0;
+        }
+
+        main {
+            max-width: 1200px;
+            padding: 0 1rem;
+            margin: 1rem auto;
+        }
+
+        /* 기본 카테고리 블록 */
+        .category-block {
+            border: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            border-left: 6px solid var(--border);
+        }
+
+        .category-header {
+            transition: all 0.3s ease;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .category-header h2 {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 0.75rem;
+
+        }
+
+        /* 카드 기본 스타일 */
+        .card {
+            border: 1px solid var(--border);
+            border-top: 4px solid #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            padding: 0.75rem;
+            min-height: auto;
+            gap: 8px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-main-text {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-main-text h3 {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.85rem !important;
+            line-height: 1.25;
+        }
+
+        .card-desc {
+            font-size: 0.78rem;
+            font-weight: 500;
+            /* color: var(--primary); */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            max-width: 100%;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main id="main-content">
+
+        <section class="category-block" data-tags="class" style="border-top: 3px solid var(--theme-class);">
+            <div class="category-header">
+                <h2 style="display: inline-flex; align-items: center; gap: 10px; width: 100%;">
+                    바이브 코딩 따라하기
+                </h2>
+            </div>
+
+            <div class="grid-layout">
+
+                <a href="https://url_0" class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-class);">
+
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초0 <br>바로 해보기</h3>
+                            <p class="card-desc">기초0 <br>설명0 </p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://url_1" class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-entry);">
+
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 1<br>연결 하고 보기</h3>
+                            <p class="card-desc">기초1 <br>설명1</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://url_2" class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-scratch);">
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 2<br>표현 보기</h3>
+                            <p class="card-desc">기초2 <br>설명2</p>
+
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://url_3" class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-python);">
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 3<br>움직이기</h3>
+                            <p class="card-desc">기초3 <br>설명3</p>
+
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://url_4" class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-ai);">
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 4<br>AI 연결하기</h3>
+                            <p class="card-desc">기초4 <br>설명4</p>
+                        </div>
+                    </div>
+                </a>
+
+        </section>
+    </main>
+
+    <script>
+
+
+    </script>
+</body>
+
+</html>

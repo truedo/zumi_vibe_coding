@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --accent-orange: #f97316;
+
+            /* 카테고리별 시그니처 컬러 테마 */
+            --theme-ready: #64748b;
+            --theme-class: #7c3aed;
+            --theme-scratch: #fbbf24;
+            /* --theme-scratch-dark: #fbbf24; */
+            --theme-entry: #10b981;
+            --theme-python: #3b82f6;
+            --theme-ai: #1e3a8a;
+            --theme-maps: #0284c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background 0.4s ease, background-image 0.4s ease;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            padding-top: 0;
+
+        }
+
+        main {
+            max-width: 1200px;
+            padding: 0 1rem;
+            margin: 1rem auto;
+        }
+
+        /* 기본 카테고리 블록 */
+        .category-block {
+            border: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            border-left: 6px solid var(--border);
+        }
+
+        .category-header {
+            transition: all 0.3s ease;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .category-header h2 {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .category-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            /* display: none; */
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 0.75rem;
+
+        }
+
+        /* 카드 기본 스타일 */
+        .card {
+            border: 1px solid var(--border);
+            border-top: 4px solid #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            padding: 0.75rem;
+            min-height: auto;
+            gap: 8px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-main-text {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .card-main-text h3{
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+                  font-size: 0.85rem !important;
+            line-height: 1.25;
+        }
+        .card-top h3 {
+            color: var(--text-main);
+            word-break: keep-all;
+            font-weight: 700;
+            font-size: 0.85rem !important;
+            line-height: 1.25;
+        }
+
+        .card-desc {
+            font-size: 0.78rem;
+            font-weight: 500;
+            /* color: var(--primary); */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            max-width: 100%;
+            color: #a0a0a0;
+        }
+
+
+
+
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 24px 80px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: 5px;
+      color: var(--accent);
+      margin-bottom: 32px;
+      opacity: .8;
+    }
+
+    .hero-eyebrow2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      letter-spacing: 5px;
+      color: var(--accent);
+      margin-bottom: 32px;
+      opacity: .8;
+    }
+
+ /* 핵심 슬로건 */
+    .hero-slogan {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(3rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -2px;
+    }
+
+    .hs-set {
+      background: linear-gradient(135deg, #eb7f7f 0%, #a5b4fc 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .hs-time {
+      background: linear-gradient(135deg, #6183f1 0%, #51b9e9 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hs-word {
+      background: linear-gradient(135deg, #7272e7, #37e975);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .hero-sub-slogan {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: clamp(.9rem, 2vw, 1.1rem);
+      color: var(--dim);
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    .hero-sub-slogan strong {
+      color: var(--text);
+    }
+
+    /* ── 섹션 공통 ── */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="https://zumi.co.kr/">
+                    <img id="img-logo" src="" alt="Zumi AI">
+                </a>
+            </div>
+    </header> -->
+
+
+    <!-- 기본 모드를 전체 자료 보기 상태로 시작 -->
+    <main id="main-content">
+
+
+    <div class="hero-eyebrow2">
+      <span class="hs-set">주미 AI 와 함께 바이브코딩으로</span>
+    </div>
+
+    <h1 class="hero-slogan">
+      <span class="hs-time">5분만에</span>
+      <span class="hs-word">스트리밍</span>
+    </h1>
+
+    <p class="hero-sub-slogan">
+      코드를 외우지 않아도 됩니다.<br>
+      <strong>AI에게 말하면</strong>, 로봇이 움직입니다.
+    </p>
+
+
+
+
+        <!-- [분류 1]: 정규 수업 교재 -->
+        <section class="category-block" data-tags="class" style="border-top: 3px solid var(--theme-class);">
+            <div class="category-header">
+                <h2 style="display: inline-flex; align-items: center; gap: 10px; width: 100%;">
+                    바이브 코딩 따라하기
+                </h2>
+            </div>
+
+            <div class="grid-layout">
+
+                <a href="https://drive.google.com/file/d/1NNlE183AA2vr-efDsIXp2QmxtSvAjGgL/view?usp=sharing"
+                    class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-class);">
+
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 <br>바로 해보기</h3>
+                            <p class="card-desc">초급, 24차시asdasdwㅇ<br>asdsdaadsdsa<br>asdsdaadsdsa</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1NNlE183AA2vr-efDsIXp2QmxtSvAjGgL/view?usp=sharing"
+                    class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-entry);">
+
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 1<br>연결 하고 보기</h3>
+                            <p class="card-desc">기본, 스크래치를 학습하는 사용자를 위한 교재로,프로그램 설치 없이 스크래치와
+                                PC,노트북,태블릿,크롬북에 연결하여 주미 AI를 제어합니다.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1NNlE183AA2vr-efDsIXp2QmxtSvAjGgL/view?usp=sharing"
+                    class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-scratch);">
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 2<br>표현 보기</h3>
+                            <p class="card-desc">기본, 스크래치를 학습하는 사용자를 위한 교재로,프로그램 설치 없이 스크래치와
+                                PC,노트북,태블릿,크롬북에 연결하여 주미 AI를 제어합니다.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1NNlE183AA2vr-efDsIXp2QmxtSvAjGgL/view?usp=sharing"
+                    class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-python);">
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 3<br>움직이기</h3>
+                            <p class="card-desc">기본, 스크래치를 학습하는 사용자를 위한 교재로,프로그램 설치 없이 스크래치와
+                                PC,노트북,태블릿,크롬북에 연결하여 주미 AI를 제어합니다.</p>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://drive.google.com/file/d/1NNlE183AA2vr-efDsIXp2QmxtSvAjGgL/view?usp=sharing"
+                    class="card" target="_blank" rel="noopener noreferrer"
+                    style="display: block; text-decoration: none; color: inherit; border-top-color: var(--theme-ai);">
+                    <div class="card-body-wrapper">
+                        <div class="card-main-text">
+                            <h3>기초 4<br>AI 연결하기</h3>
+                            <p class="card-desc">기본, 스크래치를 학습하는 사용자를 위한 교재로,프로그램 설치 없이 스크래치와
+                                PC,노트북,태블릿,크롬북에 연결하여 주미 AI를 제어합니다.</p>
+                        </div>
+                    </div>
+                </a>
+
+        </section>
+    </main>
+
+    <script>
+
+
+    </script>
+</body>
+
+</html>

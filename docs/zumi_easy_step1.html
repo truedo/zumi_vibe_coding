@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XHRH6KZ8T"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-6XHRH6KZ8T');
@@ -14,113 +15,569 @@
 
   <!-- Microsoft clarity -->
   <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "xccb4odoqc");
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "xccb4odoqc");
   </script>
 
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZUMI 입문 · STEP 1 연결하고 보기</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f8faff;--white:#fff;--border:#e2e8f8;--accent:#4f46e5;--accent-light:#eef2ff;--green:#059669;--green-light:#ecfdf5;--yellow:#d97706;--yellow-light:#fffbeb;--red:#dc2626;--red-light:#fef2f2;--text:#111827;--dim:#6b7280;--shadow:0 2px 16px rgba(79,70,229,.08)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUMI 입문 · STEP 1 연결하고 보기</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8faff;
+      --white: #fff;
+      --border: #e2e8f8;
+      --accent: #4f46e5;
+      --accent-light: #eef2ff;
+      --green: #059669;
+      --green-light: #ecfdf5;
+      --yellow: #d97706;
+      --yellow-light: #fffbeb;
+      --red: #dc2626;
+      --red-light: #fef2f2;
+      --text: #111827;
+      --dim: #6b7280;
+      --shadow: 0 2px 16px rgba(79, 70, 229, .08)
+    }
 
-.top-nav{background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.05)}
-.top-nav-logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;color:var(--accent);letter-spacing:2px}
-.step-indicator{display:flex;gap:5px;align-items:center}
-.si-dot{width:24px;height:4px;border-radius:2px}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-.hero{background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff;padding:40px 24px 56px;text-align:center;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:36px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%)}
-.step-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:4px 14px;font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;margin-bottom:14px}
-.hero h1{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;line-height:1.25;margin-bottom:10px}
-.hero p{font-size:.95rem;opacity:.88;max-width:420px;margin:0 auto;line-height:1.8}
+    html {
+      scroll-behavior: smooth
+    }
 
-.container{max-width:700px;margin:0 auto;padding:0 20px}
-.section{padding:44px 0}
-.section+.section{border-top:1px solid var(--border)}
-.sec-label{font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:8px}
-.sec-title{font-size:1.35rem;font-weight:900;margin-bottom:8px;line-height:1.3}
-.sec-desc{color:var(--dim);font-size:.88rem;margin-bottom:24px;line-height:1.8}
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7
+    }
 
-/* 따라하기 스텝 */
-.steps{display:flex;flex-direction:column;gap:0}
-.step-row{display:flex;gap:16px;padding:18px 0;position:relative}
-.step-row:not(:last-child)::after{content:'';position:absolute;left:17px;top:50px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(79,70,229,.3),transparent)}
-.step-num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.82rem;flex-shrink:0;margin-top:2px}
-.step-body h3{font-size:.92rem;font-weight:700;margin-bottom:5px}
-.step-body p{font-size:.83rem;color:var(--dim);line-height:1.7}
+    .top-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, .05)
+    }
 
-/* 프롬프트 예시 */
-.prompt-example{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:20px;margin-top:8px;transition:border-color .2s}
-.prompt-example:hover{border-color:#c7d2fe}
-/* .pe-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:var(--dim);margin-bottom:10px} */
-.pe-label {font-size: .8rem;font-family: 'JetBrains Mono', monospace;font-weight: 600;letter-spacing: 0.5px;color: var(--text-main);
-  margin-bottom: 10px;
-}
-.pe-bubble{background:#f0f4ff;border-radius:12px 12px 12px 4px;padding:14px 16px;font-size:.88rem;line-height:1.7;margin-bottom:12px;border-left:3px solid var(--accent)}
-.pe-arrow{color:var(--dim);font-size:.78rem;margin-bottom:8px}
-.pe-result{font-size:.82rem;color:var(--green);font-weight:700;margin-bottom:12px}
-.copy-btn{font-size:.78rem;padding:7px 16px;border-radius:8px;border:1px solid var(--accent);background:var(--accent-light);color:var(--accent);cursor:pointer;font-family:inherit;font-weight:700;transition:all .15s}
-.copy-btn:hover{background:var(--accent);color:#fff}
-.copy-btn.copied{border-color:var(--green);background:var(--green-light);color:var(--green)}
+    .top-nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--accent);
+      letter-spacing: 2px
+    }
 
-/* 콜아웃 */
-.callout{display:flex;gap:12px;padding:14px 16px;border-radius:10px;font-size:.84rem;line-height:1.7;margin-top:14px}
-.callout.green{background:var(--green-light);border-left:4px solid var(--green)}
-.callout.yellow{background:var(--yellow-light);border-left:4px solid var(--yellow)}
-.callout.blue{background:var(--accent-light);border-left:4px solid var(--accent)}
-.callout.red{background:var(--red-light);border-left:4px solid var(--red)}
-.callout-icon{font-size:1rem;flex-shrink:0}
+    .step-indicator {
+      display: flex;
+      gap: 5px;
+      align-items: center
+    }
 
-/* FAQ */
-.faq-list{display:flex;flex-direction:column;gap:8px}
-.faq-item{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;font-size:.86rem;font-weight:700;background:none;border:none;cursor:pointer;text-align:left;color:var(--text);gap:10px}
-.faq-q:hover{background:var(--bg)}
-.faq-icon{color:var(--accent);font-size:1rem;flex-shrink:0;transition:transform .2s}
-.faq-item.open .faq-icon{transform:rotate(45deg)}
-.faq-a{display:none;padding:0 18px 14px;font-size:.82rem;color:var(--dim);line-height:1.8;border-top:1px solid var(--border)}
-.faq-item.open .faq-a{display:block}
+    .si-dot {
+      width: 24px;
+      height: 4px;
+      border-radius: 2px
+    }
 
-/* 체크리스트 */
-.checklist{display:flex;flex-direction:column;gap:8px}
-.check-item{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--white);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;user-select:none}
-.check-item:hover{border-color:var(--accent)}
-.check-item.done{background:var(--green-light);border-color:#a7f3d0}
-.check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:all .15s}
-.check-item.done .check-box{background:var(--green);border-color:var(--green);color:#fff}
-.check-text{font-size:.85rem;font-weight:700}
-.check-item.done .check-text{color:var(--green);text-decoration:line-through}
+    .hero {
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      color: #fff;
+      padding: 40px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
 
-/* 아이디어 박스 */
-.idea-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:8px}
-.idea-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;transition:all .2s;cursor:pointer}
-.idea-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.idea-card:hover .ic-copy{opacity:1}
-.ic-emoji{font-size:1.6rem;margin-bottom:8px}
-.ic-title{font-size:.82rem;font-weight:700;margin-bottom:4px}
-.ic-desc{font-size:.74rem;color:var(--dim);line-height:1.5;margin-bottom:8px}
-.ic-copy{font-size:.65rem;color:var(--accent);font-family:'JetBrains Mono',monospace;opacity:0;transition:opacity .2s}
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 36px;
+      background: var(--bg);
+      clip-path: ellipse(55% 100% at 50% 100%)
+    }
 
-/* 네비 */
-.step-nav{background:linear-gradient(135deg,#1e1b4b,#1e3a5f);padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
-.nav-prev{color:#7c8db0;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s}
-.nav-prev:hover{color:#fff}
-.nav-next{background:var(--accent);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:10px 22px;border-radius:100px;transition:opacity .2s}
-.nav-next:hover{opacity:.85}
-.nav-dots{display:flex;gap:5px}
-.nd{width:24px;height:4px;border-radius:2px}
+    .step-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: .72rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 2px;
+      margin-bottom: 14px
+    }
 
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;font-size:.82rem;padding:10px 22px;border-radius:100px;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
-.toast.show{opacity:1}
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: .95rem;
+      opacity: .88;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.8
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 20px
+    }
+
+    .section {
+      padding: 44px 0
+    }
+
+    .section+.section {
+      border-top: 1px solid var(--border)
+    }
+
+    .sec-label {
+      font-size: .72rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 3px;
+      color: var(--dim);
+      margin-bottom: 8px
+    }
+
+    .sec-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      line-height: 1.3
+    }
+
+    .sec-desc {
+      color: var(--dim);
+      font-size: .88rem;
+      margin-bottom: 24px;
+      line-height: 1.8
+    }
+
+    /* 따라하기 스텝 */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .step-row {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      position: relative
+    }
+
+    .step-row:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 50px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(79, 70, 229, .3), transparent)
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: .82rem;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .step-body h3 {
+      font-size: .92rem;
+      font-weight: 700;
+      margin-bottom: 5px
+    }
+
+    .step-body p {
+      font-size: .83rem;
+      color: var(--dim);
+      line-height: 1.7
+    }
+
+    /* 프롬프트 예시 */
+    .prompt-example {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 8px;
+      transition: border-color .2s
+    }
+
+    .prompt-example:hover {
+      border-color: #c7d2fe
+    }
+
+    /* .pe-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:var(--dim);margin-bottom:10px} */
+    .pe-label {
+      font-size: .8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .pe-bubble {
+      background: #f0f4ff;
+      border-radius: 12px 12px 12px 4px;
+      padding: 14px 16px;
+      font-size: .88rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      border-left: 3px solid var(--accent)
+    }
+
+    .pe-arrow {
+      color: var(--dim);
+      font-size: .78rem;
+      margin-bottom: 8px
+    }
+
+    .pe-result {
+      font-size: .82rem;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 12px
+    }
+
+    .copy-btn {
+      font-size: .78rem;
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--accent);
+      background: var(--accent-light);
+      color: var(--accent);
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+      transition: all .15s
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      color: #fff
+    }
+
+    .copy-btn.copied {
+      border-color: var(--green);
+      background: var(--green-light);
+      color: var(--green)
+    }
+
+    /* 콜아웃 */
+    .callout {
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: .84rem;
+      line-height: 1.7;
+      margin-top: 14px
+    }
+
+    .callout.green {
+      background: var(--green-light);
+      border-left: 4px solid var(--green)
+    }
+
+    .callout.yellow {
+      background: var(--yellow-light);
+      border-left: 4px solid var(--yellow)
+    }
+
+    .callout.blue {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent)
+    }
+
+    .callout.red {
+      background: var(--red-light);
+      border-left: 4px solid var(--red)
+    }
+
+    .callout-icon {
+      font-size: 1rem;
+      flex-shrink: 0
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden
+    }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      font-size: .86rem;
+      font-weight: 700;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      gap: 10px
+    }
+
+    .faq-q:hover {
+      background: var(--bg)
+    }
+
+    .faq-icon {
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform .2s
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg)
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 18px 14px;
+      font-size: .82rem;
+      color: var(--dim);
+      line-height: 1.8;
+      border-top: 1px solid var(--border)
+    }
+
+    .faq-item.open .faq-a {
+      display: block
+    }
+
+    /* 체크리스트 */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all .15s;
+      user-select: none
+    }
+
+    .check-item:hover {
+      border-color: var(--accent)
+    }
+
+    .check-item.done {
+      background: var(--green-light);
+      border-color: #a7f3d0
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      transition: all .15s
+    }
+
+    .check-item.done .check-box {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff
+    }
+
+    .check-text {
+      font-size: .85rem;
+      font-weight: 700
+    }
+
+    .check-item.done .check-text {
+      color: var(--green);
+      text-decoration: line-through
+    }
+
+    /* 아이디어 박스 */
+    .idea-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 8px
+    }
+
+    .idea-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: all .2s;
+      cursor: pointer
+    }
+
+    .idea-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px)
+    }
+
+    .idea-card:hover .ic-copy {
+      opacity: 1
+    }
+
+    .ic-emoji {
+      font-size: 1.6rem;
+      margin-bottom: 8px
+    }
+
+    .ic-title {
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    .ic-desc {
+      font-size: .74rem;
+      color: var(--dim);
+      line-height: 1.5;
+      margin-bottom: 8px
+    }
+
+    .ic-copy {
+      font-size: .65rem;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      opacity: 0;
+      transition: opacity .2s
+    }
+
+    /* 네비 */
+    .step-nav {
+      background: linear-gradient(135deg, #1e1b4b, #1e3a5f);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .nav-prev {
+      color: #7c8db0;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 700;
+      transition: color .2s
+    }
+
+    .nav-prev:hover {
+      color: #fff
+    }
+
+    .nav-next {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 100px;
+      transition: opacity .2s
+    }
+
+    .nav-next:hover {
+      opacity: .85
+    }
+
+    .nav-dots {
+      display: flex;
+      gap: 5px
+    }
+
+    .nd {
+      width: 24px;
+      height: 4px;
+      border-radius: 2px
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111827;
+      color: #fff;
+      font-size: .82rem;
+      padding: 10px 22px;
+      border-radius: 100px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .2);
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap
+    }
+
+    .toast.show {
+      opacity: 1
+    }
 
 
 
@@ -129,298 +586,373 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 
 
-.next-step{
-  display:none;
-  margin-top:20px;
-  text-align:center;
-  animation:fadeIn .3s ease;
-}
+    .next-step {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+      animation: fadeIn .3s ease;
+    }
 
-.next-step.show{
-  display:block;
-}
+    .next-step.show {
+      display: block;
+    }
 
-.next-btn{
-  display:inline-block;
-  padding:14px 24px;
-  background:var(--accent);
-  color:white;
-  text-decoration:none;
-  border-radius:12px;
-  font-weight:700;
-  transition:.2s;
-}
+    .next-btn {
+      display: inline-block;
+      padding: 14px 24px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: .2s;
+    }
 
-.next-btn:hover{
-  transform:translateY(-2px);
-}
+    .next-btn:hover {
+      transform: translateY(-2px);
+    }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
 
-
-
-
-</style>
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="top-nav">
-  <div class="top-nav-logo">ZUMI 입문</div>
-  <div class="step-indicator">
+  <!-- <nav class="top-nav">
+    <div class="top-nav-logo">ZUMI 입문</div>
+    <div class="step-indicator">
     <div class="si-dot" style="background:#4f46e5"></div>
     <div class="si-dot" style="background:#e2e8f8"></div>
     <div class="si-dot" style="background:#e2e8f8"></div>
     <div class="si-dot" style="background:#e2e8f8"></div>
   </div>
-</nav>
 
-<div class="hero">
-  <div class="step-badge">STEP 1 / 4</div>
-  <h1>🔗 연결하고 보기</h1>
-  <p>로봇과 연결하고 카메라 화면을 확인해봐요.<br>이게 되면 나머지는 다 가능해요!</p>
-</div>
+  </nav>
+ -->
 
-<div class="container">
 
-  <!-- 목표 -->
-  <div class="section">
-    <div class="sec-label">이번 단계 목표</div>
-    <h2 class="sec-title">🎯 이번에 만들 것</h2>
-    <p class="sec-desc">AI에게 부탁해서 이런 기능들을 하나씩 추가해봐요.</p>
 
-    <div class="idea-grid">
-      <div class="idea-card" onclick="copyIdea(this, '주미 로봇과 WebSocket으로 연결하고 카메라 화면을 보여주는 웹앱을 만들어줘. 연결 상태도 표시해줘')">
-        <div class="ic-emoji">📡</div>
-        <div class="ic-title">로봇 연결</div>
-        <div class="ic-desc">IP 입력 후 연결 버튼으로 주미와 연결</div>
-        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
-      </div>
-      <div class="idea-card" onclick="copyIdea(this, '카메라 화면을 전체화면으로 볼 수 있는 버튼을 추가해줘')">
-        <div class="ic-emoji">📺</div>
-        <div class="ic-title">전체 화면</div>
-        <div class="ic-desc">카메라 화면을 크게 보기</div>
-        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
-      </div>
-      <div class="idea-card" onclick="copyIdea(this, '카메라 화면에 흑백 필터 토글 버튼을 추가해줘')">
-        <div class="ic-emoji">🎞️</div>
-        <div class="ic-title">흑백 필터</div>
-        <div class="ic-desc">화면을 흑백으로 바꾸는 버튼</div>
-        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
-      </div>
-      <div class="idea-card" onclick="copyIdea(this, '카메라 화면을 사진으로 저장하는 버튼을 추가해줘')">
-        <div class="ic-emoji">📸</div>
-        <div class="ic-title">사진 저장</div>
-        <div class="ic-desc">버튼 누르면 현재 화면을 사진으로 저장</div>
-        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
-      </div>
-      <div class="idea-card" onclick="copyIdea(this, '카메라 화면 위에 현재 시간을 표시해줘')">
-        <div class="ic-emoji">🕐</div>
-        <div class="ic-title">시간 표시</div>
-        <div class="ic-desc">화면 위에 현재 시각 보이기</div>
-        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
-      </div>
-      <div class="idea-card" onclick="copyIdea(this, '화면에 FPS(초당 프레임)를 표시해줘')">
-        <div class="ic-emoji">📊</div>
-        <div class="ic-title">FPS 표시</div>
-        <div class="ic-desc">영상이 얼마나 부드럽게 나오는지 확인</div>
-        <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
-      </div>
-    </div>
 
-    <div class="callout blue" style="margin-top:20px">
-      <span class="callout-icon">💡</span>
-      <span>카드를 클릭하면 AI에게 전달할 요청 문장이 복사돼요.<br>
-        이미 만들어진 기본 코드가 있다면 "이 코드에 ~~를 추가해줘" 식으로 요청하면 됩니다!</span>
-    </div>
 
-    <div class="callout yellow" style="margin-top:24px">
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <span class="tip-icon">❓</span>
-        <span><strong>바이브 코딩 방법을 잘 모르겠다면?</strong> <br>시작 방법을 참고해주세요.</span>
+
+
+
+
+  <div class="hero">
+    <div class="step-badge">STEP 1 / 4</div>
+    <h1>🔗 연결하고 보기</h1>
+    <p>로봇과 연결하고 카메라 화면을 확인해봐요.<br>이게 되면 나머지는 다 가능해요!</p>
+
+
+
+    <div
+      style="padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:10">
+
+      <!-- 전체 단계 목록 (1~4) -->
+      <div style="display:flex;gap:8px;align-items:center;">
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+
+        <a href="index.html" title="HOME"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          🏠
+        </a>
+
+        <a href="zumi_easy_intro.html" title="HOME"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          💡
+        </a>
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+        <a href="zumi_easy_step1.html" title="STEP 1"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#bedf49;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;">
+          1
+        </a>
+
+        <!-- STEP 2 -->
+        <a href="zumi_easy_step2.html" title="STEP 2"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          2
+        </a>
+
+        <!-- STEP 3 -->
+        <a href="zumi_easy_step3.html" title="STEP 3"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          3
+        </a>
+
+        <!-- STEP 4 -->
+        <a href="zumi_easy_step4.html" title="STEP 4"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          4
+        </a>
       </div>
-
-      <a href="zumi_easy_intro.html#howtostart" class="btn-move">
-        시작 방법 확인하기 →
-      </a>
     </div>
 
 
   </div>
 
-  <!-- AI에게 이렇게 말해요 -->
-  <div class="section">
-    <div class="sec-label">AI 요청 방법</div>
-    <h2 class="sec-title">💬 AI에게 이렇게 말해요</h2>
-    <p class="sec-desc">복잡하게 생각하지 말고, 원하는 걸 자연스럽게 말하면 돼요.</p>
+  <div class="container">
 
+    <!-- 목표 -->
+    <div class="section">
+      <div class="sec-label">이번 단계 목표</div>
+      <h2 class="sec-title">🎯 이번에 만들 것</h2>
+      <p class="sec-desc">AI에게 부탁해서 이런 기능들을 하나씩 추가해봐요.</p>
 
-    <div style="display:flex;flex-direction:column;gap:14px">
-
-      <div class="prompt-example">
-        <div class="pe-label">1️⃣ 처음 시작할 때</div>
-        <div class="pe-bubble">
-          주미 로봇 카메라 앱을 만들어줘.<br>
-          IP 입력창이랑 연결 버튼이 있고, 카메라 화면이 나오면 돼.<br>
-          HTML 파일 하나로만 동작하게 해줘.
+      <div class="idea-grid">
+        <div class="idea-card" onclick="copyIdea(this, '주미 로봇과 WebSocket으로 연결하고 카메라 화면을 보여주는 웹앱을 만들어줘. 연결 상태도 표시해줘')">
+          <div class="ic-emoji">📡</div>
+          <div class="ic-title">로봇 연결</div>
+          <div class="ic-desc">IP 입력 후 연결 버튼으로 주미와 연결</div>
+          <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
         </div>
-        <div class="pe-arrow">👇 AI가 만들어주면</div>
-        <div class="pe-result">✅ 카메라 화면이 나오는 기본 웹앱 완성!</div>
-        <button class="copy-btn" onclick="copyPrompt(this, '주미 로봇 카메라 앱을 만들어줘.\nIP 입력창이랑 연결 버튼이 있고, 카메라 화면이 나오면 돼.\nHTML 파일 하나로만 동작하게 해줘.')">📋 복사</button>
+        <div class="idea-card" onclick="copyIdea(this, '카메라 화면을 전체화면으로 볼 수 있는 버튼을 추가해줘')">
+          <div class="ic-emoji">📺</div>
+          <div class="ic-title">전체 화면</div>
+          <div class="ic-desc">카메라 화면을 크게 보기</div>
+          <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
+        </div>
+        <div class="idea-card" onclick="copyIdea(this, '카메라 화면에 흑백 필터 토글 버튼을 추가해줘')">
+          <div class="ic-emoji">🎞️</div>
+          <div class="ic-title">흑백 필터</div>
+          <div class="ic-desc">화면을 흑백으로 바꾸는 버튼</div>
+          <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
+        </div>
+        <div class="idea-card" onclick="copyIdea(this, '카메라 화면을 사진으로 저장하는 버튼을 추가해줘')">
+          <div class="ic-emoji">📸</div>
+          <div class="ic-title">사진 저장</div>
+          <div class="ic-desc">버튼 누르면 현재 화면을 사진으로 저장</div>
+          <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
+        </div>
+        <div class="idea-card" onclick="copyIdea(this, '카메라 화면 위에 현재 시간을 표시해줘')">
+          <div class="ic-emoji">🕐</div>
+          <div class="ic-title">시간 표시</div>
+          <div class="ic-desc">화면 위에 현재 시각 보이기</div>
+          <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
+        </div>
+        <div class="idea-card" onclick="copyIdea(this, '화면에 FPS(초당 프레임)를 표시해줘')">
+          <div class="ic-emoji">📊</div>
+          <div class="ic-title">FPS 표시</div>
+          <div class="ic-desc">영상이 얼마나 부드럽게 나오는지 확인</div>
+          <div class="ic-copy">클릭 → 완성 프롬프트 복사</div>
+        </div>
       </div>
 
-      <div class="prompt-example">
-        <div class="pe-label">2️⃣ 기능 추가할 때</div>
-        <div class="pe-bubble">
-          [기존 코드에 요구사항 넣기]<br><br>
-          이 코드에 사진 저장 버튼이랑 흑백 필터 버튼을 추가해줘.
-
-        </div>
-        <div class="pe-arrow">👇 이렇게 하면</div>
-        <div class="pe-result">✅ 기존 앱에 새 기능이 추가됨!</div>
-        <button class="copy-btn" onclick="copyPrompt(this, '이 코드에 사진 저장 버튼이랑 흑백 필터 버튼을 추가해줘.')">📋 복사</button>
+      <div class="callout blue" style="margin-top:20px">
+        <span class="callout-icon">💡</span>
+        <span>카드를 클릭하면 AI에게 전달할 요청 문장이 복사돼요.<br>
+          이미 만들어진 기본 코드가 있다면 "이 코드에 ~~를 추가해줘" 식으로 요청하면 됩니다!</span>
       </div>
 
-      <div class="prompt-example">
-        <div class="pe-label">3️⃣ 안 될 때</div>
-        <div class="pe-bubble">
-          방금 만들어준 코드를 실행했는데<br>
-          연결 버튼을 눌러도 아무 반응이 없어. 고쳐줘.
+      <div class="callout yellow" style="margin-top:24px">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="tip-icon">❓</span>
+          <span><strong>바이브 코딩 방법을 잘 모르겠다면?</strong> <br>시작 방법을 참고해주세요.</span>
         </div>
-        <div class="pe-arrow">👇 이렇게 하면</div>
-        <div class="pe-result">✅ AI가 오류를 찾아서 고쳐줌!</div>
-        <button class="copy-btn" onclick="copyPrompt(this, '방금 만들어준 코드를 실행했는데 연결 버튼을 눌러도 아무 반응이 없어. 고쳐줘.')">📋 복사</button>
+
+        <a href="zumi_easy_intro.html#howtostart" class="btn-move">
+          시작 방법 확인하기 →
+        </a>
       </div>
+
 
     </div>
 
-    <div class="callout yellow">
-      <span class="callout-icon">⭐</span>
-      <span><strong>팁:</strong> "더 예쁘게", "모바일에서도 잘 보이게", "버튼을 더 크게" 같은 요청도 됩니다.<br>
-        디자인도 AI에게 맡겨봐요!</span>
+    <!-- AI에게 이렇게 말해요 -->
+    <div class="section">
+      <div class="sec-label">AI 요청 방법</div>
+      <h2 class="sec-title">💬 AI에게 이렇게 말해요</h2>
+      <p class="sec-desc">복잡하게 생각하지 말고, 원하는 걸 자연스럽게 말하면 돼요.</p>
+
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <div class="prompt-example">
+          <div class="pe-label">1️⃣ 처음 시작할 때</div>
+          <div class="pe-bubble">
+            주미 로봇 카메라 앱을 만들어줘.<br>
+            IP 입력창이랑 연결 버튼이 있고, 카메라 화면이 나오면 돼.<br>
+            HTML 파일 하나로만 동작하게 해줘.
+          </div>
+          <div class="pe-arrow">👇 AI가 만들어주면</div>
+          <div class="pe-result">✅ 카메라 화면이 나오는 기본 웹앱 완성!</div>
+          <button class="copy-btn"
+            onclick="copyPrompt(this, '주미 로봇 카메라 앱을 만들어줘.\nIP 입력창이랑 연결 버튼이 있고, 카메라 화면이 나오면 돼.\nHTML 파일 하나로만 동작하게 해줘.')">📋
+            복사</button>
+        </div>
+
+        <div class="prompt-example">
+          <div class="pe-label">2️⃣ 기능 추가할 때</div>
+          <div class="pe-bubble">
+            [기존 코드에 요구사항 넣기]<br><br>
+            이 코드에 사진 저장 버튼이랑 흑백 필터 버튼을 추가해줘.
+
+          </div>
+          <div class="pe-arrow">👇 이렇게 하면</div>
+          <div class="pe-result">✅ 기존 앱에 새 기능이 추가됨!</div>
+          <button class="copy-btn" onclick="copyPrompt(this, '이 코드에 사진 저장 버튼이랑 흑백 필터 버튼을 추가해줘.')">📋 복사</button>
+        </div>
+
+        <div class="prompt-example">
+          <div class="pe-label">3️⃣ 안 될 때</div>
+          <div class="pe-bubble">
+            방금 만들어준 코드를 실행했는데<br>
+            연결 버튼을 눌러도 아무 반응이 없어. 고쳐줘.
+          </div>
+          <div class="pe-arrow">👇 이렇게 하면</div>
+          <div class="pe-result">✅ AI가 오류를 찾아서 고쳐줌!</div>
+          <button class="copy-btn" onclick="copyPrompt(this, '방금 만들어준 코드를 실행했는데 연결 버튼을 눌러도 아무 반응이 없어. 고쳐줘.')">📋
+            복사</button>
+        </div>
+
+      </div>
+
+      <div class="callout yellow">
+        <span class="callout-icon">⭐</span>
+        <span><strong>팁:</strong> "더 예쁘게", "모바일에서도 잘 보이게", "버튼을 더 크게" 같은 요청도 됩니다.<br>
+          디자인도 AI에게 맡겨봐요!</span>
+      </div>
     </div>
+
+    <!-- 막히면 -->
+    <div class="section">
+      <div class="sec-label">TROUBLESHOOTING</div>
+      <h2 class="sec-title">😓 막히면 여기를 봐요</h2>
+
+      <div class="faq-list">
+
+
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>🔴 연결이 안 돼요</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            세 가지를 확인하세요:<br><br>
+            1️⃣ <strong>IP 주소</strong>가 맞나요? 주미 LCD에 표시된 IP를 정확히 입력했는지 확인하세요.<br>
+            2️⃣ <strong>같은 Wi-Fi</strong>에 연결되어 있나요? 모바일 데이터로는 안 돼요.<br>
+            3️⃣ <strong>주미 전원</strong>이 켜져 있나요?
+            <br><br>주미의 배터리가 부족할 수 있어요. 충전 케이블을 연결한 상태로 사용해주세요.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>📷 화면이 안 나와요</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            연결 후 2~3초 기다려보세요. 카메라가 시작하는 데 시간이 걸릴 수 있어요.<br><br>
+            그래도 안 되면 연결 끊고 다시 연결해보세요. Chrome 브라우저를 쓰고 있는지도 확인하세요!
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>🤖 AI가 만든 코드가 작동 안 해요</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            AI에게 이렇게 말해보세요:<br><br>
+            <strong>"이 코드 실행했는데 [문제 내용]이 생겼어. 고쳐줘"</strong><br><br>
+            문제를 구체적으로 설명할수록 더 잘 고쳐줘요!
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- 체크리스트 -->
+    <div class="section">
+      <div class="sec-label">CHECKLIST</div>
+      <h2 class="sec-title">✅ 이번 단계 완료 확인</h2>
+      <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 모든 체크가 완료되면 다음 단계로 이동할 수 있어요.<br>다 됐으면 바로 다음 단계로
+        이동하세요!</p>
+
+      <div class="checklist">
+        <div class="check-item" onclick="toggleCheck2(this)">
+          <div class="check-box"></div>
+          <div class="check-text">AI에게 기본 앱을 만들어달라고 요청했어요</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck2(this)">
+          <div class="check-box"></div>
+          <div class="check-text">HTML 파일을 저장하고 브라우져로 열었어요</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck2(this)">
+          <div class="check-box"></div>
+          <div class="check-text">주미에 연결해서 카메라 화면을 봤어요 📺</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck2(this)">
+          <div class="check-box"></div>
+          <div class="check-text">원하는 기능을 하나 더 추가해봤어요</div>
+        </div>
+      </div>
+      <!-- 완료 시 표시 -->
+      <div id="next-step" class="next-step">
+        <div class="callout red" style="margin-top:16px">
+          <span class="callout-icon">🎉</span>
+          <span>다 됐다면 Step 2로 가봐요! LED를 켜고 소리도 내고 LCD에 글씨도 보낼 수 있어요.</span>
+        </div>
+        <br>
+        <a href="zumi_easy_step2.html" class="next-btn">
+          다음 단계로 이동하기 🚀
+        </a>
+      </div>
+    </div>
+
+
   </div>
 
-  <!-- 막히면 -->
-  <div class="section">
-    <div class="sec-label">TROUBLESHOOTING</div>
-    <h2 class="sec-title">😓 막히면 여기를 봐요</h2>
+  <!-- 하단 네비 -->
+  <!-- 심화 가이드 링크 -->
+  <div
+    style="background:#eef2ff;border:1px solid #c7d2fe;border-radius:14px;padding:20px;max-width:700px;margin:0 auto 0;padding-left:20px;padding-right:20px">
+    <div
+      style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:#4f46e5;margin-bottom:6px">
+      MORE DETAIL</div>
+    <div style="font-weight:700;margin-bottom:4px;font-size:.88rem">더 깊이 알고 싶다면?</div>
+    <div style="font-size:.8rem;color:#6b7280;margin-bottom:12px;line-height:1.7">패킷 구조, API 레퍼런스, 고급 프롬프트까지 담긴 심화 가이드도
+      있어요.</div>
+    <a href="zumi_advanced_step1.html"
+      style="display:inline-block;padding:7px 16px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화
+      가이드 보기 →</a>
+  </div>
 
-    <div class="faq-list">
+  <br>
 
+  <!-- 스텝 네비게이션 -->
+  <div
+    style="background:#1a2340;border-top:1px solid #2a3a5a;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:10">
 
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>🔴 연결이 안 돼요</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          세 가지를 확인하세요:<br><br>
-          1️⃣ <strong>IP 주소</strong>가 맞나요? 주미 LCD에 표시된 IP를 정확히 입력했는지 확인하세요.<br>
-          2️⃣ <strong>같은 Wi-Fi</strong>에 연결되어 있나요? 모바일 데이터로는 안 돼요.<br>
-          3️⃣ <strong>주미 전원</strong>이 켜져 있나요?
-          <br><br>주미의 배터리가 부족할 수 있어요. 충전 케이블을 연결한 상태로 사용해주세요.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>📷 화면이 안 나와요</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          연결 후 2~3초 기다려보세요. 카메라가 시작하는 데 시간이 걸릴 수 있어요.<br><br>
-          그래도 안 되면 연결 끊고 다시 연결해보세요. Chrome 브라우저를 쓰고 있는지도 확인하세요!
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>🤖 AI가 만든 코드가 작동 안 해요</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          AI에게 이렇게 말해보세요:<br><br>
-          <strong>"이 코드 실행했는데 [문제 내용]이 생겼어. 고쳐줘"</strong><br><br>
-          문제를 구체적으로 설명할수록 더 잘 고쳐줘요!
-        </div>
-      </div>
-    </div>
   </div>
 
 
 
-  <!-- 체크리스트 -->
-  <div class="section">
-    <div class="sec-label">CHECKLIST</div>
-    <h2 class="sec-title">✅ 이번 단계 완료 확인</h2>
-    <p style="font-size:.78rem;color:#9ca3af;margin-bottom:12px">⚠️ 모든 체크가 완료되면 다음 단계로 이동할 수 있어요.<br>다 됐으면 바로 다음 단계로 이동하세요!</p>
+  <div class="toast" id="toast"></div>
 
-    <div class="checklist">
-      <div class="check-item" onclick="toggleCheck2(this)">
-        <div class="check-box"></div>
-        <div class="check-text">AI에게 기본 앱을 만들어달라고 요청했어요</div>
-      </div>
-      <div class="check-item" onclick="toggleCheck2(this)">
-        <div class="check-box"></div>
-        <div class="check-text">HTML 파일을 저장하고 브라우져로 열었어요</div>
-      </div>
-      <div class="check-item" onclick="toggleCheck2(this)">
-        <div class="check-box"></div>
-        <div class="check-text">주미에 연결해서 카메라 화면을 봤어요 📺</div>
-      </div>
-      <div class="check-item" onclick="toggleCheck2(this)">
-        <div class="check-box"></div>
-        <div class="check-text">원하는 기능을 하나 더 추가해봤어요</div>
-      </div>
-    </div>
-    <!-- 완료 시 표시 -->
-    <div id="next-step" class="next-step">
-      <div class="callout red" style="margin-top:16px">
-        <span class="callout-icon">🎉</span>
-        <span>다 됐다면 Step 2로 가봐요! LED를 켜고 소리도 내고 LCD에 글씨도 보낼 수 있어요.</span>
-      </div>
-      <br>
-      <a href="zumi_easy_step2.html" class="next-btn">
-        다음 단계로 이동하기 🚀
-      </a>
-    </div>
-  </div>
-
-
-</div>
-
-<!-- 하단 네비 -->
-<!-- 심화 가이드 링크 -->
-<div style="background:#eef2ff;border:1px solid #c7d2fe;border-radius:14px;padding:20px;max-width:700px;margin:0 auto 0;padding-left:20px;padding-right:20px">
-  <div style="font-size:.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:2px;color:#4f46e5;margin-bottom:6px">MORE DETAIL</div>
-  <div style="font-weight:700;margin-bottom:4px;font-size:.88rem">더 깊이 알고 싶다면?</div>
-  <div style="font-size:.8rem;color:#6b7280;margin-bottom:12px;line-height:1.7">패킷 구조, API 레퍼런스, 고급 프롬프트까지 담긴 심화 가이드도 있어요.</div>
-  <a href="zumi_advanced_step1.html" style="display:inline-block;padding:7px 16px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700">심화 가이드 보기 →</a>
-</div>
-
-<div class="step-nav">
-  <a href="zumi_easy_intro.html" class="nav-prev">← 시작 페이지</a>
-  <div class="nav-dots">
-    <div class="nd" style="background:#4f46e5"></div>
-    <div class="nd" style="background:rgba(255,255,255,.2)"></div>
-    <div class="nd" style="background:rgba(255,255,255,.2)"></div>
-    <div class="nd" style="background:rgba(255,255,255,.2)"></div>
-  </div>
-  <a href="zumi_easy_step2.html" class="nav-next">STEP 2 →</a>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-const BASE_PROMPT_S1 = `# ZUMI 로봇 카메라 웹앱 만들기
+  <script>
+    const BASE_PROMPT_S1 = `# ZUMI 로봇 카메라 웹앱 만들기
 
 ## 시스템 구조
 브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
@@ -481,63 +1013,64 @@ function buildPacket(cmd, ...params) {
 
 
 
-function copyPrompt(btn, text) {
-  const full = BASE_PROMPT_S1 + '\n\n## 추가로 만들어줄 기능:\n' + text;
-  navigator.clipboard.writeText(full).then(() => {
-    btn.textContent = '✅ 복사됨!'; btn.classList.add('copied');
-    showToast('기본 프롬프트 + 기능 요청이 복사됐어요! AI에게 붙여넣어 보세요 😊');
-    setTimeout(() => { btn.textContent = '📋 복사'; btn.classList.remove('copied'); }, 2500);
-  });
-}
-function copyIdea(card, text) {
-  const full = BASE_PROMPT_S1 + '\n\n## 추가로 만들어줄 기능:\n' + text;
-  navigator.clipboard.writeText(full).then(() => {
-    showToast('완성 프롬프트가 복사됐어요! AI에게 바로 붙여넣어 보세요 😊');
-  });
-}
-function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
-function toggleCheck(el) {
-  el.classList.toggle('done');
-  el.querySelector('.check-box').textContent = el.classList.contains('done') ? '✓' : '';
-}
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
+    function copyPrompt(btn, text) {
+      const full = BASE_PROMPT_S1 + '\n\n## 추가로 만들어줄 기능:\n' + text;
+      navigator.clipboard.writeText(full).then(() => {
+        btn.textContent = '✅ 복사됨!'; btn.classList.add('copied');
+        showToast('기본 프롬프트 + 기능 요청이 복사됐어요! AI에게 붙여넣어 보세요 😊');
+        setTimeout(() => { btn.textContent = '📋 복사'; btn.classList.remove('copied'); }, 2500);
+      });
+    }
+    function copyIdea(card, text) {
+      const full = BASE_PROMPT_S1 + '\n\n## 추가로 만들어줄 기능:\n' + text;
+      navigator.clipboard.writeText(full).then(() => {
+        showToast('완성 프롬프트가 복사됐어요! AI에게 바로 붙여넣어 보세요 😊');
+      });
+    }
+    function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check-box').textContent = el.classList.contains('done') ? '✓' : '';
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
 
 
 
 
 
 
-function toggleCheck2(item){
-  item.classList.toggle('done');
+    function toggleCheck2(item) {
+      item.classList.toggle('done');
 
-  const box = item.querySelector('.check-box');
-  box.textContent = item.classList.contains('done') ? '✓' : '';
+      const box = item.querySelector('.check-box');
+      box.textContent = item.classList.contains('done') ? '✓' : '';
 
-  checkAllCompleted();
-}
+      checkAllCompleted();
+    }
 
-function checkAllCompleted(){
-  const items = document.querySelectorAll('.check-item');
-  const doneItems = document.querySelectorAll('.check-item.done');
-  const nextStep = document.getElementById('next-step');
+    function checkAllCompleted() {
+      const items = document.querySelectorAll('.check-item');
+      const doneItems = document.querySelectorAll('.check-item.done');
+      const nextStep = document.getElementById('next-step');
 
-  if(items.length === doneItems.length){
-    nextStep.classList.add('show');
-  }else{
-    nextStep.classList.remove('show');
-  }
-}
-
-
+      if (items.length === doneItems.length) {
+        nextStep.classList.add('show');
+      } else {
+        nextStep.classList.remove('show');
+      }
+    }
 
 
 
-</script>
 
-</script>
+
+  </script>
+
+  </script>
 </body>
+
 </html>

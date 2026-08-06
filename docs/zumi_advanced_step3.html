@@ -7,7 +7,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XHRH6KZ8T"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-6XHRH6KZ8T');
@@ -15,11 +15,11 @@
 
   <!-- Microsoft clarity -->
   <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "xccb4odoqc");
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "xccb4odoqc");
   </script>
 
   <meta charset="UTF-8">
@@ -66,7 +66,7 @@
     .top-banner {
       background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
       color: white;
-      padding: 40px 24px 56px;
+      padding: 40px 24px 26px;
       text-align: center;
       position: relative;
       overflow: hidden
@@ -109,6 +109,7 @@
       position: relative
     }
 
+    /* ── 내비 탭 ── */
     .nav-tabs {
       display: flex;
       justify-content: center;
@@ -118,12 +119,12 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, .06)
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
     }
 
     .nav-tab {
       flex-shrink: 0;
-      padding: 14px 20px;
+      padding: 14px 22px;
       font-size: .85rem;
       font-weight: 700;
       color: var(--dim);
@@ -135,17 +136,46 @@
       background: none;
       border-top: none;
       border-left: none;
-      border-right: none
+      border-right: none;
+      position: relative;
+    }
+
+    /* 마지막 탭을 제외한 모든 탭 뒤에 빨간색 전체 화살표 추가 */
+    .nav-tab:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(calc(-50% + 1px));
+      width: 20px;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4d4d' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
     }
 
     .nav-tab.active {
       color: var(--accent);
-      border-bottom-color: var(--accent)
+      border-bottom-color: var(--accent);
     }
 
     .nav-tab:hover {
-      color: var(--accent)
+      color: var(--accent);
     }
+
+    /* ── 섹션 ── */
+    .section {
+      display: none;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+
+    .section.active {
+      display: block;
+    }
+
 
     .section {
       display: none;
@@ -505,10 +535,11 @@
       background: linear-gradient(90deg, #7c3aed, #0ea5e9)
     }
 
+    /*
     .project-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 32px rgba(14, 165, 233, .15)
-    }
+    } */
 
     .project-card .pc-icon {
       font-size: 2rem;
@@ -764,6 +795,66 @@
     <p>
       버튼으로 직접 조종하거나, 선을 따라가거나, <br>장애물 앞에서 멈추는 것까지 만들어봅니다.
     </p>
+
+
+
+
+    <!-- 스텝 네비게이션 -->
+    <div
+      style="padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:10">
+
+      <!-- 전체 단계 목록 (1~4) -->
+      <div style="display:flex;gap:8px;align-items:center;">
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+        <a href="index.html" title="HOME"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          🏠
+        </a>
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+        <a href="zumi_advanced_step1.html" title="STEP 1"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          1
+        </a>
+
+        <!-- STEP 2 -->
+        <a href="zumi_advanced_step2.html" title="STEP 2"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          2
+        </a>
+
+        <!-- STEP 3 -->
+        <a href="zumi_advanced_step3.html" title="STEP 3"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#bedf49;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;">
+          3
+        </a>
+
+        <!-- STEP 4 -->
+        <a href="zumi_advanced_step4.html" title="STEP 4"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          4
+        </a>
+
+        <a href="zumi_advanced_all.html" title="all"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          🏁
+        </a>
+
+      </div>
+    </div>
+
+
   </div>
 
   <div class="nav-tabs">
@@ -840,11 +931,12 @@
     <div class="sec-title">STEP 3 에서 만들 수 있는 기능들</div>
 
     <!-- 핵심 기능 안내 -->
-    <div class="tip blue" style="margin-bottom:24px">
+    <div class="tip green" style="margin-bottom:24px">
       <span class="tip-icon">⭐</span>
       <span>
-        원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.
-      </span>
+        <strong> 다양한 기능을 조합하여 나만의 프로젝트를 만들어 보세요.<br></strong>
+        <!-- 원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.<br> -->
+        자세히 보기에서 기능별 내용을 확인할 수 있습니다. </span> </span>
     </div>
 
     <div class="feature-grid">
@@ -1080,15 +1172,19 @@
   <!-- ④ AI 요청 예시 -->
   <div class="section" id="tab-requests">
     <div class="sec-title">이렇게 AI에게 요청해보세요</div>
-    <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">
-      <!-- 클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요! -->
-        <div class="tip blue" style="margin-bottom:24px">
-      <span class="tip-icon">⭐</span>
+    <div class="tip yellow" style="margin-bottom:24px">
+      <span class="tip-icon">1️⃣</span>
       <span>
-        문장을 클릭하면 복사됩니다.<br>복사 후 <strong>Claude나 ChatGPT, Gemini</strong>에 붙여넣어 보세요!
+        먼저 기본 프롬프트를 <br> AI에게 전달하세요.
       </span>
     </div>
-    </p>
+
+    <div class="tip green" style="margin-bottom:24px">
+      <span class="tip-icon">2️⃣</span>
+      <span>
+        문장을 클릭하면 복사됩니다.<br>복사한 내용을 같은 AI에게 <br>붙여넣어 요청해 보세요.
+      </span>
+    </div>
 
     <!-- <div
       style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
@@ -1370,7 +1466,7 @@
 
     <div class="tip green" style="margin-top:24px">
       <span class="tip-icon">🚀</span>
-      <span>프로젝트 이름을 그대로 말해보세요! 예: <strong>"라인트레이서 로봇을 만들어줘"</strong></span>
+      <span>프로젝트 이름을 그대로 말해보세요! <br>예: <strong>"라인트레이서 로봇을 만들어줘"</strong></span>
     </div>
 
 
@@ -1396,13 +1492,24 @@
       <strong>노란 부분</strong>에 원하는 기능을 직접 적으면 됩니다!
     </p> -->
 
-    <div class="tip blue" style="margin-bottom:24px">
+    <div class="tip green" style="margin-bottom:24px">
       <span class="tip-icon">⭐</span>
       <span>
         아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
         노란색 부분 <strong>"원하는 기능"</strong> 에 직접 원하는 것을 적으면 됩니다!
       </span>
     </div>
+
+
+
+    <div class="tip yellow" style="margin-bottom:24px">
+      <span class="tip-icon">❗</span>
+      <span>
+        프롬프트는 처음 한 번만 전달하면 됩니다.<br>
+        이후에는 원하는 기능만 계속 요청하세요.
+      </span>
+    </div>
+
 
     <div class="prompt-box">
       <div class="prompt-topbar">
@@ -1424,29 +1531,29 @@
 
         <span class="pk">## 영상 및 센서 수신 방법</span>
         <span class="pv">ws.onmessage = (event) => {</span>
-        <span class="pv">  if (typeof event.data === 'string') return;</span>
-        <span class="pv">  const arr = new Uint8Array(event.data);</span>
+        <span class="pv"> if (typeof event.data === 'string') return;</span>
+        <span class="pv"> const arr = new Uint8Array(event.data);</span>
         <span class="pv"></span>
-        <span class="pv">  // 센서 데이터 (10바이트, 헤더 $R)</span>
-        <span class="pv">  if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
-        <span class="pv">    parseAndUpdateSensors(arr);</span>
-        <span class="pv">    return;</span>
-        <span class="pv">  }</span>
+        <span class="pv"> // 센서 데이터 (10바이트, 헤더 $R)</span>
+        <span class="pv"> if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
+        <span class="pv"> parseAndUpdateSensors(arr);</span>
+        <span class="pv"> return;</span>
+        <span class="pv"> }</span>
         <span class="pv"></span>
-        <span class="pv">  // 영상 데이터 (그 외 = JPEG)</span>
-        <span class="pv">  const blob = new Blob([arr], {type: 'image/jpeg'});</span>
-        <span class="pv">  const url = URL.createObjectURL(blob);</span>
-        <span class="pv">  const img = new Image();</span>
-        <span class="pv">  img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
-        <span class="pv">  img.src = url;</span>
+        <span class="pv"> // 영상 데이터 (그 외 = JPEG)</span>
+        <span class="pv"> const blob = new Blob([arr], {type: 'image/jpeg'});</span>
+        <span class="pv"> const url = URL.createObjectURL(blob);</span>
+        <span class="pv"> const img = new Image();</span>
+        <span class="pv"> img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
+        <span class="pv"> img.src = url;</span>
         <span class="pv">}</span>
 
         <span class="pk">## 패킷 빌더</span>
         <span class="pv">function buildPacket(cmd, ...params) {</span>
-        <span class="pv">  const buf = new Uint8Array(4 + params.length);</span>
-        <span class="pv">  buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
-        <span class="pv">  params.forEach((v,i) => buf[4+i]=v);</span>
-        <span class="pv">  return buf.buffer;</span>
+        <span class="pv"> const buf = new Uint8Array(4 + params.length);</span>
+        <span class="pv"> buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
+        <span class="pv"> params.forEach((v,i) => buf[4+i]=v);</span>
+        <span class="pv"> return buf.buffer;</span>
         <span class="pv">}</span>
 
         <span class="pk">## 센서 데이터 파싱 규칙 (10바이트)</span>
@@ -1458,10 +1565,10 @@
         arr[5]: BL (바닥 좌측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
         arr[6]: BC (바닥 중앙, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
         arr[7]: BTN (버튼 비트마스크: 8=🔴빨강 4=🔵파랑 2=🟢초록 1=🟡노랑 / 안눌리면 '없음')
-                버튼 배열 순서: 빨강-파랑-초록-노랑 (수평)
+        버튼 배열 순서: 빨강-파랑-초록-노랑 (수평)
         arr[8]: BAT (배터리 잔량, 최대 100 제한 필요)
         arr[9]: STAT (명령 수행 상태: 1=수행중, 0=대기중)
-                순차 이동 시 STAT이 0인 것을 확인한 후 다음 명령을 전송해야 함
+        순차 이동 시 STAT이 0인 것을 확인한 후 다음 명령을 전송해야 함
         센서값은 주미마다 개체차 있음
 
         ## STAT 적용 규칙
@@ -1477,79 +1584,77 @@
 
         <span class="pk">## 전송 딜레이</span>
         범위: 10~200ms
-        sendRaw() 내부에서 if (Date.now() - lastCmdTime < cmdDelay) return;
-        CMD_STOP(25)은 딜레이 무시하고 즉시 전송
+        sendRaw() 내부에서 if (Date.now() - lastCmdTime < cmdDelay) return; CMD_STOP(25)은 딜레이 무시하고 즉시 전송 <span class="pk">##
+          모터 제어 (CMD_MOTOR_INFINITE)</span>
+          버튼/키보드 조종에 적합
+          CMD_STOP = 25 → buildPacket(25)
+          CMD_MOTOR_INFINITE = 32
+          <span class="pk">## 모터 패킷 생성 함수</span>
+          <span class="pv">function makeMotorPacket(dirL, speedL, dirR, speedR) {</span>
+          <span class="pv"> speedL = Math.max(0, Math.min(250, speedL));</span>
+          <span class="pv"> speedR = Math.max(0, Math.min(250, speedR));</span>
+          <span class="pv"> dirL = Math.max(0, Math.min(2, dirL));</span>
+          <span class="pv"> dirR = Math.max(0, Math.min(2, dirR));</span>
+          <span class="pv"> const dir = 0x40 | dirL | (dirR << 4);</span>
+              <span class="pv"> return buildPacket(32, speedL, speedR, dir);</span>
+              <span class="pv">}</span>
 
-        <span class="pk">## 모터 제어 (CMD_MOTOR_INFINITE)</span>
-        버튼/키보드 조종에 적합
-        CMD_STOP = 25 → buildPacket(25)
-        CMD_MOTOR_INFINITE = 32
-        <span class="pk">## 모터 패킷 생성 함수</span>
-        <span class="pv">function makeMotorPacket(dirL, speedL, dirR, speedR) {</span>
-        <span class="pv">  speedL = Math.max(0, Math.min(250, speedL));</span>
-        <span class="pv">  speedR = Math.max(0, Math.min(250, speedR));</span>
-        <span class="pv">  dirL = Math.max(0, Math.min(2, dirL));</span>
-        <span class="pv">  dirR = Math.max(0, Math.min(2, dirR));</span>
-        <span class="pv">  const dir = 0x40 | dirL | (dirR << 4);</span>
-        <span class="pv">  return buildPacket(32, speedL, speedR, dir);</span>
-        <span class="pv">}</span>
+              <span class="pk">## 모터 제어(CMD_MOTOR_INFINITE) 캘리브레이션</span>
+              버튼이나 키보드 조종을 원하는 경우에 함께 적용
+              변수 4개 (기본값 40, 범위 0~250): calGoL, calGoR, calTurnL, calTurnR
+              전진: makeMotorPacket(2, calGoL, 1, calGoR)
+              후진: makeMotorPacket(1, calGoL, 2, calGoR)
+              좌회전: makeMotorPacket(1, calTurnL, 1, calTurnR)
+              우회전: makeMotorPacket(2, calTurnL, 2, calTurnR)
 
-        <span class="pk">## 모터 제어(CMD_MOTOR_INFINITE) 캘리브레이션</span>
-        버튼이나 키보드 조종을 원하는 경우에 함께 적용
-        변수 4개 (기본값 40, 범위 0~250): calGoL, calGoR, calTurnL, calTurnR
-        전진: makeMotorPacket(2, calGoL, 1, calGoR)
-        후진: makeMotorPacket(1, calGoL, 2, calGoR)
-        좌회전: makeMotorPacket(1, calTurnL, 1, calTurnR)
-        우회전: makeMotorPacket(2, calTurnL, 2, calTurnR)
+              <span class="pk">## 입력 이벤트</span>
+              버튼: mousedown/touchstart → 이동, mouseup/mouseleave/touchend → 정지
+              키보드: keydown(repeat 무시, input 포커스 시 무시) → 이동, keyup → 정지
+              키 매핑: w=전진 s=후진 a=좌회전 d=우회전 e=정지
 
-        <span class="pk">## 입력 이벤트</span>
-        버튼: mousedown/touchstart → 이동, mouseup/mouseleave/touchend → 정지
-        키보드: keydown(repeat 무시, input 포커스 시 무시) → 이동, keyup → 정지
-        키 매핑: w=전진 s=후진 a=좌회전 d=우회전 e=정지
+              <span class="pk">## 정밀 이동</span>
+              전진 거리: CMD=26 params=[speed, dist, 0]
+              후진 거리: CMD=26 params=[speed, dist, 1]
+              좌회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 0]
+              우회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 1]
+              빠른 전진: CMD=50 params=[dist] (단위: cm, 0~300)
+              빠른 후진: CMD=51 params=[dist] (단위: cm, 0~300)
+              빠른 좌회전: CMD=52 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
+              빠른 우회전: CMD=53 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
 
-        <span class="pk">## 정밀 이동</span>
-        전진 거리: CMD=26 params=[speed, dist, 0]
-        후진 거리: CMD=26 params=[speed, dist, 1]
-        좌회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 0]
-        우회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 1]
-        빠른 전진: CMD=50 params=[dist] (단위: cm, 0~300)
-        빠른 후진: CMD=51 params=[dist] (단위: cm, 0~300)
-        빠른 좌회전: CMD=52 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
-        빠른 우회전: CMD=53 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
+              <span class="pk">## 특수 이동</span>
+              라인트레이서 무한: CMD=30 params=[speed]
+              라인트레이서 시간: CMD=101 params=[speed, senBL, senBR, senBC, time×10] 기본 센서값=100
+              라인트레이서 거리: CMD=28 params=[speed, dist]
+              장애물 감지 정지: CMD=100 params=[speed, senL, senR] 기본 센서값=150
 
-        <span class="pk">## 특수 이동</span>
-        라인트레이서 무한: CMD=30 params=[speed]
-        라인트레이서 시간: CMD=101 params=[speed, senBL, senBR, senBC, time×10] 기본 센서값=100
-        라인트레이서 거리: CMD=28 params=[speed, dist]
-        장애물 감지 정지: CMD=100 params=[speed, senL, senR] 기본 센서값=150
+              <span class="pk">## 기본 UI 요소</span>
+              - IP 입력창 + 연결 버튼 + 해제 버튼
+              - 연결 상태 표시 (연결됨 / 연결 안 됨)
+              - 영상 표시 canvas (width=640, height=480)
+              - 방향 제어 버튼 또는 키보드
+              - 캘리브레이션 입력 4개
+              - 전송 딜레이 조절
 
-        <span class="pk">## 기본 UI 요소</span>
-        - IP 입력창 + 연결 버튼 + 해제 버튼
-        - 연결 상태 표시 (연결됨 / 연결 안 됨)
-        - 영상 표시 canvas (width=640, height=480)
-        - 방향 제어 버튼 또는 키보드
-        - 캘리브레이션 입력 4개
-        - 전송 딜레이 조절
-
-        <span class="pk">## 결과물 조건</span>
-        - HTML 파일 하나로 동작
-        - CSS/JavaScript 내부 포함
-        - Chrome에서 바로 실행 가능
-        - 별도 서버 불필요
+              <span class="pk">## 결과물 조건</span>
+              - HTML 파일 하나로 동작
+              - CSS/JavaScript 내부 포함
+              - Chrome에서 바로 실행 가능
+              - 별도 서버 불필요
 
 
 
 
-        <span class="pp">## 추가로 만들어줄 기능:
-          (여기에 원하는 것을 직접 적어주세요)
+              <span class="pp">## 추가로 만들어줄 기능:
+                (여기에 원하는 것을 직접 적어주세요)
 
-          예시:
-          - WASD 키보드 + D-PAD 버튼 조종
-          - 속도 슬라이더 (1~3)
-          - 거리/각도 슬라이더로 정밀 이동
-          - 라인트레이서 시작/정지 버튼
-          - 정사각형 자동 이동 버튼
-        </span>
+                예시:
+                - WASD 키보드 + D-PAD 버튼 조종
+                - 속도 슬라이더 (1~3)
+                - 거리/각도 슬라이더로 정밀 이동
+                - 라인트레이서 시작/정지 버튼
+                - 정사각형 자동 이동 버튼
+              </span>
 
       </div>
     </div>
@@ -1583,20 +1688,9 @@
 
   <!-- 스텝 네비게이션 -->
   <div
-    style="background:#0d1520;border-top:1px solid #1a2a3a;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
-    <a href="zumi_advanced_step2.html"
-      style="color:#4a6080;text-decoration:none;font-size:.82rem;font-weight:700;transition:color .2s"
-      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#4a6080'">← STEP 2</a>
-    <div style="display:flex;gap:6px">
-      <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
-      <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
-      <div style="width:28px;height:4px;border-radius:2px;background:#0ea5e9"></div>
-      <div style="width:28px;height:4px;border-radius:2px;background:#1a2a3a"></div>
-    </div>
-    <a href="zumi_advanced_step4.html"
-      style="color:#0ea5e9;text-decoration:none;font-size:.82rem;font-weight:700;padding:8px 16px;border:1px solid #0ea5e9;border-radius:100px;transition:all .2s"
-      onmouseover="this.style.background='#0ea5e9';this.style.color='#fff'"
-      onmouseout="this.style.background='transparent';this.style.color='#0ea5e9'">STEP 4 →</a>
+    style="background:#1a2340;border-top:1px solid #2a3a5a;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:10">
+
+
   </div>
 
   <div class="toast" id="toast">📋 복사되었습니다!</div>
@@ -1610,6 +1704,16 @@
       document.querySelectorAll('.nav-tab')[idx].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab'); // ?tab=features 에서 'features' 추출
+      const validTabs = ['goal', 'features', 'prompt', 'requests', 'projects', 'api'];
+
+      if (validTabs.includes(tabParam)) {
+        showTab(tabParam);
+      }
+    });
+
     function copyRequest(el) {
       const text = el.querySelector('.ri-text').textContent;
       navigator.clipboard.writeText(text).then(() => {

@@ -9,7 +9,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XHRH6KZ8T"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-6XHRH6KZ8T');
@@ -17,11 +17,11 @@
 
   <!-- Microsoft clarity -->
   <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "xccb4odoqc");
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "xccb4odoqc");
   </script>
 
   <meta charset="UTF-8">
@@ -1120,8 +1120,6 @@
       color: #34d399;
       /* 터미널 안내 코드색 (녹색 톤) */
     }
-
-
   </style>
 </head>
 
@@ -1137,20 +1135,81 @@
 
 
 
-  <!-- 상단 네비 -->
-  <nav class="top-nav">
-    <div class="top-nav-logo">ZUMI</div>
-    <div class="top-nav-badge">🌱 입문 가이드</div>
-  </nav>
+
 
   <!-- 히어로 -->
   <div class="hero">
     <!-- <span class="hero-emoji">🤖</span> -->
-    <img src="zumi_ai.png" alt="주미 이미지" style="max-width:30%;">
+    <img src="zumi_ai.png" alt="주미 이미지" style="max-width:10%;">
 
-    <h1>코드 몰라도 괜찮아요<br>AI가 다 만들어줘요!</h1>
+    <!-- <h1>코드 몰라도 괜찮아요<br>AI가 다 만들어줘요!</h1>
     <p>주미 AI로 카메라 영상을 보는<br>웹앱을 5분 안에 만들 수 있어요.</p>
     <div class="hero-promise">⏱️ 5분이면 로봇이 움직입니다</div>
+ -->
+
+    <h1>처음 코딩해도 괜찮아요<br>AI와 함께 만들어 봐요!</h1>
+    <p>주미 AI로 카메라 영상을 보는<br>웹앱을 5분 안에 만들 수 있어요.</p>
+    <div class="hero-promise">⏱️ 5분이면 충분합니다.</div>
+
+
+
+
+    <div
+      style="padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;z-index:10">
+
+      <!-- 전체 단계 목록 (1~4) -->
+      <div style="display:flex;gap:8px;align-items:center;">
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+
+        <a href="index.html" title="HOME"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          🏠
+        </a>
+
+        <a href="zumi_easy_intro.html" title="HOME"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#bedf49;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;">
+          💡
+        </a>
+
+        <!-- STEP 1 (현재 페이지인 경우 강조) -->
+        <a href="zumi_easy_step1.html" title="STEP 1"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          1
+        </a>
+
+        <!-- STEP 2 -->
+        <a href="zumi_easy_step2.html" title="STEP 2"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          2
+        </a>
+
+        <!-- STEP 3 -->
+        <a href="zumi_easy_step3.html" title="STEP 3"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          3
+        </a>
+
+        <!-- STEP 4 -->
+        <a href="zumi_easy_step4.html" title="STEP 4"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
+          onmouseover="this.style.background='#32446e';this.style.color='#fff'"
+          onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          4
+        </a>
+      </div>
+    </div>
+
+
+
   </div>
 
   <div class="container">
@@ -1313,8 +1372,12 @@
               </div> -->
               <div class="ip-example">IP 예시: 192.168.0.63 &nbsp;·&nbsp; 192.168.1.100 &nbsp;·&nbsp; 10.0.0.5</div>
             </div>
+
+
           </div>
         </div>
+
+
 
         <!-- Wi-Fi 설정 아코디언 -->
         <div style="margin:0 0 0 60px">
@@ -1325,7 +1388,7 @@
             <div style="display:flex;align-items:center;gap:10px">
               <span style="font-size:1.1rem">🔧</span>
               <div>
-                <div style="font-weight:700;font-size:.88rem;color:#92400e">처음 사용하신다면? Wi-Fi 설정이 먼저 필요해요</div>
+                <div style="font-weight:700;font-size:.88rem;color:#92400e">처음 사용하시나요? Wi-Fi 연결부터 시작해요</div>
                 <div style="font-size:.75rem;color:#b45309;margin-top:2px">주미를 처음 쓰거나 Wi-Fi 설정을 안 하셨다면 먼저 확인하세요</div>
               </div>
             </div>
@@ -1465,7 +1528,7 @@
                     와이파이 연결 성공<br>
                     192.168.x.xxx<br>
                     설정이 완료 되었습니다
-                </div><br>
+                  </div><br>
                 </ol>
               </div>
             </div>
@@ -1475,7 +1538,7 @@
               <div style="font-weight:700;font-size:.88rem;margin-bottom:12px">🚀 연결 후 실행 방법</div>
               <div style="display:flex;flex-direction:column;gap:8px">
 
-        <div
+                <div
                   style="padding:12px 16px;background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;font-size:.8rem">
                   <div style="font-weight:700;margin-bottom:4px;color:var(--green)">방법 1. 퀵 부팅 ⭐추천</div>
 
@@ -1549,6 +1612,21 @@
           </div>
         </div>
 
+
+
+        <div style="margin:0 0 0 60px">
+
+          <div class="ip-box">
+            <h4>🎬 영상으로 따라 하기</h4>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/hiZbEPbYNSA?si=slGjc2rRd-yn5MG9"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+
+
+
         <div class="qs-step">
           <div class="qs-num">4</div>
           <div class="qs-content">
@@ -1581,11 +1659,21 @@
     <div class="section">
       <div class="section-label">VIBE CODING</div>
       <h2 class="section-title">🚀 이제 직접 만들어볼 차례예요!</h2>
-      <p class="section-desc">
+      <!-- <p class="section-desc">
         지금까지는 준비된 파일을 실행해봤어요.<br>
         이번엔 여러분이 직접 원하는 기능을 만들어볼 거예요.<br>
         걱정하지 마세요. <strong>코드는 한 글자도 안 써도 됩니다.</strong>
+      </p> -->
+
+
+      <p class="section-desc">
+        지금까지는 준비된 파일을 실행해봤어요.<br>
+        이번에는 여러분이 원하는 기능을 AI에게 요청하고<br>
+        나만의 프로젝트를 만들어 봅니다.
       </p>
+
+
+
 
       <!-- 핵심 설명 카드 -->
       <div
@@ -1594,8 +1682,10 @@
           style="font-size:.7rem;font-family:'JetBrains Mono',monospace;letter-spacing:3px;color:var(--dim);margin-bottom:12px">
           HOW IT WORKS</div>
         <p style="font-size:.95rem;line-height:1.9;margin:0">
-          AI에게 원하는 기능을 <strong>말로 설명</strong>하면, AI가 코드를 대신 만들어줘요.<br>
-          그 파일을 열면 바로 동작합니다. 이게 전부예요.
+
+          1️⃣ 만들고 싶은 기능을 AI에게 설명하세요.<br>
+          2️⃣ AI가 필요한 코드를 만들어 줍니다.<br>
+          3️⃣ 파일을 실행하고 결과를 확인하세요.<br>
         </p>
         <div
           style="margin-top:16px;padding:14px 18px;background:var(--bg);border-radius:10px;font-size:.92rem;color:var(--dim);line-height:1.7">
@@ -1608,8 +1698,10 @@
       <!-- 바이브 코딩 정의 callout -->
       <div class="callout blue">
         <span class="callout-icon">✨</span>
-        <span>이렇게 AI와 대화하면서 프로그램을 만드는 걸 <strong>바이브 코딩(Vibe Coding)</strong>이라고 해요. <br>
-          요즘 전 세계 개발자들 사이에서 유행하고 있는 방식이에요.
+        <span>
+          이렇게 AI와 대화하며 프로그램을 만드는 방식을<br>
+          <strong>바이브 코딩(Vibe Coding)</strong>이라고 합니다.<br>
+          아이디어를 설명하고, AI와 함께 결과물을 만들어가는 새로운 개발 방식입니다.
         </span>
       </div>
     </div>
@@ -1622,8 +1714,9 @@
         처음이라도 걱정하지 마세요.<br>
         딱 이 순서대로만 따라하면 됩니다.<br><br>
 
-        아래 순서대로 따라 하면 AI가 코드를 작성해주고,<br>
-        여러분은 결과를 실행해보면서 기능을 추가해 나갈 수 있습니다.<br>
+        원하는 기능을 설명하고,<br>
+        AI와 함께 코드를 만든 후 실행해 보세요.<br>
+        결과를 확인하며 새로운 기능을 추가해 나갈 수 있습니다.<br>
       </p>
 
       <div style="display:flex;flex-direction:column;gap:12px">
@@ -1638,7 +1731,7 @@
             <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">AI를 하나 엽니다</div>
             <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
               ChatGPT, Claude, Gemini 중 편한 걸 쓰면 돼요.<br>
-              뭘 써야 할지 모르겠다면 <strong>챗GPT나 제미나이</strong>를 추천해요.
+              뭘 써야 할지 모르겠다면 <strong>ChatGPT 또는 Gemini</strong>를 추천해요.
             </div>
           </div>
         </div>
@@ -1655,8 +1748,8 @@
               각 단계마다 AI에게 보낼 말이 미리 준비되어 있어요.<br>
               버튼 하나만 누르면 복사돼요.<br>
 
-              💡 복사되는 이 말이 바로 프롬프트(Prompt) 예요.<br>
-              AI에게 보내는 요청이나 질문을 <strong>프롬프트</strong>라고 합니다.
+              💡 복사되는 이 말이 바로 프롬프트(Prompt)예요.<br>
+              AI에게 전달하는 요청문장을 <strong>프롬프트</strong>라고 합니다.
             </div>
           </div>
         </div>
@@ -1675,7 +1768,8 @@
               (맥은 <kbd
                 style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.8rem">Cmd+V</kbd>)
               로 붙여넣고 엔터를 누르세요.<br>
-              따로 설명을 추가하지 않아도 됩니다. 💡 주미 AI에 필요한 정보가 이미 다 들어있어요.
+              <!-- 따로 설명을 추가하지 않아도 됩니다. 💡 주미 AI에 필요한 정보가 이미 다 들어있어요. -->
+              주미 AI에 필요한 기본 정보가 프롬프트에 포함되어 있어<br>그대로 전달해도 됩니다.
             </div>
           </div>
         </div>
@@ -1689,8 +1783,8 @@
           <div>
             <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">AI가 만들어준 파일을 다운로드합니다</div>
             <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
-              AI가 길게 코드를 써줄 거예요. 당황하지 마세요.<br>
-              코드 창 오른쪽 위에 <strong>저장,다운로드</strong>버튼이 있어요. 그걸 누르면 됩니다.
+              AI가 길게 코드를 만들어줄 거예요. <br>처음에는 길어 보여도 걱정하지 마세요.<br>
+              코드 창 오른쪽 위에 <strong>저장·다운로드</strong>버튼이 있어요. 그걸 누르면 됩니다.
             </div>
           </div>
         </div>
@@ -1716,7 +1810,7 @@
           <div>
             <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">다운로드한 파일을 더블클릭해서 실행합니다</div>
             <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
-              브라우저가 자동으로 열리면서 앱이 실행돼요.
+              브라우저가 자동으로 열리면서 웹앱이 실행돼요.
             </div>
           </div>
         </div>
@@ -1730,8 +1824,9 @@
           <div>
             <div style="font-weight:700;font-size:.95rem;margin-bottom:4px">마음에 안 들면 AI에게 다시 요청합니다</div>
             <div style="font-size:.85rem;color:var(--dim);line-height:1.7">
-              "버튼을 더 크게 해줘", "배경색을 바꿔줘" — 뭐든 말하면 돼요.<br>
-              이걸 반복하면서 기능을 하나씩 늘려가면 됩니다.
+              "버튼을 더 크게 해줘", "배경색을 바꿔줘" — 원하는 방향을 AI에게 설명해 보세요.<br>
+              수정 요청을 반복하면서 프로젝트를 발전시킬 수 있습니다.
+
             </div>
           </div>
         </div>
@@ -1781,7 +1876,16 @@
 
       <div class="callout blue" style="margin-top:20px">
         <span class="callout-icon">⚡</span>
-        <span>기술적인 건 AI가 다 알아서 해요. <br>여러분은 <strong>"이런 기능이 있으면 좋겠다"</strong>는 아이디어만 생각하면 됩니다!</span>
+
+        <span>
+
+          <!-- 기술적인 건 AI가 다 알아서 해요. <br>여러분은 <strong>"이런 기능이 있으면 좋겠다"</strong>는 아이디어만 생각하면 됩니다! -->
+
+          어려운 기술은 AI와 함께 해결해 보세요.<br>
+          여러분은 만들고 싶은 기능을 생각하고 설명하면 됩니다!
+
+        </span>
+
       </div>
     </div>
 
@@ -1874,8 +1978,14 @@
     <!-- ⑤ 다음 단계 -->
     <div class="section">
       <div class="section-label">NEXT STEPS</div>
-      <h2 class="section-title">▶️ 그럼 이제 시작해볼까요?</h2>
-      <p class="section-desc">준비됐나요? 아래 단계 중 첫 번째부터 시작해보세요.<br>하나씩 완성할수록 주미가 점점 똑똑해집니다!</p>
+      <h2 class="section-title">▶️ 이제 직접 만들어볼 차례입니다!</h2>
+      <p class="section-desc">
+
+        <!-- 준비됐나요? 아래 단계 중 첫 번째부터 시작해보세요.<br>하나씩 완성할수록 주미가 점점 똑똑해집니다! -->
+        아래 단계부터 시작해 보세요.<br>
+        AI와 함께 기능을 추가하고 수정하면서<br>
+        원하는 프로젝트를 완성해 나갈 수 있습니다.
+      </p>
 
       <div class="step-cards">
         <a href="zumi_easy_step1.html" class="step-card">
@@ -1904,9 +2014,22 @@
         style="margin-top:28px;text-align:center;padding:24px;background:var(--white);border-radius:16px;border:1px solid var(--border)">
         <div style="font-size:1.2rem;margin-bottom:8px">💬</div>
         <div style="font-size:.9rem;color:var(--dim);line-height:1.8">
-          <strong style="color:var(--text)">중요한 것은 코드가 아니라 아이디어예요!</strong><br>
+
+
+
+          <!-- <strong style="color:var(--text)">중요한 것은 코드가 아니라 아이디어예요!</strong><br>
           만들고 싶은 게 있으면 AI에게 자연스럽게 말해보세요.<br>
-          "주미가 사람을 보면 인사하게 해줘" — 이것도 가능해요!
+          "주미가 사람을 보면 인사하게 해줘" — 이것도 가능해요!<br> -->
+
+
+          <strong style="color:var(--text)">중요한 것은 무엇을 만들고 싶은지 생각하는 것입니다.</strong><br>
+          만들고 싶은 기능이 있으면 AI에게 자연스럽게 말해보세요.<br>
+
+          "주미가 사람을 보면 인사하게 해줘"<br>
+          — AI와 함께 아이디어를 실제 프로젝트로 만들어 봅니다.<br>
+
+
+
         </div>
       </div>
     </div>
@@ -2053,7 +2176,7 @@ function connect() {
   ws.onclose = () => document.getElementById('status').textContent = '❌ 연결 끊김';
 }
 function disconnect() { if (ws) ws.close(); }
-<\/script></body></html>`;
+<\/script><\/body><\/html>`;
 
     function toggleWifi(btn) {
       const body = btn.nextElementSibling;

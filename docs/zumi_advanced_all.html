@@ -24,12 +24,13 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZUMI 바이브 코딩 · STEP 4</title>
+  <title>ZUMI 바이브 코딩 · 통합 작업실</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
   <style>
     :root {
+      --feat: #b8c8f5;
       --bg: #f5f0ff;
       --white: #fff;
       --border: #e4d9ff;
@@ -688,10 +689,10 @@
       background: linear-gradient(90deg, #f59e0b, #8b5cf6)
     }
 
-    /* .project-card:hover {
+    .project-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 32px rgba(139, 92, 246, .18)
-    } */
+    }
 
     .project-card .pc-icon {
       font-size: 2rem;
@@ -990,10 +991,18 @@
 
   <div class="top-banner">
     <div class="step-badge">STEP 4 of 4</div>
-    <h1>🚥 AI 비전</h1>
+    <h1> 통합 작업실</h1>
     <!-- <p>카메라 영상을 활용하여 주변 환경을 인식합니다.<br>얼굴, 손, 마커, 물체, 스케치까지 AI가 직접 봅니다!</p> -->
-    <p>카메라로 얼굴, 손, 물체를 인식해서 <br>주미가 스스로 반응하게 만들어봅니다.</p>
+    <p>
 
+      모든 기능을 하나의 프롬프트에서 사용할 수 있습니다.<br>
+      자유롭게 조합하여 프로젝트를 만들어 보세요.
+
+      <!-- <br>추천 대상<br>
+      여러 기능을 함께 활용하는 수업<br>
+      모든 챕터를 학습한 후 프로젝트를 제작하는 경우<br>
+      필요한 기능을 한 번에 사용하고 싶은 경우<br> -->
+    </p>
 
 
 
@@ -1038,16 +1047,18 @@
 
         <!-- STEP 4 -->
         <a href="zumi_advanced_step4.html" title="STEP 4"
-          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#bedf49;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;">
-          4
-        </a>
-
-        <a href="zumi_advanced_all.html" title="all"
           style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#2a3a5a;color:#7a8aaa;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;"
           onmouseover="this.style.background='#32446e';this.style.color='#fff'"
           onmouseout="this.style.background='#2a3a5a';this.style.color='#7a8aaa'">
+          4
+        </a>
+
+        <!-- all -->
+        <a href="zumi_advanced_all.html" title="all"
+          style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#bedf49;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;">
           🏁
         </a>
+
 
       </div>
     </div>
@@ -1055,8 +1066,7 @@
   </div>
 
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showTab('goal')">🎯 목표</button>
-    <button class="nav-tab" onclick="showTab('features')">🧠 AI 기능 종류</button>
+    <button class="nav-tab active" onclick="showTab('features')">⚙️ 가능한 기능</button>
     <button class="nav-tab" onclick="showTab('prompt')">📋 프롬프트</button>
     <button class="nav-tab" onclick="showTab('requests')">💬 AI 요청 예시</button>
     <button class="nav-tab" onclick="showTab('projects')">🚀 프로젝트 아이디어</button>
@@ -1064,7 +1074,7 @@
   </div>
 
   <!-- ① 목표 -->
-  <div class="section active" id="tab-goal">
+  <div class="section" id="tab-goal">
     <div class="goal-box">
       <h2>🎯 이번 단계의 목표</h2>
       <!-- <p>카메라 영상에서 <strong>얼굴, 손동작, 마커, 물체, 스케치</strong>를 인식합니다.<br>
@@ -1130,8 +1140,8 @@
   </div>
 
   <!-- ② AI 기능 종류 -->
-  <div class="section" id="tab-features">
-    <div class="sec-title">주미가 인식할 수 있는 것들</div>
+  <div class="section active" id="tab-features">
+    <div class="sec-title">만들 수 있는 기능들</div>
 
     <!-- 핵심 기능 안내 -->
     <div class="tip blue" style="margin-bottom:24px">
@@ -1139,223 +1149,152 @@
       <span>
         <strong> 다양한 기능을 조합하여 나만의 프로젝트를 만들어 보세요.<br></strong>
         <!-- 원하는 기능을 추가하여 나만의 앱으로 발전시킬 수 있습니다.<br> -->
-        자세히 보기에서 기능별 내용을 확인할 수 있습니다. </span>
+        자세히 보기에서 기능별 내용을 확인할 수 있습니다.
+      </span>
     </div>
 
 
-    <div class="ai-grid">
-      <div class="ai-card face">
-        <div class="ai-icon">😊</div>
-        <h3>얼굴 인식</h3>
-        <p>얼굴 감지<br> 위치/크기 확인<br> 이름 학습 후 특정 인물 인식</p>
-      </div>
-      <div class="ai-card gesture">
-        <div class="ai-icon">✋</div>
-        <h3>손 감지</h3>
-        <p>
-          제스처 인식<br>
-          손가락 위치<br>
-          손가락 펴짐 접힘
-        </p>
-      </div>
-      <div class="ai-card marker">
-        <div class="ai-icon">🔲</div>
-        <h3>마커 인식</h3>
-        <p>마커 카드 ID 인식<br> 위치/크기/방향 확인</p>
-      </div>
-      <div class="ai-card object">
-        <div class="ai-icon">📸</div>
-        <h3>QR 인식</h3>
-        <p>QR 코드 인식<br> 위치/크기/방향 확인</p>
-      </div>
-
-      <div class="ai-card object">
-        <div class="ai-icon">🚦</div>
-        <h3>물체/표지판 인식</h3>
-        <p>YOLO 기반<br> 신호등·정지 표지판 등 80여 종 감지</p>
-      </div>
 
 
 
-      <!-- <div class="ai-card sketch">
-      <div class="ai-icon">✏️</div>
-      <h3>스케치 인식</h3>
-      <p>직접 그린 그림을 학습시켜 인식. 나만의 카드 만들기!</p>
-    </div>
-    <div class="ai-card teachable">
-      <div class="ai-icon">🎓</div>
-      <h3>티처블 머신</h3>
-      <p>Google Teachable Machine으로 만든 모델 직접 연동</p>
-    </div> -->
+    <div style="margin-top: 28px; display: flex; align-items: center; gap: 12px;">
+      <strong style="white-space: nowrap;">연결하고 보기</strong>
+      <div style="flex: 1; height: 1px; background: var(--border);"></div>
+      <a href="zumi_advanced_step1.html?tab=features" target="_blank" rel="noopener noreferrer"
+        style="white-space: nowrap; font-size: 13px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; text-decoration: none; color: inherit; background: var(--feat); transition: background 0.2s;">
+        자세히 보기 &rsaquo;</a>
     </div>
 
-    <div class="sec-title" style="margin-top:28px">손 제스처 종류</div>
     <div class="gesture-grid">
       <div class="gesture-item">
-        <div class="gi">✊</div>
-        <div class="gn">'fist'</div>
-        <div class="gd">주먹</div>
+        <div class="gi">🔗</div>
+        <div class="gn">주미 AI 연결</div>
       </div>
       <div class="gesture-item">
-        <div class="gi">☝️</div>
-        <div class="gn">'point'</div>
-        <div class="gd">검지 하나</div>
+        <div class="gi">📷</div>
+        <div class="gn">카메라</div>
       </div>
       <div class="gesture-item">
-        <div class="gi">🖐️</div>
-        <div class="gn">'open'</div>
-        <div class="gd">손바닥 펴기</div>
+        <div class="gi">🎨</div>
+        <div class="gn">화면 꾸미기</div>
       </div>
       <div class="gesture-item">
-        <div class="gi">✌️</div>
-        <div class="gn">'peace'</div>
-        <div class="gd">브이(V)</div>
+        <div class="gi">📸</div>
+        <div class="gn">QR 인식</div>
       </div>
       <div class="gesture-item">
-        <div class="gi">🤚</div>
-        <div class="gn">'standby'</div>
-        <div class="gd">엄지 굽힘</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">👍</div>
-        <div class="gn">'thumbs_up'</div>
-        <div class="gd">따봉</div>
+        <div class="gi">📊</div>
+        <div class="gn">상태 확인</div>
       </div>
     </div>
 
-    <div class="sec-title" style="margin-top:28px">인식 가능 물체</div>
-    <span class="badge">🚦 교통 / 표지판</span>
+
+    <div style="margin-top: 28px; display: flex; align-items: center; gap: 12px;">
+      <strong style="white-space: nowrap;">표현</strong>
+      <div style="flex: 1; height: 1px; background: var(--border);"></div>
+      <a href="zumi_advanced_step2.html?tab=features" target="_blank" rel="noopener noreferrer"
+        style="white-space: nowrap; font-size: 13px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; text-decoration: none; color: inherit; background: var(--feat); transition: background 0.2s;">
+        자세히 보기 &rsaquo;</a>
+    </div>
+
     <div class="gesture-grid">
       <div class="gesture-item">
-        <div class="gi">🚦</div>
-        <div class="gn">'traffic light'</div>
-        <div class="gd">신호등</div>
+        <div class="gi">💡</div>
+        <div class="gn">LED</div>
       </div>
       <div class="gesture-item">
-        <div class="gi">🛑</div>
-        <div class="gn">'stop sign'</div>
-        <div class="gd">정지 표지판</div>
+        <div class="gi">🔊</div>
+        <div class="gn">사운드</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">📺</div>
+        <div class="gn">텍스트 출력</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🟢</div>
+        <div class="gn">버튼 상태</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">📡</div>
+        <div class="gn">센서 상태</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🔋</div>
+        <div class="gn">배터리 상태</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px; display: flex; align-items: center; gap: 12px;">
+      <strong style="white-space: nowrap;">이동</strong>
+      <div style="flex: 1; height: 1px; background: var(--border);"></div>
+      <a href="zumi_advanced_step3.html?tab=features" target="_blank" rel="noopener noreferrer"
+        style="white-space: nowrap; font-size: 13px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; text-decoration: none; color: inherit; background: var(--feat); transition: background 0.2s;">
+        자세히 보기 &rsaquo;</a>
+    </div>
+
+    <div class="gesture-grid">
+      <div class="gesture-item">
+        <div class="gi">🎮</div>
+        <div class="gn">직접 조종</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">📐</div>
+        <div class="gn">정밀 이동</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">〰️</div>
+        <div class="gn">특수 이동</div>
       </div>
       <div class="gesture-item">
         <div class="gi">🚗</div>
-        <div class="gn">'car'</div>
-        <div class="gd">자동차</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🏍️</div>
-        <div class="gn">'motorcycle'</div>
-        <div class="gd">오토바이</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🚌</div>
-        <div class="gn">'bus'</div>
-        <div class="gd">버스</div>
+        <div class="gn">응용 이동</div>
       </div>
     </div>
 
-    <span class="badge">🧑 사람 / 동물</span>
+    <div style="margin-top: 28px; display: flex; align-items: center; gap: 12px;">
+      <strong style="white-space: nowrap;">AI 비전</strong>
+      <div style="flex: 1; height: 1px; background: var(--border);"></div>
+      <a href="zumi_advanced_step4.html?tab=features" target="_blank" rel="noopener noreferrer"
+        style="white-space: nowrap; font-size: 13px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; text-decoration: none; color: inherit; background: var(--feat); transition: background 0.2s;">
+        자세히 보기 &rsaquo;</a>
+    </div>
+
+
     <div class="gesture-grid">
       <div class="gesture-item">
-        <div class="gi">🧑</div>
-        <div class="gn">'person'</div>
-        <div class="gd">사람</div>
+        <div class="gi">😊</div>
+        <div class="gn">얼굴 인식</div>
       </div>
       <div class="gesture-item">
-        <div class="gi">🐱</div>
-        <div class="gn">'cat'</div>
-        <div class="gd">고양이</div>
+        <div class="gi">✋</div>
+        <div class="gn">손 감지</div>
       </div>
       <div class="gesture-item">
-        <div class="gi">🐶</div>
-        <div class="gn">'dog'</div>
-        <div class="gd">강아지</div>
+        <div class="gi">🔲</div>
+        <div class="gn">마커 인식</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">📸</div>
+        <div class="gn">QR 인식</div>
+      </div>
+      <div class="gesture-item">
+        <div class="gi">🚦</div>
+        <div class="gn">서물/표지판 인식</div>
       </div>
     </div>
 
-    <span class="badge">🍎 음식 / 음료</span>
-    <div class="gesture-grid">
-      <div class="gesture-item">
-        <div class="gi">🍎</div>
-        <div class="gn">'apple'</div>
-        <div class="gd">사과</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🍌</div>
-        <div class="gn">'banana'</div>
-        <div class="gd">바나나</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🍊</div>
-        <div class="gn">'orange'</div>
-        <div class="gd">오렌지</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🍕</div>
-        <div class="gn">'pizza'</div>
-        <div class="gd">피자</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">☕</div>
-        <div class="gn">'cup'</div>
-        <div class="gd">컵</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🍾</div>
-        <div class="gn">'bottle'</div>
-        <div class="gd">병</div>
-      </div>
-    </div>
-
-    <span class="badge">📦 사물 / 도구</span>
-    <div class="gesture-grid">
-      <div class="gesture-item">
-        <div class="gi">📱</div>
-        <div class="gn">'cell phone'</div>
-        <div class="gd">스마트폰</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">💻</div>
-        <div class="gn">'laptop'</div>
-        <div class="gd">노트북</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">📚</div>
-        <div class="gn">'book'</div>
-        <div class="gd">책</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">✂️</div>
-        <div class="gn">'scissors'</div>
-        <div class="gd">가위</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">⌨️</div>
-        <div class="gn">'keyboard'</div>
-        <div class="gd">키보드</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🖱️</div>
-        <div class="gn">'mouse'</div>
-        <div class="gd">마우스</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">🪑</div>
-        <div class="gn">'chair'</div>
-        <div class="gd">의자</div>
-      </div>
-      <div class="gesture-item">
-        <div class="gi">⚽</div>
-        <div class="gn">'sports ball'</div>
-        <div class="gd">공</div>
-      </div>
-    </div>
-
-
-    <div class="tip purple" style="margin-top:20px">
+    <!-- <div class="tip purple" style="margin-top:20px">
       <span class="tip-icon">💡</span>
       <span><strong> 바로 사용할 수 있어요.</strong><br>
         인터넷만 있으면 됩니다!</span>
-    </div>
+    </div> -->
+
+    <!-- <div class="tip purple" style="margin-top:20px">
+      <span class="tip-icon">💡</span>
+      <span><strong> 다양한 기능을 조합하여 나만의 프로젝트를 만들어 보세요..</strong>
+      </span>
+    </div> -->
+
 
     <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('api')">다음: API 레퍼런스 →</button></div> -->
     <div style="margin-top:32px;text-align:center">
@@ -1372,14 +1311,14 @@
     <div class="sec-title">이렇게 AI에게 요청해보세요</div>
     <!-- <p style="color:var(--dim);font-size:.88rem;margin-bottom:20px">클릭하면 복사됩니다. 기본 프롬프트 뒤에 붙여넣어 보세요!</p> -->
 
-    <div class="tip yellow" style="margin-bottom:24px">
+    <div class="tip red" style="margin-bottom:24px">
       <span class="tip-icon">1️⃣</span>
       <span>
         먼저 기본 프롬프트를 <br> AI에게 전달하세요.
       </span>
     </div>
 
-    <div class="tip green" style="margin-bottom:24px">
+    <div class="tip blue" style="margin-bottom:24px">
       <span class="tip-icon">2️⃣</span>
       <span>
         문장을 클릭하면 복사됩니다.<br>복사한 내용을 같은 AI에게 <br>붙여넣어 요청해 보세요.
@@ -1388,145 +1327,138 @@
 
 
 
-    <!-- <div
-      style="font-size:.78rem;color:var(--dim);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">
-      😊 얼굴 인식</div> -->
+
+
+
     <div class="request-list">
 
-      <h3>AI로 사람 인식하기</h3>
+      <h3>🎨 디자인 바꾸기</h3>
 
       <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">👤</div>
-        <div class="ri-text">내 얼굴을 따라다니는 로봇을 만들어줘</div>
+        <div class="ri-icon">📲</div>
+        <div class="ri-text">모바일 앱처럼 만들어줘</div>
         <div class="ri-copy">복사</div>
       </div>
 
       <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">👋</div>
-        <div class="ri-text">얼굴을 찾으면 인사하게 해줘</div>
+        <div class="ri-icon">🕶</div>
+        <div class="ri-text">어두운 테마로 바꿔줘</div>
         <div class="ri-copy">복사</div>
       </div>
 
       <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">🎯</div>
-        <div class="ri-text">얼굴이 화면 중앙에 오도록 따라가게 해줘</div>
+        <div class="ri-icon">🔘</div>
+        <div class="ri-text">버튼을 더 크게 만들어줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">✨</div>
+        <div class="ri-text">기능에 맞는 아이콘을 추가해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+      <h3>⚙️ 기능 추가하기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📸</div>
+        <div class="ri-text">사진 저장 기능을 추가해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">📊</div>
+        <div class="ri-text">센서 값을 화면에 표시해줘</div>
         <div class="ri-copy">복사</div>
       </div>
 
       <div class="request-item" onclick="copyRequest(this)">
         <div class="ri-icon">💡</div>
-        <div class="ri-text">얼굴이 보이면 초록 LED를 켜고 없으면 빨간 LED를 켜줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <h3>AI로 손짓 인식하기</h3>
-
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">🖐️</div>
-        <div class="ri-text">손바닥을 펴면 전진하고 주먹을 쥐면 멈추게 해줘</div>
+        <div class="ri-text">LED 색상을 조절할 수 있게 해줘</div>
         <div class="ri-copy">복사</div>
       </div>
 
       <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">✌️</div>
-        <div class="ri-text">브이(V)를 하면 왼쪽으로 돌게 해줘</div>
+        <div class="ri-icon">🔊</div>
+        <div class="ri-text">효과음을 추가해줘</div>
         <div class="ri-copy">복사</div>
       </div>
 
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">👍</div>
-        <div class="ri-text">따봉을 하면 오른쪽으로 돌게 해줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
+
+      <h3>🎮 조작 만들기</h3>
 
       <div class="request-item" onclick="copyRequest(this)">
         <div class="ri-icon">🎮</div>
-        <div class="ri-text">손동작을 리모컨처럼 사용하게 해줘</div>
+        <div class="ri-text">게임 패드처럼 조종할 수 있게 해줘</div>
         <div class="ri-copy">복사</div>
       </div>
 
-      <h3>AI로 물체 찾기</h3>
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⌨️</div>
+        <div class="ri-text">키보드로 조종할 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⚡</div>
+        <div class="ri-text">속도를 조절할 수 있게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+      <h3>🤖 로봇 움직임 만들기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">⬛</div>
+        <div class="ri-text">정사각형 모양으로 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">〰️</div>
+        <div class="ri-text">검은 선을 따라 움직이게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🚧</div>
+        <div class="ri-text">장애물을 만나면 멈추게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🏁</div>
+        <div class="ri-text">목표 지점까지 이동하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+
+      <h3>👁️ AI 비전 활용하기</h3>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">👤</div>
+        <div class="ri-text">얼굴을 따라 이동하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
+
+      <div class="request-item" onclick="copyRequest(this)">
+        <div class="ri-icon">🤚</div>
+        <div class="ri-text">손동작으로 로봇을 조종하게 해줘</div>
+        <div class="ri-copy">복사</div>
+      </div>
 
       <div class="request-item" onclick="copyRequest(this)">
         <div class="ri-icon">📦</div>
-        <div class="ri-text">카메라에 보이는 물건 이름을 알려줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">🔍</div>
-        <div class="ri-text">화면 속 물체를 네모 박스로 표시해줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">🚶</div>
-        <div class="ri-text">사람이 나타나면 경고음을 울려줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">🛑</div>
-        <div class="ri-text">정지 표지판을 보면 멈추게 해줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <h3>QR 코드와 마커 활용하기</h3>
-
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">📷</div>
-        <div class="ri-text">QR 코드를 보여주면 내용을 화면에 표시해줘</div>
+        <div class="ri-text">물체를 인식하면 반응하게 해줘</div>
         <div class="ri-copy">복사</div>
       </div>
 
       <div class="request-item" onclick="copyRequest(this)">
         <div class="ri-icon">📷</div>
-        <div class="ri-text">QR 코드에 적힌 명령대로 로봇이 움직이게 해줘</div>
+        <div class="ri-text">QR 코드를 인식하면 동작하게 해줘</div>
         <div class="ri-copy">복사</div>
       </div>
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">➡️</div>
-        <div class="ri-text">0번 마커를 보면 전진하게 해줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">↩️</div>
-        <div class="ri-text">1번 마커를 보면 왼쪽으로 돌게 해줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <div class="request-item" onclick="copyRequest(this)">
-        <div class="ri-icon">🎲</div>
-        <div class="ri-text">마커마다 다른 동작을 하게 해줘</div>
-        <div class="ri-copy">복사</div>
-      </div>
-
-      <!--
-<h3>AI 프로젝트 만들기</h3>
-
-
-<div class="request-item" onclick="copyRequest(this)">
-  <div class="ri-icon">🛡️</div>
-  <div class="ri-text">사람을 발견하면 자동으로 멈추는 안전 로봇을 만들어줘</div>
-  <div class="ri-copy">복사</div>
-</div>
-
-<div class="request-item" onclick="copyRequest(this)">
-  <div class="ri-icon">🚗</div>
-  <div class="ri-text">손짓으로 조종하는 자동차를 만들어줘</div>
-  <div class="ri-copy">복사</div>
-</div>
-
-<div class="request-item" onclick="copyRequest(this)">
-  <div class="ri-icon">📏</div>
-  <div class="ri-text">손이 가까워질수록 LED가 빨갛게 변하게 해줘</div>
-  <div class="ri-copy">복사</div>
-</div>
-
- -->
-
-
 
     </div>
 
@@ -1645,9 +1577,14 @@
       </div>
     </div> -->
 
-    <div class="tip blue" style="margin-top:20px">
+
+
+    <div class="tip blue" style="margin-top:24px">
       <span class="tip-icon">💡</span>
-      <span>AI 기능 요청 시 <strong>"토글 버튼으로 기능을 ON/OFF 가능하게"</strong> 라고 꼭 추가하세요.<br>켜고 끌 수 있어야 편리하게 사용할 수 있습니다!</span>
+      <span>
+        예시 외에도 다양한 요청이 가능합니다.<br>
+        AI와 대화하며 필요한 기능을 추가하고 수정해 보세요!
+      </span>
     </div>
 
     <div style="text-align:center"><button class="next-btn" onclick="showTab('projects')">다음: 프로젝트 아이디어 →</button></div>
@@ -1656,94 +1593,117 @@
   <!-- ⑤ 프로젝트 아이디어 -->
   <div class="section" id="tab-projects">
     <div class="sec-title">이런 프로젝트를 만들 수 있어요</div>
+
+
+
     <div class="project-grid">
-      <div class="project-card pc-face">
+
+      <div class="project-card">
+        <div class="pc-icon">📹</div>
+        <h3>스마트 CCTV</h3>
+        <p>카메라 화면을 확인하고 상황을 기록하는 나만의 보안 카메라</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">💡</div>
+        <h3>AI 무드등</h3>
+        <p>상황이나 입력에 따라 색상이 바뀌는 스마트 조명</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">🤖</div>
+        <h3>AI 비서 로봇</h3>
+        <p>화면, 소리, 움직임으로 사용자와 소통하는 나만의 로봇 비서</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">🐶</div>
+        <h3>AI 반려 로봇</h3>
+        <p>사용자의 행동에 반응하고 다양한 표현을 보여주는 친구 로봇</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">👋</div>
+        <h3>인사하는 로봇</h3>
+        <p>사람을 발견하면 얼굴을 인식하고 인사하는 웰컴 로봇</p>
+      </div>
+
+      <div class="project-card">
         <div class="pc-icon">👁️</div>
         <h3>얼굴 추적 로봇</h3>
-        <p>얼굴 위치에 따라 로봇이 자동으로 방향을 바꿔 따라다님</p>
+        <p>사람의 얼굴을 따라 방향을 바꾸는 AI 로봇</p>
       </div>
-      <!-- <div class="project-card pc-face">
-        <div class="pc-icon">🎭</div>
-        <h3>출석 체크 로봇</h3>
-        <p>얼굴을 학습시켜 이름을 인식하면 인사 사운드 + LCD 이름 표시</p>
-      </div> -->
-      <div class="project-card pc-gesture">
+
+      <div class="project-card">
         <div class="pc-icon">🤚</div>
         <h3>손동작 리모컨</h3>
-        <p>손 제스처로 로봇 방향·LED·사운드를 모두 제어</p>
+        <p>손짓으로 로봇 움직임과 다양한 기능을 제어하는 프로젝트</p>
       </div>
 
-      <div class="project-card pc-object">
-        <div class="pc-icon">🛑</div>
-        <h3>표지판 인식 로봇</h3>
-        <p>정지 표지판을 보면 자동으로 멈추는 교통 안전 로봇</p>
-      </div>
-      <div class="project-card pc-marker">
-        <div class="pc-icon">🗺️</div>
-        <h3>마커 네비게이션</h3>
-        <p>마커 ID에 따라 다른 경로로 이동하는 자율 배달 로봇</p>
-      </div>
-      <div class="project-card pc-teachable">
-        <div class="pc-icon">🃏</div>
-        <h3>카드 명령 로봇</h3>
-        <p>직접 만든 카드를 보여주면 명령을 실행하는 로봇</p>
-      </div>
-      <div class="project-card pc-sketch">
-        <div class="pc-icon">✏️</div>
-        <h3>그림 인식 로봇</h3>
-        <p>직접 그린 그림을 학습시켜 그림에 반응하는 로봇</p>
-      </div>
-
-      <div class="project-card pc-sketch">
-        <div class="pc-icon">🎭</div>
-        <h3>인사하는 로봇</h3>
-        <p>사람을 발견하면 자동으로 인사말을 건네는 웰컴 로봇</p>
-      </div>
-
-      <div class="project-card pc-sketch">
+      <div class="project-card">
         <div class="pc-icon">📦</div>
-        <h3>물건 찾기 로봇</h3>
-        <p>특정 물건을 발견하면 알려주거나 따라가는 로봇</p>
+        <h3>AI 배달 로봇</h3>
+        <p>목적지까지 이동하고 도착을 알려주는 배달 로봇</p>
       </div>
 
-
-      <div class="project-card pc-sketch">
-        <div class="pc-icon">🎲</div>
-        <h3>AI 주사위</h3>
-        <p>손가락 개수를 인식해 주사위 역할을 하는 AI</p>
-      </div>
-
-      <div class="project-card pc-sketch">
-        <div class="pc-icon">🏆</div>
-        <h3>가위바위보 로봇</h3>
-        <p>손 제스처를 인식해 가위바위보 게임 진행</p>
-      </div>
-
-      <div class="project-card pc-sketch">
-        <div class="pc-icon">📷</div>
-        <h3>QR 길안내 로봇</h3>
-        <p>QR 코드에 적힌 목적지에 따라 다른 경로를 안내하는 로봇</p>
-      </div>
-
-      <div class="project-card pc-sketch">
-        <div class="pc-icon">🎨</div>
-        <h3>색깔 인식 로봇</h3>
-        <p>티처블 머신으로 색깔 카드 3종류를 학습시켜서, 카드 색깔에 따라 다른 동작을 하기</p>
-      </div>
-
-      <div class="project-card pc-object">
+      <div class="project-card">
         <div class="pc-icon">🚦</div>
-        <h3>신호등 자율주행</h3>
-        <p>신호등 영역의 색상을 HSV로 분석해서 빨강이면 정지, 초록이면 전진하기</p>
+        <h3>신호등 자동차</h3>
+        <p>신호를 인식하고 출발과 정지를 판단하는 스마트 자동차</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">🛑</div>
+        <h3>교통 안전 로봇</h3>
+        <p>표지판을 인식하고 안전하게 이동하는 AI 로봇</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">🗺️</div>
+        <h3>길 안내 로봇</h3>
+        <p>QR이나 마커를 활용해 목적지를 찾아가는 안내 로봇</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">✋</div>
+        <h3>AI 가위바위보</h3>
+        <p>손 모양을 인식해 사람과 대결하는 AI 게임</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">🎨</div>
+        <h3>AI 작품 감상기</h3>
+        <p>그림이나 물체를 인식하고 정보를 알려주는 AI 전시 도구</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">🎮</div>
+        <h3>AI 미니 게임</h3>
+        <p>카메라와 센서를 활용해 직접 만드는 나만의 게임</p>
       </div>
 
     </div>
 
 
 
+    <div class="tip green" style="margin-top:24px">
+      <span class="tip-icon">🚀</span>
+      <span>
+        프로젝트 이름을 AI에게 말해보세요.<br>
+        예: <strong>"CCTV 모니터 앱을 만들어줘"</strong><br>
+        AI가 필요한 기능을 제안하고, 함께 프로젝트를 완성해 보세요!
+      </span>
+    </div>
 
-
-
+    <!--
+<div class="tip green" style="margin-top:24px">
+  <span class="tip-icon">💡</span>
+  <span>
+    위 예시는 시작을 위한 아이디어입니다.<br>
+    여러 기능을 조합하거나 새로운 아이디어를 추가해서<br>
+    나만의 프로젝트를 만들어 보세요!
+  </span>
+</div> -->
 
     <!-- <div class="tip green" style="margin-top:24px">
       <span class="tip-icon">🎉</span>
@@ -1761,45 +1721,25 @@
 
     <br><br>
 
-    <!-- <div class="section" id="complete"> -->
     <div class="complete-box">
-      <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
-      <h2>모든 단계 완료!</h2>
-      <!-- <p>
-          Step 1~4를 모두 마쳤어요.<br>이제 이런 것들을 직접 만들 수 있어요!</p>
-          <p> -->
+      <div style="font-size:2.5rem;margin-bottom:12px">💡</div>
+      <h2>위 예시는 시작을 위한 아이디어입니다</h2>
+
+      여러 기능을 조합하거나 새로운 아이디어를 추가해서<br>
 
       <!--
-
       여기까지 왔군요!<br><br>
       연결하고, 표현하고, 움직이고, AI까지 주미를 다루는 기본적인 건 다 해봤어요.<br>
-      이제 가이드는 여기까지에요.<br>
-      <strong>다음은 여러분 차례입니다.<br>  </strong> -->
+      이제 가이드는 여기까지에요.<br> -->
+      <strong>나만의 프로젝트를 만들어 보세요!<br>
+        </p>
 
-
-
-      여기까지 오느라 수고하셨습니다.<br><br>
-
-      연결하고, 표현하고, 움직이고, AI 비전까지<br>
-      주미 AI의 주요 기능을 모두 경험했습니다.<br>
-
-      이제는 통합 바이브 코딩에서<br>
-      원하는 기능을 자유롭게 조합하며<br>
-      나만의 프로젝트를 만들어 보세요.<br>
-      </p>
-
-      <div class="complete-projects">
-        <!-- <span class="cp-tag">🚗 리모컨 자동차</span>
-          <span class="cp-tag">😊 얼굴 추적 로봇</span>
-          <span class="cp-tag">✋ 손동작 리모컨</span>
-          <span class="cp-tag">🛑 표지판 인식 로봇</span>
-          <span class="cp-tag">🎂 생일 축하 로봇</span>
-          <span class="cp-tag">〰️ 라인트레이서</span> -->
-      </div>
-      <a href="zumi_advanced_all.html" class="complete-btn">통합 작업실로 이동 🏠</a>
-
+        <div class="complete-projects">
+        </div>
+        <!-- <a href="index.html" class="complete-btn">처음으로 돌아가기 🏠</a> -->
+      </strong>
     </div>
-    <!-- </div> -->
+
 
 
     <!-- <div style="text-align:center"><button class="next-btn" onclick="showTab('prompt')">다음: 프롬프트 가져가기 →</button></div> -->
@@ -1814,7 +1754,7 @@
   <div class="section" id="tab-prompt">
     <div class="sec-title">AI에게 전달할 기본 프롬프트</div>
 
-    <div class="tip green" style="margin-bottom:24px">
+    <div class="tip blue" style="margin-bottom:24px">
       <span class="tip-icon">⭐</span>
       <span>
         아래 프롬프트를 <strong>복사해서 Claude나 ChatGPT, Gemini에 붙여넣으세요.</strong><br>
@@ -1824,7 +1764,7 @@
 
 
 
-    <div class="tip yellow" style="margin-bottom:24px">
+    <div class="tip red" style="margin-bottom:24px">
       <span class="tip-icon">❗</span>
       <span>
         프롬프트는 처음 한 번만 전달하면 됩니다.<br>
@@ -1847,10 +1787,10 @@
   </div> -->
     <div class="prompt-box">
       <div class="prompt-topbar">
-        <span>STEP 4-A · 브라우저 AI · MediaPipe / COCO-SSD</span>
+        <span>연결 · 표현 · 이동 · AI 비전</span>
         <button class="copy-all-btn" onclick="copyAll('prompt-a')">전체 복사</button>
       </div>
-      <div class="prompt-body" id="prompt-a"><span class="pc"># ZUMI 로봇 AI 비전 웹앱 (브라우저 AI 방식)</span>
+      <div class="prompt-body" id="prompt-a"><span class="pc"># ZUMI AI 바이브 코딩 웹앱 만들기 (연결·표현·이동·AI비전 통합)</span>
 
         <span class="pk">## 시스템 구조</span>
         브라우저(HTML) ↔ WebSocket(ws://{IP}/ws) ↔ 주미 AI(하드웨어)
@@ -1865,125 +1805,302 @@
         2. ws.send('sensor') → 센서 데이터 수신 시작
 
         <span class="pk">## 영상 및 센서 수신 방법</span>
-        <span class="pv">ws.onmessage = (event) => {</span>
-        <span class="pv"> if (typeof event.data === 'string') return;</span>
-        <span class="pv"> const arr = new Uint8Array(event.data);</span>
-        <span class="pv"></span>
-        <span class="pv"> // 센서 데이터 (10바이트, 헤더 $R)</span>
-        <span class="pv"> if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {</span>
-        <span class="pv"> parseAndUpdateSensors(arr);</span>
-        <span class="pv"> return;</span>
-        <span class="pv"> }</span>
-        <span class="pv"></span>
-        <span class="pv"> // 영상 데이터 (그 외 = JPEG)</span>
-        <span class="pv"> const blob = new Blob([arr], {type: 'image/jpeg'});</span>
-        <span class="pv"> const url = URL.createObjectURL(blob);</span>
-        <span class="pv"> const img = new Image();</span>
-        <span class="pv"> img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };</span>
-        <span class="pv"> img.src = url;</span>
-        <span class="pv">}</span>
+        ws.onmessage = (event) => {
+        if (typeof event.data === 'string') return;
+        const arr = new Uint8Array(event.data);
+
+        // 센서 데이터 (10바이트, 헤더 $R)
+        if (arr.length === 10 && arr[0] === 0x24 && arr[1] === 0x52) {
+        parseAndUpdateSensors(arr);
+        return;
+        }
+
+        // 영상 데이터 (그 외 = JPEG)
+        const blob = new Blob([arr], {type: 'image/jpeg'});
+        const url = URL.createObjectURL(blob);
+        const img = new Image();
+        img.onload = () => { ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(url); };
+        img.src = url;
+        }
 
         <span class="pk">## 패킷 빌더</span>
-        <span class="pv">function buildPacket(cmd, ...params) {</span>
-        <span class="pv"> const buf = new Uint8Array(4 + params.length);</span>
-        <span class="pv"> buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;</span>
-        <span class="pv"> params.forEach((v,i) => buf[4+i]=v);</span>
-        <span class="pv"> return buf.buffer;</span>
-        <span class="pv">}</span>
+        function buildPacket(cmd, ...params) {
+        const buf = new Uint8Array(4 + params.length);
+        buf[0]=0x24; buf[1]=0x52; buf[2]=cmd; buf[3]=0x00;
+        params.forEach((v,i) => buf[4+i]=v);
+        return buf.buffer;
+        }
 
-        <span class="pk">## AI 오버레이 구조</span>
-        videoCanvas (영상) + aiCanvas (AI 결과 오버레이, position:absolute)
-        aiCanvas는 클릭 이벤트 투과: pointer-events: none
+        <span class="pk">## 센서 데이터 파싱 규칙 (10바이트)</span>
+        arr[0]: 0x24 ($)
+        arr[1]: 0x52 (R)
+        arr[2]: FR (전방 우측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+        arr[3]: FL (전방 좌측, 0~255) — 가까울수록 작아짐, 감지 기준값: 100
+        arr[4]: BR (바닥 우측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+        arr[5]: BL (바닥 좌측, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+        arr[6]: BC (바닥 중앙, 0~255) — 흰색일수록 작아짐, 감지 기준값: 30
+        arr[7]: BTN (버튼 비트마스크: 8=🔴빨강 4=🔵파랑 2=🟢초록 1=🟡노랑 / 안눌리면 '없음')
+        버튼 배열 순서: 빨강-파랑-초록-노랑 (수평)
+        arr[8]: BAT (배터리 잔량, 최대 100 제한 필요)
+        arr[9]: STAT (명령 수행 상태: 1=수행중, 0=대기중)
+        순차 이동 시 STAT이 0인 것을 확인한 후 다음 명령을 전송해야 함
+        센서값은 주미마다 개체차 있음
 
-        <span class="pk">## 사용 가능한 브라우저 AI 라이브러리 (CDN)</span>
-        <span class="pc">// MediaPipe (얼굴 / 손)</span>
-        &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"&gt;&lt;/script&gt;
-        &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"&gt;&lt;/script&gt;
-        &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"&gt;&lt;/script&gt;
+        ---
 
-        <span class="pc">// TensorFlow.js + COCO-SSD (물체/표지판)</span>
-        &lt;script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"&gt;&lt;/script&gt;
-        &lt;script
-        src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"&gt;&lt;/script&gt;
+        <span class="pk">## [표현 기능] 명령어</span>
 
-        <span class="pc">// js-aruco (마커 인식)</span>
-        &lt;script src="https://cdn.jsdelivr.net/npm/js-aruco2/src/cv.js"&gt;&lt;/script&gt;
-        &lt;script src="https://cdn.jsdelivr.net/npm/js-aruco2/src/aruco.js"&gt;&lt;/script&gt;
+        // LED (r, g, b 각 0~10)
+        LED 색상: CMD=10, params=[r, g, b]
+        LED 패턴: CMD=201, params=[pattern, time_high, time_low]
+        패턴: 0=유지 1=깜빡 2=두번깜빡 3=밝아졌다어두워짐 4=점점어두워짐 5=점점밝아짐 6=무지개
+        time: ms 단위, 예) 1000ms → time_high=3, time_low=232
 
-        <span class="pc">// qr 인식</span>
-        &lt;script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"&gt;&lt;/script&gt;
+        // 사운드
+        사운드: CMD=242, params=[sound]
+        0=고양이 1=셔터 2=실패1 3=실패2 4=경적1 5=경적2 6=사이렌 7=성공
 
-        <span class="pc">// 글자 인식</span>
-        &lt;script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"&gt;&lt;/script&gt;
+        // LCD 텍스트
+        텍스트 출력: CMD=230, 이후 UTF-8 문자열 바이트 + 0x00
+        텍스트 추가: CMD=232, 이후 UTF-8 문자열 바이트 + 0x00
+        텍스트 설정: CMD=231, params=[color, size, 0, 0, 0]
+        color(기본값 1): 0=변경안함 1=흰색 2=검정 3=남색 4=파랑 5=하늘색 6=청록색 7=틸 8=초록
+        9=연두 10=라임 11=노랑 12=호박색 13=주황 14=진주황 15=갈색 16=청회색 17=회색
+        size(기본값 5): 0=변경안함 1~5
 
-        <span class="pc">// Teachable Machine(이미지 분류)</span>
-        &lt;script
-        src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"&gt;&lt;/script&gt;
-        // 모델 URL은 사용자가 직접 입력하게 UI 제공
+        <span class="pk">## 텍스트 스마트 분할 전송</span>
+        하드웨어 버퍼 제한: 한 번에 최대 11바이트(payload)
+        11바이트 초과 시 자동 슬라이싱, 각 조각 사이 100ms 딜레이 필수
 
-        <span class="pk">## AI 루프 패턴 (120~200ms 간격)</span>
-        // 루프 밖에서 한 번만 생성
-        <span class="pv">const offscreen = document.createElement('canvas');</span>
-        <span class="pv">offscreen.width = 640; offscreen.height = 480;</span>
-        <span class="pv"></span>
-        <span class="pv">async function aiLoop() {</span>
-        <span class="pv"> aiCtx.clearRect(0, 0, aiCanvas.width, aiCanvas.height);</span>
-        <span class="pv"> offscreen.getContext('2d').drawImage(videoCanvas, 0, 0);</span>
-        <span class="pv"> if (faceOn) await faceMesh.send({image: offscreen});</span>
-        <span class="pv"> if (handsOn) await hands.send({image: offscreen});</span>
-        <span class="pv"> if (cocoOn) await runCoco(offscreen);</span>
-        <span class="pv"> setTimeout(aiLoop, 150);</span>
-        <span class="pv">}</span>
+        규칙:
+        - 첫 번째 조각: CMD=230 (새로 출력)
+        - 이후 조각들: CMD=232 (추가 출력)
+        - 조각 간 딜레이: 100ms (setTimeout 재귀 루프)
 
-        <span class="pk">## 손 랜드마크(21점) 기반 제스처 판별</span>
-        // 손가락 끝(4,8,12,16,20)과 관절(3,6,10,14,18) y좌표 비교 방식 사용
-        function recognizeGesture(landmarks) { ... }
+        <span class="pk">## 기본 sendText 참고</span>
+        function sendText(text) {
+        const encoded = new TextEncoder().encode(text);
+        const buf = new Uint8Array(4 + encoded.length + 1);
+        buf[0]=0x24; buf[1]=0x52; buf[2]=230; buf[3]=0x00;
+        buf.set(encoded, 4);
+        buf[4 + encoded.length] = 0x00;
+        ws.send(buf.buffer);
+        }
+        // 위 함수를 베이스로 11바이트 분할 + 100ms 딜레이 방식으로 고도화할 것
 
-        <span class="pk">## AI 토글 버튼 구조</span>
-        각 AI 기능(얼굴/손/물체 등)마다 토글 버튼 제공
-        버튼 ON → 해당 AI 초기화 및 루프 시작
-        버튼 OFF → 오버레이 지우기, 루프에서 제외
+        ---
+
+        <span class="pk">## [이동 기능] 명령어</span>
+
+        ## STAT 적용 규칙
+        STAT 체크 필요 (완료 후 다음 명령 전송):
+        - 정밀 이동: CMD=26, 70, 50, 51, 52, 53
+        - 특수 이동: CMD=101, 28, 100
+
+        STAT 체크 불필요 (즉시 전송):
+        - 버튼/키보드 조종: CMD=32 (CMD_MOTOR_INFINITE)
+        - 라인트레이서 무한: CMD=30
+        - 정지: CMD=25
+
+        <span class="pk">## 전송 딜레이</span>
+        범위: 10~200ms
+        sendRaw() 내부에서 if (Date.now() - lastCmdTime < cmdDelay) return; CMD_STOP(25)은 딜레이 무시하고 즉시 전송 <span class="pk">##
+          모터 제어 (CMD_MOTOR_INFINITE)</span>
+          버튼/키보드 조종에 적합
+          CMD_STOP = 25 → buildPacket(25)
+          CMD_MOTOR_INFINITE = 32
+          ## 모터 패킷 생성 함수
+          function makeMotorPacket(dirL, speedL, dirR, speedR) {
+          speedL = Math.max(0, Math.min(250, speedL));
+          speedR = Math.max(0, Math.min(250, speedR));
+          dirL = Math.max(0, Math.min(2, dirL));
+          dirR = Math.max(0, Math.min(2, dirR));
+          const dir = 0x40 | dirL | (dirR << 4); return buildPacket(32, speedL, speedR, dir); } <span class="pk">## 모터
+            제어(CMD_MOTOR_INFINITE) 캘리브레이션</span>
+            버튼이나 키보드 조종을 원하는 경우에 함께 적용
+            변수 4개 (기본값 40, 범위 0~250): calGoL, calGoR, calTurnL, calTurnR
+            전진: makeMotorPacket(2, calGoL, 1, calGoR)
+            후진: makeMotorPacket(1, calGoL, 2, calGoR)
+            좌회전: makeMotorPacket(1, calTurnL, 1, calTurnR)
+            우회전: makeMotorPacket(2, calTurnL, 2, calTurnR)
+
+            <span class="pk">## 입력 이벤트</span>
+            버튼: mousedown/touchstart → 이동, mouseup/mouseleave/touchend → 정지
+            키보드: keydown(repeat 무시, input 포커스 시 무시) → 이동, keyup → 정지
+            키 매핑: w=전진 s=후진 a=좌회전 d=우회전 e=정지
+
+            <span class="pk">## 정밀 이동</span>
+            전진 거리: CMD=26 params=[speed, dist, 0]
+            후진 거리: CMD=26 params=[speed, dist, 1]
+            좌회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 0]
+            우회전 각도: CMD=70 params=[speed, deg%256, Math.floor(deg/256), 1]
+            빠른 전진: CMD=50 params=[dist] (단위: cm, 0~300)
+            빠른 후진: CMD=51 params=[dist] (단위: cm, 0~300)
+            빠른 좌회전: CMD=52 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
+            빠른 우회전: CMD=53 params=[Math.round(deg/5)] (5도 단위, 최대 360도)
+
+            <span class="pk">## 특수 이동</span>
+            라인트레이서 무한: CMD=30 params=[speed]
+            라인트레이서 시간: CMD=101 params=[speed, senBL, senBR, senBC, time×10] 기본 센서값=100
+            라인트레이서 거리: CMD=28 params=[speed, dist]
+            장애물 감지 정지: CMD=100 params=[speed, senL, senR] 기본 센서값=150
+
+            ---
+
+            <span class="pk">## [AI 비전 기능]</span>
+
+            <span class="pk">## AI 오버레이 구조</span>
+            videoCanvas (영상) + aiCanvas (AI 결과 오버레이, position:absolute)
+            aiCanvas는 클릭 이벤트 투과: pointer-events: none
+
+            <span class="pk">## 사용 가능한 브라우저 AI 라이브러리 (CDN)</span>
+            <span class="pc">// MediaPipe (얼굴 / 손)</span>
+            &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"&gt;&lt;/script&gt;
+            &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"&gt;&lt;/script&gt;
+            &lt;script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"&gt;&lt;/script&gt;
+
+            <span class="pc">// TensorFlow.js + COCO-SSD (물체/표지판)</span>
+            &lt;script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"&gt;&lt;/script&gt;
+            &lt;script
+            src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"&gt;&lt;/script&gt;
+
+            <span class="pc">// js-aruco (마커 인식)</span>
+            &lt;script src="https://cdn.jsdelivr.net/npm/js-aruco2/src/cv.js"&gt;&lt;/script&gt;
+            &lt;script src="https://cdn.jsdelivr.net/npm/js-aruco2/src/aruco.js"&gt;&lt;/script&gt;
+
+            <span class="pc">// qr 인식</span>
+            &lt;script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"&gt;&lt;/script&gt;
+
+            <span class="pc">// 글자 인식</span>
+            &lt;script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"&gt;&lt;/script&gt;
+
+            <span class="pc">// Teachable Machine(이미지 분류)</span>
+            &lt;script
+            src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"&gt;&lt;/script&gt;
+            // 모델 URL은 사용자가 직접 입력하게 UI 제공
+
+            <span class="pk">## AI 루프 패턴 (120~200ms 간격)</span>
+            // 루프 밖에서 한 번만 생성
+            const offscreen = document.createElement('canvas');
+            offscreen.width = 640; offscreen.height = 480;
+
+            async function aiLoop() {
+            aiCtx.clearRect(0, 0, aiCanvas.width, aiCanvas.height);
+            offscreen.getContext('2d').drawImage(videoCanvas, 0, 0);
+            if (faceOn) await faceMesh.send({image: offscreen});
+            if (handsOn) await hands.send({image: offscreen});
+            if (cocoOn) await runCoco(offscreen);
+            setTimeout(aiLoop, 150);
+            }
+
+            <span class="pk">## 손 랜드마크(21점) 기반 제스처 판별</span>
+            // 손가락 끝(4,8,12,16,20)과 관절(3,6,10,14,18) y좌표 비교 방식 사용
+            function recognizeGesture(landmarks) { ... }
+
+            ## AI 토글 버튼 구조
+            각 AI 기능(얼굴/손/물체 등)마다 토글 버튼 제공
+            버튼 ON → 해당 AI 초기화 및 루프 시작
+            버튼 OFF → 오버레이 지우기, 루프에서 제외
+
+            ---
+
+            <span class="pk">## 기본 UI 포함 요소</span>
+            - IP 입력창 + 연결 버튼 + 해제 버튼
+            - 연결 상태 표시 (연결됨 / 연결 안 됨)
+            - 영상 표시 canvas (width=640, height=480)
+            - 방향 제어 버튼 또는 키보드
+            - 캘리브레이션 입력 4개
+            - 전송 딜레이 조절
+            - AI 라이브러리 로딩 상태 표시
+            (용량이 큰 라이브러리 초기화 중에는 "로딩 중..." 등의 메시지 또는 스피너를 표시)
+
+            <span class="pk">## 결과물 조건</span>
+            - HTML 파일 하나로 동작
+            - CSS/JavaScript 내부 포함
+            - Chrome에서 바로 실행 가능
+            - 별도 서버 불필요
+
+            ---
+
+            <span class="pp">## 추가로 만들어줄 기능:
+              (여기에 원하는 것을 직접 적어주세요)
+
+              <!-- 예시 (연결/보기):
+              - 전체화면 버튼 추가 / 사진 저장 기능
+              - 흑백 필터 버튼 / 화면에 현재 시간 표시 / 밝기·대비 슬라이더
+
+              예시 (표현):
+              - 센서 값을 시각적 요소와 숫자로 표현 / 눌린 버튼 값 표현
+              - 감정 버튼 (행복/슬픔/화남) — 각각 LED + 사운드 동시 제어
+              - LED RGB 슬라이더 / 경고 모드 버튼(빨간 LED 깜빡 + 사이렌)
+              - LCD 텍스트 입력창 / 사운드 버튼 모음
+
+              예시 (이동):
+              - WASD 키보드 + D-PAD 버튼 조종 / 속도 슬라이더(1~3) / 거리·각도 슬라이더로 정밀 이동
+              - 라인트레이서 시작/정지 버튼 / 정사각형 자동 이동 버튼
+
+              예시 (AI 비전):
+              - 얼굴 감지 토글 버튼 + 랜드마크 오버레이
+              - 손 제스처로 전진/정지/좌우회전 제어
+              - 물체 인식 + 정지 표지판 감지 시 자동 정지
+              - 얼굴이 왼쪽이면 좌회전, 오른쪽이면 우회전 (얼굴 추적) -->
+            </span>
 
 
-        <span class="pk">## 기본 UI 포함 요소</span>
-        - IP 입력창 + 연결 버튼 + 해제 버튼
-        - 연결 상태 표시 (연결됨 / 연결 안 됨)
-        - 영상 표시 canvas (width=640, height=480)
-        - AI 라이브러리 로딩 상태 표시
-        (용량이 큰 라이브러리 초기화 중에는 "로딩 중..." 등의 메시지 또는 스피너를 표시)
 
-        <span class="pk">## 결과물 조건</span>
-        - HTML 파일 하나로 동작
-        - CSS/JavaScript 내부 포함
-        - Chrome에서 바로 실행 가능
-        - 별도 서버 불필요
-
-
-
-
-        <span class="pp">## 추가로 만들어줄 AI 기능:
-          (원하는 것을 적어주세요)
-
-          예시:
-          - 얼굴 감지 토글 버튼 + 랜드마크 오버레이
-          - 손 제스처로 전진/정지/좌우회전 제어
-          - 물체 인식 + 정지 표지판 감지 시 자동 정지
-          - 얼굴이 왼쪽이면 좌회전, 오른쪽이면 우회전 (얼굴 추적)</span>
       </div>
     </div>
 
 
     <!-- <div class="tip purple" style="margin-top:20px">
+  <span class="tip-icon">💡</span>
+  <span>처음 시작이라면 <strong>방식 A(브라우저 AI)</strong>를 추천합니다. Python 설치 없이 HTML 파일 하나로 바로 동작합니다!</span>
+</div> -->
+    <!-- <div class="tip red" style="margin-top:12px">
     <span class="tip-icon">💡</span>
-    <span>처음 시작이라면 <strong>방식 A(브라우저 AI)</strong>를 추천합니다. Python 설치 없이 HTML 파일 하나로 바로 동작합니다!</span>
+    <span>프롬프트를 복사한 다음, 노란 부분을 원하는 내용으로 바꿔서 AI에게 보내보세요.<br>
+      결과물이 마음에 안 들면 "더 크게", "모바일 스타일로", "어둡게" 같이 추가 요청도 됩니다!</span>
   </div> -->
+
+    <!--
     <div class="tip red" style="margin-top:12px">
       <span class="tip-icon">💡</span>
-      <span>AI 인식 결과로 로봇을 움직이고 싶다면, 3단계 프롬프트와 함께 사용해보세요.</span>
-    </div>
+      <span>
+
+        프롬프트를 전달하고, 기능적인 것들을 이야기 해봐요.<br>
+
+        <b style="font-weight: normal;">
+          <br> 예시 (연결/보기):<br>
+          - 전체화면 버튼 추가 / 사진 저장 기능 / 흑백 필터 버튼 / 화면에 현재 시간 표시 / 밝기·대비 슬라이더<br>
+
+          <br> 예시 (표현):<br>
+          - 센서 값을 시각적 요소와 숫자로 표현 / 눌린 버튼 값 표현<br>
+          - 감정 버튼 (행복/슬픔/화남) — 각각 LED + 사운드 동시 제어<br>
+          - LED RGB 슬라이더 / 경고 모드 버튼(빨간 LED 깜빡 + 사이렌)<br>
+          - LCD 텍스트 입력창 / 사운드 버튼 모음<br>
+
+          <br> 예시 (이동):<br>
+          - WASD 키보드 + D-PAD 버튼 조종 / 속도 슬라이더(1~3) / 거리·각도 슬라이더로 정밀 이동<br>
+          - 라인트레이서 시작/정지 버튼 / 정사각형 자동 이동 버튼<br>
+
+          <br> 예시 (AI 비전):<br>
+          - 얼굴 감지 토글 버튼 + 랜드마크 오버레이<br>
+          - 손 제스처로 전진/정지/좌우회전 제어<br>
+          - 물체 인식 + 정지 표지판 감지 시 자동 정지<br>
+          - 얼굴이 왼쪽이면 좌회전, 오른쪽이면 우회전 (얼굴 추적)<br>
+        </b>
+      </span>
+    </div> -->
+
+
     <div class="tip green" style="margin-top:12px">
-      <span class="tip-icon">🎯</span>
-      <span>Step 1~3에서 만든 앱에 AI 기능을 추가하고 싶다면 "기존 코드에 얼굴 추적 기능을 추가해줘"라고 하면 됩니다!</span>
+      <span class="tip-icon">💡</span>
+      <span>
+        바이브 코딩 팁 <br>
+
+        • 결과가 마음에 들지 않으면 계속 요청해 보세요.<br>
+        • 원하는 기능을 하나씩 추가하면 더 정확한 결과를 얻을 수 있습니다.<br>
+        • 여러 기능을 조합하면 더욱 다양한 프로젝트를 만들 수 있습니다.<br>
     </div>
 
 
@@ -1994,6 +2111,13 @@
     </div>
   </div>
 
+
+
+
+
+
+
+
   <div class="toast" id="toast">📋 복사되었습니다!</div>
 
   <script>
@@ -2001,20 +2125,10 @@
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
       document.getElementById('tab-' + id).classList.add('active');
-      const idx = ['goal', 'features', 'prompt', 'requests', 'projects', 'api'].indexOf(id);
+      const idx = ['features', 'prompt', 'requests', 'projects', 'api'].indexOf(id);
       document.querySelectorAll('.nav-tab')[idx].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const tabParam = urlParams.get('tab'); // ?tab=features 에서 'features' 추출
-      const validTabs = ['goal', 'features', 'prompt', 'requests', 'projects', 'api'];
-
-      if (validTabs.includes(tabParam)) {
-        showTab(tabParam);
-      }
-    });
-
     function copyRequest(el) {
       navigator.clipboard.writeText(el.querySelector('.ri-text').textContent).then(() => {
         const btn = el.querySelector('.ri-copy');
