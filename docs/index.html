@@ -298,14 +298,12 @@
         }
 
 
-.category-desc {
-    font-size: 0.85rem;
-    /* color: var(--text-muted);*/
-color: var(--theme-python);
-    margin-top: 4px;
-}
-
-
+        .category-desc {
+            font-size: 0.85rem;
+            /* color: var(--text-muted);*/
+            color: var(--theme-python);
+            margin-top: 4px;
+        }
     </style>
 </head>
 
@@ -323,7 +321,9 @@ color: var(--theme-python);
 
 
             <div class="logo">
-                <img id="img-logo" src="zumi-ai-logo.png" alt="Zumi AI">
+                <a href="https://zumi-ai.github.io/python/website/zumi_ai_e_manual.html" target="_blank">
+                    <img id="img-logo" src="zumi-ai-logo.png" alt="Zumi AI">
+                </a>
             </div>
 
             <div class="hero-text">
@@ -383,24 +383,24 @@ color: var(--theme-python);
 
                 containerTheme: "var(--theme-class)",
                 items: [
-                    { title: "바로 따라해보기", desc: "따라하면 5분 안에<br>로봇 카메라 화면", link: "zumi_easy_intro.html", itemTheme: "var(--theme-class)" , image: "vibe_easy_00.png" },
-                    { title: "1. 연결하고 보기", desc: "로봇과 연결하고<br>카메라 화면을 확인", link: "zumi_easy_step1.html", itemTheme: "var(--theme-entry)" , image: "vibe_easy_01.png" },
-                    { title: "2. 표현 하기", desc: "로봇에게<br>개성부여", link: "zumi_easy_step2.html", itemTheme: "var(--theme-scratch)" , image: "vibe_easy_02.png" },
-                    { title: "3. 움직이기", desc: "움직여보기", link: "zumi_easy_step3.html", itemTheme: "var(--theme-python)" , image: "vibe_easy_03.png" },
-                    { title: "4. AI 연결하기", desc: "AI로 인식하기", link: "zumi_easy_step4.html", itemTheme: "var(--theme-ai)" , image: "vibe_easy_04.png" },
+                    { title: "바로 따라해보기", desc: "따라하면 5분 안에<br>로봇 카메라 화면", link: "zumi_easy_intro.html", itemTheme: "var(--theme-class)", image: "vibe_easy_00.png" },
+                    { title: "1. 연결하고 보기", desc: "로봇과 연결하고<br>카메라 화면을 확인", link: "zumi_easy_step1.html", itemTheme: "var(--theme-entry)", image: "vibe_easy_01.png" },
+                    { title: "2. 표현 하기", desc: "로봇에게<br>개성부여", link: "zumi_easy_step2.html", itemTheme: "var(--theme-scratch)", image: "vibe_easy_02.png" },
+                    { title: "3. 움직이기", desc: "움직여보기", link: "zumi_easy_step3.html", itemTheme: "var(--theme-python)", image: "vibe_easy_03.png" },
+                    { title: "4. AI 비전", desc: "AI로 인식하기", link: "zumi_easy_step4.html", itemTheme: "var(--theme-ai)", image: "vibe_easy_04.png" },
                 ]
             },
             {
-                title: "2. 도전 바이브 코딩",
+                title: "2. 확장하는 바이브 코딩",
                 desc: "프롬프트와 기능 구조를 이해하며 확장해 보세요.<br><br>- 로봇 기능, 코딩 구조를 조금 더 이해하고 싶은 사람<br>- 프롬프트, API, 기능 구조까지 확인<br>- 원하는 기능을 더 구체적으로 설계",
                 containerTheme: "var(--theme-scratch)",
                 items: [
                     // { title: "도전 가이드", desc: "나만의 AI 로봇<br>프로젝트 만들기", link: "zumi_advanced_intro.html", itemTheme: "var(--theme-class)" , image: "vibe_advanced_00.png" },
-                    { title: "1. 연결하고 보기", desc: "주미 AI와 연결하고<br>카메라 화면을 띄워보기", link: "zumi_advanced_step1.html", itemTheme: "var(--theme-entry)" , image: "vibe_advanced_01.png" },
-                    { title: "2. 표현 하기", desc: "화면과 소리를 표현하고<br> 버튼과 센서 반응하기", link: "zumi_advanced_step2.html", itemTheme: "var(--theme-scratch)" , image: "vibe_advanced_02.png" },
-                    { title: "3. 움직이기", desc: "주행부터 <br>자율 이동까지", link: "zumi_advanced_step3.html", itemTheme: "var(--theme-python)" , image: "vibe_advanced_03.png" },
-                    { title: "4. AI 연결하기", desc: "얼굴, 손, 물체를 인식하고<br>반응하기", link: "zumi_advanced_step4.html", itemTheme: "var(--theme-ai)" , image: "vibe_advanced_04.png" },
-                    { title: "[최종 통합 작업실]", desc: "모든 핵심 기능을<br> 한 번에 실행하고 완성", link: "zumi_advanced_all.html", itemTheme: "var(--theme-class)" , image: "vibe_advanced_00.png" },
+                    { title: "1. 연결하고 보기", desc: "주미 AI와 연결하고<br>카메라 화면을 띄워보기", link: "zumi_advanced_step1.html", itemTheme: "var(--theme-entry)", image: "vibe_advanced_01.png" },
+                    { title: "2. 표현 하기", desc: "화면과 소리를 표현하고<br> 버튼과 센서 반응하기", link: "zumi_advanced_step2.html", itemTheme: "var(--theme-scratch)", image: "vibe_advanced_02.png" },
+                    { title: "3. 움직이기", desc: "주행부터 <br>자율 이동까지", link: "zumi_advanced_step3.html", itemTheme: "var(--theme-python)", image: "vibe_advanced_03.png" },
+                    { title: "4. AI 비전", desc: "얼굴, 손, 물체를 인식하고<br>반응하기", link: "zumi_advanced_step4.html", itemTheme: "var(--theme-ai)", image: "vibe_advanced_04.png" },
+                    { title: "[최종 통합 작업실]", desc: "모든 핵심 기능을<br> 한 번에 실행하고 완성", link: "zumi_advanced_all.html", itemTheme: "var(--theme-class)", image: "vibe_advanced_00.png" },
 
                 ]
             },
