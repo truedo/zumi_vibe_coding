@@ -2,6 +2,8 @@
 <html lang="ko">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* 기존 CSS 스타일 유지 */
         :root {
@@ -303,6 +305,79 @@
             /* color: var(--text-muted);*/
             color: var(--theme-python);
             margin-top: 4px;
+        }
+
+        /* ── 모바일 대응 ── */
+        @media (max-width: 640px) {
+            main {
+                padding: 0 0.75rem;
+                margin: 0.75rem auto;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 24px 12px 40px;
+            }
+
+            .hero-top {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .logo img {
+                max-width: 220px;
+            }
+
+            .hero-eyebrow2 {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-slogan {
+                font-size: clamp(1.6rem, 7vw, 2.2rem);
+                letter-spacing: -1px;
+            }
+
+            .page-title {
+                font-size: 1.3rem;
+            }
+
+            .category-block {
+                padding: 0.85rem 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .category-header h2 {
+                font-size: 1rem;
+            }
+
+            .grid-layout {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 0.6rem;
+            }
+
+            .card {
+                padding: 0.6rem;
+            }
+
+            .card-main-text h3 {
+                font-size: 0.8rem !important;
+            }
+
+            .card-desc {
+                font-size: 0.72rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .grid-layout {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
